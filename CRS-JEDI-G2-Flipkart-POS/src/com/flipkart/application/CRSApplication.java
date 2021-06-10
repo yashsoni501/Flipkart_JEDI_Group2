@@ -9,6 +9,8 @@ package com.flipkart.application;
  */
 public class CRSApplication {
 
+	public static boolean loggedIn;
+
 	/**
 	 * @param args
 	 */

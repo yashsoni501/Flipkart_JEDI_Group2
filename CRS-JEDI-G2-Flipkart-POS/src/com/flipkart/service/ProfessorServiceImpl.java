@@ -39,4 +39,9 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 
 	}
 
+	public static ProfessorServiceImpl getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
