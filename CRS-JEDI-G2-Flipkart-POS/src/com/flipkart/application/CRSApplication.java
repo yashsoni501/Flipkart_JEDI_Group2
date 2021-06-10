@@ -31,8 +31,9 @@ public class CRSApplication {
 			createMainMenu();
 			userInput = scan.nextInt();
 		}
-		}
+		scan.close();
 	}
+	
 	
 	public static void createMainMenu()
 	{
