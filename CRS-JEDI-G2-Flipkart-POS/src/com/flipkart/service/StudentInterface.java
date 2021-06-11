@@ -18,4 +18,5 @@ public interface StudentInterface {
 	public boolean payFee(String studentId, int modeOfPayment);
 	public boolean isFeePaid(String studentId, int semester);
 	public ReportCard viewReportCard(String studentId);
+	public void getAllStudents(String session);
 }
