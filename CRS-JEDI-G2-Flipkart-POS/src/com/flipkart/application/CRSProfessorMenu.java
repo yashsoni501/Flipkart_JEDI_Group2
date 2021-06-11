@@ -3,8 +3,6 @@
  */
 package com.flipkart.application;
 
-import java.util.Scanner;
-
 import com.flipkart.service.ProfessorInterface;
 import com.flipkart.service.ProfessorServiceImpl;
 
@@ -18,10 +16,7 @@ public class CRSProfessorMenu {
 
 	public void createMenu()
 	{
-		Scanner scanner = new Scanner(System.in);
-
-		int choice = 0;
-		while(CRSApplication.loggedIn)
+		while(CRSApplication.userId != null)
 		{
 			System.out.println("Professor Menu");
 			System.out.println("1. View Courses");
@@ -30,8 +25,8 @@ public class CRSProfessorMenu {
 			System.out.println("4. View students in the course");
 			System.out.println("5. Upload student grades");
 			System.out.println("6. Logout");
-
-			scanner.nextInt(choice);
+			int choice=0;
+			choice = CRSApplication.scan.nextInt();
 
 			switch(choice)
 			{
@@ -51,18 +46,12 @@ public class CRSProfessorMenu {
 					submitGrades();
 					break;
 				case 6:
-					logout();
+					CRSApplication.logout();
 					break;
 				default:
 					System.out.println("Invalid option. Please try again...");
-			}			
-			scanner.close();
+			}
 		}
-	}
-
-	private void logout() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	private void submitGrades() {

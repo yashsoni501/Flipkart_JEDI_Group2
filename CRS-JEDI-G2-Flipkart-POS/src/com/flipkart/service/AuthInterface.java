@@ -3,13 +3,14 @@
  */
 package com.flipkart.service;
 
+
 /**
  * @author aysh
  *
  */
 public interface AuthInterface {
 
-	public boolean verifyUserWithEmailPassword (String email, String paasword);
+	public String verifyUserWithEmailPassword (String email, String paasword);
 
 	public boolean verifyUserWithToken (String access_token, String email);
 	
@@ -18,4 +19,6 @@ public interface AuthInterface {
 	public boolean logout();
 	
 	public boolean updatePassword(String email, String oldPassword, String newPassword);
+
+	public String getRole(String userId);
 }

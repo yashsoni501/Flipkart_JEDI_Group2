@@ -24,9 +24,9 @@ public class AuthServiceImpl implements AuthInterface {
 	}
 
 	@Override
-	public boolean verifyUserWithEmailPassword(String email, String paasword) {
+	public String verifyUserWithEmailPassword(String email, String paasword) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	@Override
@@ -51,6 +51,12 @@ public class AuthServiceImpl implements AuthInterface {
 	public boolean updatePassword(String email, String oldPassword, String newPassword) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public String getRole(String userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
