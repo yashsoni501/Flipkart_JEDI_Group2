@@ -9,7 +9,7 @@ package com.flipkart.application;
  */
 public class StudentCRSMenu {
 
-	StudentInterface tudentInterface = StudentServiceImpl.getInstance();
+	StudentInterface studentInterface = StudentServiceImpl.getInstance();
 	
 	/** Creates the menu for Students
 	 */
