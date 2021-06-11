@@ -52,11 +52,11 @@ public class CRSProfessorMenu {
 					break;
 				case 6:
 					logout();
-					scanner.close();
 					break;
 				default:
 					System.out.println("Invalid option. Please try again...");
 			}			
+			scanner.close();
 		}
 	}
 

@@ -58,6 +58,7 @@ public class CRSApplication {
 	public void loginUser()
 	{
 		System.out.println("Login");
+		CRSApplication.loggedIn = true;
 	}
 	
 

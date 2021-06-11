@@ -3,9 +3,9 @@
  */
 package com.flipkart.service;
 
-import java.util.List;
+import java.util.ArrayList;
 
-import com.flipkart.bean.Course;
+import com.flipkart.bean.CourseCatalog;
 
 /**
  * @author aysh
@@ -13,7 +13,7 @@ import com.flipkart.bean.Course;
  */
 public interface UserInterface {
 
-	public List<Course> fetchCourses();
+	public ArrayList<CourseCatalog> fetchCourses();
 	
-	public boolean updateUserProfile(int studentId);
+	public boolean updateUserProfile(String studentId);
 }

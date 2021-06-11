@@ -3,13 +3,16 @@
  */
 package com.flipkart.service;
 
+import java.util.ArrayList;
+import com.flipkart.bean.CourseCatalog;
+
 /**
  * @author Lenovo
  *
  */
 public interface CourseRegistrationInterface {
-	public boolean submitCourseRegistrationForm(int[] courselist);
-	public void addCourse(int courseId);
-	public void dropCourse(int courseId);
+	public boolean submitCourseRegistrationForm(ArrayList<CourseCatalog> courselist);
+	public boolean addCourse(String courseId);
+	public boolean dropCourse(String courseId);
 
 }

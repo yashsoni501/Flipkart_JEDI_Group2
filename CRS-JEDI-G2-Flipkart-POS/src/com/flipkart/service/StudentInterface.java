@@ -3,7 +3,7 @@
  */
 package com.flipkart.service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.ReportCard;
@@ -14,15 +14,8 @@ import com.flipkart.bean.ReportCard;
  */
 public interface StudentInterface {
 	
-	public List<Course> fetchRegisteredCourses(int studentId);
-
-	public boolean FeePaid(int studentId, int semester);
-	
-	public boolean viewFeeReciept(int studentId, int semester);
-	
-	public ReportCard viewReportCard(int studentId);
-	
-	public boolean payfee(int studentId, int modeOfPayment);
-	
-	public boolean registerCourses(int studentId, int courseId);
+	public ArrayList<Course> fetchRegisteredCourses(String studentId, int semester);
+	public boolean payFee(String studentId, int modeOfPayment);
+	public boolean isFeePaid(String studentId, int semester);
+	public ReportCard viewReportCard(String studentId);
 }
