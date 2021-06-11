@@ -1,18 +1,8 @@
-/**
- * 
- */
-package com.flipkart.service;
-
-import java.util.List;
+package com.flipkart.DAO;
 
 import com.flipkart.bean.Course;
 
-/**
- * @author aysh
- *
- */
-public interface AdminInterface {
-
+public interface AdminDAOInterface {
 	public boolean addCourse(String courseName, String Department);
 
 	public boolean removeCourse(String courseId);
@@ -25,21 +15,21 @@ public interface AdminInterface {
 
 	public boolean enableOrDisablePayment(boolean flag);
 
-	public boolean generateReportCard(String session,int semester);
+	public boolean generateReportCard(String session);
 
 	public boolean removeProfessor(String profId);
 
 	public boolean modifyProfessor(String profId, String professorName, String department);
 
-	public boolean modifyStudent(String studentId, String studentName, String department, String session);
+	public boolean modifyStudnet(String studentId, String studentName, String department, String session);
 
 	public boolean removeCourseCatalog(String courseId);
 
 	public boolean modifyCourse(String courseId, String courseName, String department);
 
-	public boolean addCourseCatalog(String courseId, int semester, String session, int credits, String profId);
+	public boolean addCourseCatalog(String courseId, int semester, String session, int credits);
 
-	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits, String profID);
+	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits);
 
 	public void enableCourseRegistration();
 
@@ -47,5 +37,5 @@ public interface AdminInterface {
 
 	public void enablePayment();
 
-	public void disablePayment();
+	public void disablePayment();	
 }

@@ -1,14 +1,13 @@
 /**
  * 
  */
-package com.flipkart.service;
+package com.flipkart.DAO;
 
 /**
  * @author aysh
  *
  */
-public interface AuthInterface {
-
+public interface AuthDAOInterface {
 	public String verifyUserWithEmailPassword(String email, String paasword);
 
 	public boolean verifyUserWithToken(String access_token, String email);

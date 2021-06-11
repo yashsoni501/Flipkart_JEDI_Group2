@@ -9,26 +9,24 @@ package com.flipkart.bean;
  */
 public class Payment {
 	
-	private String student_id;
+	private String studentId;
 	private String status;
 	private int semester;
-	private String session;
-	private String timestamp;
+	private String dateOfPayment;
 	private float amount;
-	private String payment_method;
-	private String reference_id;
-	
+	private String modeOfPayment;
+	private String referenceId;
 	/**
-	 * @return the student_id
+	 * @return the studentId
 	 */
-	public String getStudent_id() {
-		return student_id;
+	public String getStudentId() {
+		return studentId;
 	}
 	/**
-	 * @param student_id the student_id to set
+	 * @param studentId the studentId to set
 	 */
-	public void setStudent_id(String student_id) {
-		this.student_id = student_id;
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
 	}
 	/**
 	 * @return the status
@@ -55,30 +53,6 @@ public class Payment {
 		this.semester = semester;
 	}
 	/**
-	 * @return the session
-	 */
-	public String getSession() {
-		return session;
-	}
-	/**
-	 * @param session the session to set
-	 */
-	public void setSession(String session) {
-		this.session = session;
-	}
-	/**
-	 * @return the timestamp
-	 */
-	public String getTimestamp() {
-		return timestamp;
-	}
-	/**
-	 * @param timestamp the timestamp to set
-	 */
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
-	}
-	/**
 	 * @return the amount
 	 */
 	public float getAmount() {
@@ -91,29 +65,40 @@ public class Payment {
 		this.amount = amount;
 	}
 	/**
-	 * @return the payment_method
+	 * @return the modeOfPayment
 	 */
-	public String getPayment_method() {
-		return payment_method;
+	public String getModeOfPayment() {
+		return modeOfPayment;
 	}
 	/**
-	 * @param payment_method the payment_method to set
+	 * @param modeOfPayment the modeOfPayment to set
 	 */
-	public void setPayment_method(String payment_method) {
-		this.payment_method = payment_method;
+	public void setModeOfPayment(String modeOfPayment) {
+		this.modeOfPayment = modeOfPayment;
 	}
 	/**
-	 * @return the reference_id
+	 * @return the referenceId
 	 */
-	public String getReference_id() {
-		return reference_id;
+	public String getReferenceId() {
+		return referenceId;
 	}
 	/**
-	 * @param reference_id the reference_id to set
+	 * @param referenceId the referenceId to set
 	 */
-	public void setReference_id(String reference_id) {
-		this.reference_id = reference_id;
+	public void setReferenceId(String referenceId) {
+		this.referenceId = referenceId;
 	}
-	
-	
+	/**
+	 * @return the dateOfPayment
+	 */
+	public String getDateOfPayment() {
+		return dateOfPayment;
+	}
+	/**
+	 * @param dateOfPayment the dateOfPayment to set
+	 */
+	public void setDateOfPayment(String dateOfPayment) {
+		this.dateOfPayment = dateOfPayment;
+	}
+		
 }

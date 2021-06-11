@@ -1,18 +1,18 @@
 /**
  * 
  */
-package com.flipkart.service;
+package com.flipkart.DAO;
 
 import java.sql.SQLException;
 
 import com.flipkart.bean.Payment;
 
 /**
- * @author yashsoni501
+ * @author aysh
  *
  */
-public interface PaymentInterface {
-	
+public interface PaymentDAOInterface {
+
 	public Payment getFeeReciept(String studentId, int semester) throws SQLException;
 	public String onlinePayment(String studentId, float amount, int semester) throws SQLException;
 	public String offlinePayment(String studentId, float amount, int semester) throws SQLException;

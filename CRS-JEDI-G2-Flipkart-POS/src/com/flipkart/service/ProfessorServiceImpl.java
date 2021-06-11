@@ -3,7 +3,6 @@
  */
 package com.flipkart.service;
 
-
 import java.util.ArrayList;
 
 import com.flipkart.bean.CourseCatalog;
@@ -15,32 +14,38 @@ import com.flipkart.bean.Professor;
  */
 public class ProfessorServiceImpl implements ProfessorInterface {
 
-	@Override
-	public void getDepartmentCourses() {
-		// TODO Auto-generated method stub
+	public static volatile ProfessorServiceImpl instance = null;
 
+	public static ProfessorServiceImpl getInstance() {
+		if (instance == null) {
+			// This is a synchronized block, when multiple threads will access this instance
+			synchronized (ProfessorServiceImpl.class) {
+				instance = new ProfessorServiceImpl();
+			}
+		}
+		return instance;
 	}
 
 	@Override
-	public void optInCourse() {
+	public boolean optInCourse(String professorId, String courseId) {
 		// TODO Auto-generated method stub
 		return professorDAO.optInCourse(professorId, courseId);
 	}
 
 	@Override
-	public void viewOptedCourses() {
+	public ArrayList<CourseCatalog> viewOptedCourses(String professorId) {
 		// TODO Auto-generated method stub
 		return professorDAO.viewOptedCourses(professorId);
 	}
 
 	@Override
-	public void submitGrades() {
+	public Professor getProfessorDetails(String userId) {
 		// TODO Auto-generated method stub
-
+		return null;
 	}
 
 	@Override
-	public void viewEnrolledStudentsInCourse() {
+	public void getAllProfessor() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -56,5 +61,7 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }

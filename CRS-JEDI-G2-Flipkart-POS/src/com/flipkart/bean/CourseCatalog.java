@@ -8,59 +8,88 @@ package com.flipkart.bean;
  *
  */
 public class CourseCatalog {
-	
-	private String course_id;
-	private String professor_id;
+
+	private String courseId;
+	private String professorId;
 	private int semester;
+	private String session;
 	private int credits;
-	
+
 	/**
-	 * @return the course_id
+	 * @return the courseId
 	 */
-	public String getCourse_id() {
-		return course_id;
+	public String getCourseId() {
+		return courseId;
 	}
+
 	/**
-	 * @param course_id the course_id to set
+	 * @return the session
 	 */
-	public void setCourse_id(String course_id) {
-		this.course_id = course_id;
+	public String getSession() {
+		return session;
 	}
+
 	/**
-	 * @return the professor_id
+	 * @param session the session to set
 	 */
-	public String getProfessor_id() {
-		return professor_id;
+	public void setSession(String session) {
+		this.session = session;
 	}
+
 	/**
-	 * @param professor_id the professor_id to set
+	 * @param courseId the courseId to set
 	 */
-	public void setProfessor_id(String professor_id) {
-		this.professor_id = professor_id;
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
 	}
+
+	/**
+	 * @param courseId the courseId to set
+	 */
+	public void setCourse_id(String courseId) {
+		this.courseId = courseId;
+	}
+
+	/**
+	 * @return the professorId
+	 */
+	public String getProfessorId() {
+		return professorId;
+	}
+
+	/**
+	 * @param professorId the professorId to set
+	 */
+	public void setProfessorId(String professorId) {
+		this.professorId = professorId;
+	}
+
 	/**
 	 * @return the semester
 	 */
 	public int getSemester() {
 		return semester;
 	}
+
 	/**
 	 * @param semester the semester to set
 	 */
 	public void setSemester(int semester) {
 		this.semester = semester;
 	}
+
 	/**
 	 * @return the credits
 	 */
 	public int getCredits() {
 		return credits;
 	}
+
 	/**
 	 * @param credits the credits to set
 	 */
 	public void setCredits(int credits) {
 		this.credits = credits;
 	}
-	
+
 }
