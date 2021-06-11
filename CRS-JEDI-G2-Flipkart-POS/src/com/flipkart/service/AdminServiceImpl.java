@@ -1,63 +1,42 @@
 package com.flipkart.service;
 
-import java.util.List;
-
-import com.flipkart.bean.Course;
-import com.flipkart.bean.CourseRegistration;
-
 public class AdminServiceImpl implements AdminInterface {
 
 	public static volatile AdminServiceImpl instance = null;
-	
-	public static AdminServiceImpl getInstance()
-	{
-		if(instance==null)
-		{
+
+	public static AdminServiceImpl getInstance() {
+		if (instance == null) {
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(AdminServiceImpl.class){
-				instance=new AdminServiceImpl();
+			synchronized (AdminServiceImpl.class) {
+				instance = new AdminServiceImpl();
 			}
 		}
 		return instance;
 	}
+
 	@Override
-	public boolean addCourse(int course_id, String courseName, String Department) {
+	public boolean addCourse(String courseName, String Department) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean addCourseCatalog(Course course) {
+	public boolean removeCourse(String courseId) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public void dropCourseCatalog(int courseId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean removeCourse(int courseId) {
+	public boolean addProfessor(String professorId, String name, String department, String emailId) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean addProfessor(int professorId, String name, String address, String department, String emailId,
-			String password) {
+	public boolean addStudent(String studentId, String name, String department, String emailId, String session) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	@Override
-	public boolean addStudent(int student_id, String name, String address, String department, String email,
-			String password) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 
 	@Override
 	public boolean enableOrDisableCourseRegistration(boolean flag) {
@@ -71,12 +50,80 @@ public class AdminServiceImpl implements AdminInterface {
 		return false;
 	}
 
+
+
 	@Override
-	public boolean generateReportCard() {
+	public boolean removeProfessor(String profId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyProfessor(String profId, String professorName, String department) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 
+
+	@Override
+	public boolean removeCourseCatalog(String courseId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyCourse(String courseId, String courseName, String department) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void enableCourseRegistration() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void disableCourseRegistration() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void enablePayment() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void disablePayment() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean addCourseCatalog(String courseId, int semester, String session, int credits, String profId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits, String profID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyStudent(String studentId, String studentName, String department, String session) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean generateReportCard(String session, int semester) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

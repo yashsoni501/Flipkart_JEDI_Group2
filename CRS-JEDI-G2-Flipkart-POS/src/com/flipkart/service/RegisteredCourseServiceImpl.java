@@ -44,5 +44,19 @@ public class RegisteredCourseServiceImpl implements RegisteredCourseInterface{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void getRegisteredCourses(String studentId, String session, int semester) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addRegisteredCourse(String courseId, int semester, String grade, String session, String studentID) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 	
 }
