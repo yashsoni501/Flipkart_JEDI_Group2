@@ -16,10 +16,8 @@ public class CRSProfessorMenu {
 
 	ProfessorInterface professor = ProfessorServiceImpl.getInstance();
 
-	public void createMenu(String professorId)
-	{
-		while(CRSApplication.userId != null)
-		{
+	public void createMenu() {
+		while (CRSApplication.userId != null) {
 			System.out.println("Professor Menu");
 			System.out.println("1. View Courses");
 			System.out.println("2. Opt in a course");
@@ -27,7 +25,7 @@ public class CRSProfessorMenu {
 			System.out.println("4. View students in the course");
 			System.out.println("5. Upload student grades");
 			System.out.println("6. Logout");
-			int choice=0;
+			int choice = 0;
 			choice = CRSApplication.scan.nextInt();
 
 			switch(choice)
@@ -58,7 +56,7 @@ public class CRSProfessorMenu {
 
 	private void logout() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void submitGrades(String professorId) {
@@ -81,12 +79,12 @@ public class CRSProfessorMenu {
 
 	private void viewEnrolledStudentsInCourse() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void viewOptedCourses(String professorId) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void optInCourse(String professorId) {

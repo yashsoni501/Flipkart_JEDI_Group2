@@ -8,16 +8,14 @@ package com.flipkart.service;
  *
  */
 public class AuthServiceImpl implements AuthInterface {
-	
+
 	public static volatile AuthServiceImpl instance = null;
-	
-	public static AuthServiceImpl getInstance()
-	{
-		if(instance==null)
-		{
+
+	public static AuthServiceImpl getInstance() {
+		if (instance == null) {
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(AuthServiceImpl.class){
-				instance=new AuthServiceImpl();
+			synchronized (AuthServiceImpl.class) {
+				instance = new AuthServiceImpl();
 			}
 		}
 		return instance;
@@ -57,6 +55,18 @@ public class AuthServiceImpl implements AuthInterface {
 	public String getRole(String userId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String addUserWithEmailPassword(String userEmail, String password, String userRole) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean removeUser(String profId) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
