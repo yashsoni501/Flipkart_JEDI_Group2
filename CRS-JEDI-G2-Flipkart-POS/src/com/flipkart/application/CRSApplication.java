@@ -10,6 +10,8 @@ import java.util.Scanner;
  */
 public class CRSApplication {
 
+	public static boolean loggedIn;
+
 	/**
 	 * @param args
 	 */
