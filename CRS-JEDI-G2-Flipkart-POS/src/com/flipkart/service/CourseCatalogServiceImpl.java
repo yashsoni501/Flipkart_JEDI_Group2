@@ -11,17 +11,15 @@ import com.flipkart.bean.CourseCatalog;
  * @author yashsoni501
  *
  */
-public class CourseCatalogServiceImpl implements CourseCatalogInterface{
-	
+public class CourseCatalogServiceImpl implements CourseCatalogInterface {
+
 	public static volatile CourseCatalogServiceImpl instance = null;
-	
-	public static CourseCatalogServiceImpl getInstance()
-	{
-		if(instance==null)
-		{
+
+	public static CourseCatalogServiceImpl getInstance() {
+		if (instance == null) {
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(CourseCatalogServiceImpl.class){
-				instance=new CourseCatalogServiceImpl();
+			synchronized (CourseCatalogServiceImpl.class) {
+				instance = new CourseCatalogServiceImpl();
 			}
 		}
 		return instance;
@@ -34,7 +32,13 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface{
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> getAllCourseCatalog(String session, int semester) {
+	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -46,15 +50,23 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface{
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String session, int semester, String department) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean updateIsOffered(String courseId) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
+	@Override
+	public void getCourseCatalogByProfessorId(String userId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getAllCourseCatalog() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }
