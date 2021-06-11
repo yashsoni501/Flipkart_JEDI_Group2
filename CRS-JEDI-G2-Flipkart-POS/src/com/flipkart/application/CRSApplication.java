@@ -2,6 +2,7 @@
  * 
  */
 package com.flipkart.application;
+import java.util.Scanner;
 
 /**
  * @author yashsoni501
@@ -13,8 +14,40 @@ public class CRSApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Scanner scan = new Scanner(System.in);
+		CRSApplication crsApplication=new CRSApplication();
+		int userInput = scan.nextInt();
+		while(userInput!=2)
+		{
+			switch(userInput)
+			{	
+				case 1:
+					//login
+					crsApplication.loginUser();
+					break;
+				default:
+					System.out.println("Invalid Input");
+			}
+			createMainMenu();
+			userInput = scan.nextInt();
+		}
+		scan.close();
 	}
+	
+	
+	public static void createMainMenu()
+	{
+		System.out.println("----------Welcome to Course Management System---------");
+		System.out.println("1. Login");
+		System.out.println("2. Exit");
+		System.out.println("Enter user input");
+	}
+	
+	public void loginUser()
+	{
+		System.out.println("Login");
+	}
+	
+	
 
 }
