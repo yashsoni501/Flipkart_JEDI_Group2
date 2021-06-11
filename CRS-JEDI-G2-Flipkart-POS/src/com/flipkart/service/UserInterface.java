@@ -3,13 +3,17 @@
  */
 package com.flipkart.service;
 
+import java.util.List;
+
+import com.flipkart.bean.Course;
+
 /**
  * @author aysh
  *
  */
 public interface UserInterface {
 
-	public void fetchCourses();
+	public List<Course> fetchCourses();
 	
-	public void updateUserProfile();
+	public boolean updateUserProfile(int studentId);
 }

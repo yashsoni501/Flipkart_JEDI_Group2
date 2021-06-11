@@ -3,6 +3,11 @@
  */
 package com.flipkart.service;
 
+import java.util.List;
+
+import com.flipkart.bean.Course;
+import com.flipkart.bean.CourseRegistration;
+
 /**
  * @author aysh
  *
@@ -10,28 +15,28 @@ package com.flipkart.service;
 public interface AdminInterface {
 
 	
-	// Admin can add courses with this catalog
-    public void addCourse(int course_id, String course_name);
+	// Admin can add courses to the catalog
+    public boolean addCourse(int course_id, String courseName, String Department);
 
     // Admin can publish the course catalog for this semester
-    public void addCourseCatalog();
+    public boolean addCourseCatalog(Course course);
 
     // Admin can delete the course catalog for this semester
-    public void dropCourseCatalog();
+    public void dropCourseCatalog(int courseId);
 
-    public void removeCourse(int course_id);
+    public boolean removeCourse(int courseId);
     
-    public void addProfessor (int prof_id, String password);
+    public boolean addProfessor(int professorId, String name, String address, String department, String emailId, String password);
     
-    public void addStudent(int student_id, String password);
+    public boolean addStudent(int student_id, String name, String address, String department, String email, String password);
         
-    public void fetchNonVerifiedCourseRegistration();
+    public List<CourseRegistration> fetchNonVerifiedCourseRegistration();
     
-    public void verifyCourseRegistration (int student_id);
+    public boolean verifyCourseRegistration (int student_id);
     
-    public void enableOrDisableCourseRegistration (boolean flag);
+    public boolean enableOrDisableCourseRegistration (boolean flag);
     
-    public void enableOrDisablePayment (boolean flag);
+    public boolean enableOrDisablePayment (boolean flag);
     
-    public void generateReportCard ();
+    public boolean generateReportCard();
 }

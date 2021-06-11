@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class CourseRegistration {
 	
-	private ArrayList<String> registered_courses;
+	private ArrayList<RegisteredCourse> registered_courses = new ArrayList<RegisteredCourse>();
 	private String student_id;
 	private String session;
 	private int semester;
@@ -19,13 +19,13 @@ public class CourseRegistration {
 	/**
 	 * @return the registered_courses
 	 */
-	public ArrayList<String> getRegistered_courses() {
+	public ArrayList<RegisteredCourse> getRegistered_courses() {
 		return registered_courses;
 	}
 	/**
 	 * @param registered_courses the registered_courses to set
 	 */
-	public void setRegistered_courses(String registered_course) {
+	public void setRegistered_courses(RegisteredCourse registered_course) {
 		this.registered_courses.add(registered_course);
 	}
 	/**

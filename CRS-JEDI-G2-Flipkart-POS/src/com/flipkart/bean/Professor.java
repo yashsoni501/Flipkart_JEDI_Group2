@@ -9,7 +9,7 @@ package com.flipkart.bean;
  */
 public class Professor {
 
-	private int professorID;
+	private int professorId;
 	private String professorName;
 	private String professorAddress;
 	private String department;
@@ -17,14 +17,14 @@ public class Professor {
 	/**
 	 * @return the professorID
 	 */
-	public int getProfessorID() {
-		return professorID;
+	public int getProfessorId() {
+		return professorId;
 	}
 	/**
 	 * @param professorID the professorID to set
 	 */
-	public void setProfessorID(int professorID) {
-		this.professorID = professorID;
+	public void setProfessorId(int professorId) {
+		this.professorId = professorId;
 	}
 	/**
 	 * @return the professorName
