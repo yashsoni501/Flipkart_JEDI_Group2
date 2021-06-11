@@ -1,71 +1,80 @@
 package com.flipkart.service;
 
+import java.util.List;
+
+import com.flipkart.bean.Course;
+import com.flipkart.bean.CourseRegistration;
+
 public class AdminServiceImpl implements AdminInterface {
 
 	@Override
-	public void addCourse(int course_id, String course_name) {
+	public boolean addCourse(int course_id, String courseName, String Department) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean addCourseCatalog(Course course) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void dropCourseCatalog(int courseId) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void addCourseCatalog() {
+	public boolean removeCourse(int courseId) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void dropCourseCatalog() {
+	public boolean addProfessor(int professorId, String name, String address, String department, String emailId,
+			String password) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void removeCourse(int course_id) {
+	public boolean addStudent(int student_id, String name, String address, String department, String email,
+			String password) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void addProfessor(int prof_id, String password) {
+	public List<CourseRegistration> fetchNonVerifiedCourseRegistration() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void addStudent(int student_id, String password) {
+	public boolean verifyCourseRegistration(int student_id) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void fetchNonVerifiedCourseRegistration() {
+	public boolean enableOrDisableCourseRegistration(boolean flag) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void verifyCourseRegistration(int student_id) {
+	public boolean enableOrDisablePayment(boolean flag) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 	@Override
-	public void enableOrDisableCourseRegistration(boolean flag) {
+	public boolean generateReportCard() {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
-	@Override
-	public void enableOrDisablePayment(boolean flag) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void generateReportCard() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
