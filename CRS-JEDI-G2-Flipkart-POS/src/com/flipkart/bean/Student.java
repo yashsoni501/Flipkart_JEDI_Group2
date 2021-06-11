@@ -9,7 +9,7 @@ package com.flipkart.bean;
  */
 public class Student {
 
-	private int studentID;
+	private String studentID;
 	private String studentName;
 	private String department;
 	private String emailID;
@@ -32,14 +32,14 @@ public class Student {
 	/**
 	 * @return the studentID
 	 */
-	public int getStudentID() {
+	public String getStudentID() {
 		return studentID;
 	}
 
 	/**
 	 * @param studentID the studentID to set
 	 */
-	public void setStudentID(int studentID) {
+	public void setStudentID(String studentID) {
 		this.studentID = studentID;
 	}
 
