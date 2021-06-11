@@ -29,10 +29,6 @@ public interface AdminInterface {
     public boolean addProfessor(int professorId, String name, String address, String department, String emailId, String password);
     
     public boolean addStudent(int student_id, String name, String address, String department, String email, String password);
-        
-    public List<CourseRegistration> fetchNonVerifiedCourseRegistration();
-    
-    public boolean verifyCourseRegistration (int student_id);
     
     public boolean enableOrDisableCourseRegistration (boolean flag);
     

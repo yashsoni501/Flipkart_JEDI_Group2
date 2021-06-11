@@ -9,7 +9,7 @@ package com.flipkart.service;
  *
  */
 public interface AuthInterface {
-
+	
 	public String verifyUserWithEmailPassword (String email, String paasword);
 
 	public boolean verifyUserWithToken (String access_token, String email);
