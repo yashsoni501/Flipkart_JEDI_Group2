@@ -4,19 +4,23 @@
 package com.flipkart.application;
 import java.util.Scanner;
 
+import com.flipkart.service.AuthInterface;
+import com.flipkart.service.AuthServiceImpl;
+
 /**
  * @author yashsoni501
  *
  */
 public class CRSApplication {
-
-	public static boolean loggedIn;
+	
+	public static String userId = null;
+	public static AuthInterface authInterface = AuthServiceImpl.getInstance();
+	public static Scanner scan = new Scanner(System.in);
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
 		CRSApplication crsApplication=new CRSApplication();
 		createMainMenu();
 		int userInput = scan.nextInt();
@@ -43,7 +47,20 @@ public class CRSApplication {
 		
 	public void updatePassword() {
 		// TODO Auto-generated method stub
+		String userEmail, newPassword,oldPassword;
 		
+		System.out.println("------------------Update Password--------------------");
+		System.out.println("Email");
+		userEmail = scan.next();
+		System.out.println("Old Password");
+		oldPassword = scan.next();
+		System.out.println("New Password:");
+		newPassword=scan.next();
+		boolean isUpdated = authInterface.updatePassword(userEmail,oldPassword,newPassword);
+		if(isUpdated)
+			System.out.println("Password updated successfully!");
+		else
+			System.out.println("Something went wrong, please try again!");
 	}
 
 	public static void createMainMenu()
@@ -57,14 +74,44 @@ public class CRSApplication {
 	
 	public void loginUser()
 	{
-		System.out.println("Login");
-		CRSApplication.loggedIn = true;
+		String userEmail,password;
+		System.out.println("-----------------Login------------------");
+		System.out.println("Email:");
+		userEmail = scan.next();
+		System.out.println("Password:");
+		password = scan.next();
+		userId = authInterface.verifyUserWithEmailPassword(userEmail, password);
+		if(userId != null)
+		{
+			String userRole = authInterface.getRole(userId);
+			switch(userRole)
+			{
+			case "ADMIN":
+				System.out.println(" Login Successful");
+				CRSAdminMenu adminMenu=new CRSAdminMenu();
+				adminMenu.createMenu();
+				break;
+			case "PROFESSOR":
+				System.out.println(" Login Successful");
+				CRSProfessorMenu professorMenu=new CRSProfessorMenu();
+				professorMenu.createMenu();
+				
+				break;
+			case "STUDENT":
+				System.out.println(" Login Successful");
+				CRSStudentMenu studentMenu=new CRSStudentMenu();
+				studentMenu.createMenu();
+				break;
+			}
+		}
 	}
 	
 
 	public static void logout() {
 		// TODO Auto-generated method stub
-		
+		userId=null;
+		authInterface.logout();
+		System.out.println(" Logout Successful");
 	}
 	
 }

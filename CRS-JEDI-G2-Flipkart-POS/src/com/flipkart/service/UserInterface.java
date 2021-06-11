@@ -15,5 +15,5 @@ public interface UserInterface {
 
 	public ArrayList<CourseCatalog> fetchCourses();
 	
-	public boolean updateUserProfile(String studentId);
+	public boolean updateUserProfile(String userId);
 }

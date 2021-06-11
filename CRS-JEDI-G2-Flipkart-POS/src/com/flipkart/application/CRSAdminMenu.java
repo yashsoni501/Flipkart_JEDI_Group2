@@ -3,8 +3,6 @@
  */
 package com.flipkart.application;
 
-import java.util.Scanner;
-
 import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminServiceImpl;
 
@@ -14,12 +12,11 @@ import com.flipkart.service.AdminServiceImpl;
  */
 public class CRSAdminMenu {
 	
-	Scanner scanner = new Scanner(System.in);
 	AdminInterface adminInterface = AdminServiceImpl.getInstance();
 	
 	public void createMenu() {
 		
-		while(CRSApplication.loggedIn)
+		while(CRSApplication.userId != null)
 		{
 			System.out.println("**********Admin Menu*********");
 			System.out.println("1. View All Course Catalogue");
@@ -36,7 +33,7 @@ public class CRSAdminMenu {
 			System.out.println("12. Generate Report Card");
 			System.out.println("13. Logout");
 	
-			int choice = scanner.nextInt();
+			int choice = CRSApplication.scan.nextInt();
 	
 			switch (choice) {
 			case 1:
@@ -61,8 +58,7 @@ public class CRSAdminMenu {
 				break;
 			case 7:
 				removeCourseCatalog();
-				break;
-	
+				break;	
 			case 8:
 				enableCourseRegistration();
 				return;
@@ -72,7 +68,6 @@ public class CRSAdminMenu {
 			case 10:
 				enablePayment();
 				return;
-	
 			case 11:
 				disablePayment();
 				return;
@@ -80,19 +75,13 @@ public class CRSAdminMenu {
 				generateReportCard();
 				return;
 			case 13:
-				logout();
+				CRSApplication.logout();
 				return;
 	
 			default:
 				System.out.println("***** Wrong Choice *****");
 			}
 		}
-		scanner.close();
-	}
-
-	private void logout() {
-		// TODO Auto-generated method stub
-
 	}
 
 	private void disablePayment() {
