@@ -34,18 +34,19 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 		}
 		return instance;
 	}
-
 	
 	@Override
 	public boolean optInCourse(String professorId, String courseId) throws SQLException {
 		// TODO Auto-generated method stub
 		return professorDAO.optInCourse(professorId, courseId);
 	}
+
 	@Override
 	public ArrayList<CourseCatalog> viewOptedCourses(String professorId) throws SQLException {
 		// TODO Auto-generated method stub
 		return professorDAO.viewOptedCourses(professorId);
 	}
+	
 	@Override
 	public Professor getProfessorDetails(String userId) throws SQLException {
 		// TODO Auto-generated method stub
@@ -58,24 +59,16 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 		return professorDAO.getDepartmentCourses(department);
 	}
 
-
 	@Override
 	public ArrayList<Student> viewEnrolledStudents(String courseId) throws SQLException {
 		// TODO Auto-generated method stub
 		return professorDAO.viewEnrolledStudents(courseId);
 	}
 
-
 	@Override
 	public boolean submitGrade(int courseId, int studentId, int semester, String session, String grade) throws SQLException{
 		// TODO Auto-generated method stub
 		return professorDAO.submitGrade(courseId, studentId, semester, session, grade);
 	}
-	
-
-	
-	
-	
-	
 
 }

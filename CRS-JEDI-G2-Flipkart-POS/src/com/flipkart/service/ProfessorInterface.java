@@ -23,4 +23,6 @@ public interface ProfessorInterface {
 	public ArrayList<Student> viewEnrolledStudents(String courseId) throws SQLException;
 	public boolean submitGrade(int courseId, int studentId, int semester, String session, String grade ) throws SQLException;
 
+	public Professor getProfessorById(String userId);
+
 }

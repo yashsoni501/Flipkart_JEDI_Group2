@@ -17,14 +17,12 @@ public class PaymentServiceImpl implements PaymentInterface {
 
 	public static volatile PaymentServiceImpl instance = null;
 	PaymentDAOInterface paymentDAO = PaymentDAOImpl.getInstance();
-	
-	public static PaymentServiceImpl getInstance()
-	{
-		if(instance==null)
-		{
+
+	public static PaymentServiceImpl getInstance() {
+		if (instance == null) {
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(PaymentServiceImpl.class){
-				instance=new PaymentServiceImpl();
+			synchronized (PaymentServiceImpl.class) {
+				instance = new PaymentServiceImpl();
 			}
 		}
 		return instance;
@@ -37,14 +35,14 @@ public class PaymentServiceImpl implements PaymentInterface {
 	}
 
 	@Override
-	public String onlinePayment(String studentId, float amount, int semester) throws SQLException {
-		
+	public Payment onlinePayment(String studentId, float amount, int semester) throws SQLException {
+
 		return paymentDAO.onlinePayment(studentId, amount, semester);
 	}
 
 	@Override
-	public String offlinePayment(String studentId, float amount, int semester) throws SQLException {
-		
+	public Payment offlinePayment(String studentId, float amount, int semester) throws SQLException {
+
 		return paymentDAO.offlinePayment(studentId, amount, semester);
 	}
 

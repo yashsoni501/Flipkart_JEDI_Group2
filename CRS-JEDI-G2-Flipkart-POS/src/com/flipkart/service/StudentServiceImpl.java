@@ -13,16 +13,14 @@ import com.flipkart.bean.Student;
  *
  */
 public class StudentServiceImpl implements StudentInterface {
-	
-	private static volatile StudentServiceImpl instance=null;
 
-	public static StudentServiceImpl getInstance()
-	{
-		if(instance==null)
-		{
+	private static volatile StudentServiceImpl instance = null;
+
+	public static StudentServiceImpl getInstance() {
+		if (instance == null) {
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(StudentServiceImpl.class){
-				instance=new StudentServiceImpl();
+			synchronized (StudentServiceImpl.class) {
+				instance = new StudentServiceImpl();
 			}
 		}
 		return instance;
@@ -47,16 +45,15 @@ public class StudentServiceImpl implements StudentInterface {
 	}
 
 	@Override
-	public void getAllStudents(String session) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public Student getStudentById(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	
+	@Override
+	public ArrayList<Student> getAllStudents(String session) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -14,20 +14,19 @@ import com.flipkart.bean.Payment;
  * @author yashsoni501
  *
  */
-public class PaymentDAOImpl implements PaymentDAOInterface{
-	
+public class PaymentDAOImpl implements PaymentDAOInterface {
+
 	private static volatile PaymentDAOImpl instance = null;
 	DAOConnectionInterface instanceDAO = new DAOConnectionImpl();
-	
+
 	/**
 	 * Method to make PaymentDAOImpl Singleton
+	 * 
 	 * @return
 	 */
-	public static PaymentDAOImpl getInstance()
-	{
-		if(instance == null)
-		{
-			synchronized(PaymentDAOImpl.class){
+	public static PaymentDAOImpl getInstance() {
+		if (instance == null) {
+			synchronized (PaymentDAOImpl.class) {
 				instance = new PaymentDAOImpl();
 			}
 		}
@@ -36,17 +35,15 @@ public class PaymentDAOImpl implements PaymentDAOInterface{
 
 	@Override
 	public Payment getFeeReciept(String studentId, int semester) throws SQLException {
-		
+
 		Payment feePayment = new Payment();
-		PreparedStatement stmt = instanceDAO.conn.prepareStatement("SELECT * FROM payment WHERE stuid="+studentId.toString()+"AND semster="+String.valueOf(semester));
+		PreparedStatement stmt = instanceDAO.conn.prepareStatement("SELECT * FROM payment WHERE stuid="
+				+ studentId.toString() + "AND semster=" + String.valueOf(semester));
 		ResultSet rs = stmt.executeQuery("SELECT id, name ,address, location FROM payment");
 		String status = null;
-		if(rs.getFetchSize()==0)
-		{
+		if (rs.getFetchSize() == 0) {
 			status = "NOTPAID";
-		}
-		else
-		{
+		} else {
 			status = "PAID";
 		}
 		feePayment.setStudentId(studentId);
@@ -59,43 +56,41 @@ public class PaymentDAOImpl implements PaymentDAOInterface{
 		return feePayment;
 	}
 
-
 	@Override
-	public String onlinePayment(String studentId, float amount, int semester) throws SQLException {
-		
+	public Payment onlinePayment(String studentId, float amount, int semester) throws SQLException {
+
 		String transactionId = "onl123";
 		PreparedStatement stmt = instanceDAO.conn.prepareStatement("insert into employee values(?,?,?,?,?,?,?)");
-		
-		stmt.setString(1,transactionId);
-		stmt.setString(2,studentId);
-		stmt.setString(3,"success");
-		stmt.setFloat(4,amount);
+
+		stmt.setString(1, transactionId);
+		stmt.setString(2, studentId);
+		stmt.setString(3, "success");
+		stmt.setFloat(4, amount);
 		Date today = new Date();
-		stmt.setString(5,today.toString());
-		stmt.setInt(6,semester);
-		stmt.setString(7,"ONLINE");
+		stmt.setString(5, today.toString());
+		stmt.setInt(6, semester);
+		stmt.setString(7, "ONLINE");
 		stmt.executeUpdate();
-		
-		return transactionId;
+
+		return new Payment();
 	}
 
-
 	@Override
-	public String offlinePayment(String studentId, float amount, int semester) throws SQLException {
-		
+	public Payment offlinePayment(String studentId, float amount, int semester) throws SQLException {
+
 		String transactionId = "onl123";
 		PreparedStatement stmt = instanceDAO.conn.prepareStatement("insert into employee values(?,?,?,?,?,?,?)");
-		
-		stmt.setString(1,transactionId);
-		stmt.setString(2,studentId);
-		stmt.setString(3,"success");
-		stmt.setFloat(4,amount);
+
+		stmt.setString(1, transactionId);
+		stmt.setString(2, studentId);
+		stmt.setString(3, "success");
+		stmt.setFloat(4, amount);
 		Date today = new Date();
-		stmt.setString(5,today.toString());
-		stmt.setInt(6,semester);
-		stmt.setString(7,"OFFLINE");
+		stmt.setString(5, today.toString());
+		stmt.setInt(6, semester);
+		stmt.setString(7, "OFFLINE");
 		stmt.executeUpdate();
-		
-		return transactionId;
+
+		return new Payment();
 	}
 }

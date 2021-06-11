@@ -5,6 +5,7 @@ package com.flipkart.service;
 
 import java.util.List;
 
+import com.flipkart.bean.Admin;
 import com.flipkart.bean.Course;
 
 /**
@@ -25,7 +26,7 @@ public interface AdminInterface {
 
 	public boolean enableOrDisablePayment(boolean flag);
 
-	public boolean generateReportCard(String session,int semester);
+	public boolean generateReportCard(String session, int semester);
 
 	public boolean removeProfessor(String profId);
 
@@ -48,4 +49,6 @@ public interface AdminInterface {
 	public void enablePayment();
 
 	public void disablePayment();
+
+	public Admin getAdminById(String userId);
 }

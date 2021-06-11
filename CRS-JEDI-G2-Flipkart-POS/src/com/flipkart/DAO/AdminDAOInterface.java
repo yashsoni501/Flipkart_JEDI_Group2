@@ -37,5 +37,5 @@ public interface AdminDAOInterface {
 
 	public void enablePayment();
 
-	public void disablePayment();	
+	public void disablePayment();
 }

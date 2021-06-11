@@ -18,21 +18,18 @@ public class DAOConnectionImpl implements DAOConnectionInterface {
 	static final String DB_URL = "jdbc:mysql://localhost/crs";
 	static final String USER = "root";
 	static final String PASS = " ";
-	
+
 	public static Connection conn = null;
-	
+
 	/**
 	 * @return
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
-	public DAOConnectionImpl()
-	{
-		try
-		{
-			this.conn = DriverManager.getConnection(DB_URL,USER,PASS);
-		} catch(SQLException er)
-		{
-			System.out.println("Cannot establish connection. Error: "+ er);
+	public DAOConnectionImpl() {
+		try {
+			this.conn = DriverManager.getConnection(DB_URL, USER, PASS);
+		} catch (SQLException er) {
+			System.out.println("Cannot establish connection. Error: " + er);
 		}
 	}
 }

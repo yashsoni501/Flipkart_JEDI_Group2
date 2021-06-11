@@ -3,9 +3,13 @@
  */
 package com.flipkart.application;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.flipkart.bean.CourseCatalog;
+import com.flipkart.bean.Payment;
+import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.bean.SemesterReportCard;
 import com.flipkart.bean.Student;
 import com.flipkart.service.CourseCatalogInterface;
 import com.flipkart.service.CourseCatalogServiceImpl;
@@ -13,9 +17,10 @@ import com.flipkart.service.PaymentInterface;
 import com.flipkart.service.PaymentServiceImpl;
 import com.flipkart.service.RegisteredCourseInterface;
 import com.flipkart.service.RegisteredCourseServiceImpl;
+import com.flipkart.service.SemesterReportCardInterface;
+import com.flipkart.service.SemesterReportCardServiceImpl;
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
-
 
 /**
  * @author Aeron
@@ -27,13 +32,14 @@ public class CRSStudentMenu {
 	CourseCatalogInterface courseCatalogInterface = CourseCatalogServiceImpl.getInstance();
 	PaymentInterface paymentInterface = PaymentServiceImpl.getInstance();
 	RegisteredCourseInterface registeredCourseInterface = RegisteredCourseServiceImpl.getInstance();
-	Student student=null;
+	SemesterReportCardInterface semesterReportCardInterface = SemesterReportCardServiceImpl.getInstance();
+	Student student = null;
 
 	/**
 	 * Creates the menu for Students
 	 */
 	public void createMenu() {
-		if(CRSApplication.userId != null) {
+		if (CRSApplication.userId != null) {
 			student = studentInterface.getStudentById(CRSApplication.userId);
 		}
 		while (CRSApplication.userId != null) {
@@ -63,6 +69,7 @@ public class CRSStudentMenu {
 				registerForCourses();
 				break;
 			case 6:
+				student = null;
 				CRSApplication.logout();
 				break;
 			default:
@@ -75,7 +82,7 @@ public class CRSStudentMenu {
 	private void registerForCourses() {
 		// TODO Auto-generated method stub
 		ArrayList<String> selectedCourses = new ArrayList<String>();
-		
+
 		while (true) {
 			System.out.println("\n----------Course Registration-----------");
 			System.out.println("1. View Selected Courses");
@@ -109,23 +116,21 @@ public class CRSStudentMenu {
 		}
 
 	}
-	
 
 	private void submitRegistration(ArrayList<String> selectedCourses) {
 		// TODO Auto-generated method stub
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
-		for(String courseId:selectedCourses)
-		{
-			registeredCourseInterface.addRegisteredCourse(courseId,semester,null,student.getSession(),student.getStudentID());
+		for (String courseId : selectedCourses) {
+			registeredCourseInterface.addRegisteredCourse(courseId, semester, null, student.getSession(),
+					student.getStudentID());
 		}
 		System.out.println("success");
 	}
 
 	private void viewSeletedCourses(ArrayList<String> selectedCourses) {
 		// TODO Auto-generated method stub
-		for(String courseId:selectedCourses)
-		{
+		for (String courseId : selectedCourses) {
 			CourseCatalog catalog = courseCatalogInterface.getCourseCatalog(courseId);
 		}
 	}
@@ -162,14 +167,47 @@ public class CRSStudentMenu {
 	private void viewFeeReciept() {
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
-		
+		try {
+			paymentInterface.getFeeReciept(CRSApplication.userId, semester);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void viewReportCard() {
-		
+		System.out.println("Enter Semester");
+		int semester = CRSApplication.scan.nextInt();
+		ArrayList<SemesterReportCard> semesterReportCards = semesterReportCardInterface
+				.getSemesterReportCardByStudentId(CRSApplication.userId);
+		ArrayList<RegisteredCourse> courses = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
+				student.getSession(), semester);
 	}
 
 	private void payfee() {
+		System.out.println("Enter Semester");
+		int semester = CRSApplication.scan.nextInt();
+		registeredCourseInterface.getRegisteredCourses(student.getStudentID(), student.getSession(), semester);
+		float amount = 0;
+		System.out.println("Fee Payable");
+		System.out.println("Enter Mode Of Payment (offline/online)");
+		String modeOfPayment = CRSApplication.scan.next();
+		Payment reciept = null;
+		try {
+			if (modeOfPayment == "offline") {
 
+				reciept = paymentInterface.offlinePayment(student.getStudentID(), amount, semester);
+
+			} else {
+				reciept = paymentInterface.onlinePayment(student.getStudentID(), amount, semester);
+			}
+			System.out.println(reciept.getStatus());
+			if (reciept.getStatus() == "success") {
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -14,14 +14,12 @@ import com.flipkart.bean.Course;
 public class CourseServiceImpl implements CourseInterface {
 
 	public static volatile CourseServiceImpl instance = null;
-	
-	public static CourseServiceImpl getInstance()
-	{
-		if(instance==null)
-		{
+
+	public static CourseServiceImpl getInstance() {
+		if (instance == null) {
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(CourseServiceImpl.class){
-				instance=new CourseServiceImpl();
+			synchronized (CourseServiceImpl.class) {
+				instance = new CourseServiceImpl();
 			}
 		}
 		return instance;
@@ -38,5 +36,5 @@ public class CourseServiceImpl implements CourseInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 }

@@ -15,42 +15,41 @@ import com.flipkart.utils.DBUtils;
  *
  */
 public class AuthDAOImpl implements AuthDAOInterface {
-	
-	private static volatile AuthDAOImpl instance = null;
-	
-	private AuthDAOImpl() {}
 
-	public static AuthDAOImpl getInstance(){
-		if(instance==null){
+	private static volatile AuthDAOImpl instance = null;
+
+	private AuthDAOImpl() {
+	}
+
+	public static AuthDAOImpl getInstance() {
+		if (instance == null) {
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(AuthDAOImpl.class){
-				instance=new AuthDAOImpl();
+			synchronized (AuthDAOImpl.class) {
+				instance = new AuthDAOImpl();
 			}
 		}
 		return instance;
 	}
-	
-	
+
 	@Override
 	public String verifyUserWithEmailPassword(String email, String password) {
 		Connection conn = DBUtils.getConnection();
 		try {
-			
+
 			String VERIFY_USER = "select * from auth where email = ?";
-			
+
 			PreparedStatement stmt = conn.prepareStatement(VERIFY_USER);
 			stmt.setString(1, email);
-			
+
 			ResultSet resultSet = stmt.executeQuery();
-			
+
 			String savedPassword = resultSet.getString("password");
 			String uid = resultSet.getString("uid");
-			
-			if(password.equals(savedPassword)) {
+
+			if (password.equals(savedPassword)) {
 				return uid;
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "";
@@ -79,25 +78,24 @@ public class AuthDAOImpl implements AuthDAOInterface {
 		String uid = verifyUserWithEmailPassword(email, oldPassword);
 
 		Connection conn = DBUtils.getConnection();
-		
-		if(!uid.isEmpty()) {
-			
+
+		if (!uid.isEmpty()) {
+
 			String UPDATE_PASSWORD = "update user set password=? where email=?";
 			try {
-				
+
 				PreparedStatement stmt = conn.prepareStatement(UPDATE_PASSWORD);
 				stmt.setString(1, newPassword);
 				stmt.setString(2, email);
-				
+
 				int row = stmt.executeUpdate();
-				
-				if(row == 1) {
+
+				if (row == 1) {
 					return true;
 				} else {
 					return false;
 				}
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -107,40 +105,38 @@ public class AuthDAOImpl implements AuthDAOInterface {
 	@Override
 	public String getRole(String userId) {
 		Connection conn = DBUtils.getConnection();
-		
-		String GET_ROLE = "select userRole from auth where uid=?";		
+
+		String GET_ROLE = "select userRole from auth where uid=?";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(GET_ROLE);
 			stmt.setString(1, userId);
-			
+
 			ResultSet resultSet = stmt.executeQuery();
-			
-			if(resultSet.next()) {
+
+			if (resultSet.next()) {
 				return resultSet.getString("userRole");
 			}
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			se.printStackTrace();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 		return "";
 	}
 
 	@Override
 	public String addUserWithEmailPassword(String userEmail, String password, String userRole) {
 		Connection conn = DBUtils.getConnection();
-		
+
 		String ADD_USER = "insert into auth (`email`, `password`, `userRole`) values (?, ?, ?)";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(ADD_USER);
 			stmt.setString(1, userEmail);
 			stmt.setString(2, password);
 			stmt.setString(3, userRole);
-			
+
 			int row = stmt.executeUpdate();
-			if(row == 0) {
+			if (row == 0) {
 				System.err.println("Failed to Add user");
 			} else {
 				return verifyUserWithEmailPassword(userEmail, password);

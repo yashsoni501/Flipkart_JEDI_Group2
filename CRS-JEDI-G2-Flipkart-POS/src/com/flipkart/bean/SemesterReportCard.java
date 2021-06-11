@@ -10,38 +10,44 @@ package com.flipkart.bean;
 public class SemesterReportCard {
 
 	private String studentID;
-	private String cgpa;
+	private float sgpa;
 	private String currentSem;
+
 	/**
 	 * @return the studentID
 	 */
 	public String getStudentID() {
 		return studentID;
 	}
+
 	/**
 	 * @param studentID the studentID to set
 	 */
 	public void setStudentID(String studentID) {
 		this.studentID = studentID;
 	}
+
 	/**
-	 * @return the cgpa
+	 * @return the sgpa
 	 */
-	public String getCgpa() {
-		return cgpa;
+	public float getSgpa() {
+		return sgpa;
 	}
+
 	/**
-	 * @param cgpa the cgpa to set
+	 * @param sgpa the sgpa to set
 	 */
-	public void setCgpa(String cgpa) {
-		this.cgpa = cgpa;
+	public void setSgpa(float sgpa) {
+		this.sgpa = sgpa;
 	}
+
 	/**
 	 * @return the currentSem
 	 */
 	public String getCurrentSem() {
 		return currentSem;
 	}
+
 	/**
 	 * @param currentSem the currentSem to set
 	 */

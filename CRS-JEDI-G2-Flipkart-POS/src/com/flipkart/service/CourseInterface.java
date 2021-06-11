@@ -13,5 +13,6 @@ import com.flipkart.bean.Course;
  */
 public interface CourseInterface {
 	public Course getCourse(String courseId);
+
 	public ArrayList<Course> getAllCourses();
 }
