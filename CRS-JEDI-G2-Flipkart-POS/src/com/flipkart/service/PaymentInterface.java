@@ -3,6 +3,8 @@
  */
 package com.flipkart.service;
 
+import java.sql.SQLException;
+
 import com.flipkart.bean.Payment;
 
 /**
@@ -11,9 +13,7 @@ import com.flipkart.bean.Payment;
  */
 public interface PaymentInterface {
 	
-	public boolean sendNotification(Payment payment);
-	public boolean initiatePayment(String studentId, float amount, int semester, String session);
-	public Payment generateFeeReciept(Payment payment);
-	public String onlinePayment(String studentId, float amount);
-	public String offlinePayment(String studentId, float amount);
+	public Payment getFeeReciept(String studentId, int semester) throws SQLException;
+	public String onlinePayment(String studentId, float amount, int semester) throws SQLException;
+	public String offlinePayment(String studentId, float amount, int semester) throws SQLException;
 }

@@ -12,8 +12,7 @@ public class Payment {
 	private String studentId;
 	private String status;
 	private int semester;
-	private String session;
-	private String timestamp;
+	private String dateOfPayment;
 	private float amount;
 	private String modeOfPayment;
 	private String referenceId;
@@ -54,30 +53,6 @@ public class Payment {
 		this.semester = semester;
 	}
 	/**
-	 * @return the session
-	 */
-	public String getSession() {
-		return session;
-	}
-	/**
-	 * @param session the session to set
-	 */
-	public void setSession(String session) {
-		this.session = session;
-	}
-	/**
-	 * @return the timestamp
-	 */
-	public String getTimestamp() {
-		return timestamp;
-	}
-	/**
-	 * @param timestamp the timestamp to set
-	 */
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
-	}
-	/**
 	 * @return the amount
 	 */
 	public float getAmount() {
@@ -112,6 +87,18 @@ public class Payment {
 	 */
 	public void setReferenceId(String referenceId) {
 		this.referenceId = referenceId;
+	}
+	/**
+	 * @return the dateOfPayment
+	 */
+	public String getDateOfPayment() {
+		return dateOfPayment;
+	}
+	/**
+	 * @param dateOfPayment the dateOfPayment to set
+	 */
+	public void setDateOfPayment(String dateOfPayment) {
+		this.dateOfPayment = dateOfPayment;
 	}
 		
 }

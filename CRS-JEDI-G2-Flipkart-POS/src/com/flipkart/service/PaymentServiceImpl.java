@@ -3,6 +3,10 @@
  */
 package com.flipkart.service;
 
+import java.sql.SQLException;
+
+import com.flipkart.DAO.PaymentDAOImpl;
+import com.flipkart.DAO.PaymentDAOInterface;
 import com.flipkart.bean.Payment;
 
 /**
@@ -12,6 +16,7 @@ import com.flipkart.bean.Payment;
 public class PaymentServiceImpl implements PaymentInterface {
 
 	public static volatile PaymentServiceImpl instance = null;
+	PaymentDAOInterface paymentDAO = PaymentDAOImpl.getInstance();
 	
 	public static PaymentServiceImpl getInstance()
 	{
@@ -24,35 +29,23 @@ public class PaymentServiceImpl implements PaymentInterface {
 		}
 		return instance;
 	}
-	
+
 	@Override
-	public boolean sendNotification(Payment payment) {
+	public Payment getFeeReciept(String studentId, int semester) throws SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		return paymentDAO.getFeeReciept(studentId, semester);
 	}
 
 	@Override
-	public boolean initiatePayment(String studentId, float amount, int semester, String session) {
-		// TODO Auto-generated method stub
-		return false;
+	public String onlinePayment(String studentId, float amount, int semester) throws SQLException {
+		
+		return paymentDAO.onlinePayment(studentId, amount, semester);
 	}
 
 	@Override
-	public Payment generateFeeReciept(Payment payment) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String onlinePayment(String studentId, float amount) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String offlinePayment(String studentId, float amount) {
-		// TODO Auto-generated method stub
-		return null;
+	public String offlinePayment(String studentId, float amount, int semester) throws SQLException {
+		
+		return paymentDAO.offlinePayment(studentId, amount, semester);
 	}
 
 }
