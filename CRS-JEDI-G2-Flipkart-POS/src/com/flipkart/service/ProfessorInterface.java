@@ -18,8 +18,8 @@ public interface ProfessorInterface {
 
 	public ArrayList<CourseCatalog> viewOptedCourses(String professorId);
 
-	public Professor getProfessorDetails(String userId);
-
 	public void getAllProfessor();
+
+	public Professor getProfessorById(String userId);
 
 }

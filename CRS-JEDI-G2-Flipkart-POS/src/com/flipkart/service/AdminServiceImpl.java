@@ -1,5 +1,7 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.Admin;
+
 public class AdminServiceImpl implements AdminInterface {
 
 	public static volatile AdminServiceImpl instance = null;
@@ -50,8 +52,6 @@ public class AdminServiceImpl implements AdminInterface {
 		return false;
 	}
 
-
-
 	@Override
 	public boolean removeProfessor(String profId) {
 		// TODO Auto-generated method stub
@@ -63,8 +63,6 @@ public class AdminServiceImpl implements AdminInterface {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
 
 	@Override
 	public boolean removeCourseCatalog(String courseId) {
@@ -124,6 +122,12 @@ public class AdminServiceImpl implements AdminInterface {
 	public boolean generateReportCard(String session, int semester) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Admin getAdminById(String userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

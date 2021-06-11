@@ -20,8 +20,12 @@ public class CRSProfessorMenu {
 	ProfessorInterface professorInterface = ProfessorServiceImpl.getInstance();
 	CourseCatalogInterface courseCatalogInterface = CourseCatalogServiceImpl.getInstance();
 	RegisteredCourseInterface registerdCourseInterface = RegisteredCourseServiceImpl.getInstance();
+	Professor professor = null;
 
 	public void createMenu() {
+		if (CRSApplication.userId != null) {
+			professor = professorInterface.getProfessorById(CRSApplication.userId);
+		}
 		while (CRSApplication.userId != null) {
 			System.out.println("Professor Menu");
 			System.out.println("1. Opt in a course");
@@ -114,8 +118,7 @@ public class CRSProfessorMenu {
 	}
 
 	private void viewCourses() {
-		Professor prof = professorInterface.getProfessorDetails(CRSApplication.userId);
-		courseCatalogInterface.getDepartmentCourseCatalog(prof.getDepartment());
+		courseCatalogInterface.getDepartmentCourseCatalog(professor.getDepartment());
 	}
 
 	private void optInCourse() {

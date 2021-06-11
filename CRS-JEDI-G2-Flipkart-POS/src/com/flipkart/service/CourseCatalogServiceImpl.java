@@ -58,15 +58,13 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 	@Override
 	public void getCourseCatalogByProfessorId(String userId) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void getAllCourseCatalog() {
 		// TODO Auto-generated method stub
-		
+
 	}
-
-
 
 }

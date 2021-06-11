@@ -39,17 +39,15 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 	}
 
 	@Override
-	public Professor getProfessorDetails(String userId) {
+	public void getAllProfessor() {
 		// TODO Auto-generated method stub
-		return null;
+
 	}
 
 	@Override
-	public void getAllProfessor() {
+	public Professor getProfessorById(String userId) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
-
-	
 
 }

@@ -12,8 +12,10 @@ import com.flipkart.bean.Payment;
  *
  */
 public interface PaymentInterface {
-	
+
 	public Payment getFeeReciept(String studentId, int semester) throws SQLException;
-	public String onlinePayment(String studentId, float amount, int semester) throws SQLException;
-	public String offlinePayment(String studentId, float amount, int semester) throws SQLException;
+
+	public Payment onlinePayment(String studentId, float amount, int semester) throws SQLException;
+
+	public Payment offlinePayment(String studentId, float amount, int semester) throws SQLException;
 }
