@@ -5,49 +5,70 @@ package com.flipkart.service;
 
 import java.util.ArrayList;
 
+import java.sql.SQLException;
+
+import com.flipkart.DAO.PaymentDAOImpl;
+import com.flipkart.DAO.PaymentDAOInterface;
+import com.flipkart.DAO.ProfessorDAOImpl;
+import com.flipkart.DAO.ProfessorDAOInterface;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.Professor;
-
+import com.flipkart.bean.Student;
 /**
- * @author aysh
+ * @author jagru
  *
  */
 public class ProfessorServiceImpl implements ProfessorInterface {
 
 	public static volatile ProfessorServiceImpl instance = null;
-
-	public static ProfessorServiceImpl getInstance() {
-		if (instance == null) {
+	ProfessorDAOInterface professorDAO = ProfessorDAOImpl.getInstance();
+	
+	public static ProfessorServiceImpl getInstance()
+	{
+		if(instance==null)
+		{
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized (ProfessorServiceImpl.class) {
-				instance = new ProfessorServiceImpl();
+			synchronized(ProfessorServiceImpl.class){
+				instance=new ProfessorServiceImpl();
 			}
 		}
 		return instance;
 	}
-
+	
 	@Override
-	public boolean optInCourse(String professorId, String courseId) {
+	public boolean optInCourse(String professorId, String courseId) throws SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		return professorDAO.optInCourse(professorId, courseId);
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> viewOptedCourses(String professorId) {
+	public ArrayList<CourseCatalog> viewOptedCourses(String professorId) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		return professorDAO.viewOptedCourses(professorId);
+	}
+	
+	@Override
+	public Professor getProfessorDetails(String userId) throws SQLException {
+		// TODO Auto-generated method stub
+		return professorDAO.getProfessorDetails(userId);
+	}
+	
+	@Override
+	public ArrayList<CourseCatalog> getDepartmentCourses(String department) throws SQLException {
+		// TODO Auto-generated method stub
+		return professorDAO.getDepartmentCourses(department);
 	}
 
 	@Override
-	public void getAllProfessor() {
+	public ArrayList<Student> viewEnrolledStudents(String courseId) throws SQLException {
 		// TODO Auto-generated method stub
-
+		return professorDAO.viewEnrolledStudents(courseId);
 	}
 
 	@Override
-	public Professor getProfessorById(String userId) {
+	public boolean submitGrade(int courseId, int studentId, int semester, String session, String grade) throws SQLException{
 		// TODO Auto-generated method stub
-		return null;
+		return professorDAO.submitGrade(courseId, studentId, semester, session, grade);
 	}
 
 }
