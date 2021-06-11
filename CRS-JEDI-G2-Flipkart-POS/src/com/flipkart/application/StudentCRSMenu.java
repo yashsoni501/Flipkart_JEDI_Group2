@@ -2,31 +2,35 @@
  * 
  */
 package com.flipkart.application;
- 
+
+import java.util.Scanner;
+
 /**
  * @author Aeron
  *
  */
 public class StudentCRSMenu {
 
+	
+	Scanner scanner = new Scanner(System.in);
 	StudentInterface studentInterface = StudentServiceImpl.getInstance();
 	
 	/** Creates the menu for Students
 	 */
 	public void create_menu( ) {
 	
-			if(studentInterface.checkVerification( )) {
+			if(CRSApplication.loggedIn) {
 				while(true) {
 					System.out.println("\n----------Student Menu-----------");
 					System.out.println("1. View registered courses");
 					System.out.println("2. Check if Fee is Paid");
 					System.out.println("3. View Fee receipt");
 					System.out.println("4. View report card");
-					System.out.println("5. Pay fees");
-					System.out.println("6. Register in courses");
+					System.out.println("5. Pay fee");
+					System.out.println("6. Register for courses");
+					System.out.println("7. Logout");
 					
-					int optionChoosed = io.input.nextInt();
-					io.input.nextLine();
+					int optionChoosed = scanner.nextInt();
 					switch(optionChoosed) {
 						case 1:
 							fetchRegisteredCourses();
@@ -44,10 +48,13 @@ public class StudentCRSMenu {
 							payfee();
 							break;
 						case 6:
-							registerCourses();
+							registerForCourses();
+							break;
+						case 7:
+							CRSApplication.logout();
 							break;
 						default:
-                            "Please enter valid option";
+                            System.out.println("Please enter a valid option");
 					}
 				}
 			}
@@ -56,6 +63,11 @@ public class StudentCRSMenu {
 			}
 	}
 	
+	private void registerForCourses() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void fetchRegisteredCourses() {
 
     }
@@ -74,9 +86,5 @@ public class StudentCRSMenu {
 
     private void payfee() {
         
-    }
-
-    private void registerCourses() {
-        
-    }	 
+    } 
 }
