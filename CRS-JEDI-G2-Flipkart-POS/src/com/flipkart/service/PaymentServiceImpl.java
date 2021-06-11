@@ -45,7 +45,7 @@ public class PaymentServiceImpl implements PaymentInterface {
 	@Override
 	public String offlinePayment(String studentId, float amount, int semester) throws SQLException {
 		
-		return paymentDAO.onlinePayment(studentId, amount, semester);
+		return paymentDAO.offlinePayment(studentId, amount, semester);
 	}
 
 }
