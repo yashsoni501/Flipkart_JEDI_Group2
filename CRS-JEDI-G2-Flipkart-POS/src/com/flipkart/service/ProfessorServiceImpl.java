@@ -13,16 +13,13 @@ import com.flipkart.bean.CourseCatalog;
  */
 public class ProfessorServiceImpl implements ProfessorInterface {
 
-
 	public static volatile ProfessorServiceImpl instance = null;
-	
-	public static ProfessorServiceImpl getInstance()
-	{
-		if(instance==null)
-		{
+
+	public static ProfessorServiceImpl getInstance() {
+		if (instance == null) {
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized(ProfessorServiceImpl.class){
-				instance=new ProfessorServiceImpl();
+			synchronized (ProfessorServiceImpl.class) {
+				instance = new ProfessorServiceImpl();
 			}
 		}
 		return instance;

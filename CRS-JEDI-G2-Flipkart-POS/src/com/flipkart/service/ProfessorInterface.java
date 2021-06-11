@@ -14,5 +14,6 @@ import com.flipkart.bean.CourseCatalog;
 public interface ProfessorInterface {
 
 	public boolean optInCourse(String professorId, String courseId);
+
 	public ArrayList<CourseCatalog> viewOptedCourses(String professorId);
 }

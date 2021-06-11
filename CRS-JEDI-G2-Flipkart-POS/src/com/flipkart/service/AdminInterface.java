@@ -14,29 +14,39 @@ import com.flipkart.bean.CourseRegistration;
  */
 public interface AdminInterface {
 
-	
-	// Admin can add courses to the catalog
-    public boolean addCourse(int course_id, String courseName, String Department);
+	public boolean addCourse(String courseName, String Department);
 
-    // Admin can publish the course catalog for this semester
-    public boolean addCourseCatalog(Course course);
+	public boolean removeCourse(String courseId);
 
-    // Admin can delete the course catalog for this semester
-    public void dropCourseCatalog(int courseId);
+	public boolean addProfessor(String professorId, String name, String department, String emailId);
 
-    public boolean removeCourse(int courseId);
-    
-    public boolean addProfessor(int professorId, String name, String address, String department, String emailId, String password);
-    
-    public boolean addStudent(int student_id, String name, String address, String department, String email, String password);
-        
-    public List<CourseRegistration> fetchNonVerifiedCourseRegistration();
-    
-    public boolean verifyCourseRegistration (int student_id);
-    
-    public boolean enableOrDisableCourseRegistration (boolean flag);
-    
-    public boolean enableOrDisablePayment (boolean flag);
-    
-    public boolean generateReportCard();
+	public boolean addStudent(String studentId, String name, String department, String emailId, String session);
+
+	public boolean enableOrDisableCourseRegistration(boolean flag);
+
+	public boolean enableOrDisablePayment(boolean flag);
+
+	public boolean generateReportCard(String session);
+
+	public boolean removeProfessor(String profId);
+
+	public boolean modifyProfessor(String profId, String professorName, String department);
+
+	public boolean modifyStudnet(String studentId, String studentName, String department, String session);
+
+	public boolean removeCourseCatalog(String courseId);
+
+	public boolean modifyCourse(String courseId, String courseName, String department);
+
+	public boolean addCourseCatalog(String courseId, int semester, String session, int credits);
+
+	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits);
+
+	public void enableCourseRegistration();
+
+	public void disableCourseRegistration();
+
+	public void enablePayment();
+
+	public void disablePayment();
 }
