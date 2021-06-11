@@ -8,5 +8,19 @@ package com.flipkart.DAO;
  *
  */
 public interface AuthDAOInterface {
+	public String verifyUserWithEmailPassword(String email, String paasword);
 
+	public boolean verifyUserWithToken(String access_token, String email);
+
+	public boolean generateAndStoreToken(int student_id);
+
+	public boolean logout();
+
+	public boolean updatePassword(String email, String oldPassword, String newPassword);
+
+	public String getRole(String userId);
+
+	public String addUserWithEmailPassword(String userEmail, String password, String userRole);
+
+	public boolean removeUser(String profId);
 }
