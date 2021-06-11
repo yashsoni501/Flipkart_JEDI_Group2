@@ -3,22 +3,26 @@
  */
 package com.flipkart.service;
 
+import java.util.List;
+
+import com.flipkart.bean.Course;
+import com.flipkart.bean.ReportCard;
+
 /**
  * @author aysh
  *
  */
 public interface StudentInterface {
 	
-	public void fetchRegisteredCourses();
+	public List<Course> fetchRegisteredCourses(int studentId);
 
-	public void isFeePaid();
+	public boolean FeePaid(int studentId, int semester);
 	
-	public void viewFeeReciept();
+	public boolean viewFeeReciept(int studentId, int semester);
 	
-	public void viewReportCard();
+	public ReportCard viewReportCard(int studentId);
 	
-	public void payfee();
+	public boolean payfee(int studentId, int modeOfPayment);
 	
-	public void registerCourses();
-
+	public boolean registerCourses(int studentId, int courseId);
 }

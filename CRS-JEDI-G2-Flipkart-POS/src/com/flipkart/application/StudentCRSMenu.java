@@ -13,6 +13,7 @@ public class StudentCRSMenu {
 
 	
 	Scanner scanner = new Scanner(System.in);
+	StudentInterface studentInterface = StudentServiceImpl.getInstance();
 	
 	/** Creates the menu for Students
 	 */

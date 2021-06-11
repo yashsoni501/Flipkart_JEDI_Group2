@@ -9,13 +9,13 @@ package com.flipkart.service;
  */
 public interface AuthInterface {
 
-	public void verifyUserWithEmailPassword (String email, String paasword);
+	public boolean verifyUserWithEmailPassword (String email, String paasword);
 
-	public void verifyUserWithToken (String access_token );
+	public boolean verifyUserWithToken (String access_token, String email);
 	
-	public void generateAndStoreToken (int student_id);
+	public boolean generateAndStoreToken (int student_id);
 	
-	public void logout();
+	public boolean logout();
 	
-	public void updatePassword();
+	public boolean updatePassword(String email, String oldPassword, String newPassword);
 }
