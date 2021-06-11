@@ -58,17 +58,6 @@ public class AdminServiceImpl implements AdminInterface {
 		return false;
 	}
 
-	@Override
-	public List<CourseRegistration> fetchNonVerifiedCourseRegistration() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean verifyCourseRegistration(int student_id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public boolean enableOrDisableCourseRegistration(boolean flag) {
