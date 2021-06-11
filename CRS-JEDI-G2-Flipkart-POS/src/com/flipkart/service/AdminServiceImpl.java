@@ -50,11 +50,7 @@ public class AdminServiceImpl implements AdminInterface {
 		return false;
 	}
 
-	@Override
-	public boolean generateReportCard(String session) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 
 	@Override
 	public boolean removeProfessor(String profId) {
@@ -68,11 +64,7 @@ public class AdminServiceImpl implements AdminInterface {
 		return false;
 	}
 
-	@Override
-	public boolean modifyStudnet(String studentId, String studentName, String department, String session) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 
 	@Override
 	public boolean removeCourseCatalog(String courseId) {
@@ -82,18 +74,6 @@ public class AdminServiceImpl implements AdminInterface {
 
 	@Override
 	public boolean modifyCourse(String courseId, String courseName, String department) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addCourseCatalog(String courseId, int semester, String session, int credits) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -120,6 +100,30 @@ public class AdminServiceImpl implements AdminInterface {
 	public void disablePayment() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public boolean addCourseCatalog(String courseId, int semester, String session, int credits, String profId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits, String profID) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyStudent(String studentId, String studentName, String department, String session) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean generateReportCard(String session, int semester) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -15,10 +15,16 @@ public interface CourseCatalogInterface {
 
 	public CourseCatalog getCourseCatalog(String courseId);
 
- 	public ArrayList<CourseCatalog> getAllCourseCatalog(String session, int semester);
- 	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String session, int semester, String department);
- 	
- 	public boolean updateProfessorId(String courseId, String professorId);
- 	public boolean updateIsOffered(String courseId);
+	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester);
+
+	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department);
+
+	public boolean updateProfessorId(String courseId, String professorId);
+
+	public boolean updateIsOffered(String courseId);
+
+	public void getCourseCatalogByProfessorId(String userId);
+
+	public void getAllCourseCatalog();
 
 }

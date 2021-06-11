@@ -5,6 +5,14 @@ package com.flipkart.application;
 
 import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminServiceImpl;
+import com.flipkart.service.CourseCatalogInterface;
+import com.flipkart.service.CourseCatalogServiceImpl;
+import com.flipkart.service.CourseInterface;
+import com.flipkart.service.CourseServiceImpl;
+import com.flipkart.service.ProfessorInterface;
+import com.flipkart.service.ProfessorServiceImpl;
+import com.flipkart.service.StudentInterface;
+import com.flipkart.service.StudentServiceImpl;
 
 /**
  * @author jagru
@@ -13,21 +21,29 @@ import com.flipkart.service.AdminServiceImpl;
 public class CRSAdminMenu {
 
 	AdminInterface adminInterface = AdminServiceImpl.getInstance();
+	ProfessorInterface professorInterface = ProfessorServiceImpl.getInstance();
+	StudentInterface studentInterface = StudentServiceImpl.getInstance();
+	CourseCatalogInterface courseCatalogInterface = CourseCatalogServiceImpl.getInstance();
+	CourseInterface courseInterface = CourseServiceImpl.getInstance();
 
 	public void createMenu() {
 
 		while (CRSApplication.userId != null) {
 			System.out.println("**********Admin Menu*********");
 			System.out.println("1. View All Course Catalogue");
-			System.out.println("1. View All Students");
-			System.out.println("1. View All Courses");
-			System.out.println("1. View All Professors");
-			System.out.println("8. Enable Registration");
-			System.out.println("9. Disable Registration");
-			System.out.println("10. Enable Payment");
-			System.out.println("11. Disable Payment");
-			System.out.println("12. Generate Report Card");
-			System.out.println("13. Logout");
+			System.out.println("2. View All Students");
+			System.out.println("3. View All Courses");
+			System.out.println("4. View All Professors");
+			System.out.println("5. Add Course Catalogue");
+			System.out.println("6. Add Student");
+			System.out.println("7. Add Course");
+			System.out.println("8. Add Professor");
+			System.out.println("9. Enable Registration");
+			System.out.println("10. Disable Registration");
+			System.out.println("11. Enable Payment");
+			System.out.println("12. Disable Payment");
+			System.out.println("13. Generate Report Card");
+			System.out.println("14. Logout");
 
 			int choice = CRSApplication.scan.nextInt();
 
@@ -44,22 +60,34 @@ public class CRSAdminMenu {
 			case 4:
 				getAllCourses();
 				break;
+			case 5:
+				addProfessor();
+				break;
+			case 6:
+				addStudent();
+				break;
+			case 7:
+				addCourse();
+				break;
 			case 8:
+				addCourseCatalog();
+				break;
+			case 9:
 				adminInterface.enableCourseRegistration();
 				return;
-			case 9:
+			case 10:
 				adminInterface.disableCourseRegistration();
 				return;
-			case 10:
+			case 11:
 				adminInterface.enablePayment();
 				return;
-			case 11:
+			case 12:
 				adminInterface.disablePayment();
 				return;
-			case 12:
+			case 13:
 				generateReportCard();
 				return;
-			case 13:
+			case 14:
 				CRSApplication.logout();
 				return;
 
@@ -74,10 +102,12 @@ public class CRSAdminMenu {
 		
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
+		System.out.println("Enter Semester:");
+		int semester = CRSApplication.scan.nextInt();
 		
-		if(adminInterface.generateReportCard(session))
+		if(adminInterface.generateReportCard(session,semester))
 		{
-			System.out.println("Student Removed Successfully");
+			System.out.println("Report Card Generated Successfully");
 		}else {
 			System.out.println("Something went wrong");
 		}
@@ -96,7 +126,7 @@ public class CRSAdminMenu {
 		
 		if(adminInterface.addCourse(courseName, department))
 		{
-			System.out.println("Student Added Successfully");
+			System.out.println("Course Added Successfully");
 		}else {
 			System.out.println("Something went wrong");
 		}
@@ -105,12 +135,12 @@ public class CRSAdminMenu {
 	private void removeCourse() {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Enter Student Id:");
+		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
 		
 		if(adminInterface.removeCourse(courseId))
 		{
-			System.out.println("Student Removed Successfully");
+			System.out.println("Course Removed Successfully");
 		}else {
 			System.out.println("Something went wrong");
 		}
@@ -119,7 +149,7 @@ public class CRSAdminMenu {
 	private void modifyCourse() {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Enter Student Id:");
+		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
 		
 		System.out.println("Enter Course Name:");
@@ -130,7 +160,7 @@ public class CRSAdminMenu {
 		
 		if( adminInterface.modifyCourse(courseId,courseName,department))
 		{
-			System.out.println("Student Updated Successfully");
+			System.out.println("Course Updated Successfully");
 		}else {
 			System.out.println("Something went wrong");
 		}
@@ -139,19 +169,19 @@ public class CRSAdminMenu {
 
 	private void addCourseCatalog() {
 		// TODO Auto-generated method stub
-		System.out.println("Enter Student Name:");
+		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
 		
-		System.out.println("Enter Department:");
+		System.out.println("Enter Semester:");
 		int semester = CRSApplication.scan.nextInt();
 		
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
 		
-		System.out.println("Enter Student Email:");
+		System.out.println("Enter Credits:");
 		int credits = CRSApplication.scan.nextInt();
 		
-		if(adminInterface.addCourseCatalog(courseId,semester,session,credits))
+		if(adminInterface.addCourseCatalog(courseId,semester,session,credits,null))
 		{
 			System.out.println("Student Added Successfully");
 		}else {
@@ -162,12 +192,12 @@ public class CRSAdminMenu {
 	private void removeCourseCatalog() {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Enter Student Id:");
+		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
 		
 		if(adminInterface.removeCourseCatalog(courseId))
 		{
-			System.out.println("Student Removed Successfully");
+			System.out.println("Course Catalog Removed Successfully");
 		}else {
 			System.out.println("Something went wrong");
 		}
@@ -176,21 +206,21 @@ public class CRSAdminMenu {
 	private void modifyCourseCatalog() {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Enter Student Name:");
+		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
 		
-		System.out.println("Enter Department:");
+		System.out.println("Enter Semester:");
 		int semester = CRSApplication.scan.nextInt();
 		
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
 		
-		System.out.println("Enter Student Email:");
+		System.out.println("Enter Credits:");
 		int credits = CRSApplication.scan.nextInt();
 		
-		if( adminInterface.modifyCourseCatalog(courseId,semester,session,credits))
+		if( adminInterface.modifyCourseCatalog(courseId,semester,session,credits,null))
 		{
-			System.out.println("Student Updated Successfully");
+			System.out.println("Course Catalog Updated Successfully");
 		}else {
 			System.out.println("Something went wrong");
 		}
@@ -214,7 +244,7 @@ public class CRSAdminMenu {
 		System.out.println("Enter Password:");
 		String password = CRSApplication.scan.next();
 		
-		String studentId = CRSApplication.authInterface.addUserWithEmailPassword(userEmail, password,"PROFESSOR");
+		String studentId = CRSApplication.authInterface.addUserWithEmailPassword(userEmail, password,"STUDENT");
 		
 		if(adminInterface.addStudent(studentId, studentName, department, userEmail,session))
 		{
@@ -253,7 +283,7 @@ public class CRSAdminMenu {
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
 		
-		if( adminInterface.modifyStudnet(studentId,studentName,department,session))
+		if( adminInterface.modifyStudent(studentId,studentName,department,session))
 		{
 			System.out.println("Student Updated Successfully");
 		}else {
@@ -327,23 +357,22 @@ public class CRSAdminMenu {
 
 	private void getAllCourseCatalog() {
 		// TODO Auto-generated method stub
+		courseCatalogInterface.getAllCourseCatalog();
 		while(true) {
-			System.out.println("2. Add Professor");
-			System.out.println("3. Remove Professor");
-			System.out.println("3. Modify Professor Details");
-			System.out.println("4. Return");
+			
+			System.out.println("1. Remove Course Catalog");
+			System.out.println("2. Modify Course Catalog Details");
+			System.out.println("3. Return");
 			int choice = CRSApplication.scan.nextInt();
 			switch (choice) {
+			
 			case 1:
-				addCourseCatalog();
-				break;
-			case 2:
 				removeCourseCatalog();
 				break;
-			case 3:
+			case 2:
 				modifyCourseCatalog();
 				break;
-			case 4:
+			case 3:
 				return;
 			default:
 				System.out.println("***** Wrong Choice *****");
@@ -352,23 +381,20 @@ public class CRSAdminMenu {
 	}
 	private void getAllCourses() {
 		// TODO Auto-generated method stub
+		courseInterface.getAllCourses();
 		while(true) {
-			System.out.println("2. Add Professor");
-			System.out.println("3. Remove Professor");
-			System.out.println("3. Modify Professor Details");
-			System.out.println("4. Return");
+			System.out.println("1. Remove Course");
+			System.out.println("2. Modify Course Details");
+			System.out.println("3. Return");
 			int choice = CRSApplication.scan.nextInt();
 			switch (choice) {
 			case 1:
-				addCourse();
-				break;
-			case 2:
 				removeCourse();
 				break;
-			case 3:
+			case 2:
 				modifyCourse();
 				break;
-			case 4:
+			case 3:
 				return;
 			default:
 				System.out.println("***** Wrong Choice *****");
@@ -378,23 +404,23 @@ public class CRSAdminMenu {
 	
 	private void getAllStudents() {
 		// TODO Auto-generated method stub
+
+		System.out.println("Enter Session:");
+		String session = CRSApplication.scan.next();
+		studentInterface.getAllStudents(session);
 		while(true) {
-			System.out.println("2. Add Professor");
-			System.out.println("3. Remove Professor");
-			System.out.println("3. Modify Professor Details");
-			System.out.println("4. Return");
+			System.out.println("1. Remove Student");
+			System.out.println("2. Modify Student Details");
+			System.out.println("3. Return");
 			int choice = CRSApplication.scan.nextInt();
 			switch (choice) {
 			case 1:
-				addStudent();
-				break;
-			case 2:
 				removeStudent();
 				break;
-			case 3:
+			case 2:
 				modifyStudent();
 				break;
-			case 4:
+			case 3:
 				return;
 			default:
 				System.out.println("***** Wrong Choice *****");
@@ -404,23 +430,20 @@ public class CRSAdminMenu {
 	
 	private void getAllProfessors() {
 		// TODO Auto-generated method stub
+		professorInterface.getAllProfessor();
 		while(true) {
-			System.out.println("2. Add Professor");
-			System.out.println("3. Remove Professor");
-			System.out.println("3. Modify Professor Details");
-			System.out.println("4. Return");
+			System.out.println("1. Remove Professor");
+			System.out.println("2. Modify Professor Details");
+			System.out.println("3. Return");
 			int choice = CRSApplication.scan.nextInt();
 			switch (choice) {
 			case 1:
-				addProfessor();
-				break;
-			case 2:
 				removeProfessor();
 				break;
-			case 3:
+			case 2:
 				modifyProfessor();
 				break;
-			case 4:
+			case 3:
 				return;
 			default:
 				System.out.println("***** Wrong Choice *****");
