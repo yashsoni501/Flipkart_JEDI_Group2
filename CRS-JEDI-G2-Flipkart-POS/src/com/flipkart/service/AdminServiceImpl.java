@@ -7,6 +7,19 @@ import com.flipkart.bean.CourseRegistration;
 
 public class AdminServiceImpl implements AdminInterface {
 
+	public static volatile AdminServiceImpl instance = null;
+	
+	public static AdminServiceImpl getInstance()
+	{
+		if(instance==null)
+		{
+			// This is a synchronized block, when multiple threads will access this instance
+			synchronized(AdminServiceImpl.class){
+				instance=new AdminServiceImpl();
+			}
+		}
+		return instance;
+	}
 	@Override
 	public boolean addCourse(int course_id, String courseName, String Department) {
 		// TODO Auto-generated method stub

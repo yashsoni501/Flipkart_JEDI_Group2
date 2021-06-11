@@ -3,6 +3,8 @@
  */
 package com.flipkart.service;
 
+import com.flipkart.bean.PaymentNotification;
+
 /**
  * @author yashsoni501
  *
@@ -10,9 +12,9 @@ package com.flipkart.service;
 public class PaymentNotificationServiceImpl implements PaymentNotificationInterface{
 
 	@Override
-	public void pushNotif() {
+	public PaymentNotification generateNotification(PaymentNotification notif) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }

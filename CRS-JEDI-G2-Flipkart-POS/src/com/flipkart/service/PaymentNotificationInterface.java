@@ -1,6 +1,8 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.PaymentNotification;
+
 public interface PaymentNotificationInterface {
 
-	public void pushNotif();
+	public PaymentNotification generateNotification(PaymentNotification notif);
 }

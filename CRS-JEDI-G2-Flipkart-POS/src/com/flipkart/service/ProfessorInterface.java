@@ -3,9 +3,9 @@
  */
 package com.flipkart.service;
 
-import java.util.List;
+import java.util.ArrayList;
 
-import com.flipkart.bean.Course;
+import com.flipkart.bean.CourseCatalog;
 
 /**
  * @author aysh
@@ -13,9 +13,6 @@ import com.flipkart.bean.Course;
  */
 public interface ProfessorInterface {
 
-	public List<Course> getDepartmentCourses(int professorId);
-	public void optInCourse(int professorId, int courseId);
-	public void viewOptedCourses(int professorId);
-	public void submitGrades(int studentId, String courseId, String grade);
-	public void viewEnrolledStudentsInCourse(int professorId);
+	public boolean optInCourse(String professorId, String courseId);
+	public ArrayList<CourseCatalog> viewOptedCourses(String professorId);
 }
