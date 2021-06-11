@@ -6,6 +6,7 @@ package com.flipkart.service;
 import java.util.ArrayList;
 
 import com.flipkart.bean.CourseCatalog;
+import com.flipkart.bean.Professor;
 
 /**
  * @author aysh
@@ -36,5 +37,19 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Professor getProfessorDetails(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void getAllProfessor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }

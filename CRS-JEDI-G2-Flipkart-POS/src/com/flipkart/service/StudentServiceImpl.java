@@ -6,7 +6,7 @@ package com.flipkart.service;
 import java.util.ArrayList;
 
 import com.flipkart.bean.Course;
-import com.flipkart.bean.ReportCard;
+import com.flipkart.bean.Student;
 
 /**
  * @author aysh
@@ -47,9 +47,16 @@ public class StudentServiceImpl implements StudentInterface {
 	}
 
 	@Override
-	public ReportCard viewReportCard(String studentId) {
+	public void getAllStudents(String session) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Student getStudentById(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	
 }
