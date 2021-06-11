@@ -60,4 +60,10 @@ public class CRSApplication {
 		System.out.println("Login");
 	}
 	
+
+	public static void logout() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

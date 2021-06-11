@@ -20,4 +20,5 @@ public interface StudentInterface {
 	public void payfee();
 	
 	public void registerCourses();
+
 }
