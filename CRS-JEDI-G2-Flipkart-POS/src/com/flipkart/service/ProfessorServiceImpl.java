@@ -71,16 +71,8 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 		return professorDAO.submitGrade(courseId, studentId, semester, session, grade);
 	}
 
-	
-
 	@Override
-	public void getAllProfessor() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Professor getProfessorById(String userId) {
+	public ArrayList<Professor> getAllProfessor() {
 		// TODO Auto-generated method stub
 		return null;
 	}

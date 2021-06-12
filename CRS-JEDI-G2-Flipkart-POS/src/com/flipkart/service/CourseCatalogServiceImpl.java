@@ -50,12 +50,6 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 	}
 
 	@Override
-	public boolean updateIsOffered(String courseId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void getCourseCatalogByProfessorId(String userId) {
 		// TODO Auto-generated method stub
 

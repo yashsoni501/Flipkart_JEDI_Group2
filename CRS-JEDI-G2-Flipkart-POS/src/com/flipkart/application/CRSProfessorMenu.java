@@ -3,6 +3,8 @@
  */
 package com.flipkart.application;
 
+import java.sql.SQLException;
+
 import com.flipkart.bean.Professor;
 import com.flipkart.service.CourseCatalogInterface;
 import com.flipkart.service.CourseCatalogServiceImpl;
@@ -24,7 +26,12 @@ public class CRSProfessorMenu {
 
 	public void createMenu() {
 		if (CRSApplication.userId != null) {
-			professor = professorInterface.getProfessorById(CRSApplication.userId);
+			try {
+				professor = professorInterface.getProfessorDetails(CRSApplication.userId);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		while (CRSApplication.userId != null) {
 			System.out.println("Professor Menu");
@@ -100,9 +107,7 @@ public class CRSProfessorMenu {
 
 	private void viewOptedCourses() {
 		// TODO Auto-generated method stub
-
 		courseCatalogInterface.getCourseCatalogByProfessorId(CRSApplication.userId);
-
 	}
 
 	private void removeOptedCourse() {
