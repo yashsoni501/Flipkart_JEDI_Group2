@@ -1,5 +1,6 @@
 package com.flipkart.DAO;
 
+import com.flipkart.bean.Admin;
 import com.flipkart.bean.Course;
 
 public interface AdminDAOInterface {
@@ -11,11 +12,11 @@ public interface AdminDAOInterface {
 
 	public boolean addStudent(String studentId, String name, String department, String emailId, String session);
 
-	public boolean enableOrDisableCourseRegistration(boolean flag);
+	public boolean setCourseRegistrationFlag(boolean flag);
 
-	public boolean enableOrDisablePayment(boolean flag);
+	public boolean setPaymentFlag(boolean flag);
 
-	public boolean generateReportCard(String session);
+	public boolean generateReportCard(String session, int semester);
 
 	public boolean removeProfessor(String profId);
 
@@ -27,15 +28,9 @@ public interface AdminDAOInterface {
 
 	public boolean modifyCourse(String courseId, String courseName, String department);
 
-	public boolean addCourseCatalog(String courseId, int semester, String session, int credits);
+	public boolean addCourseCatalog(String courseId, int semester, String session, int credits, String profId);
 
-	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits);
+	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits, String profId);
 
-	public void enableCourseRegistration();
-
-	public void disableCourseRegistration();
-
-	public void enablePayment();
-
-	public void disablePayment();
+	public Admin getAdminById(String userId);
 }
