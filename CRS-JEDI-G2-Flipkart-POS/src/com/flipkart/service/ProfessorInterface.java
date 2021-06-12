@@ -17,11 +17,20 @@ import com.flipkart.bean.Student;
 public interface ProfessorInterface {
 
 	public boolean optInCourse(String professorId, String courseId) throws SQLException;
-	public ArrayList<CourseCatalog> viewOptedCourses(String professorId) throws SQLException ;
+
+	public ArrayList<CourseCatalog> viewOptedCourses(String professorId) throws SQLException;
+
 	public Professor getProfessorDetails(String userId) throws SQLException;
+
 	public ArrayList<CourseCatalog> getDepartmentCourses(String department) throws SQLException;
+
 	public ArrayList<Student> viewEnrolledStudents(String courseId) throws SQLException;
-	public boolean submitGrade(int courseId, int studentId, int semester, String session, String grade ) throws SQLException;
+
+	public boolean submitGrade(int courseId, int studentId, int semester, String session, String grade)
+			throws SQLException;
+
+	
+	public void getAllProfessor();
 
 	public Professor getProfessorById(String userId);
 
