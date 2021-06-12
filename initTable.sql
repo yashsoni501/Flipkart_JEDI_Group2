@@ -1,23 +1,23 @@
 create database crs;
 use crs;
 
-create table `auth` (`uid` int primary key auto_increment, `email` varchar(32) not null, `password` varchar(32) not null, `userRole` varchar(32) not null);
+create table `auth` (`uid` int primary key auto_increment, `email` varchar(50) not null, `password` varchar(50) not null, `userRole` varchar(50) not null);
 
-CREATE TABLE `student` (`stuid` int primary key,  `email` varchar(32) not null,  `name` varchar(32) not null,  `department` varchar(32) not null,  `session` varchar(32) not null);
-CREATE TABLE `professor` (  `profid` int primary key,  `email` varchar(32) not null,  `name` varchar(32) not null,  `department` varchar(32) not null);
-CREATE TABLE `admin` (  `adminid` int primary key,  `email` varchar(32) not null,  `name` varchar(32) not null, `designation` varchar(32), `status` varchar(32));
+CREATE TABLE `student` (`stuid` int primary key,  `email` varchar(50) not null,  `name` varchar(50) not null,  `department` varchar(50) not null,  `session` varchar(50) not null);
+CREATE TABLE `professor` (  `profid` int primary key,  `email` varchar(50) not null,  `name` varchar(50) not null,  `department` varchar(50) not null);
+CREATE TABLE `admin` (  `adminid` int primary key,  `email` varchar(50) not null,  `name` varchar(50) not null, `designation` varchar(50), `status` varchar(50));
 
 
-CREATE TABLE `course` (  `courseid` int primary key auto_increment,  `courseName` varchar(32) not null, `department` varchar(32) not null);
-CREATE TABLE `courseCatalog` (`courseid` int primary key,  `profid` int, `semester` int not null, `session` varchar(32) not null, `credits` float not null);
-CREATE TABLE `registeredCourse` (`regid` int primary key auto_increment, `courseid` int not null,  `stuid` int not null, `semester` int not null, `session` varchar(32) not null, `grade` varchar(32) not null);
+CREATE TABLE `course` (  `courseid` int primary key auto_increment,  `courseName` varchar(50) not null, `department` varchar(50) not null);
+CREATE TABLE `courseCatalog` (`courseid` int primary key,  `profid` int, `semester` int not null, `session` varchar(50) not null, `credits` float not null);
+CREATE TABLE `registeredCourse` (`regid` int primary key auto_increment, `courseid` int not null,  `stuid` int not null, `semester` int not null, `session` varchar(50) not null, `grade` varchar(50) );
 
--- CREATE TABLE `reportCard` (  `stuId` varchar(32) ,  `cgpa` varchar(32) , `currentSem` int ); will be generated
-CREATE TABLE `semesterReportCard` (`srcid` int primary key auto_increment, `stuid` int not null,  `sgpa` varchar(32) not null, `semester` int not null);
+-- CREATE TABLE `reportCard` (  `stuId` varchar(50) ,  `cgpa` varchar(50) , `currentSem` int ); will be generated
+CREATE TABLE `semesterReportCard` (`srcid` int primary key auto_increment, `stuid` int not null,  `sgpa` varchar(50) not null, `semester` int not null);
 
-CREATE TABLE `payment` (`referenceId` varchar(32) primary key, `stuid` int not null,  `status` varchar(32) not null, `amount` float not null, `dateOfPayment` date not null, `semester` int not null, `modeOfPayment` varchar(32) not null);
+CREATE TABLE `payment` (`referenceId` varchar(50) primary key, `stuid` int not null,  `status` varchar(50) not null, `amount` float not null, `dateOfPayment` varchar(50) not null, `semester` int not null, `modeOfPayment` varchar(50) not null);
 
-create table `constants` (`key` varchar(32) primary key, `value` varchar(32));
+create table `constants` (`key` varchar(50) primary key, `value` varchar(50));
 
 insert into `constants` (`key`, `value`) values ('PAYMENT_WINDOW', 'FALSE');
 insert into `constants` (`key`, `value`) values ('COURSE_WINDOW', 'FALSE');
@@ -27,8 +27,8 @@ insert into `constants` (`key`, `value`) values ('PROFESSOR_WINDOW', 'FALSE');
 
 
 insert into `auth` (`email` , `password` , `userRole` ) values ('admin@crs', 'admin', 'ADMIN');
-insert into `auth` (`email` , `password` , `userRole` ) values ('student@crs', 'Student1', 'PROFESSOR');
-insert into `auth` (`email` , `password` , `userRole` ) values ('professor@crs', 'Professor1', 'STUDENT');
+insert into `auth` (`email` , `password` , `userRole` ) values ('student@crs', 'Student1', 'STUDENT');
+insert into `auth` (`email` , `password` , `userRole` ) values ('professor@crs', 'Professor1', 'PROFESSOR');
 
 
 

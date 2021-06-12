@@ -9,21 +9,21 @@ package com.flipkart.bean;
  */
 public class Course {
 
-	private int courseID;
+	private String courseID;
 	private String courseName;
 	private String department;
 
 	/**
 	 * @return the courseID
 	 */
-	public int getCourseID() {
+	public String getCourseID() {
 		return courseID;
 	}
 
 	/**
 	 * @param courseID the courseID to set
 	 */
-	public void setCourseID(int courseID) {
+	public void setCourseID(String courseID) {
 		this.courseID = courseID;
 	}
 

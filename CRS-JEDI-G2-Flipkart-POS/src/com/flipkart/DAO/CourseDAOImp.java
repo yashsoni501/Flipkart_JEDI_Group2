@@ -44,7 +44,7 @@ public class CourseDAOImp {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			if (rs.next()) {
-				res.setCourseID(rs.getInt("courseid"));
+				res.setCourseID(rs.getString("courseid"));
 				res.setCourseName(rs.getString("courseName"));
 				res.setDepartment(rs.getString("department"));
 
@@ -105,7 +105,7 @@ public class CourseDAOImp {
 			while (rs.next()) {
 				// Retrieve by column name
 				Course temp = new Course();
-				temp.setCourseID(rs.getInt("courseid"));
+				temp.setCourseID(rs.getString("courseid"));
 				temp.setCourseName(rs.getString("courseName"));
 				temp.setDepartment(rs.getString("department"));
 
@@ -137,8 +137,6 @@ public class CourseDAOImp {
 		return res;
 	}
 
-//	note: in coursecatalog db, credits are stored as float but as int in CourseCatalog class
-//	      in coursecatalog db, courseid are stored as int but as String in CourseCatalog class
 	public CourseCatalog getCourseCatalog(String courseId) {
 		final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 		final String DB_URL = "jdbc:mysql://localhost/crs";
