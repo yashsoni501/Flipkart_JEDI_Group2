@@ -36,10 +36,10 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 
 	public ArrayList<CourseCatalog> viewOptedCourses(String professorId) throws SQLException {
 
-		String SelectOptedCoursesProf = "select * from 'courseCatalog' where profId = ?";
-		PreparedStatement stmt = instanceDAO.conn.prepareStatement(SelectOptedCoursesProf);
+		String SELECT_OPTED_COURSES_PROF = "select * from 'courseCatalog' where profId = ?";
+		PreparedStatement stmt = instanceDAO.conn.prepareStatement(SELECT_OPTED_COURSES_PROF);
 		stmt.setString(1, professorId);
-		ResultSet rs = stmt.executeQuery(SelectOptedCoursesProf);
+		ResultSet rs = stmt.executeQuery(SELECT_OPTED_COURSES_PROF);
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		while (rs.next()) {
 			int id = rs.getInt("courseId");
@@ -54,8 +54,8 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 
 	public boolean optInCourse(String professorId, String courseId) throws SQLException {
 
-		String OptInCoureProf = "update `courseCatalog` set profId = ? where courseId = ?";
-		PreparedStatement stmt = instanceDAO.conn.prepareStatement(OptInCoureProf);
+		String OPT_In_COURSE_PROF = "update `courseCatalog` set profId = ? where courseId = ?";
+		PreparedStatement stmt = instanceDAO.conn.prepareStatement(OPT_In_COURSE_PROF);
 		stmt.setString(1, professorId);
 		stmt.setString(2, courseId);
 
@@ -68,10 +68,10 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	@Override
 	public Professor getProfessorDetails(String userId) throws SQLException {
 		// TODO Auto-generated method stub
-		String GetProfessorDet = "Select * from professor where profid = ?";
-		PreparedStatement stmt = instanceDAO.conn.prepareStatement(GetProfessorDet);
+		String GET_PROFESSOR_DetAIL = "Select * from professor where profid = ?";
+		PreparedStatement stmt = instanceDAO.conn.prepareStatement(GET_PROFESSOR_DetAIL);
 		stmt.setString(1, userId);
-		ResultSet rs = stmt.executeQuery(GetProfessorDet);
+		ResultSet rs = stmt.executeQuery(GET_PROFESSOR_DetAIL);
 		Professor p = new Professor();
 		while (rs.next()) {
 			p.setProfessorId(rs.getInt("profid"));
@@ -86,10 +86,10 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	@Override
 	public ArrayList<CourseCatalog> getDepartmentCourses(String department) throws SQLException {
 		// TODO Auto-generated method stub
-		String getDeptCoursesProf = "select * from 'courseCatalog' where department = ?";
-		PreparedStatement stmt = instanceDAO.conn.prepareStatement(getDeptCoursesProf);
+		String GET_DEPT_COURSES_PROF = "select * from 'courseCatalog' where department = ?";
+		PreparedStatement stmt = instanceDAO.conn.prepareStatement(GET_DEPT_COURSES_PROF);
 		stmt.setString(1, department);
-		ResultSet rs = stmt.executeQuery(getDeptCoursesProf);
+		ResultSet rs = stmt.executeQuery(GET_DEPT_COURSES_PROF);
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		while (rs.next()) {
 			int id = rs.getInt("courseId");
@@ -105,10 +105,10 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	@Override
 	public ArrayList<Student> viewEnrolledStudents(String courseId) throws SQLException {
 		// TODO Auto-generated method stub
-		String ViewEnrolledStu = "select stuId from 'registeredCourse' where courseId = ?";
-		PreparedStatement stmt = instanceDAO.conn.prepareStatement(ViewEnrolledStu);
+		String VIEW_ENROLLED_STU = "select stuId from 'registeredCourse' where courseId = ?";
+		PreparedStatement stmt = instanceDAO.conn.prepareStatement(VIEW_ENROLLED_STU);
 		stmt.setString(1, courseId);
-		ResultSet rs = stmt.executeQuery(ViewEnrolledStu);
+		ResultSet rs = stmt.executeQuery(VIEW_ENROLLED_STU);
 		ArrayList<Student> arr = new ArrayList<Student>();
 		while (rs.next()) {
 			int id = rs.getInt("courseId");
@@ -121,17 +121,15 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	}
 
 	@Override
-	public boolean submitGrade(int courseId, int studentId, int semester, String session, String grade)
+	public boolean submitGrade(String courseId, String studentId, String grade)
 			throws SQLException {
 		// TODO Auto-generated method stub
-		String GradeSubmission = "update `registeredCourse` set grade = ? where courseId = ? and stuid = ? and semester = ? and session = ?";
-		PreparedStatement stmt = instanceDAO.conn.prepareStatement(GradeSubmission);
+		String GRADE_SUBMISSION = "update `registeredCourse` set grade = ? where courseId = ? and stuid = ? ";
+		PreparedStatement stmt = instanceDAO.conn.prepareStatement(GRADE_SUBMISSION);
 		stmt.setString(1, grade);
-		stmt.setInt(2, courseId);
-		stmt.setInt(3, studentId);
-		stmt.setInt(4, semester);
-		stmt.setString(5, session);
-
+		stmt.setString(2, courseId);
+		stmt.setString(3, studentId);
+		
 		int rows = stmt.executeUpdate();
 		System.out.println("Rows impacted : " + rows);
 		return false;
