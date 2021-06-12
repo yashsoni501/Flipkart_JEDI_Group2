@@ -14,7 +14,7 @@ import com.flipkart.bean.Course;
  */
 public interface AdminInterface {
 
-	public boolean addCourse(String courseName, String Department);
+	public boolean addCourse(String courseName, String department);
 
 	public boolean removeCourse(String courseId);
 
@@ -22,9 +22,9 @@ public interface AdminInterface {
 
 	public boolean addStudent(String studentId, String name, String department, String emailId, String session);
 
-	public boolean enableOrDisableCourseRegistration(boolean flag);
+	public boolean setCourseRegistrationFlag(boolean flag);
 
-	public boolean enableOrDisablePayment(boolean flag);
+	public boolean setPaymentFlag(boolean flag);
 
 	public boolean generateReportCard(String session, int semester);
 
@@ -40,15 +40,7 @@ public interface AdminInterface {
 
 	public boolean addCourseCatalog(String courseId, int semester, String session, int credits, String profId);
 
-	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits, String profID);
-
-	public void enableCourseRegistration();
-
-	public void disableCourseRegistration();
-
-	public void enablePayment();
-
-	public void disablePayment();
+	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits, String profId);
 
 	public Admin getAdminById(String userId);
 }

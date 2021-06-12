@@ -87,16 +87,16 @@ public class CRSAdminMenu {
 				addCourseCatalog();
 				break;
 			case 9:
-				adminInterface.enableCourseRegistration();
+				adminInterface.setCourseRegistrationFlag(true);
 				return;
 			case 10:
-				adminInterface.disableCourseRegistration();
+				adminInterface.setCourseRegistrationFlag(false);
 				return;
 			case 11:
-				adminInterface.enablePayment();
+				adminInterface.setPaymentFlag(true);
 				return;
 			case 12:
-				adminInterface.disablePayment();
+				adminInterface.setPaymentFlag(false);
 				return;
 			case 13:
 				generateReportCard();
