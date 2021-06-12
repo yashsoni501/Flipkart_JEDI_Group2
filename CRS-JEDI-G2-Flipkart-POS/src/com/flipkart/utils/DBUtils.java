@@ -28,7 +28,7 @@ public class DBUtils {
 	}
 
 	public static Connection getConnection() {
-		if (instance == null) {
+		if (connection == null) {
 			synchronized (DBUtils.class) {
 				try {
 					Class.forName("com.mysql.cj.jdbc.Driver");
