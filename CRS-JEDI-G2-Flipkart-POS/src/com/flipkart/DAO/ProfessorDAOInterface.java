@@ -26,6 +26,5 @@ public interface ProfessorDAOInterface {
 
 	public ArrayList<Student> viewEnrolledStudents(String courseId) throws SQLException;
 
-	public boolean submitGrade(String courseId, String studentId, String grade)
-			throws SQLException;
+	public boolean submitGrade(String courseId, String studentId, String grade) throws SQLException;
 }

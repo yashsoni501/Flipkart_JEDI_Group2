@@ -3,6 +3,7 @@
  */
 package com.flipkart.application;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.flipkart.service.AuthInterface;
@@ -82,18 +83,23 @@ public class CRSApplication {
 			String userRole = authInterface.getRole(userId);
 			switch (userRole) {
 			case "ADMIN":
-				System.out.println(" Login Successful");
+				System.out.println("Admin Login Successful");
 				CRSAdminMenu adminMenu = new CRSAdminMenu();
 				adminMenu.createMenu();
 				break;
 			case "PROFESSOR":
-				System.out.println(" Login Successful");
+				System.out.println("Professor Login Successful");
 				CRSProfessorMenu professorMenu = new CRSProfessorMenu();
-				professorMenu.createMenu();
+				try {
+					professorMenu.createMenu();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 				break;
 			case "STUDENT":
-				System.out.println(" Login Successful");
+				System.out.println("Student Login Successful");
 				CRSStudentMenu studentMenu = new CRSStudentMenu();
 				studentMenu.createMenu();
 				break;

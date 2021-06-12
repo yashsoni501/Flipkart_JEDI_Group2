@@ -11,6 +11,4 @@ import java.sql.Connection;
  */
 public interface DAOConnectionInterface {
 
-	public static Connection conn = null;
-
 }

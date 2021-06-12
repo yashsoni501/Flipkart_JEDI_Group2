@@ -15,7 +15,7 @@ CREATE TABLE `registeredCourse` (`regid` int primary key auto_increment, `course
 -- CREATE TABLE `reportCard` (  `stuId` varchar(50) ,  `cgpa` varchar(50) , `currentSem` int ); will be generated
 CREATE TABLE `semesterReportCard` (`srcid` int primary key auto_increment, `stuid` int not null,  `sgpa` varchar(50) not null, `semester` int not null);
 
-CREATE TABLE `payment` (`referenceId` varchar(50) primary key, `stuid` int not null,  `status` varchar(50) not null, `amount` float not null, `dateOfPayment` varchar(50) not null, `semester` int not null, `modeOfPayment` varchar(50) not null);
+CREATE TABLE `payment` (`referenceId` varchar(50), `stuid` int not null,  `status` varchar(50) not null, `amount` float not null, `dateOfPayment` varchar(50) not null, `semester` int not null, `modeOfPayment` varchar(50) not null);
 
 create table `constants` (`key` varchar(50) primary key, `value` varchar(50));
 

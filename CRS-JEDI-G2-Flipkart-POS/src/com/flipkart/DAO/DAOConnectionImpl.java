@@ -13,11 +13,11 @@ import java.sql.SQLException;
  * @author yashsoni501
  *
  */
-public class DAOConnectionImpl implements DAOConnectionInterface {
+public class DAOConnectionImpl {
 
 	static final String DB_URL = "jdbc:mysql://localhost/crs";
-	static final String USER = "root";
-	static final String PASS = " ";
+	static final String USER = "aysh";
+	static final String PASS = "password";
 
 	public static Connection conn = null;
 

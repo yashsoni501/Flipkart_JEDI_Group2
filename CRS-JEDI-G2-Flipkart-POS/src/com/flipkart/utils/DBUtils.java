@@ -19,7 +19,6 @@ public class DBUtils {
 	static final String USER = "aysh";
 	static final String PASS = "password";
 
-	private static volatile DBUtils instance = null;
 	private static volatile Connection connection = null;
 
 	// Default Constructor
