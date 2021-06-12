@@ -42,8 +42,8 @@ public class AuthDAOImpl implements AuthDAOInterface {
 			stmt.setString(1, email);
 
 			ResultSet resultSet = stmt.executeQuery();
-			
-			if(!resultSet.next()) {
+
+			if (!resultSet.next()) {
 				return "";
 			} else {
 				String savedPassword = resultSet.getString("password");
@@ -51,7 +51,7 @@ public class AuthDAOImpl implements AuthDAOInterface {
 
 				if (password.equals(savedPassword)) {
 					return uid;
-				}				
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
