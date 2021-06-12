@@ -40,7 +40,12 @@ public class CRSStudentMenu {
 	 */
 	public void createMenu() {
 		if (CRSApplication.userId != null) {
-			student = studentInterface.getStudentById(CRSApplication.userId);
+			try {
+				student = studentInterface.getStudentById(CRSApplication.userId);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		while (CRSApplication.userId != null) {
 			System.out.println("\n----------Student Menu-----------");

@@ -3,6 +3,7 @@
  */
 package com.flipkart.DAO;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.flipkart.bean.Student;
@@ -12,15 +13,13 @@ import com.flipkart.bean.Course;
  * @author Aeron
  *
  */
-public class StudentDAOInterface {
-	
-	public ArrayList<Course> fetchRegisteredCourses(String studentId, int semester);
+public interface StudentDAOInterface {
 
-	public boolean payFee(String studentId, int modeOfPayment);
+	public ArrayList<Course> fetchRegisteredCourses(String studentId, int semester) throws SQLException;
 
-	public boolean isFeePaid(String studentId, int semester);
+	public boolean isFeePaid(String studentId, int semester) throws SQLException;
 
-	public ArrayList<Student> getAllStudents(String session);
+	public ArrayList<Student> getAllStudents(String session) throws SQLException;
 
-	public Student getStudentById(String userId);
+	public Student getStudentById(String userId) throws SQLException;
 }

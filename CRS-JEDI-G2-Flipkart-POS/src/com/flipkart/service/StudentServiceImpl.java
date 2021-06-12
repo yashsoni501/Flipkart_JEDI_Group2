@@ -32,31 +32,25 @@ public class StudentServiceImpl implements StudentInterface {
 	}
 
 	@Override
-	public ArrayList<Course> fetchRegisteredCourses(String studentId, int semester) {
+	public ArrayList<Course> fetchRegisteredCourses(String studentId, int semester) throws SQLException {
 		// TODO Auto-generated method stub
 		return studentDAO.fetchRegisteredCourses(studentId, semester);
 	}
 
 	@Override
-	public boolean payFee(String studentId, int modeOfPayment) {
-		// TODO Auto-generated method stub
-		return studentDAO.payFee(studentId, modeOfPayment);
-	}
-
-	@Override
-	public boolean isFeePaid(String studentId, int semester) {
+	public boolean isFeePaid(String studentId, int semester) throws SQLException {
 		// TODO Auto-generated method stub
 		return studentDAO.isFeePaid(studentId, semester);
 	}
 
 	@Override
-	public Student getStudentById(String userId) {
+	public Student getStudentById(String userId) throws SQLException {
 		// TODO Auto-generated method stub
 		return studentDAO.getStudentById(userId);
 	}
 
 	@Override
-	public ArrayList<Student> getAllStudents(String session) {
+	public ArrayList<Student> getAllStudents(String session) throws SQLException {
 		// TODO Auto-generated method stub
 		return studentDAO.getAllStudents(session);
 	}

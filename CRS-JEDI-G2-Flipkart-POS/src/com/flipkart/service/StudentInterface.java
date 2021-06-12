@@ -3,6 +3,7 @@
  */
 package com.flipkart.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.flipkart.bean.Student;
@@ -14,13 +15,11 @@ import com.flipkart.bean.Course;
  */
 public interface StudentInterface {
 
-	public ArrayList<Course> fetchRegisteredCourses(String studentId, int semester);
+	public ArrayList<Course> fetchRegisteredCourses(String studentId, int semester) throws SQLException;
 
-	public boolean payFee(String studentId, int modeOfPayment);
+	public boolean isFeePaid(String studentId, int semester) throws SQLException;
 
-	public boolean isFeePaid(String studentId, int semester);
+	public ArrayList<Student> getAllStudents(String session) throws SQLException;
 
-	public ArrayList<Student> getAllStudents(String session);
-
-	public Student getStudentById(String userId);
+	public Student getStudentById(String userId) throws SQLException;
 }

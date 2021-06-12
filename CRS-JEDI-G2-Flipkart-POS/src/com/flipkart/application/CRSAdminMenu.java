@@ -3,6 +3,7 @@
  */
 package com.flipkart.application;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.flipkart.bean.Admin;
@@ -120,7 +121,13 @@ public class CRSAdminMenu {
 		System.out.println("Enter Semester:");
 		int semester = CRSApplication.scan.nextInt();
 
-		ArrayList<Student> registeredStudents = studentInterface.getAllStudents(session);
+		ArrayList<Student> registeredStudents = new ArrayList<Student>();
+		try {
+			registeredStudents = studentInterface.getAllStudents(session);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for (Student student : registeredStudents) {
 			ArrayList<RegisteredCourse> courses = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
 					session, semester);
@@ -416,7 +423,12 @@ public class CRSAdminMenu {
 
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
-		studentInterface.getAllStudents(session);
+		try {
+			studentInterface.getAllStudents(session);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		while (true) {
 			System.out.println("1. Remove Student");
 			System.out.println("2. Modify Student Details");
