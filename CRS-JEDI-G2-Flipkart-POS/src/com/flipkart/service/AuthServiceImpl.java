@@ -3,6 +3,9 @@
  */
 package com.flipkart.service;
 
+import com.flipkart.DAO.AuthDAOImpl;
+import com.flipkart.DAO.AuthDAOInterface;
+
 /**
  * @author aysh
  *
@@ -10,6 +13,7 @@ package com.flipkart.service;
 public class AuthServiceImpl implements AuthInterface {
 
 	public static volatile AuthServiceImpl instance = null;
+	AuthDAOInterface authDAO = AuthDAOImpl.getInstance();
 
 	public static AuthServiceImpl getInstance() {
 		if (instance == null) {
@@ -23,50 +27,50 @@ public class AuthServiceImpl implements AuthInterface {
 
 	@Override
 	public String verifyUserWithEmailPassword(String email, String paasword) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return authDAO.verifyUserWithEmailPassword(email, paasword);
 	}
 
 	@Override
 	public boolean verifyUserWithToken(String access_token, String email) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return authDAO.verifyUserWithToken(access_token, email);
 	}
 
 	@Override
 	public boolean generateAndStoreToken(int student_id) {
 		// TODO Auto-generated method stub
-		return false;
+		return authDAO.generateAndStoreToken(student_id);
 	}
 
 	@Override
 	public boolean logout() {
 		// TODO Auto-generated method stub
-		return false;
+		return authDAO.logout();
 	}
 
 	@Override
 	public boolean updatePassword(String email, String oldPassword, String newPassword) {
 		// TODO Auto-generated method stub
-		return false;
+		return authDAO.updatePassword(email, oldPassword, newPassword);
 	}
 
 	@Override
 	public String getRole(String userId) {
 		// TODO Auto-generated method stub
-		return null;
+		return authDAO.getRole(userId);
 	}
 
 	@Override
 	public String addUserWithEmailPassword(String userEmail, String password, String userRole) {
 		// TODO Auto-generated method stub
-		return null;
+		return authDAO.addUserWithEmailPassword(userEmail, password, userRole);
 	}
 
 	@Override
 	public boolean removeUser(String profId) {
 		// TODO Auto-generated method stub
-		return false;
+		return authDAO.removeUser(profId);
 	}
 
 }
