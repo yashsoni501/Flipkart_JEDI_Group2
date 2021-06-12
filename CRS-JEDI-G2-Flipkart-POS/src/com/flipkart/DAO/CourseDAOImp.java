@@ -578,8 +578,8 @@ public class CourseDAOImp {
 		return res;
 	}
 	
-	public static void main(String[] args) {
-		CourseDAOImp as = new CourseDAOImp();
+//	public static void main(String[] args) {
+//		CourseDAOImp as = new CourseDAOImp();
 		
 
 //		testing getCourse
@@ -626,10 +626,10 @@ public class CourseDAOImp {
 //		}
 		
 //		testing getAllCourseCatalog()
-		as.updateProfessorId("3", "5");
+//		as.updateProfessorId("3", "5");
 
 		
 		
-	}
+//	}
 
 }
