@@ -82,21 +82,21 @@ public class CRSProfessorMenu {
 		System.out.println("Course Opt Menu");
 		System.out.println("Enter the CourseId");
 		String courseId = CRSApplication.scan.next();
-		if (professorInterface.optInCourse( CRSApplication.userId,courseId)) {
+		if (professorInterface.optInCourse(CRSApplication.userId, courseId)) {
 			System.out.println("Succes");
 		} else {
 			System.out.println("Failure");
 		}
 
 	}
-	
+
 	private void viewOptedCourses() throws SQLException {
 		// TODO Auto-generated method stub
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		arr = professorInterface.viewOptedCourses(CRSApplication.userId);
 		System.out.println(arr);
 	}
-	
+
 	private void viewEnrolledStudentsInCourse() throws SQLException {
 		// TODO Auto-generated method stub
 		System.out.println("Enter Course Id");
@@ -108,9 +108,10 @@ public class CRSProfessorMenu {
 		ArrayList<Student> arr = new ArrayList<Student>();
 		arr = professorInterface.viewEnrolledStudents(courseId);
 		System.out.println(arr);
-		
+
 	}
-	//Note :Needs to be implemented in course catalog
+
+	// Note :Needs to be implemented in course catalog
 	private void removeOptedCourse() {
 
 		System.out.println("Enter the CourseId");
@@ -122,7 +123,7 @@ public class CRSProfessorMenu {
 			System.out.println("Failure");
 		}
 	}
-	
+
 	private void submitGrades() throws SQLException {
 		// TODO Auto-generated method stub
 
@@ -148,8 +149,7 @@ public class CRSProfessorMenu {
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		arr = professorInterface.getDepartmentCourses(professor.getDepartment());
 		System.out.println(arr);
-		
+
 	}
 
-	
 }

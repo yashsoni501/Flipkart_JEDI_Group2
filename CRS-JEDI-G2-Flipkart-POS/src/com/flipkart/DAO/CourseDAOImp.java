@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
+import com.flipkart.utils.DBUtils;
 
 /**
  * @author Tanmay
@@ -19,24 +20,15 @@ import com.flipkart.bean.CourseCatalog;
  */
 public class CourseDAOImp {
 	public Course getCourse(String courseId) {
-		final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-		final String DB_URL = "jdbc:mysql://localhost/crs";
 
-		// Database credentials
-		final String USER = "root";
-		final String PASS = "root";
-
-		Connection conn = null;
+		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		Course res = new Course();
 
 		try {
 
-			Class.forName(JDBC_DRIVER);
-
-//			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			// System.out.println("Connecting to database...");
 
 			String sql = "select * from course where courseName = \"" + courseId + "\" limit 1";
 //		    System.out.println(sql);
@@ -78,25 +70,13 @@ public class CourseDAOImp {
 	}
 
 	public ArrayList<Course> getAllCourses() {
-		final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-		final String DB_URL = "jdbc:mysql://localhost/crs";
 
-		// Database credentials
-		final String USER = "root";
-		final String PASS = "root";
-
-		Connection conn = null;
+		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		ArrayList<Course> res = new ArrayList<Course>();
 
 		try {
-
-			Class.forName(JDBC_DRIVER);
-
-//			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
 			String sql = "select * from course";
 //		    System.out.println(sql);
 			stmt = conn.prepareStatement(sql);
@@ -138,25 +118,13 @@ public class CourseDAOImp {
 	}
 
 	public CourseCatalog getCourseCatalog(String courseId) {
-		final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-		final String DB_URL = "jdbc:mysql://localhost/crs";
 
-		// Database credentials
-		final String USER = "root";
-		final String PASS = "root";
-
-		Connection conn = null;
+		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		CourseCatalog res = new CourseCatalog();
 
 		try {
-
-			Class.forName(JDBC_DRIVER);
-
-//			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
 			String sql = "select * from coursecatalog where courseid = \"" + courseId + "\" limit 1";
 //		    System.out.println(sql);
 			stmt = conn.prepareStatement(sql);
@@ -197,25 +165,13 @@ public class CourseDAOImp {
 	}
 
 	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester) {
-		final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-		final String DB_URL = "jdbc:mysql://localhost/crs";
 
-		// Database credentials
-		final String USER = "root";
-		final String PASS = "root";
-
-		Connection conn = null;
+		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
 		try {
-
-			Class.forName(JDBC_DRIVER);
-
-//			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
 			String sql = "select * from coursecatalog where session = \"" + session + "\" and semester = " + semester;
 //		    System.out.println(sql);
 			stmt = conn.prepareStatement(sql);
@@ -260,25 +216,13 @@ public class CourseDAOImp {
 	}
 
 	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) {
-		final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-		final String DB_URL = "jdbc:mysql://localhost/crs";
 
-		// Database credentials
-		final String USER = "root";
-		final String PASS = "root";
-
-		Connection conn = null;
+		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
 		try {
-
-			Class.forName(JDBC_DRIVER);
-
-//			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
 			String sql = "select cc.courseid, cc.profid, cc.semester, cc.session, cc.credits"
 					+ " from coursecatalog as cc, course as c" + " where cc.courseid = c.courseid and c.department = \""
 					+ department + "\"";
@@ -325,25 +269,13 @@ public class CourseDAOImp {
 	}
 
 	public ArrayList<CourseCatalog> getAllCourseCatalog() {
-		final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-		final String DB_URL = "jdbc:mysql://localhost/crs";
 
-		// Database credentials
-		final String USER = "root";
-		final String PASS = "root";
-
-		Connection conn = null;
+		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
 		try {
-
-			Class.forName(JDBC_DRIVER);
-
-//			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
 			String sql = "select * from coursecatalog";
 //		    System.out.println(sql);
 			stmt = conn.prepareStatement(sql);
@@ -388,25 +320,13 @@ public class CourseDAOImp {
 	}
 
 	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId) {
-		final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-		final String DB_URL = "jdbc:mysql://localhost/crs";
 
-		// Database credentials
-		final String USER = "root";
-		final String PASS = "root";
-
-		Connection conn = null;
+		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
 		try {
-
-			Class.forName(JDBC_DRIVER);
-
-//			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
 			String sql = "select * from coursecatalog where profid = " + userId;
 //		    System.out.println(sql);
 			stmt = conn.prepareStatement(sql);
@@ -451,23 +371,11 @@ public class CourseDAOImp {
 	}
 
 	public boolean updateProfessorId(String courseId, String professorId) {
-		final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-		final String DB_URL = "jdbc:mysql://localhost/crs";
 
-		// Database credentials
-		final String USER = "root";
-		final String PASS = "root";
-
-		Connection conn = null;
+		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		try {
-
-			Class.forName(JDBC_DRIVER);
-
-//			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
 			String sql = "update coursecatalog " + "set profid = " + professorId + " " + "where courseid = " + courseId;
 //		    System.out.println(sql);
 			stmt = conn.prepareStatement(sql);
@@ -498,25 +406,13 @@ public class CourseDAOImp {
 	}
 
 	public boolean updateIsOffered(String courseId) {
-		final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-		final String DB_URL = "jdbc:mysql://localhost/crs";
 
-		// Database credentials
-		final String USER = "root";
-		final String PASS = "root";
-
-		Connection conn = null;
+		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		boolean res = false;
 
 		try {
-
-			Class.forName(JDBC_DRIVER);
-
-//			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
 			String sql = "select * from coursecatalog where courseid = " + courseId + " limit 1";
 //		    System.out.println(sql);
 			stmt = conn.prepareStatement(sql);

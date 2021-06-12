@@ -4,20 +4,20 @@
 package com.flipkart.DAO;
 
 import java.util.Date;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.flipkart.bean.Payment;
+import com.flipkart.utils.DBUtils;
 
 /**
  * @author yashsoni501
  *
  */
 public class PaymentDAOImpl implements PaymentDAOInterface {
-
 	private static volatile PaymentDAOImpl instance = null;
-	DAOConnectionInterface instanceDAO = new DAOConnectionImpl();
 
 	/**
 	 * Method to make PaymentDAOImpl Singleton
@@ -35,11 +35,15 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 
 	@Override
 	public Payment getFeeReciept(String studentId, int semester) throws SQLException {
-
+		Connection conn = DBUtils.getConnection();
 		Payment feePayment = new Payment();
-		PreparedStatement stmt = instanceDAO.conn.prepareStatement("SELECT * FROM payment WHERE stuid="
-				+ studentId.toString() + "AND semster=" + String.valueOf(semester));
-		ResultSet rs = stmt.executeQuery("SELECT id, name ,address, location FROM payment");
+		final String GET_FEE_RECIEPT = "SELECT * FROM payment WHERE stuid=? AND semster=?";
+
+		PreparedStatement stmt = conn.prepareStatement(GET_FEE_RECIEPT);
+		stmt.setString(1, studentId);
+		stmt.setInt(2, semester);
+
+		ResultSet rs = stmt.executeQuery();
 		String status = null;
 		if (rs.getFetchSize() == 0) {
 			status = "NOTPAID";
@@ -58,9 +62,9 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 
 	@Override
 	public Payment onlinePayment(String studentId, float amount, int semester) throws SQLException {
-
+		Connection conn = DBUtils.getConnection();
 		String transactionId = "onl123";
-		PreparedStatement stmt = instanceDAO.conn.prepareStatement("insert into employee values(?,?,?,?,?,?,?)");
+		PreparedStatement stmt = conn.prepareStatement("insert into payment values(?,?,?,?,?,?,?)");
 
 		stmt.setString(1, transactionId);
 		stmt.setString(2, studentId);
@@ -84,9 +88,9 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 
 	@Override
 	public Payment offlinePayment(String studentId, float amount, int semester) throws SQLException {
-
+		Connection conn = DBUtils.getConnection();
 		String transactionId = "onl123";
-		PreparedStatement stmt = instanceDAO.conn.prepareStatement("insert into employee values(?,?,?,?,?,?,?)");
+		PreparedStatement stmt = conn.prepareStatement("insert into payment values(?,?,?,?,?,?,?)");
 
 		stmt.setString(1, transactionId);
 		stmt.setString(2, studentId);

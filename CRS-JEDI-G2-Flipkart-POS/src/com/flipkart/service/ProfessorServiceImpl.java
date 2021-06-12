@@ -65,8 +65,7 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 	}
 
 	@Override
-	public boolean submitGrade(String courseId, String studentId, String grade)
-			throws SQLException {
+	public boolean submitGrade(String courseId, String studentId, String grade) throws SQLException {
 		// TODO Auto-generated method stub
 		return professorDAO.submitGrade(courseId, studentId, grade);
 	}

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.flipkart.bean.Admin;
+import com.flipkart.bean.Course;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.service.AdminInterface;
@@ -70,13 +71,13 @@ public class CRSAdminMenu {
 				getAllStudents();
 				break;
 			case 3:
-				getAllProfessors();
-				break;
-			case 4:
 				getAllCourses();
 				break;
+			case 4:
+				getAllProfessors();
+				break;
 			case 5:
-				addProfessor();
+				addCourseCatalog();
 				break;
 			case 6:
 				addStudent();
@@ -85,7 +86,7 @@ public class CRSAdminMenu {
 				addCourse();
 				break;
 			case 8:
-				addCourseCatalog();
+				addProfessor();
 				break;
 			case 9:
 				adminInterface.setCourseRegistrationFlag(true);
@@ -397,7 +398,8 @@ public class CRSAdminMenu {
 
 	private void getAllCourses() {
 		// TODO Auto-generated method stub
-		courseInterface.getAllCourses();
+		ArrayList<Course> courses = courseInterface.getAllCourses();
+
 		while (true) {
 			System.out.println("1. Remove Course");
 			System.out.println("2. Modify Course Details");

@@ -1,7 +1,6 @@
 package com.flipkart.DAO;
 
 import com.flipkart.bean.Admin;
-import com.flipkart.bean.Course;
 
 public interface AdminDAOInterface {
 	public boolean addCourse(String courseName, String Department);
