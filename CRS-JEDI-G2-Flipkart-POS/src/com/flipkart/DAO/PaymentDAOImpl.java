@@ -72,7 +72,14 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 		stmt.setString(7, "ONLINE");
 		stmt.executeUpdate();
 
-		return new Payment();
+		Payment paymentInfo = new Payment();
+		paymentInfo.setStudentId(studentId);
+		paymentInfo.setStatus("success");
+		paymentInfo.setSemester(semester);
+		paymentInfo.setDateOfPayment(today.toString());
+		paymentInfo.setReferenceId(transactionId);
+		
+		return paymentInfo;
 	}
 
 	@Override
@@ -90,7 +97,14 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 		stmt.setInt(6, semester);
 		stmt.setString(7, "OFFLINE");
 		stmt.executeUpdate();
-
-		return new Payment();
+		
+		Payment paymentInfo = new Payment();
+		paymentInfo.setStudentId(studentId);
+		paymentInfo.setStatus("success");
+		paymentInfo.setSemester(semester);
+		paymentInfo.setDateOfPayment(today.toString());
+		paymentInfo.setReferenceId(transactionId);
+		
+		return paymentInfo;
 	}
 }
