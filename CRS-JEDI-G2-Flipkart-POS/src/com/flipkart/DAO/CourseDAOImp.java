@@ -4,7 +4,6 @@
 package com.flipkart.DAO;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +17,20 @@ import com.flipkart.utils.DBUtils;
  * @author Tanmay
  *
  */
-public class CourseDAOImp {
+public class CourseDAOImp implements CourseDAOInterface {
+
+	public static volatile CourseDAOImp instance = null;
+
+	public static CourseDAOImp getInstance() {
+		if (instance == null) {
+			// This is a synchronized block, when multiple threads will access this instance
+			synchronized (CourseDAOImp.class) {
+				instance = new CourseDAOImp();
+			}
+		}
+		return instance;
+	}
+
 	public Course getCourse(String courseId) {
 
 		Connection conn = DBUtils.getConnection();
@@ -30,10 +42,10 @@ public class CourseDAOImp {
 
 			// System.out.println("Connecting to database...");
 
-			String sql = "select * from course where courseName = \"" + courseId + "\" limit 1";
-//		    System.out.println(sql);
+			String sql = "select * from course where courseName=? limit 1";
 			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery(sql);
+			stmt.setString(1, courseId);
+			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
 				res.setCourseID(rs.getString("courseid"));
@@ -80,7 +92,7 @@ public class CourseDAOImp {
 			String sql = "select * from course";
 //		    System.out.println(sql);
 			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery(sql);
+			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				// Retrieve by column name
@@ -125,10 +137,10 @@ public class CourseDAOImp {
 		CourseCatalog res = new CourseCatalog();
 
 		try {
-			String sql = "select * from coursecatalog where courseid = \"" + courseId + "\" limit 1";
-//		    System.out.println(sql);
+			String sql = "select * from courseCatalog where courseid=? limit 1";
 			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery(sql);
+			stmt.setString(1, courseId);
+			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
 				res.setCourseId(String.valueOf(rs.getInt("courseid")));
@@ -172,10 +184,12 @@ public class CourseDAOImp {
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
 		try {
-			String sql = "select * from coursecatalog where session = \"" + session + "\" and semester = " + semester;
-//		    System.out.println(sql);
+			String sql = "select * from courseCatalog where session = ? and semester = ?";
 			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery(sql);
+			stmt.setString(1, session);
+			stmt.setInt(2, semester);
+
+			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				// Retrieve by column name
@@ -223,12 +237,11 @@ public class CourseDAOImp {
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
 		try {
-			String sql = "select cc.courseid, cc.profid, cc.semester, cc.session, cc.credits"
-					+ " from coursecatalog as cc, course as c" + " where cc.courseid = c.courseid and c.department = \""
-					+ department + "\"";
-//		    System.out.println(sql);
+			String sql = "select cc.courseid, cc.profid, cc.semester, cc.session, cc.credits from courseCatalog as cc, course as c where cc.courseid = c.courseid and c.department = ?";
+
 			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery(sql);
+			stmt.setString(1, department);
+			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				// Retrieve by column name
@@ -276,10 +289,10 @@ public class CourseDAOImp {
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
 		try {
-			String sql = "select * from coursecatalog";
-//		    System.out.println(sql);
+			String sql = "select * from courseCatalog";
+
 			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery(sql);
+			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				// Retrieve by column name
@@ -327,10 +340,11 @@ public class CourseDAOImp {
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
 		try {
-			String sql = "select * from coursecatalog where profid = " + userId;
+			String sql = "select * from courseCatalog where profid = ?";
 //		    System.out.println(sql);
 			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery(sql);
+			stmt.setString(1, userId);
+			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				// Retrieve by column name
@@ -376,13 +390,18 @@ public class CourseDAOImp {
 		PreparedStatement stmt = null;
 
 		try {
-			String sql = "update coursecatalog " + "set profid = " + professorId + " " + "where courseid = " + courseId;
-//		    System.out.println(sql);
+			String sql = "update courseCatalog set profid = ? where courseid = ?";
 			stmt = conn.prepareStatement(sql);
-			int rs = stmt.executeUpdate(sql);
+			stmt.setString(1, professorId);
+			stmt.setString(2, courseId);
 
-			stmt.close();
-			conn.close();
+			int rows = stmt.executeUpdate();
+
+			if (rows == 1) {
+				return true;
+			} else {
+				return false;
+			}
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -413,10 +432,11 @@ public class CourseDAOImp {
 		boolean res = false;
 
 		try {
-			String sql = "select * from coursecatalog where courseid = " + courseId + " limit 1";
+			String sql = "select * from courseCatalog where courseid=? limit 1";
 //		    System.out.println(sql);
 			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery(sql);
+			stmt.setString(1, courseId);
+			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
 				if (rs.getString("profid").equals("-1")) {

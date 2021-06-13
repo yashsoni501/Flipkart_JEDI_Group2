@@ -85,7 +85,7 @@ public class AuthDAOImpl implements AuthDAOInterface {
 
 		if (!uid.isEmpty()) {
 
-			String UPDATE_PASSWORD = "update user set password=? where email=?";
+			String UPDATE_PASSWORD = "update auth set password=? where email=?";
 			try {
 
 				PreparedStatement stmt = conn.prepareStatement(UPDATE_PASSWORD);

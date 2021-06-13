@@ -362,7 +362,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	}
 
 	@Override
-	public boolean addCourseCatalog(String courseId, int semester, String session, int credits, String prodId) {
+	public boolean addCourseCatalog(String courseId, int semester, String session, int credits, String profId) {
 		final String ADD_COURSE_CATALOG = "insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values (?, ?, ?, ?, ?)";
 
 		try {
@@ -370,9 +370,10 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			PreparedStatement stmt = conn.prepareStatement(ADD_COURSE_CATALOG);
 
 			stmt.setString(1, courseId);
-			stmt.setInt(2, semester);
-			stmt.setString(3, session);
-			stmt.setInt(4, credits);
+			stmt.setString(2, profId);
+			stmt.setInt(3, semester);
+			stmt.setString(4, session);
+			stmt.setInt(5, credits);
 
 			int rows = stmt.executeUpdate();
 			if (rows == 0) {

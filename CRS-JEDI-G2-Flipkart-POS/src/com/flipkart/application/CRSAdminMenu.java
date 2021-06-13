@@ -206,7 +206,7 @@ public class CRSAdminMenu {
 		int credits = CRSApplication.scan.nextInt();
 
 		if (adminInterface.addCourseCatalog(courseId, semester, session, credits, null)) {
-			System.out.println("Student Added Successfully");
+			System.out.println("Course Added to Catalog");
 		} else {
 			System.out.println("Something went wrong");
 		}

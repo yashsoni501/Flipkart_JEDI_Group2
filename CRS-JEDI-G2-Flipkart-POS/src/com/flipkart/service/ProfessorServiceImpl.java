@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 import java.sql.SQLException;
 
-import com.flipkart.DAO.PaymentDAOImpl;
-import com.flipkart.DAO.PaymentDAOInterface;
 import com.flipkart.DAO.ProfessorDAOImpl;
 import com.flipkart.DAO.ProfessorDAOInterface;
 import com.flipkart.bean.CourseCatalog;

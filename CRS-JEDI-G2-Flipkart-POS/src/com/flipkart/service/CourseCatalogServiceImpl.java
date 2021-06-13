@@ -5,6 +5,8 @@ package com.flipkart.service;
 
 import java.util.ArrayList;
 
+import com.flipkart.DAO.CourseDAOImp;
+import com.flipkart.DAO.CourseDAOInterface;
 import com.flipkart.bean.CourseCatalog;
 
 /**
@@ -14,6 +16,8 @@ import com.flipkart.bean.CourseCatalog;
 public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 
 	public static volatile CourseCatalogServiceImpl instance = null;
+
+	CourseDAOInterface courseDAO = CourseDAOImp.getInstance();
 
 	public static CourseCatalogServiceImpl getInstance() {
 		if (instance == null) {
@@ -27,38 +31,38 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 
 	@Override
 	public CourseCatalog getCourseCatalog(String courseId) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return courseDAO.getCourseCatalog(courseId);
 	}
 
 	@Override
 	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return courseDAO.getCourseCatalogBySessionSemester(session, semester);
 	}
 
 	@Override
 	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return courseDAO.getDepartmentCourseCatalog(department);
 	}
 
 	@Override
 	public boolean updateProfessorId(String courseId, String professorId) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return courseDAO.updateProfessorId(courseId, professorId);
 	}
 
 	@Override
-	public void getCourseCatalogByProfessorId(String userId) {
-		// TODO Auto-generated method stub
+	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId) {
 
+		return courseDAO.getCourseCatalogByProfessorId(userId);
 	}
 
 	@Override
-	public void getAllCourseCatalog() {
+	public ArrayList<CourseCatalog> getAllCourseCatalog() {
 		// TODO Auto-generated method stub
-
+		return courseDAO.getAllCourseCatalog();
 	}
 
 }

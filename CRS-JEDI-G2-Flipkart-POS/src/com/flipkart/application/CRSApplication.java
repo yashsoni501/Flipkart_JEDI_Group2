@@ -26,7 +26,7 @@ public class CRSApplication {
 		CRSApplication crsApplication = new CRSApplication();
 		createMainMenu();
 		int userInput = scan.nextInt();
-		while (userInput != 2) {
+		while (userInput != 3) {
 			switch (userInput) {
 			case 1:
 				// login
