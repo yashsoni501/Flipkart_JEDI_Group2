@@ -84,25 +84,6 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> getDepartmentCourses(String department) throws SQLException {
-		Connection conn = DBUtils.getConnection();
-		String GET_DEPT_COURSES_PROF = "select * from courseCatalog where department = ?";
-		PreparedStatement stmt = conn.prepareStatement(GET_DEPT_COURSES_PROF);
-		stmt.setString(1, department);
-		ResultSet rs = stmt.executeQuery();
-		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
-		while (rs.next()) {
-			int id = rs.getInt("courseId");
-			CourseCatalog temp = new CourseCatalog();
-			temp.setCourseId(String.valueOf(id));
-//	        temp.setCourseId(name);
-
-			arr.add(temp);
-		}
-		return arr;
-	}
-
-	@Override
 	public ArrayList<Student> viewEnrolledStudents(String courseId) throws SQLException {
 		Connection conn = DBUtils.getConnection();
 		String VIEW_ENROLLED_STU = "select stuId from registeredCourse where courseId = ?";

@@ -24,7 +24,7 @@ public class DBTest {
 			final String INSERT = "insert into auth (`uid`, `email`, `password`, `userRole`) values (?, ?, ?, ?)";
 			PreparedStatement stmt = conn.prepareStatement(INSERT);
 
-			stmt.setString(1, "4");
+			stmt.setString(1, "5");
 			stmt.setString(2, "testm2");
 			stmt.setString(3, "testps2");
 			stmt.setString(4, "testur2");

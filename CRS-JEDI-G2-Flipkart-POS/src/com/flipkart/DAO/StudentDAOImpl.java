@@ -38,13 +38,13 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	@Override
 	public ArrayList<Course> fetchRegisteredCourses(String studentId, int sem) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		
+
 		String STUDENT_REGISTERED_COURSES = "select * from registeredCourse where stuid = ? and semester = ?";
 		PreparedStatement stmt = conn.prepareStatement(STUDENT_REGISTERED_COURSES);
 		stmt.setInt(1, Integer.parseInt(studentId));
 		stmt.setInt(2, sem);
 		ResultSet myRs = stmt.executeQuery();
-		
+
 		String COURSES_BY_ID = "select * from course where courseid = ?";
 		PreparedStatement stamnt = conn.prepareStatement(COURSES_BY_ID);
 		ResultSet newRs;
@@ -72,7 +72,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	@Override
 	public boolean isFeePaid(String studentId, int sem) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		
+
 		String STUDENT_FEE_STATUS = "select * from payment where stuid = ? and semester = ?";
 		PreparedStatement stmt = conn.prepareStatement(STUDENT_FEE_STATUS);
 		stmt.setInt(1, Integer.parseInt(studentId));
@@ -91,7 +91,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	@Override
 	public ArrayList<Student> getAllStudents(String session) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		
+
 		String STUDENTS_IN_SESSION = "select * from student where session = ?";
 		PreparedStatement stmt = conn.prepareStatement(STUDENTS_IN_SESSION);
 		stmt.setString(1, session);

@@ -6,11 +6,14 @@ package com.flipkart.application;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.service.CourseCatalogInterface;
 import com.flipkart.service.CourseCatalogServiceImpl;
+import com.flipkart.service.CourseInterface;
+import com.flipkart.service.CourseServiceImpl;
 import com.flipkart.service.ProfessorInterface;
 import com.flipkart.service.ProfessorServiceImpl;
 import com.flipkart.service.RegisteredCourseInterface;
@@ -24,6 +27,7 @@ public class CRSProfessorMenu {
 
 	ProfessorInterface professorInterface = ProfessorServiceImpl.getInstance();
 	CourseCatalogInterface courseCatalogInterface = CourseCatalogServiceImpl.getInstance();
+	CourseInterface courseInterface = CourseServiceImpl.getInstance();
 	RegisteredCourseInterface registerdCourseInterface = RegisteredCourseServiceImpl.getInstance();
 	Professor professor = null;
 
@@ -94,7 +98,12 @@ public class CRSProfessorMenu {
 		// TODO Auto-generated method stub
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		arr = professorInterface.viewOptedCourses(CRSApplication.userId);
-		System.out.println(arr);
+		for (int i = 0; i < arr.size(); i++) {
+			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
+			System.out.print(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
+					+ arr.get(i).getSemester() + " " + arr.get(i).getSession() + " " + arr.get(i).getCredits());
+
+		}
 	}
 
 	private void viewEnrolledStudentsInCourse() throws SQLException {
@@ -118,7 +127,7 @@ public class CRSProfessorMenu {
 
 		String courseId = CRSApplication.scan.next();
 		if (courseCatalogInterface.updateProfessorId(courseId, null)) {
-			System.out.println("Succes");
+			System.out.println("Success");
 		} else {
 			System.out.println("Failure");
 		}
@@ -147,7 +156,7 @@ public class CRSProfessorMenu {
 
 	private void viewCourses() throws SQLException {
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
-		arr = professorInterface.getDepartmentCourses(professor.getDepartment());
+		arr = courseCatalogInterface.getDepartmentCourseCatalog(professor.getDepartment());
 		System.out.println(arr);
 
 	}

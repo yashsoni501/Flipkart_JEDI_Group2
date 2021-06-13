@@ -5,6 +5,8 @@ package com.flipkart.service;
 
 import java.util.ArrayList;
 
+import com.flipkart.DAO.CourseDAOImp;
+import com.flipkart.DAO.CourseDAOInterface;
 import com.flipkart.bean.Course;
 
 /**
@@ -14,6 +16,7 @@ import com.flipkart.bean.Course;
 public class CourseServiceImpl implements CourseInterface {
 
 	public static volatile CourseServiceImpl instance = null;
+	CourseDAOInterface courseDAO = CourseDAOImp.getInstance();
 
 	public static CourseServiceImpl getInstance() {
 		if (instance == null) {
@@ -27,14 +30,14 @@ public class CourseServiceImpl implements CourseInterface {
 
 	@Override
 	public Course getCourse(String courseId) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return courseDAO.getCourse(courseId);
 	}
 
 	@Override
 	public ArrayList<Course> getAllCourses() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return courseDAO.getAllCourses();
 	}
 
 }
