@@ -60,11 +60,4 @@ public class AuthServiceImpl implements AuthInterface {
 		// Auto-generated method stub
 		return authDAO.getRole(userId);
 	}
-
-	@Override
-	public String addUserWithEmailPassword(String userEmail, String password, String userRole) {
-		// Auto-generated method stub
-		return authDAO.addUserWithEmailPassword(userEmail, password, userRole);
-	}
-
 }

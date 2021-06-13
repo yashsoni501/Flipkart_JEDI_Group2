@@ -87,25 +87,49 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	}
 
 	@Override
-	public boolean addProfessor(String professorId, String name, String department, String emailId) {
+	public boolean addProfessor(String name, String emailId, String password, String department) {
 
+		final String ADD_USER = "insert into auth (`email`, `password`, `userRole`) values (?, ?, ?)";
 		final String ADD_PROFESSOR = "insert into professor (`profid`, `email`, `name`, `department`) values (?, ?, ?, ?)";
+
 		try {
 			Connection conn = DBUtils.getConnection();
-			PreparedStatement stmt = conn.prepareStatement(ADD_PROFESSOR);
 
-			stmt.setString(1, professorId);
-			stmt.setString(2, emailId);
-			stmt.setString(3, name);
-			stmt.setString(4, department);
+			Savepoint safepoint = conn.setSavepoint();
+			conn.setAutoCommit(true);
 
-			int rows = stmt.executeUpdate();
+			PreparedStatement stmt = conn.prepareStatement(ADD_USER);
+			stmt.setString(1, emailId);
+			stmt.setString(2, password);
+			stmt.setString(3, "PROFESSOR");
 
-			if (rows == 0) {
-				System.out.println("Failed to add Professor");
+			int row = stmt.executeUpdate();
+			if (row == 0) {
+				conn.rollback(safepoint);
+				conn.setAutoCommit(true);
 				return false;
 			} else {
-				return true;
+				AuthDAOInterface authDAO = AuthDAOImpl.getInstance();
+				String uid = authDAO.verifyUserWithEmailPassword(emailId, password);
+
+				stmt = conn.prepareStatement(ADD_PROFESSOR);
+
+				stmt.setString(1, uid);
+				stmt.setString(2, emailId);
+				stmt.setString(3, name);
+				stmt.setString(4, department);
+
+				int rows = stmt.executeUpdate();
+
+				if (rows == 0) {
+					conn.rollback(safepoint);
+					conn.setAutoCommit(true);
+					return false;
+				} else {
+					conn.commit();
+					conn.setAutoCommit(true);
+					return true;
+				}
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -116,27 +140,50 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	}
 
 	@Override
-	public boolean addStudent(String studentId, String name, String department, String emailId, String session) {
+	public boolean addStudent(String name, String emailId, String password, String department, String session) {
 
+		final String ADD_USER = "insert into auth (`email`, `password`, `userRole`) values (?, ?, ?)";
 		final String ADD_STUDENT = "insert into student (`stuid`, `email`, `name`, `department`, `session`) values (?, ?, ?, ?, ?)";
-		// Auto-generated method stub
+
 		try {
 			Connection conn = DBUtils.getConnection();
-			PreparedStatement stmt = conn.prepareStatement(ADD_STUDENT);
 
-			stmt.setString(1, studentId);
-			stmt.setString(2, emailId);
-			stmt.setString(3, name);
-			stmt.setString(4, department);
-			stmt.setString(5, session);
+			Savepoint safepoint = conn.setSavepoint();
+			conn.setAutoCommit(true);
 
-			int rows = stmt.executeUpdate();
+			PreparedStatement stmt = conn.prepareStatement(ADD_USER);
+			stmt.setString(1, emailId);
+			stmt.setString(2, password);
+			stmt.setString(3, "STUDENT");
 
-			if (rows == 0) {
-				System.out.println("Failed to add Student");
+			int row = stmt.executeUpdate();
+			if (row == 0) {
+				conn.rollback(safepoint);
+				conn.setAutoCommit(true);
 				return false;
 			} else {
-				return true;
+				AuthDAOInterface authDAO = AuthDAOImpl.getInstance();
+				String uid = authDAO.verifyUserWithEmailPassword(emailId, password);
+
+				stmt = conn.prepareStatement(ADD_STUDENT);
+
+				stmt.setString(1, uid);
+				stmt.setString(2, emailId);
+				stmt.setString(3, name);
+				stmt.setString(4, department);
+				stmt.setString(5, session);
+
+				int rows = stmt.executeUpdate();
+
+				if (rows == 0) {
+					conn.rollback(safepoint);
+					conn.setAutoCommit(true);
+					return false;
+				} else {
+					conn.commit();
+					conn.setAutoCommit(true);
+					return true;
+				}
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -191,6 +238,36 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				stmt.setString(1, FALSE);
 			}
 			stmt.setString(2, PAYMENT_WINDOW);
+
+			int rows = stmt.executeUpdate();
+			if (rows == 0) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean setProfessorFlag(boolean flag) {
+		final String EDIT_PROFESSOR_FLAG = "update constants set value=? where key=?";
+
+		// TODO Auto-generated method stub
+		try {
+			Connection conn = DBUtils.getConnection();
+			PreparedStatement stmt = conn.prepareStatement(EDIT_PROFESSOR_FLAG);
+
+			if (flag) {
+				stmt.setString(1, TRUE);
+			} else {
+				stmt.setString(1, FALSE);
+			}
+			stmt.setString(2, PROFESSOR_WINDOW);
 
 			int rows = stmt.executeUpdate();
 			if (rows == 0) {
@@ -442,6 +519,33 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return null;
 	}
 
+	private boolean getBooleanConstants(String key) {
+		final String GET_FLAG = "select value from constants where key=?";
+
+		try {
+			Connection conn = DBUtils.getConnection();
+			PreparedStatement stmt = conn.prepareStatement(GET_FLAG);
+			stmt.setString(1, key);
+			ResultSet resultSet = stmt.executeQuery();
+
+			if (resultSet.next()) {
+				String flag = resultSet.getString("value");
+				if (flag.equals(TRUE)) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 	@Override
 	public boolean removeStudent(String studentId) {
 		final String REMOVE_STUDENT_PROFILE = "delete from student where stuid=?";
@@ -483,5 +587,20 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public boolean getCourseRegistrationFlag() {
+		return getBooleanConstants(COURSE_WINDOW);
+	}
+
+	@Override
+	public boolean getPaymentFlag() {
+		return getBooleanConstants(PAYMENT_WINDOW);
+	}
+
+	@Override
+	public boolean getProfessorFlag() {
+		return getBooleanConstants(PROFESSOR_WINDOW);
 	}
 }

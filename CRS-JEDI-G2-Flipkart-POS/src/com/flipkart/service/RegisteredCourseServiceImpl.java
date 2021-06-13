@@ -19,7 +19,7 @@ public class RegisteredCourseServiceImpl implements RegisteredCourseInterface {
 
 	public static volatile RegisteredCourseServiceImpl instance = null;
 	RegisteredCourseDAOInterface registeredCourseDAO = RegisteredCourseDAOImpl.getInstance();
-	
+
 	public static RegisteredCourseServiceImpl getInstance() {
 		if (instance == null) {
 			// This is a synchronized block, when multiple threads will access this instance
@@ -37,7 +37,8 @@ public class RegisteredCourseServiceImpl implements RegisteredCourseInterface {
 	}
 
 	@Override
-	public boolean addRegisteredCourse(String courseId, int semester, String grade, String session, String studentID) throws SQLException {
+	public boolean addRegisteredCourse(String courseId, int semester, String grade, String session, String studentID)
+			throws SQLException {
 		// Auto-generated method stub
 		return registeredCourseDAO.addRegisteredCourse(courseId, semester, grade, session, studentID);
 	}

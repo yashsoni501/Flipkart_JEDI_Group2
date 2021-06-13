@@ -19,5 +19,6 @@ public interface RegisteredCourseInterface {
 
 	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester) throws SQLException;
 
-	public boolean addRegisteredCourse(String courseId, int semester, String grade, String session, String studentID) throws SQLException;
+	public boolean addRegisteredCourse(String courseId, int semester, String grade, String session, String studentID)
+			throws SQLException;
 }

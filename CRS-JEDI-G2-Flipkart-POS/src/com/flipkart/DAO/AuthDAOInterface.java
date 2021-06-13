@@ -20,7 +20,4 @@ public interface AuthDAOInterface {
 	public boolean updatePassword(String email, String oldPassword, String newPassword);
 
 	public String getRole(String userId);
-
-	public String addUserWithEmailPassword(String userEmail, String password, String userRole);
-
 }

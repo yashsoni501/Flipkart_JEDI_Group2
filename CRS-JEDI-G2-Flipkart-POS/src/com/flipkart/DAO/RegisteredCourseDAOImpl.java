@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 import com.flipkart.bean.Student;
 import com.flipkart.utils.DBUtils;
-import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.RegisteredCourse;
 
 /**
@@ -34,7 +33,7 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 		}
 		return instance;
 	}
-	
+
 	@Override
 	public ArrayList<Student> getEnrolledStudents(String courseId, int semester, String session) throws SQLException {
 		// Auto-generated method stub
@@ -48,7 +47,7 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 		ResultSet myRs = stmt.executeQuery();
 
 		ArrayList<Student> studentsFound = new ArrayList<Student>();
-		
+
 		String STUDENT_BY_ID = "select * from student where stuid = ?";
 		PreparedStatement stamnt = conn.prepareStatement(STUDENT_BY_ID);
 		ResultSet newRs;
@@ -76,7 +75,7 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 
 	@Override
 	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester) throws SQLException {
-		//  Auto-generated method stub
+		// Auto-generated method stub
 		Connection conn = DBUtils.getConnection();
 
 		String REGISTERED_COURSES = "select * from registeredCourse where stuid = ? and semester = ?";
@@ -89,14 +88,14 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 
 		while (myRs.next()) {
 
-				RegisteredCourse courseFound = new RegisteredCourse();
-				courseFound.setCourseId(myRs.getString("courseid"));
-				courseFound.setGrade(myRs.getString("grade"));
-				courseFound.setStudentId(myRs.getString("stuid"));
-				courseFound.setSession(myRs.getString("session"));
-				courseFound.setSemester(myRs.getInt("semester"));
+			RegisteredCourse courseFound = new RegisteredCourse();
+			courseFound.setCourseId(myRs.getString("courseid"));
+			courseFound.setGrade(myRs.getString("grade"));
+			courseFound.setStudentId(myRs.getString("stuid"));
+			courseFound.setSession(myRs.getString("session"));
+			courseFound.setSemester(myRs.getInt("semester"));
 
-				RegisteredCourseList.add(courseFound);
+			RegisteredCourseList.add(courseFound);
 		}
 
 		return RegisteredCourseList;
@@ -107,7 +106,7 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 			throws SQLException {
 		// Auto-generated method stub
 		Connection conn = DBUtils.getConnection();
-		
+
 		String ADD_REGISTER_COURSE = "insert into registeredCourse (`courseid`, `stuid`, `semester`, `session`, `grade`) values (?, ?, ?, ?, ?)";
 		PreparedStatement stmt = conn.prepareStatement(ADD_REGISTER_COURSE);
 		stmt.setInt(1, Integer.parseInt(courseId));
@@ -121,7 +120,7 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 			System.out.println("Registration in new course Failed");
 			return false;
 		} else {
-				return true;
+			return true;
 		}
 	}
 }
