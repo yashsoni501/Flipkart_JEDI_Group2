@@ -141,6 +141,9 @@ public class CRSAdminMenu {
 
 	private float calculateSgpa(ArrayList<RegisteredCourse> courses) {
 		// TODO Auto-generated method stub
+		for (RegisteredCourse course : courses) {
+			CourseCatalog catalog = courseCatalogInterface.getCourseCatalog(course.getCourseId());
+		}
 		return 0;
 	}
 
