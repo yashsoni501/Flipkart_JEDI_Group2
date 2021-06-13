@@ -19,9 +19,10 @@ public class SemesterReportCardServiceImpl implements SemesterReportCardInterfac
 	}
 
 	@Override
-	public void addSemesterReportCard(String studentID, int semester, float sgpa) {
+	public boolean addSemesterReportCard(String studentID, int semester, float sgpa) {
+		return false;
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
