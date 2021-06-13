@@ -51,7 +51,7 @@ public class RegisteredCourseServiceImpl implements RegisteredCourseInterface {
 	}
 
 	@Override
-	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, String session, int semester) {
+	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester) {
 		// TODO Auto-generated method stub
 		return null;
 	}

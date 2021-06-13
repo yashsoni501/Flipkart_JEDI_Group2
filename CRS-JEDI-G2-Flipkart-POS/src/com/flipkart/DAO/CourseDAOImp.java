@@ -56,8 +56,6 @@ public class CourseDAOImp implements CourseDAOInterface {
 				// or throw exception? no entry found
 			}
 
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -91,9 +89,6 @@ public class CourseDAOImp implements CourseDAOInterface {
 				res.add(temp);
 
 			}
-
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -126,8 +121,6 @@ public class CourseDAOImp implements CourseDAOInterface {
 				// or throw exception? no entry found
 			}
 
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -166,8 +159,6 @@ public class CourseDAOImp implements CourseDAOInterface {
 
 			}
 
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -204,9 +195,6 @@ public class CourseDAOImp implements CourseDAOInterface {
 				res.add(temp);
 
 			}
-
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -242,9 +230,6 @@ public class CourseDAOImp implements CourseDAOInterface {
 				res.add(temp);
 
 			}
-
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -282,8 +267,6 @@ public class CourseDAOImp implements CourseDAOInterface {
 
 			}
 
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -341,8 +324,6 @@ public class CourseDAOImp implements CourseDAOInterface {
 
 			}
 
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {

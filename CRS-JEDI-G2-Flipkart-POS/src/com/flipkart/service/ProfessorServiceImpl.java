@@ -51,9 +51,9 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 	}
 
 	@Override
-	public ArrayList<Student> viewEnrolledStudents(String courseId) throws SQLException {
+	public ArrayList<Student> viewEnrolledStudents(String courseId, String session) throws SQLException {
 		// TODO Auto-generated method stub
-		return professorDAO.viewEnrolledStudents(courseId);
+		return professorDAO.viewEnrolledStudents(courseId, session);
 	}
 
 	@Override

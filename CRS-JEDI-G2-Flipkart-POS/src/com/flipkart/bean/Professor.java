@@ -9,22 +9,22 @@ package com.flipkart.bean;
  */
 public class Professor {
 
-	private int professorId;
+	private String professorId;
 	private String professorName;
 	private String department;
 	private String emailID;
 
 	/**
-	 * @return the professorID
+	 * @return the professorId
 	 */
-	public int getProfessorId() {
+	public String getProfessorId() {
 		return professorId;
 	}
 
 	/**
-	 * @param professorID the professorID to set
+	 * @param professorId the professorId to set
 	 */
-	public void setProfessorId(int professorId) {
+	public void setProfessorId(String professorId) {
 		this.professorId = professorId;
 	}
 

@@ -37,26 +37,30 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 	public Payment getFeeReciept(String studentId, int semester) throws SQLException {
 		Connection conn = DBUtils.getConnection();
 		Payment feePayment = new Payment();
-		final String GET_FEE_RECIEPT = "SELECT * FROM payment WHERE stuid=? AND semster=?";
+		final String GET_FEE_RECIEPT = "SELECT * FROM payment WHERE stuid=? AND semster=?AND status=?";
 
 		PreparedStatement stmt = conn.prepareStatement(GET_FEE_RECIEPT);
 		stmt.setString(1, studentId);
 		stmt.setInt(2, semester);
+		stmt.setString(3, "success");
 
 		ResultSet rs = stmt.executeQuery();
 		String status = null;
 		if (rs.getFetchSize() == 0) {
-			status = "NOTPAID";
+			status = "failure";
+			feePayment.setStudentId(studentId);
+			feePayment.setStatus(status);
+			feePayment.setSemester(semester);
 		} else {
-			status = "PAID";
+			feePayment.setStudentId(studentId);
+			feePayment.setStatus(rs.getString("status"));
+			feePayment.setSemester(semester);
+			feePayment.setDateOfPayment(rs.getString("dateOfPayment"));
+			feePayment.setAmount(rs.getFloat("amount"));
+			feePayment.setModeOfPayment(rs.getString("modeOfPayment"));
+			feePayment.setReferenceId(rs.getString("referenceId"));
 		}
-		feePayment.setStudentId(studentId);
-		feePayment.setStatus(status);
-		feePayment.setSemester(semester);
-		feePayment.setDateOfPayment(rs.getString("dateOfPayment"));
-		feePayment.setAmount(rs.getFloat("amount"));
-		feePayment.setModeOfPayment(rs.getString("modeOfPayment"));
-		feePayment.setReferenceId(rs.getString("referenceId"));
+
 		return feePayment;
 	}
 

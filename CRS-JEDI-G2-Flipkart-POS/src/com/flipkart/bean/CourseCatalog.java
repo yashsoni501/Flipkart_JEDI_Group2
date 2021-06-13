@@ -13,7 +13,7 @@ public class CourseCatalog {
 	private String professorId;
 	private int semester;
 	private String session;
-	private int credits;
+	private float credits;
 
 	/**
 	 * @return the courseId
@@ -40,13 +40,6 @@ public class CourseCatalog {
 	 * @param courseId the courseId to set
 	 */
 	public void setCourseId(String courseId) {
-		this.courseId = courseId;
-	}
-
-	/**
-	 * @param courseId the courseId to set
-	 */
-	public void setCourse_id(String courseId) {
 		this.courseId = courseId;
 	}
 
@@ -81,14 +74,14 @@ public class CourseCatalog {
 	/**
 	 * @return the credits
 	 */
-	public int getCredits() {
+	public float getCredits() {
 		return credits;
 	}
 
 	/**
 	 * @param credits the credits to set
 	 */
-	public void setCredits(int credits) {
+	public void setCredits(float credits) {
 		this.credits = credits;
 	}
 

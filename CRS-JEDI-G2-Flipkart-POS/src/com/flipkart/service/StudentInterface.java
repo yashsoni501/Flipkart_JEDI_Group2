@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.flipkart.bean.Student;
 import com.flipkart.bean.Course;
+import com.flipkart.bean.CourseCatalog;
 
 /**
  * @author aysh
@@ -15,9 +16,7 @@ import com.flipkart.bean.Course;
  */
 public interface StudentInterface {
 
-	public ArrayList<Course> fetchRegisteredCourses(String studentId, int semester) throws SQLException;
-
-	public boolean isFeePaid(String studentId, int semester) throws SQLException;
+	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int semester) throws SQLException;
 
 	public ArrayList<Student> getAllStudents(String session) throws SQLException;
 

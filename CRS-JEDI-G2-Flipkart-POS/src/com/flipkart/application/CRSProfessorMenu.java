@@ -100,7 +100,7 @@ public class CRSProfessorMenu {
 		arr = professorInterface.viewOptedCourses(CRSApplication.userId);
 		for (int i = 0; i < arr.size(); i++) {
 			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
-			System.out.print(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
+			System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
 					+ arr.get(i).getSemester() + " " + arr.get(i).getSession() + " " + arr.get(i).getCredits());
 
 		}
@@ -112,12 +112,13 @@ public class CRSProfessorMenu {
 		String courseId = CRSApplication.scan.next();
 		System.out.println("Enter Session");
 		String session = CRSApplication.scan.next();
-		System.out.println("Enter Semester");
-		int semester = CRSApplication.scan.nextInt();
 		ArrayList<Student> arr = new ArrayList<Student>();
-		arr = professorInterface.viewEnrolledStudents(courseId);
-		System.out.println(arr);
+		arr = professorInterface.viewEnrolledStudents(courseId, session);
+		for (int i = 0; i < arr.size(); i++) {
+			System.out.println(arr.get(i).getStudentID() + " " + arr.get(i).getStudentName() + " "
+					+ arr.get(i).getDepartment() + " " + arr.get(i).getEmailID() + " " + arr.get(i).getSession());
 
+		}
 	}
 
 	// Note :Needs to be implemented in course catalog
@@ -157,7 +158,12 @@ public class CRSProfessorMenu {
 	private void viewCourses() throws SQLException {
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		arr = courseCatalogInterface.getDepartmentCourseCatalog(professor.getDepartment());
-		System.out.println(arr);
+		for (int i = 0; i < arr.size(); i++) {
+			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
+			System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
+					+ arr.get(i).getSemester() + " " + arr.get(i).getSession() + " " + arr.get(i).getCredits());
+
+		}
 
 	}
 

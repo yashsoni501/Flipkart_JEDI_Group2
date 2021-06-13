@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import com.flipkart.bean.Admin;
 import com.flipkart.bean.Course;
+import com.flipkart.bean.CourseCatalog;
+import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.service.AdminInterface;
@@ -129,10 +131,11 @@ public class CRSAdminMenu {
 		}
 		for (Student student : registeredStudents) {
 			ArrayList<RegisteredCourse> courses = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
-					session, semester);
+					semester);
 			float sgpa = calculateSgpa(courses);
 			semesterReportCardInterface.addSemesterReportCard(student.getStudentID(), semester, sgpa);
 		}
+		System.out.println("Report Card generated Successfully");
 	}
 
 	private float calculateSgpa(ArrayList<RegisteredCourse> courses) {
@@ -371,7 +374,15 @@ public class CRSAdminMenu {
 
 	private void getAllCourseCatalog() {
 		// TODO Auto-generated method stub
-		courseCatalogInterface.getAllCourseCatalog();
+		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
+		arr = courseCatalogInterface.getAllCourseCatalog();
+		for (int i = 0; i < arr.size(); i++) {
+			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
+			System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
+					+ arr.get(i).getSemester() + " " + arr.get(i).getSession() + " " + arr.get(i).getCredits());
+
+		}
+
 		while (true) {
 
 			System.out.println("1. Remove Course Catalog");
@@ -396,8 +407,12 @@ public class CRSAdminMenu {
 
 	private void getAllCourses() {
 		// TODO Auto-generated method stub
-		ArrayList<Course> courses = courseInterface.getAllCourses();
+		ArrayList<Course> arr = courseInterface.getAllCourses();
+		for (int i = 0; i < arr.size(); i++) {
+			System.out.println(arr.get(i).getCourseID() + " " + arr.get(i).getCourseName() + " "
+					+ arr.get(i).getDepartment() + " ");
 
+		}
 		while (true) {
 			System.out.println("1. Remove Course");
 			System.out.println("2. Modify Course Details");
@@ -420,14 +435,19 @@ public class CRSAdminMenu {
 
 	private void getAllStudents() {
 		// TODO Auto-generated method stub
-
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
+		ArrayList<Student> arr = new ArrayList<Student>();
 		try {
-			studentInterface.getAllStudents(session);
-		} catch (SQLException e) {
+			arr = studentInterface.getAllStudents(session);
+		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
+		}
+		for (int i = 0; i < arr.size(); i++) {
+			System.out.println(arr.get(i).getStudentID() + " " + arr.get(i).getStudentName() + " "
+					+ arr.get(i).getDepartment() + " " + arr.get(i).getEmailID() + " " + arr.get(i).getSession());
+
 		}
 		while (true) {
 			System.out.println("1. Remove Student");
@@ -451,7 +471,15 @@ public class CRSAdminMenu {
 
 	private void getAllProfessors() {
 		// TODO Auto-generated method stub
-		professorInterface.getAllProfessor();
+		ArrayList<Professor> arr = new ArrayList<Professor>();
+
+		arr = professorInterface.getAllProfessor();
+
+		for (int i = 0; i < arr.size(); i++) {
+			System.out.println(arr.get(i).getProfessorId() + " " + arr.get(i).getProfessorName() + " "
+					+ arr.get(i).getDepartment() + " " + arr.get(i).getEmailID());
+
+		}
 		while (true) {
 			System.out.println("1. Remove Professor");
 			System.out.println("2. Modify Professor Details");

@@ -20,7 +20,7 @@ public interface RegisteredCourseInterface {
 
 	public ArrayList<Student> getEnrolledStudents(String courseId, int semester, String session);
 
-	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, String session, int semester);
+	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester);
 
 	public void addRegisteredCourse(String courseId, int semester, String grade, String session, String studentID);
 }

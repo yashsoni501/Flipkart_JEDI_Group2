@@ -42,10 +42,9 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		ResultSet rs = stmt.executeQuery();
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		while (rs.next()) {
-			int id = rs.getInt("courseId");
+			String id = rs.getString("courseId");
 			CourseCatalog temp = new CourseCatalog();
-			temp.setCourseId(String.valueOf(id));
-//	        temp.setCourseId(name);
+			temp.setCourseId(id);
 
 			arr.add(temp);
 		}
@@ -58,7 +57,6 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		PreparedStatement stmt = conn.prepareStatement(OPT_In_COURSE_PROF);
 		stmt.setString(1, professorId);
 		stmt.setString(2, courseId);
-
 		int rows = stmt.executeUpdate();
 		System.out.println("Rows impacted : " + rows);
 
@@ -74,7 +72,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		ResultSet rs = stmt.executeQuery();
 		Professor p = new Professor();
 		while (rs.next()) {
-			p.setProfessorId(rs.getInt("profid"));
+			p.setProfessorId(rs.getString("profid"));
 			p.setEmailID(rs.getString("email"));
 			p.setProfessorName(rs.getString("name"));
 			p.setDepartment(rs.getString("department"));
@@ -84,7 +82,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	}
 
 	@Override
-	public ArrayList<Student> viewEnrolledStudents(String courseId) throws SQLException {
+	public ArrayList<Student> viewEnrolledStudents(String courseId, String session) throws SQLException {
 		Connection conn = DBUtils.getConnection();
 		String VIEW_ENROLLED_STU = "select stuId from registeredCourse where courseId = ?";
 		PreparedStatement stmt = conn.prepareStatement(VIEW_ENROLLED_STU);
@@ -92,10 +90,9 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		ResultSet rs = stmt.executeQuery();
 		ArrayList<Student> arr = new ArrayList<Student>();
 		while (rs.next()) {
-			int id = rs.getInt("courseId");
+			String id = rs.getString("courseId");
 			Student s = new Student();
-			s.setStudentID(String.valueOf(id));
-
+			s.setStudentID(id);
 			arr.add(s);
 		}
 		return arr;
