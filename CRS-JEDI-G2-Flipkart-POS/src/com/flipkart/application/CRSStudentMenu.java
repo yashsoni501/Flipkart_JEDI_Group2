@@ -59,19 +59,19 @@ public class CRSStudentMenu {
 			int optionChoosed = CRSApplication.scan.nextInt();
 			switch (optionChoosed) {
 			case 1:
-				fetchRegisteredCourses();
+				registeredCourses();
 				break;
 			case 2:
-				viewFeeReciept();
+				feeReciept();
 				break;
 			case 3:
-				viewReportCard();
+				reportCard();
 				break;
 			case 4:
-				payfee();
+				payFees();
 				break;
 			case 5:
-				registerForCourses();
+				registerInCourse();
 				break;
 			case 6:
 				student = null;
@@ -84,7 +84,7 @@ public class CRSStudentMenu {
 
 	}
 
-	private void registerForCourses() {
+	private void registerInCourse() {
 		// TODO Auto-generated method stub
 		ArrayList<String> selectedCourses = new ArrayList<String>();
 
@@ -163,13 +163,13 @@ public class CRSStudentMenu {
 		courseCatalogInterface.getCourseCatalogBySessionSemester(student.getSession(), semester);
 	}
 
-	private void fetchRegisteredCourses() {
+	private void registeredCourses() {
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
 		registeredCourseInterface.getRegisteredCourses(student.getStudentID(), student.getSession(), semester);
 	}
 
-	private void viewFeeReciept() {
+	private void feeReciept() {
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
 		try {
@@ -180,7 +180,7 @@ public class CRSStudentMenu {
 		}
 	}
 
-	private void viewReportCard() {
+	private void reportCard() {
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
 		ArrayList<SemesterReportCard> semesterReportCards = semesterReportCardInterface
@@ -189,7 +189,7 @@ public class CRSStudentMenu {
 				student.getSession(), semester);
 	}
 
-	private void payfee() {
+	private void payFees() {
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
 		registeredCourseInterface.getRegisteredCourses(student.getStudentID(), student.getSession(), semester);
