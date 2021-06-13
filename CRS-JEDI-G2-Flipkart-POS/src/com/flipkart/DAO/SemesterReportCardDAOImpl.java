@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import com.flipkart.bean.SemesterReportCard;
 import com.flipkart.utils.DBUtils;
+import com.flipkart.utils.SQLQuery;
 
 /**
  * @author yashsoni501
@@ -38,8 +39,8 @@ public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface
 	public boolean addSemesterReportCard(String studentId, int semester, float sgpa) throws SQLException {
 
 		Connection conn = DBUtils.getConnection();
-		final String ADD_SEMESTER_REPORT = "INSERT INTO semesterReportCard(stuid, sgpa, semester) VALUES (?,?,?)";
-		PreparedStatement stmt = conn.prepareStatement(ADD_SEMESTER_REPORT);
+
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.ADD_SEMESTER_REPORT);
 
 		stmt.setString(1, studentId);
 		stmt.setFloat(2, sgpa);
@@ -58,9 +59,8 @@ public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface
 		ArrayList<SemesterReportCard> allReports = new ArrayList<SemesterReportCard>();
 
 		Connection conn = DBUtils.getConnection();
-		final String GET_ALL_REPORTS = "SELECT * from semesterReportCard WHERE stuid=? ORDER BY semester";
 
-		PreparedStatement stmt = conn.prepareStatement(GET_ALL_REPORTS);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.GET_ALL_REPORTS);
 
 		stmt.setString(1, studentId);
 		ResultSet rs = stmt.executeQuery();

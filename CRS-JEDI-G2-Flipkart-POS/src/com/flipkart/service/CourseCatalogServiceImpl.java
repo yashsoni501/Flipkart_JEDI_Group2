@@ -5,7 +5,7 @@ package com.flipkart.service;
 
 import java.util.ArrayList;
 
-import com.flipkart.DAO.CourseDAOImp;
+import com.flipkart.DAO.CourseDAOImpl;
 import com.flipkart.DAO.CourseDAOInterface;
 import com.flipkart.bean.CourseCatalog;
 
@@ -17,7 +17,7 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 
 	public static volatile CourseCatalogServiceImpl instance = null;
 
-	CourseDAOInterface courseDAO = CourseDAOImp.getInstance();
+	CourseDAOInterface courseDAO = CourseDAOImpl.getInstance();
 
 	public static CourseCatalogServiceImpl getInstance() {
 		if (instance == null) {

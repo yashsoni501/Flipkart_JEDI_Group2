@@ -12,6 +12,7 @@ import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.utils.DBUtils;
+import com.flipkart.utils.SQLQuery;
 
 /**
  * @author jagru
@@ -36,8 +37,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 
 	public ArrayList<CourseCatalog> viewOptedCourses(String professorId) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		String SELECT_OPTED_COURSES_PROF = "select * from courseCatalog where profid = ?";
-		PreparedStatement stmt = conn.prepareStatement(SELECT_OPTED_COURSES_PROF);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.SELECT_OPTED_COURSES_PROF);
 		stmt.setString(1, professorId);
 		ResultSet rs = stmt.executeQuery();
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
@@ -63,8 +63,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 
 	public boolean optInCourse(String professorId, String courseId) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		String OPT_In_COURSE_PROF = "update courseCatalog set profid = ? where courseid = ?";
-		PreparedStatement stmt = conn.prepareStatement(OPT_In_COURSE_PROF);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.OPT_IN_COURSE_PROF);
 		stmt.setString(1, professorId);
 		stmt.setString(2, courseId);
 		int rows = stmt.executeUpdate();
@@ -76,8 +75,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	@Override
 	public Professor getProfessorDetails(String userId) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		String GET_PROFESSOR_DetAIL = "Select * from professor where profid = ?";
-		PreparedStatement stmt = conn.prepareStatement(GET_PROFESSOR_DetAIL);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.GET_PROFESSOR_DETAIL);
 		stmt.setString(1, userId);
 		ResultSet rs = stmt.executeQuery();
 		Professor p = new Professor();
@@ -93,8 +91,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	@Override
 	public ArrayList<Student> viewEnrolledStudents(String courseId, String session) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		String VIEW_ENROLLED_STU = "select stuid from registeredCourse where courseid = ? AND session = ?";
-		PreparedStatement stmt = conn.prepareStatement(VIEW_ENROLLED_STU);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.VIEW_ENROLLED_STUDENTS);
 		stmt.setString(1, courseId);
 		stmt.setString(2, session);
 		ResultSet rs = stmt.executeQuery();
@@ -129,8 +126,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		System.out.println(courseId + " " + studentId + " " + grade + '\n');
 
 		Connection conn = DBUtils.getConnection();
-		String GRADE_SUBMISSION = "update registeredCourse set grade = ? where courseid = ? and stuid = ?";
-		PreparedStatement stmt = conn.prepareStatement(GRADE_SUBMISSION);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.SUBMIT_GRADES_PROF);
 
 		stmt.setString(1, grade);
 		stmt.setString(2, courseId);
@@ -145,8 +141,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	public ArrayList<Professor> getAllProfessor() throws SQLException {
 		Connection conn = DBUtils.getConnection();
 
-		String PROFESSOR_IN_COLLEGE = "select * from professor";
-		PreparedStatement stmt = conn.prepareStatement(PROFESSOR_IN_COLLEGE);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.SELECT_ALL_PROFS);
 		ResultSet myRs = stmt.executeQuery();
 
 		ArrayList<Professor> profFound = new ArrayList<Professor>();

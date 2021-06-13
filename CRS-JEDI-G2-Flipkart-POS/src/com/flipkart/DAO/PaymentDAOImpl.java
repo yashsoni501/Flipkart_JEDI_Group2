@@ -10,7 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.flipkart.bean.Payment;
+import com.flipkart.utils.Constants;
 import com.flipkart.utils.DBUtils;
+import com.flipkart.utils.SQLQuery;
 
 /**
  * @author yashsoni501
@@ -37,19 +39,17 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 	public Payment getFeeReciept(String studentId, int semester) throws SQLException {
 		Connection conn = DBUtils.getConnection();
 		Payment feePayment = new Payment();
-		final String GET_FEE_RECIEPT = "SELECT * FROM payment WHERE stuid=? AND semester=? AND status=?";
 
-		PreparedStatement stmt = conn.prepareStatement(GET_FEE_RECIEPT);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.GET_FEE_RECIEPT);
 		stmt.setString(1, studentId);
 		stmt.setInt(2, semester);
-		stmt.setString(3, "success");
+		stmt.setString(3, Constants.PAYMENT_SUCCESS);
 
 		ResultSet rs = stmt.executeQuery();
-		String status = null;
+
 		if (!rs.next()) {
-			status = "FAILURE";
 			feePayment.setStudentId(studentId);
-			feePayment.setStatus(status);
+			feePayment.setStatus(Constants.PAYMENT_FAILURE);
 			feePayment.setSemester(semester);
 		} else {
 			feePayment.setStudentId(studentId);
@@ -67,23 +67,24 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 	public Payment onlinePayment(String studentId, float amount, int semester) throws SQLException {
 		Connection conn = DBUtils.getConnection();
 		String transactionId = "onl123";
-		PreparedStatement stmt = conn.prepareStatement("insert into payment values(?,?,?,?,?,?,?)");
+
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.MAKE_PAYMENT);
 
 		stmt.setString(1, transactionId);
 		stmt.setString(2, studentId);
-		stmt.setString(3, "SUCCESS");
+		stmt.setString(3, Constants.PAYMENT_SUCCESS);
 		stmt.setFloat(4, amount);
 		Date today = new Date();
 		stmt.setString(5, today.toString());
 		stmt.setInt(6, semester);
-		stmt.setString(7, "ONLINE");
+		stmt.setString(7, Constants.PAYMENT_ONLINE);
 		stmt.executeUpdate();
 
 		Payment paymentInfo = new Payment();
 		paymentInfo.setStudentId(studentId);
-		paymentInfo.setStatus("SUCCESS");
+		paymentInfo.setStatus(Constants.PAYMENT_SUCCESS);
 		paymentInfo.setSemester(semester);
-		paymentInfo.setModeOfPayment("ONLINE");
+		paymentInfo.setModeOfPayment(Constants.PAYMENT_ONLINE);
 		paymentInfo.setDateOfPayment(today.toString());
 		paymentInfo.setReferenceId(transactionId);
 
@@ -94,23 +95,23 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 	public Payment offlinePayment(String studentId, float amount, int semester) throws SQLException {
 		Connection conn = DBUtils.getConnection();
 		String transactionId = "onl123";
-		PreparedStatement stmt = conn.prepareStatement("insert into payment values(?,?,?,?,?,?,?)");
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.MAKE_PAYMENT);
 
 		stmt.setString(1, transactionId);
 		stmt.setString(2, studentId);
-		stmt.setString(3, "SUCCESS");
+		stmt.setString(3, Constants.PAYMENT_SUCCESS);
 		stmt.setFloat(4, amount);
 		Date today = new Date();
 		stmt.setString(5, today.toString());
 		stmt.setInt(6, semester);
-		stmt.setString(7, "OFFLINE");
+		stmt.setString(7, Constants.PAYMENT_OFFLINE);
 		stmt.executeUpdate();
 
 		Payment paymentInfo = new Payment();
 		paymentInfo.setStudentId(studentId);
-		paymentInfo.setStatus("SUCCESS");
+		paymentInfo.setStatus(Constants.PAYMENT_SUCCESS);
 		paymentInfo.setSemester(semester);
-		paymentInfo.setModeOfPayment("OFFLINE");
+		paymentInfo.setModeOfPayment(Constants.PAYMENT_OFFLINE);
 		paymentInfo.setDateOfPayment(today.toString());
 		paymentInfo.setReferenceId(transactionId);
 

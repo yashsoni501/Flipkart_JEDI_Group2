@@ -26,6 +26,7 @@ import com.flipkart.service.SemesterReportCardInterface;
 import com.flipkart.service.SemesterReportCardServiceImpl;
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
+import com.flipkart.utils.Constants;
 
 /**
  * @author Aeron
@@ -243,7 +244,7 @@ public class CRSStudentMenu {
 		Payment reciept = null;
 		try {
 			reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
-			if (reciept.getStatus().equalsIgnoreCase("failure")) {
+			if (reciept.getStatus().equalsIgnoreCase(Constants.PAYMENT_FAILURE)) {
 				System.out.println("Fee is not paid for " + semester + " semester");
 				return;
 			}
@@ -298,11 +299,10 @@ public class CRSStudentMenu {
 		int semester = CRSApplication.scan.nextInt();
 		Payment reciept = new Payment();
 		try {
-			String PAYMENT_SUCCESS = "SUCCESS";
 
 			reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
 
-			if (reciept.getStatus().equalsIgnoreCase(PAYMENT_SUCCESS)) {
+			if (reciept.getStatus().equalsIgnoreCase(Constants.PAYMENT_SUCCESS)) {
 				System.out.println("Fee is already paid for " + semester + " semester");
 				return;
 			}
@@ -323,8 +323,7 @@ public class CRSStudentMenu {
 			String modeOfPayment = CRSApplication.scan.next();
 			reciept = null;
 
-			String OFFLINE = "OFFLINE";
-			if (modeOfPayment.equalsIgnoreCase(OFFLINE)) {
+			if (modeOfPayment.equalsIgnoreCase(Constants.PAYMENT_OFFLINE)) {
 
 				reciept = paymentInterface.offlinePayment(student.getStudentID(), amount, semester);
 
@@ -333,7 +332,7 @@ public class CRSStudentMenu {
 			}
 			System.out.println(reciept.getStatus());
 
-			if (reciept.getStatus().equalsIgnoreCase(PAYMENT_SUCCESS)) {
+			if (reciept.getStatus().equalsIgnoreCase(Constants.PAYMENT_SUCCESS)) {
 				System.out.println(reciept.getReferenceId() + " " + reciept.getModeOfPayment() + " "
 						+ reciept.getAmount() + " " + reciept.getDateOfPayment());
 			} else {

@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import com.flipkart.service.AuthInterface;
 import com.flipkart.service.AuthServiceImpl;
+import com.flipkart.utils.Constants;
 
 /**
  * @author yashsoni501
@@ -83,17 +84,17 @@ public class CRSApplication {
 		if (userId != null) {
 			String userRole = authInterface.getRole(userId);
 			switch (userRole) {
-			case "ADMIN":
+			case Constants.USER_ROLE_ADMIN:
 				System.out.println("Admin Login Successful");
 				CRSAdminMenu adminMenu = new CRSAdminMenu();
 				adminMenu.createMenu();
 				break;
-			case "PROFESSOR":
+			case Constants.USER_ROLE_PROFESSOR:
 				System.out.println("Professor Login Successful");
 				CRSProfessorMenu professorMenu = new CRSProfessorMenu();
 				professorMenu.createMenu();
 				break;
-			case "STUDENT":
+			case Constants.USER_ROLE_STUDENT:
 				System.out.println("Student Login Successful");
 				CRSStudentMenu studentMenu = new CRSStudentMenu();
 				studentMenu.createMenu();

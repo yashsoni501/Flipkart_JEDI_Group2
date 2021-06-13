@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import com.flipkart.bean.Student;
 import com.flipkart.utils.DBUtils;
+import com.flipkart.utils.SQLQuery;
 import com.flipkart.bean.RegisteredCourse;
 
 /**
@@ -39,8 +40,7 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 		// Auto-generated method stub
 		Connection conn = DBUtils.getConnection();
 
-		String STUDENTS_IN_COURSE = "select * from registeredCourse where courseid = ? AND semester = ? AND session = ?";
-		PreparedStatement stmt = conn.prepareStatement(STUDENTS_IN_COURSE);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.SELECT_STUDENTS_IN_COURSE);
 		stmt.setString(1, courseId);
 		stmt.setInt(2, semester);
 		stmt.setString(3, session);
@@ -48,8 +48,7 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 
 		ArrayList<Student> studentsFound = new ArrayList<Student>();
 
-		String STUDENT_BY_ID = "select * from student where stuid = ?";
-		PreparedStatement stamnt = conn.prepareStatement(STUDENT_BY_ID);
+		PreparedStatement stamnt = conn.prepareStatement(SQLQuery.SELECT_STUDENT_BY_ID);
 		ResultSet newRs;
 
 		while (myRs.next()) {
@@ -78,8 +77,7 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 		// Auto-generated method stub
 		Connection conn = DBUtils.getConnection();
 
-		String REGISTERED_COURSES = "select * from registeredCourse where stuid = ? and semester = ?";
-		PreparedStatement stmt = conn.prepareStatement(REGISTERED_COURSES);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.GET_REGISTERED_COURSES_BY_STUDENT_ID);
 		stmt.setInt(1, Integer.parseInt(studentId));
 		stmt.setInt(2, semester);
 		ResultSet myRs = stmt.executeQuery();
@@ -107,8 +105,7 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 		// Auto-generated method stub
 		Connection conn = DBUtils.getConnection();
 
-		String ADD_REGISTER_COURSE = "insert into registeredCourse (`courseid`, `stuid`, `semester`, `session`, `grade`) values (?, ?, ?, ?, ?)";
-		PreparedStatement stmt = conn.prepareStatement(ADD_REGISTER_COURSE);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.ADD_REGISTERED_COURSE);
 		stmt.setInt(1, Integer.parseInt(courseId));
 		stmt.setInt(2, Integer.parseInt(studentID));
 		stmt.setInt(3, semester);
