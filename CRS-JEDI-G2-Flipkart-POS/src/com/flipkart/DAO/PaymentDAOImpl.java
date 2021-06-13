@@ -37,7 +37,7 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 	public Payment getFeeReciept(String studentId, int semester) throws SQLException {
 		Connection conn = DBUtils.getConnection();
 		Payment feePayment = new Payment();
-		final String GET_FEE_RECIEPT = "SELECT * FROM payment WHERE stuid=? AND semster=?";
+		final String GET_FEE_RECIEPT = "SELECT * FROM payment WHERE stuid=? AND semester=?";
 
 		PreparedStatement stmt = conn.prepareStatement(GET_FEE_RECIEPT);
 		stmt.setString(1, studentId);
@@ -50,6 +50,7 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 		} else {
 			status = "PAID";
 		}
+		rs.next();
 		feePayment.setStudentId(studentId);
 		feePayment.setStatus(status);
 		feePayment.setSemester(semester);
