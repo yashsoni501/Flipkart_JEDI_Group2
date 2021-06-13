@@ -38,13 +38,15 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	@Override
 	public ArrayList<Course> fetchRegisteredCourses(String studentId, int sem) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		PreparedStatement stmt = conn
-				.prepareStatement("select * from registeredCourse where stuid = ? and semester = ?");
+		
+		String STUDENT_REGISTERED_COURSES = "select * from registeredCourse where stuid = ? and semester = ?";
+		PreparedStatement stmt = conn.prepareStatement(STUDENT_REGISTERED_COURSES);
 		stmt.setInt(1, Integer.parseInt(studentId));
 		stmt.setInt(2, sem);
 		ResultSet myRs = stmt.executeQuery();
-
-		PreparedStatement stamnt = conn.prepareStatement("select * from course where courseid = ?");
+		
+		String COURSES_BY_ID = "select * from course where courseid = ?";
+		PreparedStatement stamnt = conn.prepareStatement(COURSES_BY_ID);
 		ResultSet newRs;
 		ArrayList<Course> RegisteredCourseList = new ArrayList<Course>();
 
@@ -70,14 +72,16 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	@Override
 	public boolean isFeePaid(String studentId, int sem) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		PreparedStatement stmt = conn.prepareStatement("select * from payment where stuid = ? and semester = ?");
+		
+		String STUDENT_FEE_STATUS = "select * from payment where stuid = ? and semester = ?";
+		PreparedStatement stmt = conn.prepareStatement(STUDENT_FEE_STATUS);
 		stmt.setInt(1, Integer.parseInt(studentId));
 		stmt.setInt(2, sem);
 		ResultSet myRs = stmt.executeQuery();
 
 		boolean flag = false;
 		while (myRs.next()) {
-			if (myRs.getString("status") == "PAID")
+			if (myRs.getString("status") == "SUCCESS")
 				flag = true;
 		}
 
@@ -87,7 +91,9 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	@Override
 	public ArrayList<Student> getAllStudents(String session) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		PreparedStatement stmt = conn.prepareStatement("select * from student where session = ?");
+		
+		String STUDENTS_IN_SESSION = "select * from student where session = ?";
+		PreparedStatement stmt = conn.prepareStatement(STUDENTS_IN_SESSION);
 		stmt.setString(1, session);
 		ResultSet myRs = stmt.executeQuery();
 
@@ -112,7 +118,9 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	@Override
 	public Student getStudentById(String userId) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		PreparedStatement stmt = conn.prepareStatement("select * from student where stuid = ?");
+
+		String STUDENT_BY_ID = "select * from student where stuid = ?";
+		PreparedStatement stmt = conn.prepareStatement(STUDENT_BY_ID);
 		stmt.setInt(1, Integer.parseInt(userId));
 		ResultSet myRs = stmt.executeQuery();
 
