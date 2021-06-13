@@ -138,13 +138,31 @@ public class CRSAdminMenu {
 
 		System.out.println("Report Card generated Successfully");
 	}
-
-	private float calculateSgpa(ArrayList<RegisteredCourse> courses) {
-		// TODO Auto-generated method stub
-		for (RegisteredCourse course : courses) {
-			CourseCatalog catalog = courseCatalogInterface.getCourseCatalog(course.getCourseId());
-		}
+	
+	private int weightage(String str) {
+		if(str == "A") return 10;
+		if(str == "B") return 9;
+		if(str == "C") return 8;
+		if(str == "D") return 7;
+		if(str == "E") return 6;
+		if(str == "F") return 5;
+		if(str == "G") return 4;
+		if(str == "H") return 3;
+		if(str == "I") return 2;
+		if(str == "J") return 1;
 		return 0;
+	}
+	
+	private float calculateSgpa(ArrayList<RegisteredCourse> courses) {
+		// Auto-generated method stub
+		float totalCredit = 0, totalScore = 0;
+		for (RegisteredCourse temp : courses) {
+			CourseCatalog currcourse = courseCatalogInterface.getCourseCatalog(temp.getCourseId());
+			totalCredit += currcourse.getCredits();
+			totalScore += currcourse.getCredits() * weightage(temp.getGrade());
+		}
+		
+		return totalScore/totalCredit;
 	}
 
 	private void addCourse() {
