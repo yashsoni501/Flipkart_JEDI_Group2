@@ -60,7 +60,6 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 			feePayment.setModeOfPayment(rs.getString("modeOfPayment"));
 			feePayment.setReferenceId(rs.getString("referenceId"));
 		}
-
 		return feePayment;
 	}
 

@@ -201,8 +201,9 @@ public class CRSStudentMenu {
 	private void feeReciept() {
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
+		Payment reciept = null;
 		try {
-			Payment reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
+			reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
 			if (reciept.getStatus() == "failure") {
 				System.out.println("Fee is not paid for " + semester + " semester");
 				return;
@@ -212,6 +213,14 @@ public class CRSStudentMenu {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		if(reciept == null)
+		{
+			System.out.println("Fee not payed");
+		}
+		else
+		{
+			System.out.println("amount " + reciept.getAmount() + " paid on " + reciept.getDateOfPayment());
 		}
 	}
 
@@ -256,7 +265,7 @@ public class CRSStudentMenu {
 			System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
 					+ " " + arr.getCredits() + " " + arr.getProfessorId());
 		}
-		float amount = 0;
+		float amount = 1000;
 		System.out.println("Fee Payable");
 		System.out.println("Enter Mode Of Payment (offline/online)");
 		String modeOfPayment = CRSApplication.scan.next();
