@@ -60,7 +60,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		int rows = stmt.executeUpdate();
 		System.out.println("Rows impacted : " + rows);
 
-		return true;
+		return rows==1;
 	}
 
 	@Override
@@ -76,7 +76,6 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 			p.setEmailID(rs.getString("email"));
 			p.setProfessorName(rs.getString("name"));
 			p.setDepartment(rs.getString("department"));
-
 		}
 		return p;
 	}
@@ -84,15 +83,30 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	@Override
 	public ArrayList<Student> viewEnrolledStudents(String courseId, String session) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		String VIEW_ENROLLED_STU = "select stuId from registeredCourse where courseId = ?";
+		String VIEW_ENROLLED_STU = "select stuId from registeredCourse where courseId = ?AND session = ?";
 		PreparedStatement stmt = conn.prepareStatement(VIEW_ENROLLED_STU);
 		stmt.setString(1, courseId);
+		stmt.setString(2, session);
 		ResultSet rs = stmt.executeQuery();
 		ArrayList<Student> arr = new ArrayList<Student>();
 		while (rs.next()) {
 			String id = rs.getString("courseId");
 			Student s = new Student();
-			s.setStudentID(id);
+			s.setStudentID(String.valueOf(id));
+			String VIEW_STUDENT_DET = "select * from student where stuid = ?";
+			PreparedStatement stmt1 = conn.prepareStatement(VIEW_STUDENT_DET);
+			stmt.setString(1, id);
+			ResultSet rs1 = stmt1.executeQuery();
+			if (rs1.next()) {
+				String name = rs.getString("name");
+				s.setStudentName(name);
+				String email = rs.getString("email");
+				s.setEmailID(email);
+				String dept = rs.getString("department");
+				s.setDepartment(dept);
+				String sess = rs.getString("session");
+				s.setSession(sess);
+			}
 			arr.add(s);
 		}
 		return arr;
@@ -109,6 +123,6 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 
 		int rows = stmt.executeUpdate();
 		System.out.println("Rows impacted : " + rows);
-		return false;
+		return rows==1;
 	}
 }
