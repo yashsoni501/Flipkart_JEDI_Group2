@@ -24,8 +24,7 @@ public class CRSApplication {
 	 * @throws SQLException
 	 */
 	public static void main(String[] args) {
-		CRSApplication crsApplication = new CRSApplication();
-		createMainMenu();
+		CRSApplication crsApplication = new CRSApplip
 		int userInput = scan.nextInt();
 		while (userInput != 3) {
 			switch (userInput) {
@@ -47,7 +46,7 @@ public class CRSApplication {
 	}
 
 	public void updatePassword() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		String userEmail, newPassword, oldPassword;
 
 		System.out.println("------------------Update Password--------------------");
@@ -103,7 +102,7 @@ public class CRSApplication {
 	}
 
 	public static void logout() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		userId = null;
 		authInterface.logout();
 		System.out.println(" Logout Successful");

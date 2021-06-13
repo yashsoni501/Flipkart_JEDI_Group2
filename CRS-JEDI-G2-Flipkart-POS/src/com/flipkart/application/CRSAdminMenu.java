@@ -145,7 +145,7 @@ public class CRSAdminMenu {
 	}
 
 	private void addCourse() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		System.out.println("Enter Course Name:");
 		String courseName = CRSApplication.scan.next();
 
@@ -160,7 +160,7 @@ public class CRSAdminMenu {
 	}
 
 	private void removeCourse() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
 		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
@@ -174,7 +174,7 @@ public class CRSAdminMenu {
 	}
 
 	private void modifyCourse() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
 		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
@@ -194,7 +194,7 @@ public class CRSAdminMenu {
 	}
 
 	private void addCourseCatalog() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
 
@@ -215,7 +215,7 @@ public class CRSAdminMenu {
 	}
 
 	private void removeCourseCatalog() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
 		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
@@ -229,7 +229,7 @@ public class CRSAdminMenu {
 	}
 
 	private void modifyCourseCatalog() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
 		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
@@ -252,7 +252,7 @@ public class CRSAdminMenu {
 	}
 
 	private void addStudent() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		System.out.println("Enter Student Name:");
 		String studentName = CRSApplication.scan.next();
 
@@ -278,12 +278,12 @@ public class CRSAdminMenu {
 	}
 
 	private void removeStudent() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
 		System.out.println("Enter Student Id:");
 		String studentId = CRSApplication.scan.next();
 
-		if (CRSApplication.authInterface.removeUser(studentId) && adminInterface.removeStudent(studentId)) {
+		if (adminInterface.removeStudent(studentId)) {
 			System.out.println("Student Removed Successfully");
 		} else {
 			System.out.println("Something went wrong");
@@ -292,7 +292,7 @@ public class CRSAdminMenu {
 	}
 
 	private void modifyStudent() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
 		System.out.println("Enter Student Id:");
 		String studentId = CRSApplication.scan.next();
@@ -315,7 +315,7 @@ public class CRSAdminMenu {
 	}
 
 	private void addProfessor() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
 		System.out.println("Enter Professor Name:");
 		String professorName = CRSApplication.scan.next();
@@ -340,12 +340,12 @@ public class CRSAdminMenu {
 	}
 
 	private void removeProfessor() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
 		System.out.println("Enter Professor Id:");
 		String profId = CRSApplication.scan.next();
 
-		if (CRSApplication.authInterface.removeUser(profId) && adminInterface.removeProfessor(profId)) {
+		if (adminInterface.removeProfessor(profId)) {
 			System.out.println("Professor Removed Successfully");
 		} else {
 			System.out.println("Something went wrong");
@@ -354,7 +354,7 @@ public class CRSAdminMenu {
 	}
 
 	private void modifyProfessor() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
 		System.out.println("Enter Professor Id:");
 		String profId = CRSApplication.scan.next();
@@ -374,7 +374,7 @@ public class CRSAdminMenu {
 	}
 
 	private void getAllCourseCatalog() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		arr = courseCatalogInterface.getAllCourseCatalog();
 		for (int i = 0; i < arr.size(); i++) {
@@ -407,7 +407,7 @@ public class CRSAdminMenu {
 	}
 
 	private void getAllCourses() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		ArrayList<Course> arr = courseInterface.getAllCourses();
 		for (int i = 0; i < arr.size(); i++) {
 			System.out.println(arr.get(i).getCourseID() + " " + arr.get(i).getCourseName() + " "
@@ -435,14 +435,14 @@ public class CRSAdminMenu {
 	}
 
 	private void getAllStudents() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
 		ArrayList<Student> arr = new ArrayList<Student>();
 		try {
 			arr = studentInterface.getAllStudents(session);
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e1.printStackTrace();
 		}
 		for (int i = 0; i < arr.size(); i++) {
@@ -471,10 +471,15 @@ public class CRSAdminMenu {
 	}
 
 	private void getAllProfessors() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		ArrayList<Professor> arr = new ArrayList<Professor>();
 
-		arr = professorInterface.getAllProfessor();
+		try {
+			arr = professorInterface.getAllProfessor();
+		} catch (SQLException e) {
+			// Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		for (int i = 0; i < arr.size(); i++) {
 			System.out.println(arr.get(i).getProfessorId() + " " + arr.get(i).getProfessorName() + " "

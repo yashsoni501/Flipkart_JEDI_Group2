@@ -36,7 +36,7 @@ public class CRSProfessorMenu {
 			try {
 				professor = professorInterface.getProfessorDetails(CRSApplication.userId);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				// Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -82,7 +82,7 @@ public class CRSProfessorMenu {
 
 	private void optInCourse() {
 
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		System.out.println("Course Opt Menu");
 		System.out.println("Enter the CourseId");
 		String courseId = CRSApplication.scan.next();

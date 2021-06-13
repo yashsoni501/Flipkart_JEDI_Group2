@@ -125,4 +125,28 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		System.out.println("Rows impacted : " + rows);
 		return rows == 1;
 	}
+
+	@Override
+	public ArrayList<Professor> getAllProfessor() throws SQLException {
+		Connection conn = DBUtils.getConnection();
+
+		String PROFESSOR_IN_COLLEGE = "select * from professor";
+		PreparedStatement stmt = conn.prepareStatement(PROFESSOR_IN_COLLEGE);
+		ResultSet myRs = stmt.executeQuery();
+
+		ArrayList<Professor> profFound = new ArrayList<Professor>();
+
+		while (myRs.next()) {
+
+			Professor currprof = new Professor();
+			currprof.setProfessorId(myRs.getString("profid"));
+			currprof.setEmailID(myRs.getString("email"));
+			currprof.setProfessorName(myRs.getString("name"));
+			currprof.setDepartment(myRs.getString("department"));
+
+			profFound.add(currprof);
+		}
+
+		return profFound;
+	}
 }
