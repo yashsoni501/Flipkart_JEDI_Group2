@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.flipkart.bean.Student;
-import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
 
 /**
