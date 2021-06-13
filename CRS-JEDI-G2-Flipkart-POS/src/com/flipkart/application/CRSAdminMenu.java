@@ -52,16 +52,23 @@ public class CRSAdminMenu {
 			System.out.println("2. View All Students");
 			System.out.println("3. View All Courses");
 			System.out.println("4. View All Professors");
+
 			System.out.println("5. Add Course Catalogue");
 			System.out.println("6. Add Student");
 			System.out.println("7. Add Course");
 			System.out.println("8. Add Professor");
+
 			System.out.println("9. Enable Registration");
 			System.out.println("10. Disable Registration");
+
 			System.out.println("11. Enable Payment");
 			System.out.println("12. Disable Payment");
-			System.out.println("13. Generate Report Card");
-			System.out.println("14. Logout");
+
+			System.out.println("13. Enable Course Registration for Professor");
+			System.out.println("14. Disable Course Registration for Professor");
+
+			System.out.println("15. Generate Report Card");
+			System.out.println("16. Logout");
 
 			int choice = CRSApplication.scan.nextInt();
 
@@ -92,23 +99,29 @@ public class CRSAdminMenu {
 				break;
 			case 9:
 				adminInterface.setCourseRegistrationFlag(true);
-				return;
+				break;
 			case 10:
 				adminInterface.setCourseRegistrationFlag(false);
-				return;
+				break;
 			case 11:
 				adminInterface.setPaymentFlag(true);
-				return;
+				break;
 			case 12:
 				adminInterface.setPaymentFlag(false);
-				return;
+				break;
 			case 13:
-				generateReportCard();
-				return;
+				adminInterface.setProfessorFlag(true);
+				break;
 			case 14:
+				adminInterface.setProfessorFlag(false);
+				break;
+			case 15:
+				generateReportCard();
+				break;
+			case 16:
 				admin = null;
 				CRSApplication.logout();
-				return;
+				break;
 
 			default:
 				System.out.println("***** Wrong Choice *****");
@@ -267,9 +280,7 @@ public class CRSAdminMenu {
 		System.out.println("Enter Password:");
 		String password = CRSApplication.scan.next();
 
-		String studentId = CRSApplication.authInterface.addUserWithEmailPassword(userEmail, password, "STUDENT");
-
-		if (adminInterface.addStudent(studentId, studentName, department, userEmail, session)) {
+		if (adminInterface.addStudent(studentName, userEmail, password, department, session)) {
 			System.out.println("Student Added Successfully");
 		} else {
 			System.out.println("Something went wrong");
@@ -328,9 +339,7 @@ public class CRSAdminMenu {
 		System.out.println("Enter Password:");
 		String password = CRSApplication.scan.next();
 
-		String profId = CRSApplication.authInterface.addUserWithEmailPassword(userEmail, password, "PROFESSOR");
-
-		if (adminInterface.addProfessor(profId, professorName, department, userEmail)) {
+		if (adminInterface.addProfessor(professorName, userEmail, password, department)) {
 			System.out.println("Professor Added Successfully");
 		} else {
 			System.out.println("Something went wrong");

@@ -6,12 +6,16 @@ package com.flipkart.application;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.flipkart.DAO.AdminDAOInterface;
+import com.flipkart.DAO.AuthDAOInterface;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.Payment;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.SemesterReportCard;
 import com.flipkart.bean.Student;
+import com.flipkart.service.AdminInterface;
+import com.flipkart.service.AdminServiceImpl;
 import com.flipkart.service.CourseCatalogInterface;
 import com.flipkart.service.CourseCatalogServiceImpl;
 import com.flipkart.service.CourseInterface;
@@ -37,6 +41,8 @@ public class CRSStudentMenu {
 	RegisteredCourseInterface registeredCourseInterface = RegisteredCourseServiceImpl.getInstance();
 	SemesterReportCardInterface semesterReportCardInterface = SemesterReportCardServiceImpl.getInstance();
 	CourseInterface courseInterface = CourseServiceImpl.getInstance();
+	AdminInterface adminInterface = AdminServiceImpl.getInstance();
+
 	Student student = null;
 
 	/**
@@ -89,6 +95,13 @@ public class CRSStudentMenu {
 	}
 
 	private void registerInCourse() {
+		boolean courseWindow = adminInterface.getCourseRegistrationFlag();
+
+		if (!courseWindow) {
+			System.out.println("The Coure Registration window is closed.");
+			return;
+		}
+
 		// TODO Auto-generated method stub
 		ArrayList<String> selectedCourses = new ArrayList<String>();
 
@@ -236,6 +249,13 @@ public class CRSStudentMenu {
 	}
 
 	private void payFees() {
+		boolean feeWindow = adminInterface.getPaymentFlag();
+
+		if (!feeWindow) {
+			System.out.println("The Fee Payment window is closed.");
+			return;
+		}
+
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
 		Payment reciept = new Payment();

@@ -32,15 +32,15 @@ public class AdminServiceImpl implements AdminInterface {
 	}
 
 	@Override
-	public boolean addProfessor(String professorId, String name, String department, String emailId) {
+	public boolean addProfessor(String name, String emailId, String password, String department) {
 		// TODO Auto-generated method stub
-		return adminDAO.addProfessor(professorId, name, department, emailId);
+		return adminDAO.addProfessor(name, emailId, password, department);
 	}
 
 	@Override
-	public boolean addStudent(String studentId, String name, String department, String emailId, String session) {
+	public boolean addStudent(String name, String emailId, String password, String department, String session) {
 		// TODO Auto-generated method stub
-		return adminDAO.addStudent(studentId, name, department, emailId, session);
+		return adminDAO.addStudent(name, emailId, password, department, session);
 	}
 
 	@Override
@@ -105,6 +105,30 @@ public class AdminServiceImpl implements AdminInterface {
 
 	@Override
 	public boolean removeStudent(String studentId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean setProfessorFlag(boolean flag) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean getCourseRegistrationFlag() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean getPaymentFlag() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean getProfessorFlag() {
 		// TODO Auto-generated method stub
 		return false;
 	}

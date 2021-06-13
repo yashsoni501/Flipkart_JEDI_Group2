@@ -10,6 +10,8 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.service.AdminInterface;
+import com.flipkart.service.AdminServiceImpl;
 import com.flipkart.service.CourseCatalogInterface;
 import com.flipkart.service.CourseCatalogServiceImpl;
 import com.flipkart.service.CourseInterface;
@@ -29,6 +31,8 @@ public class CRSProfessorMenu {
 	CourseCatalogInterface courseCatalogInterface = CourseCatalogServiceImpl.getInstance();
 	CourseInterface courseInterface = CourseServiceImpl.getInstance();
 	RegisteredCourseInterface registerdCourseInterface = RegisteredCourseServiceImpl.getInstance();
+	AdminInterface adminInterface = AdminServiceImpl.getInstance();
+
 	Professor professor = null;
 
 	public void createMenu() throws SQLException {
@@ -81,6 +85,12 @@ public class CRSProfessorMenu {
 	}
 
 	private void optInCourse() throws SQLException {
+		boolean profWindow = adminInterface.getProfessorFlag();
+
+		if (!profWindow) {
+			System.out.println("Course Registration window for professors is closed.");
+			return;
+		}
 
 		// TODO Auto-generated method stub
 		System.out.println("Course Opt Menu");
@@ -123,6 +133,12 @@ public class CRSProfessorMenu {
 
 	// Note :Needs to be implemented in course catalog
 	private void removeOptedCourse() {
+		boolean profWindow = adminInterface.getProfessorFlag();
+
+		if (!profWindow) {
+			System.out.println("Course Registration window for professors is closed.");
+			return;
+		}
 
 		System.out.println("Enter the CourseId");
 

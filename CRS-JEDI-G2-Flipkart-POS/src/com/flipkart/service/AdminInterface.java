@@ -15,13 +15,21 @@ public interface AdminInterface {
 
 	public boolean removeCourse(String courseId);
 
-	public boolean addProfessor(String professorId, String name, String department, String emailId);
+	public boolean addProfessor(String name, String emailId, String password, String department);
 
-	public boolean addStudent(String studentId, String name, String department, String emailId, String session);
+	public boolean addStudent(String name, String emailId, String password, String department, String session);
 
 	public boolean setCourseRegistrationFlag(boolean flag);
 
 	public boolean setPaymentFlag(boolean flag);
+
+	public boolean setProfessorFlag(boolean flag);
+
+	public boolean getCourseRegistrationFlag();
+
+	public boolean getPaymentFlag();
+
+	public boolean getProfessorFlag();
 
 	public boolean removeProfessor(String profId);
 

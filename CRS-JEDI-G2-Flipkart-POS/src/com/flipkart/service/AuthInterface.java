@@ -21,7 +21,7 @@ public interface AuthInterface {
 
 	public String getRole(String userId);
 
-	public String addUserWithEmailPassword(String userEmail, String password, String userRole);
+//	public String addUserWithEmailPassword(String userEmail, String password, String userRole);
 
 	public boolean removeUser(String profId);
 }

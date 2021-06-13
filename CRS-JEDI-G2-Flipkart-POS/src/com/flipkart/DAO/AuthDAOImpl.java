@@ -129,31 +129,6 @@ public class AuthDAOImpl implements AuthDAOInterface {
 	}
 
 	@Override
-	public String addUserWithEmailPassword(String userEmail, String password, String userRole) {
-		Connection conn = DBUtils.getConnection();
-
-		String ADD_USER = "insert into auth (`email`, `password`, `userRole`) values (?, ?, ?)";
-		try {
-			PreparedStatement stmt = conn.prepareStatement(ADD_USER);
-			stmt.setString(1, userEmail);
-			stmt.setString(2, password);
-			stmt.setString(3, userRole);
-
-			int row = stmt.executeUpdate();
-			if (row == 0) {
-				System.err.println("Failed to Add user");
-			} else {
-				return verifyUserWithEmailPassword(userEmail, password);
-			}
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@Override
 	public boolean removeUser(String profId) {
 		// TODO Auto-generated method stub
 		return false;
