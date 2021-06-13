@@ -115,7 +115,6 @@ public class CRSAdminMenu {
 	}
 
 	private void generateReportCard() {
-		// TODO Auto-generated method stub
 
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
@@ -126,7 +125,6 @@ public class CRSAdminMenu {
 		try {
 			registeredStudents = studentInterface.getAllStudents(session);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (Student student : registeredStudents) {

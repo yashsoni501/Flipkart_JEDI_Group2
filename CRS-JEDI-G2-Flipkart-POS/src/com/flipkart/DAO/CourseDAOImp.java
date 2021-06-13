@@ -57,25 +57,12 @@ public class CourseDAOImp implements CourseDAOInterface {
 			}
 
 			stmt.close();
-			conn.close();
+			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
 			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}
 		}
 		return res;
 
@@ -106,25 +93,12 @@ public class CourseDAOImp implements CourseDAOInterface {
 			}
 
 			stmt.close();
-			conn.close();
+			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
 			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}
 		}
 		return res;
 	}
@@ -153,25 +127,12 @@ public class CourseDAOImp implements CourseDAOInterface {
 			}
 
 			stmt.close();
-			conn.close();
+			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
 			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}
 		}
 		return res;
 	}
@@ -206,25 +167,12 @@ public class CourseDAOImp implements CourseDAOInterface {
 			}
 
 			stmt.close();
-			conn.close();
+			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
 			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}
 		}
 		return res;
 	}
@@ -258,25 +206,12 @@ public class CourseDAOImp implements CourseDAOInterface {
 			}
 
 			stmt.close();
-			conn.close();
+			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
 			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}
 		}
 		return res;
 	}
@@ -309,25 +244,12 @@ public class CourseDAOImp implements CourseDAOInterface {
 			}
 
 			stmt.close();
-			conn.close();
+			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
 			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}
 		}
 		return res;
 	}
@@ -361,25 +283,12 @@ public class CourseDAOImp implements CourseDAOInterface {
 			}
 
 			stmt.close();
-			conn.close();
+			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
 			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}
 		}
 		return res;
 	}
@@ -390,7 +299,7 @@ public class CourseDAOImp implements CourseDAOInterface {
 		PreparedStatement stmt = null;
 
 		try {
-			String sql = "update courseCatalog set profid = ? where courseid = ?";
+			String sql = "update courseCatalog set profid=? where courseid=?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, professorId);
 			stmt.setString(2, courseId);
@@ -407,19 +316,6 @@ public class CourseDAOImp implements CourseDAOInterface {
 		} catch (Exception e) {
 			// Handle errors for Class.forName
 			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}
 		}
 		return true;
 	}
@@ -446,25 +342,12 @@ public class CourseDAOImp implements CourseDAOInterface {
 			}
 
 			stmt.close();
-			conn.close();
+			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
 			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}
 		}
 		return res;
 	}
