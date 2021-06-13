@@ -214,14 +214,6 @@ public class CRSStudentMenu {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(reciept == null)
-		{
-			System.out.println("Fee not payed");
-		}
-		else
-		{
-			System.out.println("amount " + reciept.getAmount() + " paid on " + reciept.getDateOfPayment());
-		}
 	}
 
 	private void reportCard() {

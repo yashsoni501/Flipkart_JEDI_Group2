@@ -37,7 +37,7 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 	public Payment getFeeReciept(String studentId, int semester) throws SQLException {
 		Connection conn = DBUtils.getConnection();
 		Payment feePayment = new Payment();
-		final String GET_FEE_RECIEPT = "SELECT * FROM payment WHERE stuid=? AND semster=?AND status=?";
+		final String GET_FEE_RECIEPT = "SELECT * FROM payment WHERE stuid=? AND semester=?AND status=?";
 
 		PreparedStatement stmt = conn.prepareStatement(GET_FEE_RECIEPT);
 		stmt.setString(1, studentId);
