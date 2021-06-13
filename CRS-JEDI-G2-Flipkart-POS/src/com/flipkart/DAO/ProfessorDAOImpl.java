@@ -62,7 +62,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		int rows = stmt.executeUpdate();
 		System.out.println("Rows impacted : " + rows);
 
-		return true;
+		return rows==1;
 	}
 
 	@Override
@@ -78,7 +78,6 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 			p.setEmailID(rs.getString("email"));
 			p.setProfessorName(rs.getString("name"));
 			p.setDepartment(rs.getString("department"));
-
 		}
 		return p;
 	}
@@ -95,7 +94,20 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 			int id = rs.getInt("courseId");
 			Student s = new Student();
 			s.setStudentID(String.valueOf(id));
-
+			String VIEW_STUDENT_DET = "select * from student where stuid = ?";
+			PreparedStatement stmt1 = conn.prepareStatement(VIEW_STUDENT_DET);
+			stmt.setString(1, String.valueOf(id));
+			ResultSet rs1 = stmt1.executeQuery();
+			if (rs1.next()) {
+				String name = rs.getString("name");
+				s.setStudentName(name);
+				String email = rs.getString("email");
+				s.setEmailID(email);
+				String dept = rs.getString("department");
+				s.setDepartment(dept);
+				String sess = rs.getString("session");
+				s.setSession(sess);
+			}
 			arr.add(s);
 		}
 		return arr;
@@ -112,6 +124,6 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 
 		int rows = stmt.executeUpdate();
 		System.out.println("Rows impacted : " + rows);
-		return false;
+		return rows==1;
 	}
 }
