@@ -3,10 +3,7 @@
  */
 package com.flipkart.service;
 
-import java.util.List;
-
 import com.flipkart.bean.Admin;
-import com.flipkart.bean.Course;
 
 /**
  * @author aysh

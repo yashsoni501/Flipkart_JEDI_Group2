@@ -21,8 +21,7 @@ public interface CourseCatalogInterface {
 
 	public boolean updateProfessorId(String courseId, String professorId);
 
-	public void getCourseCatalogByProfessorId(String userId);
+	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId);
 
-	public void getAllCourseCatalog();
-
+	public ArrayList<CourseCatalog> getAllCourseCatalog();
 }
