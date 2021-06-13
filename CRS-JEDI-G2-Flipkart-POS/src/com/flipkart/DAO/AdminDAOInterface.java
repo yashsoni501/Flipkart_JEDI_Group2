@@ -30,4 +30,6 @@ public interface AdminDAOInterface {
 	public boolean modifyCourseCatalog(String courseId, int semester, String session, float credits, String profId);
 
 	public Admin getAdminById(String userId);
+
+	public boolean removeStudent(String studentId);
 }

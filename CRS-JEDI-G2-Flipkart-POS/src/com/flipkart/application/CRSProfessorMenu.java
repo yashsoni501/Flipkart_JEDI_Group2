@@ -36,7 +36,7 @@ public class CRSProfessorMenu {
 			try {
 				professor = professorInterface.getProfessorDetails(CRSApplication.userId);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				// Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -82,7 +82,7 @@ public class CRSProfessorMenu {
 
 	private void optInCourse() throws SQLException {
 
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		System.out.println("Course Opt Menu");
 		System.out.println("Enter the CourseId");
 		String courseId = CRSApplication.scan.next();
@@ -95,7 +95,7 @@ public class CRSProfessorMenu {
 	}
 
 	private void viewOptedCourses() throws SQLException {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		arr = professorInterface.viewOptedCourses(CRSApplication.userId);
 		for (int i = 0; i < arr.size(); i++) {
@@ -107,7 +107,7 @@ public class CRSProfessorMenu {
 	}
 
 	private void viewEnrolledStudentsInCourse() throws SQLException {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		System.out.println("Enter Course Id");
 		String courseId = CRSApplication.scan.next();
 		System.out.println("Enter Session");
@@ -135,7 +135,7 @@ public class CRSProfessorMenu {
 	}
 
 	private void submitGrades() throws SQLException {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
 		System.out.println("Submit Grade Menu");
 
