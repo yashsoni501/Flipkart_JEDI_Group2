@@ -13,7 +13,7 @@ import com.flipkart.bean.SemesterReportCard;
  */
 public interface SemesterReportCardInterface {
 
-	void addSemesterReportCard(String studentID, int semester, float sgpa);
+	boolean addSemesterReportCard(String studentID, int semester, float sgpa);
 
 	ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String userId);
 

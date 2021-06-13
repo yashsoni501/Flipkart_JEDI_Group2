@@ -115,7 +115,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	@Override
 	public boolean submitGrade(String courseId, String studentId, String grade) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		String GRADE_SUBMISSION = "update registeredCourse set grade = ? where courseid = ? and stuid = ? and semester = ? and session = ?";
+		String GRADE_SUBMISSION = "update registeredCourse set grade = ? where courseid = ? and stuid = ?";
 		PreparedStatement stmt = conn.prepareStatement(GRADE_SUBMISSION);
 		stmt.setString(1, grade);
 		stmt.setString(2, courseId);
