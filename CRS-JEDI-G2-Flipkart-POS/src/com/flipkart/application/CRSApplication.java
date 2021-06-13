@@ -21,6 +21,7 @@ public class CRSApplication {
 
 	/**
 	 * @param args
+	 * @throws SQLException
 	 */
 	public static void main(String[] args) {
 		CRSApplication crsApplication = new CRSApplication();
@@ -90,13 +91,7 @@ public class CRSApplication {
 			case "PROFESSOR":
 				System.out.println("Professor Login Successful");
 				CRSProfessorMenu professorMenu = new CRSProfessorMenu();
-				try {
-					professorMenu.createMenu();
-				} catch (SQLException e) {
-					// Auto-generated catch block
-					e.printStackTrace();
-				}
-
+				professorMenu.createMenu();
 				break;
 			case "STUDENT":
 				System.out.println("Student Login Successful");

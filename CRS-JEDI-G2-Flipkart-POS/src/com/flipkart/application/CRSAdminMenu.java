@@ -92,19 +92,19 @@ public class CRSAdminMenu {
 				break;
 			case 9:
 				adminInterface.setCourseRegistrationFlag(true);
-				return;
+				break;
 			case 10:
 				adminInterface.setCourseRegistrationFlag(false);
-				return;
+				break;
 			case 11:
 				adminInterface.setPaymentFlag(true);
-				return;
+				break;
 			case 12:
 				adminInterface.setPaymentFlag(false);
-				return;
+				break;
 			case 13:
 				generateReportCard();
-				return;
+				break;
 			case 14:
 				admin = null;
 				CRSApplication.logout();
@@ -126,15 +126,16 @@ public class CRSAdminMenu {
 		ArrayList<Student> registeredStudents = new ArrayList<Student>();
 		try {
 			registeredStudents = studentInterface.getAllStudents(session);
+			for (Student student : registeredStudents) {
+				ArrayList<RegisteredCourse> courses = registeredCourseInterface
+						.getRegisteredCourses(student.getStudentID(), semester);
+				float sgpa = calculateSgpa(courses);
+				semesterReportCardInterface.addSemesterReportCard(student.getStudentID(), semester, sgpa);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		for (Student student : registeredStudents) {
-			ArrayList<RegisteredCourse> courses = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
-					semester);
-			float sgpa = calculateSgpa(courses);
-			semesterReportCardInterface.addSemesterReportCard(student.getStudentID(), semester, sgpa);
-		}
+
 		System.out.println("Report Card generated Successfully");
 	}
 

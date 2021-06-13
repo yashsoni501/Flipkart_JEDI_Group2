@@ -1,12 +1,16 @@
 package com.flipkart.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.flipkart.DAO.SemesterReportCardDAOImpl;
+import com.flipkart.DAO.SemesterReportCardDAOInterface;
 import com.flipkart.bean.SemesterReportCard;
 
 public class SemesterReportCardServiceImpl implements SemesterReportCardInterface {
 
 	public static volatile SemesterReportCardServiceImpl instance = null;
+	SemesterReportCardDAOInterface reportInstance = SemesterReportCardDAOImpl.getInstance();
 
 	public static SemesterReportCardServiceImpl getInstance() {
 		if (instance == null) {
@@ -19,16 +23,15 @@ public class SemesterReportCardServiceImpl implements SemesterReportCardInterfac
 	}
 
 	@Override
-	public boolean addSemesterReportCard(String studentID, int semester, float sgpa) {
-		return false;
-		// TODO Auto-generated method stub
+	public boolean addSemesterReportCard(String studentId, int semester, float sgpa) throws SQLException {
 
+		return reportInstance.addSemesterReportCard(studentId, semester, sgpa);
 	}
 
 	@Override
-	public ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String userId) throws SQLException {
+
+		return reportInstance.getSemesterReportCardByStudentId(userId);
 	}
 
 }

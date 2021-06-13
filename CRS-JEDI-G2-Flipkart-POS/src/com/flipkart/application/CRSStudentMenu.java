@@ -41,6 +41,8 @@ public class CRSStudentMenu {
 
 	/**
 	 * Creates the menu for Students
+	 * 
+	 * @throws SQLException
 	 */
 	public void createMenu() {
 		if (CRSApplication.userId != null) {
@@ -217,20 +219,27 @@ public class CRSStudentMenu {
 	}
 
 	private void reportCard() {
-		ArrayList<SemesterReportCard> semesterReportCards = semesterReportCardInterface
-				.getSemesterReportCardByStudentId(CRSApplication.userId);
-		for (int i = 0; i < semesterReportCards.size(); i++) {
-			ArrayList<RegisteredCourse> arr1 = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
-					semesterReportCards.get(i).getCurrentSem());
-			System.out.println("Semester : " + semesterReportCards.get(i).getCurrentSem() + "" + " Semeseter sgpa : "
-					+ semesterReportCards.get(i).getSgpa());
-			for (int j = 0; i < arr1.size(); j++) {
-				CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(j).getCourseId());
-				Course course = courseInterface.getCourse(arr1.get(j).getCourseId());
-				System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment()
-						+ " " + arr.getProfessorId() + " " + arr.getCredits() + " " + arr1.get(i).getGrade());
+		try {
+			ArrayList<SemesterReportCard> semesterReportCards = semesterReportCardInterface
+					.getSemesterReportCardByStudentId(CRSApplication.userId);
+
+			for (int i = 0; i < semesterReportCards.size(); i++) {
+				ArrayList<RegisteredCourse> arr1 = registeredCourseInterface
+						.getRegisteredCourses(student.getStudentID(), semesterReportCards.get(i).getCurrentSem());
+				System.out.println("Semester : " + semesterReportCards.get(i).getCurrentSem() + ""
+						+ " Semeseter sgpa : " + semesterReportCards.get(i).getSgpa());
+				for (int j = 0; i < arr1.size(); j++) {
+					CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(j).getCourseId());
+					Course course = courseInterface.getCourse(arr1.get(j).getCourseId());
+					System.out.println(
+							course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
+									+ arr.getProfessorId() + " " + arr.getCredits() + " " + arr1.get(i).getGrade());
+				}
+				System.out.println("");
 			}
-			System.out.println("");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
