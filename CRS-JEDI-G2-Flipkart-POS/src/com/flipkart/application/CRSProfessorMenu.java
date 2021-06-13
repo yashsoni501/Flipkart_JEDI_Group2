@@ -180,7 +180,7 @@ public class CRSProfessorMenu {
 		String grade = CRSApplication.scan.next();
 
 		try {
-			if (professorInterface.submitGrade(studentId, courseId, grade)) {
+			if (professorInterface.submitGrade(courseId, studentId, grade)) {
 				System.out.println("Succes");
 			} else {
 				System.out.println("Failure");

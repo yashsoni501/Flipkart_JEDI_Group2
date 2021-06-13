@@ -11,6 +11,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.bean.SemesterReportCard;
 import com.flipkart.bean.Student;
 import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminServiceImpl;
@@ -139,7 +140,25 @@ public class CRSAdminMenu {
 		ArrayList<Student> registeredStudents = new ArrayList<Student>();
 		try {
 			registeredStudents = studentInterface.getAllStudents(session);
+			boolean alreadyCreated = false;
+			boolean checked = false;
 			for (Student student : registeredStudents) {
+
+				if (!checked) {
+					for (SemesterReportCard semRepotCard : semesterReportCardInterface
+							.getSemesterReportCardByStudentId(student.getStudentID())) {
+						if (semRepotCard.getCurrentSem() == semester) {
+							alreadyCreated = true;
+						}
+					}
+					checked = true;
+				}
+
+				if (alreadyCreated) {
+					System.out.println("The Report cards are already generated");
+					return;
+				}
+
 				ArrayList<RegisteredCourse> courses = registeredCourseInterface
 						.getRegisteredCourses(student.getStudentID(), semester);
 				float sgpa = calculateSgpa(courses);
@@ -151,21 +170,31 @@ public class CRSAdminMenu {
 
 		System.out.println("Report Card generated Successfully");
 	}
-	
+
 	private int weightage(String str) {
-		if(str == "A") return 10;
-		if(str == "B") return 9;
-		if(str == "C") return 8;
-		if(str == "D") return 7;
-		if(str == "E") return 6;
-		if(str == "F") return 5;
-		if(str == "G") return 4;
-		if(str == "H") return 3;
-		if(str == "I") return 2;
-		if(str == "J") return 1;
+		if (str.equals("A"))
+			return 10;
+		if (str.equals("B"))
+			return 9;
+		if (str.equals("C"))
+			return 8;
+		if (str.equals("D"))
+			return 7;
+		if (str.equals("E"))
+			return 6;
+		if (str.equals("F"))
+			return 5;
+		if (str.equals("G"))
+			return 4;
+		if (str.equals("H"))
+			return 3;
+		if (str.equals("I"))
+			return 2;
+		if (str.equals("J"))
+			return 1;
 		return 0;
 	}
-	
+
 	private float calculateSgpa(ArrayList<RegisteredCourse> courses) {
 		// Auto-generated method stub
 		float totalCredit = 0, totalScore = 0;
@@ -174,8 +203,8 @@ public class CRSAdminMenu {
 			totalCredit += currcourse.getCredits();
 			totalScore += currcourse.getCredits() * weightage(temp.getGrade());
 		}
-		
-		return totalScore/totalCredit;
+
+		return totalScore / totalCredit;
 	}
 
 	private void addCourse() {

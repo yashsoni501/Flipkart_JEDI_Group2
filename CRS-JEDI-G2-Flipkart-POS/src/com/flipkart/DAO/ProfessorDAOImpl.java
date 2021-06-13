@@ -43,8 +43,18 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		while (rs.next()) {
 			String id = rs.getString("courseid");
+			String profid = rs.getString("profid");
+			String session = rs.getString("session");
+			int semester = rs.getInt("semester");
+			float credit = rs.getFloat("credits");
+
 			CourseCatalog temp = new CourseCatalog();
 			temp.setCourseId(id);
+			temp.setProfessorId(profid);
+			temp.setSession(session);
+			temp.setSemester(semester);
+
+			temp.setCredits(credit);
 
 			arr.add(temp);
 		}
@@ -83,7 +93,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 	@Override
 	public ArrayList<Student> viewEnrolledStudents(String courseId, String session) throws SQLException {
 		Connection conn = DBUtils.getConnection();
-		String VIEW_ENROLLED_STU = "select stuid from registeredCourse where courseid = ?AND session = ?";
+		String VIEW_ENROLLED_STU = "select stuid from registeredCourse where courseid = ? AND session = ?";
 		PreparedStatement stmt = conn.prepareStatement(VIEW_ENROLLED_STU);
 		stmt.setString(1, courseId);
 		stmt.setString(2, session);
@@ -91,20 +101,22 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		ArrayList<Student> arr = new ArrayList<Student>();
 		while (rs.next()) {
 			String id = rs.getString("stuid");
+
+			System.out.println("StudentID: " + id + '\n');
 			Student s = new Student();
 			s.setStudentID(id);
 			String VIEW_STUDENT_DET = "select * from student where stuid = ?";
-			PreparedStatement stmt1 = conn.prepareStatement(VIEW_STUDENT_DET);
+			stmt = conn.prepareStatement(VIEW_STUDENT_DET);
 			stmt.setString(1, id);
-			ResultSet rs1 = stmt1.executeQuery();
+			ResultSet rs1 = stmt.executeQuery();
 			if (rs1.next()) {
-				String name = rs.getString("name");
+				String name = rs1.getString("name");
 				s.setStudentName(name);
-				String email = rs.getString("email");
+				String email = rs1.getString("email");
 				s.setEmailID(email);
-				String dept = rs.getString("department");
+				String dept = rs1.getString("department");
 				s.setDepartment(dept);
-				String sess = rs.getString("session");
+				String sess = rs1.getString("session");
 				s.setSession(sess);
 			}
 			arr.add(s);
@@ -114,16 +126,19 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 
 	@Override
 	public boolean submitGrade(String courseId, String studentId, String grade) throws SQLException {
+		System.out.println(courseId + " " + studentId + " " + grade + '\n');
+
 		Connection conn = DBUtils.getConnection();
 		String GRADE_SUBMISSION = "update registeredCourse set grade = ? where courseid = ? and stuid = ?";
 		PreparedStatement stmt = conn.prepareStatement(GRADE_SUBMISSION);
+
 		stmt.setString(1, grade);
 		stmt.setString(2, courseId);
 		stmt.setString(3, studentId);
 
 		int rows = stmt.executeUpdate();
 		System.out.println("Rows impacted : " + rows);
-		return rows == 1;
+		return rows > 0;
 	}
 
 	@Override
