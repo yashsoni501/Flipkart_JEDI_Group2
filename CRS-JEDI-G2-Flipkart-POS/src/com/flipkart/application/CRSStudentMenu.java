@@ -97,8 +97,8 @@ public class CRSStudentMenu {
 			System.out.println("1. View Selected Courses");
 			System.out.println("2. Drop Course");
 			System.out.println("3. Add Course");
-			System.out.println("5. Submit Registration");
 			System.out.println("4. View Courses");
+			System.out.println("5. Submit Registration");
 			System.out.println("6. Return");
 			int optionChoosed = CRSApplication.scan.nextInt();
 			switch (optionChoosed) {
