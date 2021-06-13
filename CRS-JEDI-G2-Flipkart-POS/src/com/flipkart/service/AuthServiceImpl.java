@@ -67,10 +67,4 @@ public class AuthServiceImpl implements AuthInterface {
 		return authDAO.addUserWithEmailPassword(userEmail, password, userRole);
 	}
 
-	@Override
-	public boolean removeUser(String userId) {
-		// Auto-generated method stub
-		return authDAO.removeUser(userId);
-	}
-
 }

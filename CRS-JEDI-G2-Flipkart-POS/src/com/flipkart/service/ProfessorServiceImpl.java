@@ -63,7 +63,7 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 	}
 
 	@Override
-	public ArrayList<Professor> getAllProfessor() {
+	public ArrayList<Professor> getAllProfessor() throws SQLException {
 		// Auto-generated method stub
 		return professorDAO.getAllProfessor();
 	}

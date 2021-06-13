@@ -47,7 +47,7 @@ public class CRSStudentMenu {
 			try {
 				student = studentInterface.getStudentById(CRSApplication.userId);
 			} catch (SQLException e) {
-				//  Auto-generated catch block
+				// Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -211,7 +211,7 @@ public class CRSStudentMenu {
 			System.out.println(reciept.getReferenceId() + " " + reciept.getModeOfPayment() + " " + reciept.getAmount()
 					+ " " + reciept.getDateOfPayment());
 		} catch (SQLException e) {
-			//  Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -242,7 +242,7 @@ public class CRSStudentMenu {
 		try {
 			reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
 		} catch (SQLException e1) {
-			//  Auto-generated catch block
+			// Auto-generated catch block
 			e1.printStackTrace();
 		}
 		if (reciept.getStatus() == "success") {
@@ -278,7 +278,7 @@ public class CRSStudentMenu {
 				System.out.println("Payment Failed");
 			}
 		} catch (SQLException e) {
-			//  Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

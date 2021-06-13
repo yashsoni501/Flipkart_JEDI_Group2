@@ -282,7 +282,7 @@ public class CRSAdminMenu {
 		System.out.println("Enter Student Id:");
 		String studentId = CRSApplication.scan.next();
 
-		if (CRSApplication.authInterface.removeUser(studentId) && adminInterface.removeStudent(studentId)) {
+		if (adminInterface.removeStudent(studentId)) {
 			System.out.println("Student Removed Successfully");
 		} else {
 			System.out.println("Something went wrong");
@@ -344,7 +344,7 @@ public class CRSAdminMenu {
 		System.out.println("Enter Professor Id:");
 		String profId = CRSApplication.scan.next();
 
-		if (CRSApplication.authInterface.removeUser(profId) && adminInterface.removeProfessor(profId)) {
+		if (adminInterface.removeProfessor(profId)) {
 			System.out.println("Professor Removed Successfully");
 		} else {
 			System.out.println("Something went wrong");
@@ -473,7 +473,12 @@ public class CRSAdminMenu {
 		// Auto-generated method stub
 		ArrayList<Professor> arr = new ArrayList<Professor>();
 
-		arr = professorInterface.getAllProfessor();
+		try {
+			arr = professorInterface.getAllProfessor();
+		} catch (SQLException e) {
+			// Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		for (int i = 0; i < arr.size(); i++) {
 			System.out.println(arr.get(i).getProfessorId() + " " + arr.get(i).getProfessorName() + " "

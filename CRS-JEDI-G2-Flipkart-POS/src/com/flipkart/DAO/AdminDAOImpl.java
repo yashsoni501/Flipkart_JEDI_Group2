@@ -444,7 +444,44 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 	@Override
 	public boolean removeStudent(String studentId) {
-		// TODO Auto-generated method stub
+		final String REMOVE_STUDENT_PROFILE = "delete from student where stuid=?";
+		final String REMOVE_STUDENT_AUTH = "delete from auth where uid=? ";
+
+		// Auto-generated method stub
+		try {
+			Connection conn = DBUtils.getConnection();
+
+			Savepoint savePoint = conn.setSavepoint();
+			conn.setAutoCommit(false);
+
+			PreparedStatement stmt = conn.prepareStatement(REMOVE_STUDENT_PROFILE);
+			stmt.setString(1, studentId);
+
+			int rows = stmt.executeUpdate();
+			if (rows == 0) {
+				conn.rollback(savePoint);
+				conn.setAutoCommit(true);
+				return false;
+			} else {
+				stmt = conn.prepareStatement(REMOVE_STUDENT_AUTH);
+				stmt.setString(1, studentId);
+				rows = stmt.executeUpdate();
+
+				if (rows == 0) {
+					conn.rollback(savePoint);
+					conn.setAutoCommit(true);
+					return false;
+				} else {
+					conn.commit();
+					conn.setAutoCommit(true);
+					return true;
+				}
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 }
