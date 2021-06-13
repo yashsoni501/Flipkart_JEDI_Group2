@@ -132,9 +132,16 @@ public class CRSStudentMenu {
 		// Auto-generated method stub
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
-		for (String courseId : selectedCourses) {
-			registeredCourseInterface.addRegisteredCourse(courseId, semester, null, student.getSession(),
-					student.getStudentID());
+		try {
+			for (String courseId : selectedCourses) {
+
+				registeredCourseInterface.addRegisteredCourse(courseId, semester, null, student.getSession(),
+						student.getStudentID());
+
+			}
+		} catch (SQLException e) {
+			// Auto-generated catch block
+			e.printStackTrace();
 		}
 		System.out.println("success");
 	}
@@ -190,13 +197,19 @@ public class CRSStudentMenu {
 	private void registeredCourses() {
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
-		ArrayList<RegisteredCourse> arr1 = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
-				semester);
-		for (int i = 0; i < arr1.size(); i++) {
-			CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(i).getCourseId());
-			Course course = courseInterface.getCourse(arr1.get(i).getCourseId());
-			System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
-					+ arr.getCredits() + " " + arr.getProfessorId());
+		try {
+			ArrayList<RegisteredCourse> arr1 = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
+					semester);
+
+			for (int i = 0; i < arr1.size(); i++) {
+				CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(i).getCourseId());
+				Course course = courseInterface.getCourse(arr1.get(i).getCourseId());
+				System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment()
+						+ " " + arr.getCredits() + " " + arr.getProfessorId());
+			}
+		} catch (SQLException e) {
+			// Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -250,28 +263,28 @@ public class CRSStudentMenu {
 		Payment reciept = new Payment();
 		try {
 			reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
-		} catch (SQLException e1) {
-			// Auto-generated catch block
-			e1.printStackTrace();
-		}
-		if (reciept.getStatus() == "success") {
-			System.out.println("Fee is already paid for " + semester + " semester");
-			return;
-		}
-		ArrayList<RegisteredCourse> arr1 = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
-				semester);
-		for (int i = 0; i < arr1.size(); i++) {
-			CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(i).getCourseId());
-			Course course = courseInterface.getCourse(arr1.get(i).getCourseId());
-			System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
-					+ " " + arr.getCredits() + " " + arr.getProfessorId());
-		}
-		float amount = 1000;
-		System.out.println("Fee Payable");
-		System.out.println("Enter Mode Of Payment (offline/online)");
-		String modeOfPayment = CRSApplication.scan.next();
-		reciept = null;
-		try {
+
+			if (reciept.getStatus() == "success") {
+				System.out.println("Fee is already paid for " + semester + " semester");
+				return;
+			}
+
+			ArrayList<RegisteredCourse> arr1 = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
+					semester);
+
+			for (int i = 0; i < arr1.size(); i++) {
+				CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(i).getCourseId());
+				Course course = courseInterface.getCourse(arr1.get(i).getCourseId());
+				System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment()
+						+ " " + " " + arr.getCredits() + " " + arr.getProfessorId());
+			}
+
+			float amount = 1000;
+			System.out.println("Fee Payable");
+			System.out.println("Enter Mode Of Payment (offline/online)");
+			String modeOfPayment = CRSApplication.scan.next();
+			reciept = null;
+
 			if (modeOfPayment == "offline") {
 
 				reciept = paymentInterface.offlinePayment(student.getStudentID(), amount, semester);
