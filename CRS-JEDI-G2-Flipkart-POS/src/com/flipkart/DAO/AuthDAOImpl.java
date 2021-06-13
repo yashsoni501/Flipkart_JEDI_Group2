@@ -56,7 +56,7 @@ public class AuthDAOImpl implements AuthDAOInterface {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "";
+		return null;
 	}
 
 	@Override

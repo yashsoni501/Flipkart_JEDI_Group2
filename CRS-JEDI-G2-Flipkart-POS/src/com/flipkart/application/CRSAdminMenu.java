@@ -204,7 +204,7 @@ public class CRSAdminMenu {
 		String session = CRSApplication.scan.next();
 
 		System.out.println("Enter Credits:");
-		int credits = CRSApplication.scan.nextInt();
+		float credits = CRSApplication.scan.nextFloat();
 
 		if (adminInterface.addCourseCatalog(courseId, semester, session, credits, null)) {
 			System.out.println("Course Added to Catalog");
@@ -240,7 +240,7 @@ public class CRSAdminMenu {
 		String session = CRSApplication.scan.next();
 
 		System.out.println("Enter Credits:");
-		int credits = CRSApplication.scan.nextInt();
+		float credits = CRSApplication.scan.nextFloat();
 
 		if (adminInterface.modifyCourseCatalog(courseId, semester, session, credits, null)) {
 			System.out.println("Course Catalog Updated Successfully");
@@ -282,7 +282,7 @@ public class CRSAdminMenu {
 		System.out.println("Enter Student Id:");
 		String studentId = CRSApplication.scan.next();
 
-		if (CRSApplication.authInterface.removeUser(studentId) && adminInterface.removeProfessor(studentId)) {
+		if (CRSApplication.authInterface.removeUser(studentId) && adminInterface.removeStudent(studentId)) {
 			System.out.println("Student Removed Successfully");
 		} else {
 			System.out.println("Something went wrong");

@@ -23,8 +23,6 @@ public interface AdminInterface {
 
 	public boolean setPaymentFlag(boolean flag);
 
-	public boolean generateReportCard(String session, int semester);
-
 	public boolean removeProfessor(String profId);
 
 	public boolean modifyProfessor(String profId, String professorName, String department);
@@ -35,9 +33,11 @@ public interface AdminInterface {
 
 	public boolean modifyCourse(String courseId, String courseName, String department);
 
-	public boolean addCourseCatalog(String courseId, int semester, String session, int credits, String profId);
+	public boolean addCourseCatalog(String courseId, int semester, String session, float credits, String profId);
 
-	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits, String profId);
+	public boolean modifyCourseCatalog(String courseId, int semester, String session, float credits, String profId);
 
 	public Admin getAdminById(String userId);
+
+	public boolean removeStudent(String studentId);
 }

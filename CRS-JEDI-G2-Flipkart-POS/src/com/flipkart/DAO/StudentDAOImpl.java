@@ -53,14 +53,14 @@ public class StudentDAOImpl implements StudentDAOInterface {
 
 		while (myRs.next()) {
 
-			int coruse = myRs.getInt("courseid");
-			stamnt.setInt(1, coruse);
+			String course = myRs.getString("courseid");
+			stamnt.setString(1, course);
 			newRs = stamnt.executeQuery();
 			while (newRs.next()) {
 
 				CourseCatalog courseFound = new CourseCatalog();
 				courseFound.setCourseId(newRs.getString("courseid"));
-				courseFound.setCredits(newRs.getInt("credits"));
+				courseFound.setCredits(newRs.getFloat("credits"));
 				courseFound.setProfessorId(newRs.getString("profid"));
 				courseFound.setSession(newRs.getString("session"));
 				courseFound.setSemester(newRs.getInt("semester"));

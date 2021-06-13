@@ -207,12 +207,6 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	}
 
 	@Override
-	public boolean generateReportCard(String session, int semester) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean removeProfessor(String profId) {
 		final String REMOVE_PROFESSOR_PROFILE = "delete from professor where profid=?";
 		final String REMOVE_PROFESSOR_AUTH = "delete from auth where uid=? ";
@@ -362,7 +356,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	}
 
 	@Override
-	public boolean addCourseCatalog(String courseId, int semester, String session, int credits, String profId) {
+	public boolean addCourseCatalog(String courseId, int semester, String session, float credits, String profId) {
 		final String ADD_COURSE_CATALOG = "insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values (?, ?, ?, ?, ?)";
 
 		try {
@@ -373,7 +367,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			stmt.setString(2, profId);
 			stmt.setInt(3, semester);
 			stmt.setString(4, session);
-			stmt.setInt(5, credits);
+			stmt.setFloat(5, credits);
 
 			int rows = stmt.executeUpdate();
 			if (rows == 0) {
@@ -390,7 +384,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	}
 
 	@Override
-	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits, String profId) {
+	public boolean modifyCourseCatalog(String courseId, int semester, String session, float credits, String profId) {
 		final String MODIFY_COURSE_CATALOG = "update courseCatalog set profid=?, semester=?, session=?, credits=? where coureid=?";
 
 		try {
@@ -400,7 +394,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			stmt.setString(1, profId);
 			stmt.setInt(2, semester);
 			stmt.setString(3, session);
-			stmt.setInt(4, credits);
+			stmt.setFloat(4, credits);
 			stmt.setString(5, courseId);
 
 			int rows = stmt.executeUpdate();
