@@ -93,19 +93,19 @@ public class CRSProfessorMenu {
 				System.out.println("Failure");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
 	private void viewOptedCourses() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		try {
 			arr = professorInterface.viewOptedCourses(CRSApplication.userId);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (int i = 0; i < arr.size(); i++) {
@@ -117,7 +117,7 @@ public class CRSProfessorMenu {
 	}
 
 	private void viewEnrolledStudentsInCourse() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		System.out.println("Enter Course Id");
 		String courseId = CRSApplication.scan.next();
 		System.out.println("Enter Session");
@@ -126,7 +126,7 @@ public class CRSProfessorMenu {
 		try {
 			arr = professorInterface.viewEnrolledStudents(courseId, session);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.printStackTrace();
 		}
 		for (int i = 0; i < arr.size(); i++) {
@@ -150,7 +150,7 @@ public class CRSProfessorMenu {
 	}
 
 	private void submitGrades() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 
 		System.out.println("Submit Grade Menu");
 
@@ -170,7 +170,7 @@ public class CRSProfessorMenu {
 				System.out.println("Failure");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			//  Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

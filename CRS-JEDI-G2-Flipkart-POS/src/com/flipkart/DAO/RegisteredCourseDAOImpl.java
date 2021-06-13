@@ -76,7 +76,7 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 
 	@Override
 	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester) throws SQLException {
-		// TODO Auto-generated method stub
+		//  Auto-generated method stub
 		Connection conn = DBUtils.getConnection();
 
 		String REGISTERED_COURSES = "select * from registeredCourse where stuid = ? and semester = ?";
