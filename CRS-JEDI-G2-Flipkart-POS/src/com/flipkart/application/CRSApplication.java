@@ -21,6 +21,7 @@ public class CRSApplication {
 
 	/**
 	 * @param args
+	 * @throws SQLException
 	 */
 	public static void main(String[] args) {
 		CRSApplication crsApplication = new CRSApplication();
@@ -46,7 +47,7 @@ public class CRSApplication {
 	}
 
 	public void updatePassword() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		String userEmail, newPassword, oldPassword;
 
 		System.out.println("------------------Update Password--------------------");
@@ -90,13 +91,7 @@ public class CRSApplication {
 			case "PROFESSOR":
 				System.out.println("Professor Login Successful");
 				CRSProfessorMenu professorMenu = new CRSProfessorMenu();
-				try {
-					professorMenu.createMenu();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
+				professorMenu.createMenu();
 				break;
 			case "STUDENT":
 				System.out.println("Student Login Successful");
@@ -108,7 +103,7 @@ public class CRSApplication {
 	}
 
 	public static void logout() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		userId = null;
 		authInterface.logout();
 		System.out.println(" Logout Successful");

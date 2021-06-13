@@ -18,7 +18,7 @@ public class DBTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		Connection conn = DBUtils.getConnection();
 		try {
 			final String INSERT = "insert into auth (`uid`, `email`, `password`, `userRole`) values (?, ?, ?, ?)";

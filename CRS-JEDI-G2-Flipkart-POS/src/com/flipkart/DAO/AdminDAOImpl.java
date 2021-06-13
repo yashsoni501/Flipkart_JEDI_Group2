@@ -119,7 +119,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	public boolean addStudent(String studentId, String name, String department, String emailId, String session) {
 
 		final String ADD_STUDENT = "insert into student (`stuid`, `email`, `name`, `department`, `session`) values (?, ?, ?, ?, ?)";
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		try {
 			Connection conn = DBUtils.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(ADD_STUDENT);
@@ -150,7 +150,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	public boolean setCourseRegistrationFlag(boolean flag) {
 		final String EDIT_COURSE_REGISTRATION = "update constants set value=? where key=?";
 
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		try {
 			Connection conn = DBUtils.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(EDIT_COURSE_REGISTRATION);
@@ -180,7 +180,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	public boolean setPaymentFlag(boolean flag) {
 		final String EDIT_PAYMENT_FLAG = "update constants set value=? where key=?";
 
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		try {
 			Connection conn = DBUtils.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(EDIT_PAYMENT_FLAG);
@@ -211,7 +211,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		final String REMOVE_PROFESSOR_PROFILE = "delete from professor where profid=?";
 		final String REMOVE_PROFESSOR_AUTH = "delete from auth where uid=? ";
 
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		try {
 			Connection conn = DBUtils.getConnection();
 
@@ -253,7 +253,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	public boolean modifyProfessor(String profId, String professorName, String department) {
 		final String MODIFY_PROFESSOR = "update professor set name=?, department=? where profid=?";
 
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		try {
 			Connection conn = DBUtils.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(MODIFY_PROFESSOR);
@@ -280,7 +280,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	public boolean modifyStudnet(String studentId, String studentName, String department, String session) {
 		final String MODIFY_STUDENT = "update student set name=?, department=?, session=? where stuid=?";
 
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		try {
 			Connection conn = DBUtils.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(MODIFY_STUDENT);
@@ -308,7 +308,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	public boolean removeCourseCatalog(String courseId) {
 		final String REMOVE_COURSE_CATALOG = "delete from courseCatalog where courseid=?";
 
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		try {
 			Connection conn = DBUtils.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(REMOVE_COURSE_CATALOG);
@@ -440,5 +440,48 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public boolean removeStudent(String studentId) {
+		final String REMOVE_STUDENT_PROFILE = "delete from student where stuid=?";
+		final String REMOVE_STUDENT_AUTH = "delete from auth where uid=? ";
+
+		// Auto-generated method stub
+		try {
+			Connection conn = DBUtils.getConnection();
+
+			Savepoint savePoint = conn.setSavepoint();
+			conn.setAutoCommit(false);
+
+			PreparedStatement stmt = conn.prepareStatement(REMOVE_STUDENT_PROFILE);
+			stmt.setString(1, studentId);
+
+			int rows = stmt.executeUpdate();
+			if (rows == 0) {
+				conn.rollback(savePoint);
+				conn.setAutoCommit(true);
+				return false;
+			} else {
+				stmt = conn.prepareStatement(REMOVE_STUDENT_AUTH);
+				stmt.setString(1, studentId);
+				rows = stmt.executeUpdate();
+
+				if (rows == 0) {
+					conn.rollback(savePoint);
+					conn.setAutoCommit(true);
+					return false;
+				} else {
+					conn.commit();
+					conn.setAutoCommit(true);
+					return true;
+				}
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

@@ -61,7 +61,7 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 
 	@Override
 	public ArrayList<CourseCatalog> getAllCourseCatalog() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return courseDAO.getAllCourseCatalog();
 	}
 
