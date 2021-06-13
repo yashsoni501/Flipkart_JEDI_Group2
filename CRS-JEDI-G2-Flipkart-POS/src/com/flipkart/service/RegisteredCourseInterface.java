@@ -14,13 +14,9 @@ import com.flipkart.bean.Student;
  */
 public interface RegisteredCourseInterface {
 
-	public boolean modifyGrade(String studentId, String courseId, String grade);
-
-	public String viewGrade(String studentId, String courseId);
-
 	public ArrayList<Student> getEnrolledStudents(String courseId, int semester, String session);
 
 	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester);
 
-	public void addRegisteredCourse(String courseId, int semester, String grade, String session, String studentID);
+	public boolean addRegisteredCourse(String courseId, int semester, String grade, String session, String studentID);
 }

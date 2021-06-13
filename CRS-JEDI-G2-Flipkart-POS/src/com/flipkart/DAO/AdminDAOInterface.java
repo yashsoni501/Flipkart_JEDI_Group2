@@ -15,8 +15,6 @@ public interface AdminDAOInterface {
 
 	public boolean setPaymentFlag(boolean flag);
 
-
-
 	public boolean removeProfessor(String profId);
 
 	public boolean modifyProfessor(String profId, String professorName, String department);
