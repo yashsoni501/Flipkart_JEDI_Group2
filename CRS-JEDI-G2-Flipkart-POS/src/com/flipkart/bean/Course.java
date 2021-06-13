@@ -54,20 +54,4 @@ public class Course {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-
-	/**
-	 * @return the details
-	 */
-	public String getDetails() {
-		return details;
-	}
-
-	/**
-	 * @param details the details to set
-	 */
-	public void setDetails(String details) {
-		this.details = details;
-	}
-
-	private String details;
 }

@@ -11,7 +11,7 @@ public class SemesterReportCard {
 
 	private String studentID;
 	private float sgpa;
-	private String currentSem;
+	private int currentSem;
 
 	/**
 	 * @return the studentID
@@ -44,14 +44,15 @@ public class SemesterReportCard {
 	/**
 	 * @return the currentSem
 	 */
-	public String getCurrentSem() {
+	public int getCurrentSem() {
 		return currentSem;
 	}
 
 	/**
 	 * @param currentSem the currentSem to set
 	 */
-	public void setCurrentSem(String currentSem) {
+	public void setCurrentSem(int currentSem) {
 		this.currentSem = currentSem;
 	}
+
 }

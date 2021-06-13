@@ -22,7 +22,7 @@ public interface ProfessorInterface {
 
 	public Professor getProfessorDetails(String userId) throws SQLException;
 
-	public ArrayList<Student> viewEnrolledStudents(String courseId) throws SQLException;
+	public ArrayList<Student> viewEnrolledStudents(String courseId, String session) throws SQLException;
 
 	public boolean submitGrade(String courseId, String studentId, String grade) throws SQLException;
 

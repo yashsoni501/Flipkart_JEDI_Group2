@@ -9,24 +9,24 @@ package com.flipkart.bean;
  */
 public class RegisteredCourse {
 
-	private String course_id;
+	private String courseId;
 	private int semester;
 	private String grade;
 	private String session;
-	private String student_id;
+	private String studentId;
 
 	/**
 	 * @return the course_id
 	 */
-	public String getCourse_id() {
-		return course_id;
+	public String getCourseId() {
+		return courseId;
 	}
 
 	/**
 	 * @param course_id the course_id to set
 	 */
-	public void setCourse_id(String course_id) {
-		this.course_id = course_id;
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
 	}
 
 	/**
@@ -74,15 +74,15 @@ public class RegisteredCourse {
 	/**
 	 * @return the student_id
 	 */
-	public String getStudent_id() {
-		return student_id;
+	public String getStudentId() {
+		return studentId;
 	}
 
 	/**
 	 * @param student_id the student_id to set
 	 */
-	public void setStudent_id(String student_id) {
-		this.student_id = student_id;
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
 	}
 
 }

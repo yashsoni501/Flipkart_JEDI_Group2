@@ -24,16 +24,10 @@ public interface CourseDAOInterface {
 
 	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department);
 
-//	void in CourseCatalogInterface ??
 	public ArrayList<CourseCatalog> getAllCourseCatalog();
 
 	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId);
 
 	public boolean updateProfessorId(String courseId, String professorId);
-
-//	public boolean updateProfessorId(String courseId, String professorId);
-//	public boolean updateIsOffered(String courseId);
-//	public void getCourseCatalogByProfessorId(String userId);
-//	public void getAllCourseCatalog();
 
 }

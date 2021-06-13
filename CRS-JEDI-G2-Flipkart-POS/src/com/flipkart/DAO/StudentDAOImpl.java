@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import com.flipkart.bean.Student;
 import com.flipkart.utils.DBUtils;
 import com.flipkart.bean.Course;
+import com.flipkart.bean.CourseCatalog;
 
 /**
  * @author Aeron
@@ -36,7 +37,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	}
 
 	@Override
-	public ArrayList<Course> fetchRegisteredCourses(String studentId, int sem) throws SQLException {
+	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int sem) throws SQLException {
 		Connection conn = DBUtils.getConnection();
 
 		String STUDENT_REGISTERED_COURSES = "select * from registeredCourse where stuid = ? and semester = ?";
@@ -45,47 +46,30 @@ public class StudentDAOImpl implements StudentDAOInterface {
 		stmt.setInt(2, sem);
 		ResultSet myRs = stmt.executeQuery();
 
-		String COURSES_BY_ID = "select * from course where courseid = ?";
-		PreparedStatement stamnt = conn.prepareStatement(COURSES_BY_ID);
+		String COURSECATALOG_BY_ID = "select * from courseCatalog where courseid = ?";
+		PreparedStatement stamnt = conn.prepareStatement(COURSECATALOG_BY_ID);
 		ResultSet newRs;
-		ArrayList<Course> RegisteredCourseList = new ArrayList<Course>();
+		ArrayList<CourseCatalog> RegisteredCourseList = new ArrayList<CourseCatalog>();
 
 		while (myRs.next()) {
 
-			int coruse = myRs.getInt("courseid");
-			stamnt.setInt(1, coruse);
+			String course = myRs.getString("courseid");
+			stamnt.setString(1, course);
 			newRs = stamnt.executeQuery();
 			while (newRs.next()) {
 
-				Course courseFound = new Course();
-				courseFound.setCourseID(newRs.getString("courseid"));
-				courseFound.setCourseName(newRs.getString("courseName"));
-				courseFound.setDepartment(newRs.getString("department"));
+				CourseCatalog courseFound = new CourseCatalog();
+				courseFound.setCourseId(newRs.getString("courseid"));
+				courseFound.setCredits(newRs.getFloat("credits"));
+				courseFound.setProfessorId(newRs.getString("profid"));
+				courseFound.setSession(newRs.getString("session"));
+				courseFound.setSemester(newRs.getInt("semester"));
 
 				RegisteredCourseList.add(courseFound);
 			}
 		}
 
 		return RegisteredCourseList;
-	}
-
-	@Override
-	public boolean isFeePaid(String studentId, int sem) throws SQLException {
-		Connection conn = DBUtils.getConnection();
-
-		String STUDENT_FEE_STATUS = "select * from payment where stuid = ? and semester = ?";
-		PreparedStatement stmt = conn.prepareStatement(STUDENT_FEE_STATUS);
-		stmt.setInt(1, Integer.parseInt(studentId));
-		stmt.setInt(2, sem);
-		ResultSet myRs = stmt.executeQuery();
-
-		boolean flag = false;
-		while (myRs.next()) {
-			if (myRs.getString("status") == "SUCCESS")
-				flag = true;
-		}
-
-		return flag;
 	}
 
 	@Override

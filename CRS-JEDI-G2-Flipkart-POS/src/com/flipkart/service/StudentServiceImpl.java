@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.sql.SQLException;
 
 import com.flipkart.bean.Course;
+import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.Student;
 import com.flipkart.DAO.StudentDAOImpl;
 import com.flipkart.DAO.StudentDAOInterface;
@@ -32,15 +33,9 @@ public class StudentServiceImpl implements StudentInterface {
 	}
 
 	@Override
-	public ArrayList<Course> fetchRegisteredCourses(String studentId, int semester) throws SQLException {
+	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int semester) throws SQLException {
 		// TODO Auto-generated method stub
 		return studentDAO.fetchRegisteredCourses(studentId, semester);
-	}
-
-	@Override
-	public boolean isFeePaid(String studentId, int semester) throws SQLException {
-		// TODO Auto-generated method stub
-		return studentDAO.isFeePaid(studentId, semester);
 	}
 
 	@Override

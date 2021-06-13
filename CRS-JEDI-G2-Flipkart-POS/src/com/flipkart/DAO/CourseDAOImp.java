@@ -42,22 +42,18 @@ public class CourseDAOImp implements CourseDAOInterface {
 
 			// System.out.println("Connecting to database...");
 
-			String sql = "select * from course where courseName=? limit 1";
+			String sql = "select * from course where courseid=?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, courseId);
 			ResultSet rs = stmt.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				res.setCourseID(rs.getString("courseid"));
 				res.setCourseName(rs.getString("courseName"));
 				res.setDepartment(rs.getString("department"));
 
-			} else {
-				// or throw exception? no entry found
 			}
 
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -91,9 +87,6 @@ public class CourseDAOImp implements CourseDAOInterface {
 				res.add(temp);
 
 			}
-
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -111,23 +104,18 @@ public class CourseDAOImp implements CourseDAOInterface {
 		CourseCatalog res = new CourseCatalog();
 
 		try {
-			String sql = "select * from courseCatalog where courseid=? limit 1";
+			String sql = "select * from courseCatalog where courseid=?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, courseId);
 			ResultSet rs = stmt.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				res.setCourseId(String.valueOf(rs.getInt("courseid")));
 				res.setProfessorId(rs.getString("profid"));
 				res.setSemester(rs.getInt("semester"));
 				res.setSession(rs.getString("session"));
-				res.setCredits((int) rs.getFloat("credits"));
-			} else {
-				// or throw exception? no entry found
+				res.setCredits(rs.getFloat("credits"));
 			}
-
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -160,14 +148,12 @@ public class CourseDAOImp implements CourseDAOInterface {
 				temp.setProfessorId(rs.getString("profid"));
 				temp.setSemester(rs.getInt("semester"));
 				temp.setSession(rs.getString("session"));
-				temp.setCredits((int) rs.getFloat("credits"));
+				temp.setCredits(rs.getFloat("credits"));
 
 				res.add(temp);
 
 			}
 
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -193,20 +179,18 @@ public class CourseDAOImp implements CourseDAOInterface {
 
 			while (rs.next()) {
 				// Retrieve by column name
-				CourseCatalog temp = new CourseCatalog();
+				if (rs.getString("profid").equals(null)) {
+					CourseCatalog temp = new CourseCatalog();
 
-				temp.setCourseId(String.valueOf(rs.getInt("courseid")));
-				temp.setProfessorId(rs.getString("profid"));
-				temp.setSemester(rs.getInt("semester"));
-				temp.setSession(rs.getString("session"));
-				temp.setCredits((int) rs.getFloat("credits"));
+					temp.setCourseId(String.valueOf(rs.getInt("courseid")));
+					temp.setProfessorId(rs.getString("profid"));
+					temp.setSemester(rs.getInt("semester"));
+					temp.setSession(rs.getString("session"));
+					temp.setCredits(rs.getFloat("credits"));
 
-				res.add(temp);
-
+					res.add(temp);
+				}
 			}
-
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -233,18 +217,15 @@ public class CourseDAOImp implements CourseDAOInterface {
 				// Retrieve by column name
 				CourseCatalog temp = new CourseCatalog();
 
-				temp.setCourseId(String.valueOf(rs.getInt("courseid")));
+				temp.setCourseId(rs.getString("courseid"));
 				temp.setProfessorId(rs.getString("profid"));
 				temp.setSemester(rs.getInt("semester"));
 				temp.setSession(rs.getString("session"));
-				temp.setCredits((int) rs.getFloat("credits"));
+				temp.setCredits(rs.getFloat("credits"));
 
 				res.add(temp);
 
 			}
-
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -272,18 +253,16 @@ public class CourseDAOImp implements CourseDAOInterface {
 				// Retrieve by column name
 				CourseCatalog temp = new CourseCatalog();
 
-				temp.setCourseId(String.valueOf(rs.getInt("courseid")));
+				temp.setCourseId(rs.getString("courseid"));
 				temp.setProfessorId(rs.getString("profid"));
 				temp.setSemester(rs.getInt("semester"));
 				temp.setSession(rs.getString("session"));
-				temp.setCredits((int) rs.getFloat("credits"));
+				temp.setCredits(rs.getFloat("credits"));
 
 				res.add(temp);
 
 			}
 
-			stmt.close();
-			;
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
@@ -319,39 +298,6 @@ public class CourseDAOImp implements CourseDAOInterface {
 		}
 		return true;
 	}
-
-	public boolean updateIsOffered(String courseId) {
-
-		Connection conn = DBUtils.getConnection();
-		PreparedStatement stmt = null;
-
-		boolean res = false;
-
-		try {
-			String sql = "select * from courseCatalog where courseid=? limit 1";
-//		    System.out.println(sql);
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, courseId);
-			ResultSet rs = stmt.executeQuery();
-
-			if (rs.next()) {
-				if (rs.getString("profid").equals("-1")) {
-					res = true;
-				}
-
-			}
-
-			stmt.close();
-			;
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.printStackTrace();
-		}
-		return res;
-	}
-
 //	public static void main(String[] args) {
 //		CourseDAOImp as = new CourseDAOImp();
 

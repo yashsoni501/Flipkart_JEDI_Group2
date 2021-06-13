@@ -80,13 +80,13 @@ public class AdminServiceImpl implements AdminInterface {
 	}
 
 	@Override
-	public boolean addCourseCatalog(String courseId, int semester, String session, int credits, String profId) {
+	public boolean addCourseCatalog(String courseId, int semester, String session, float credits, String profId) {
 		// TODO Auto-generated method stub
 		return adminDAO.addCourseCatalog(courseId, semester, session, credits, profId);
 	}
 
 	@Override
-	public boolean modifyCourseCatalog(String courseId, int semester, String session, int credits, String profId) {
+	public boolean modifyCourseCatalog(String courseId, int semester, String session, float credits, String profId) {
 		// TODO Auto-generated method stub
 		return adminDAO.modifyCourseCatalog(courseId, semester, session, credits, profId);
 	}
@@ -98,15 +98,15 @@ public class AdminServiceImpl implements AdminInterface {
 	}
 
 	@Override
-	public boolean generateReportCard(String session, int semester) {
-		// TODO Auto-generated method stub
-		return adminDAO.generateReportCard(session, semester);
-	}
-
-	@Override
 	public Admin getAdminById(String userId) {
 		// TODO Auto-generated method stub
 		return adminDAO.getAdminById(userId);
+	}
+
+	@Override
+	public boolean removeStudent(String studentId) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
