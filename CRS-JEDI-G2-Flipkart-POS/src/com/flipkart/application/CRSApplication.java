@@ -24,7 +24,8 @@ public class CRSApplication {
 	 * @throws SQLException
 	 */
 	public static void main(String[] args) {
-		CRSApplication crsApplication = new CRSApplip
+		CRSApplication crsApplication = new CRSApplication();
+		createMainMenu();
 		int userInput = scan.nextInt();
 		while (userInput != 3) {
 			switch (userInput) {
