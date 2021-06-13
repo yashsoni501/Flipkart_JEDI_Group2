@@ -133,6 +133,8 @@ public class CourseDAOImp implements CourseDAOInterface {
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
 		try {
+//			System.out.println("Sem: " + semester + ", session: " + session + "\n");
+
 			String sql = "select * from courseCatalog where session = ? and semester = ?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, session);
@@ -179,7 +181,7 @@ public class CourseDAOImp implements CourseDAOInterface {
 
 			while (rs.next()) {
 				// Retrieve by column name
-				if (rs.getString("profid").equals(null)) {
+				if (rs.getString("profid") == null) {
 					CourseCatalog temp = new CourseCatalog();
 
 					temp.setCourseId(String.valueOf(rs.getInt("courseid")));

@@ -102,7 +102,7 @@ public class CRSStudentMenu {
 			return;
 		}
 
-		ArrayList<String> selectedCourses = new ArrayList<String>();
+		ArrayList<CourseCatalog> selectedCourses = new ArrayList<CourseCatalog>();
 
 		while (true) {
 			System.out.println("\n----------Course Registration-----------");
@@ -118,10 +118,10 @@ public class CRSStudentMenu {
 				viewSeletedCourses(selectedCourses);
 				break;
 			case 2:
-				selectedCourses = addCourse(selectedCourses);
+				selectedCourses = dropCourse(selectedCourses);
 				break;
 			case 3:
-				selectedCourses = dropCourse(selectedCourses);
+				selectedCourses = addCourse(selectedCourses);
 				break;
 			case 4:
 				viewCourses();
@@ -138,15 +138,19 @@ public class CRSStudentMenu {
 
 	}
 
-	private void submitRegistration(ArrayList<String> selectedCourses) {
-		// Auto-generated method stub
+	private void submitRegistration(ArrayList<CourseCatalog> selectedCourses) {
+		if (selectedCourses.size() != 6) {
+			System.out.println("Please select exactly 6 courses. You have chosen " + selectedCourses.size());
+			return;
+		}
+
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
 		try {
-			for (String courseId : selectedCourses) {
+			for (CourseCatalog course : selectedCourses) {
 
-				registeredCourseInterface.addRegisteredCourse(courseId, semester, null, student.getSession(),
-						student.getStudentID());
+				registeredCourseInterface.addRegisteredCourse(course.getCourseId(), semester, null,
+						student.getSession(), student.getStudentID());
 
 			}
 		} catch (SQLException e) {
@@ -156,17 +160,16 @@ public class CRSStudentMenu {
 		System.out.println("success");
 	}
 
-	private void viewSeletedCourses(ArrayList<String> selectedCourses) {
+	private void viewSeletedCourses(ArrayList<CourseCatalog> selectedCourses) {
 		// Auto-generated method stub
-		for (String courseId : selectedCourses) {
-			CourseCatalog arr = courseCatalogInterface.getCourseCatalog(courseId);
-			Course course = courseInterface.getCourse(courseId);
+		for (CourseCatalog arr : selectedCourses) {
+			Course course = courseInterface.getCourse(arr.getCourseId());
 			System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
 					+ arr.getSemester() + " " + arr.getSession() + " " + arr.getCredits());
 		}
 	}
 
-	private ArrayList<String> addCourse(ArrayList<String> selectedCourses) {
+	private ArrayList<CourseCatalog> addCourse(ArrayList<CourseCatalog> selectedCourses) {
 		// Auto-generated method stub
 		if (selectedCourses.size() == 6) {
 			System.out.println("Maximum number of Courses are already added");
@@ -174,19 +177,30 @@ public class CRSStudentMenu {
 		}
 		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
-		selectedCourses.add(courseId);
+
+		CourseCatalog course = courseCatalogInterface.getCourseCatalog(courseId);
+
+		if (course.getCourseId() == null) {
+			System.out.println("Course with given ID does not exist");
+		} else {
+			if (!selectedCourses.contains(course)) {
+				selectedCourses.add(course);
+			} else {
+				System.out.println("You have already selected this course");
+			}
+		}
 		return selectedCourses;
 	}
 
-	private ArrayList<String> dropCourse(ArrayList<String> selectedCourses) {
+	private ArrayList<CourseCatalog> dropCourse(ArrayList<CourseCatalog> selectedCourses) {
 		// Auto-generated method stub
-		if (selectedCourses.size() == 6) {
+		if (selectedCourses.size() == 0) {
 			System.out.println("No course to drop");
 			return selectedCourses;
 		}
 		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
-		selectedCourses.add(courseId);
+		selectedCourses.removeIf(course -> course.getCourseId() == courseId);
 		return selectedCourses;
 	}
 
@@ -229,7 +243,7 @@ public class CRSStudentMenu {
 		Payment reciept = null;
 		try {
 			reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
-			if (reciept.getStatus() == "failure") {
+			if (reciept.getStatus().equalsIgnoreCase("failure")) {
 				System.out.println("Fee is not paid for " + semester + " semester");
 				return;
 			}
@@ -246,17 +260,22 @@ public class CRSStudentMenu {
 			ArrayList<SemesterReportCard> semesterReportCards = semesterReportCardInterface
 					.getSemesterReportCardByStudentId(CRSApplication.userId);
 
+			if (semesterReportCards.size() == 0) {
+				System.out.println("The report cards aren't yet generated");
+				return;
+			}
+
 			for (int i = 0; i < semesterReportCards.size(); i++) {
 				ArrayList<RegisteredCourse> arr1 = registeredCourseInterface
 						.getRegisteredCourses(student.getStudentID(), semesterReportCards.get(i).getCurrentSem());
 				System.out.println("Semester : " + semesterReportCards.get(i).getCurrentSem() + ""
 						+ " Semeseter sgpa : " + semesterReportCards.get(i).getSgpa());
-				for (int j = 0; i < arr1.size(); j++) {
+				for (int j = 0; j < arr1.size(); j++) {
 					CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(j).getCourseId());
 					Course course = courseInterface.getCourse(arr1.get(j).getCourseId());
 					System.out.println(
 							course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
-									+ arr.getProfessorId() + " " + arr.getCredits() + " " + arr1.get(i).getGrade());
+									+ arr.getProfessorId() + " " + arr.getCredits() + " " + arr1.get(j).getGrade());
 				}
 				System.out.println("");
 			}
@@ -279,9 +298,11 @@ public class CRSStudentMenu {
 		int semester = CRSApplication.scan.nextInt();
 		Payment reciept = new Payment();
 		try {
+			String PAYMENT_SUCCESS = "SUCCESS";
+
 			reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
 
-			if (reciept.getStatus() == "success") {
+			if (reciept.getStatus().equalsIgnoreCase(PAYMENT_SUCCESS)) {
 				System.out.println("Fee is already paid for " + semester + " semester");
 				return;
 			}
@@ -297,12 +318,13 @@ public class CRSStudentMenu {
 			}
 
 			float amount = 1000;
-			System.out.println("Fee Payable");
+			System.out.println("Fee Payable: Rs " + amount);
 			System.out.println("Enter Mode Of Payment (offline/online)");
 			String modeOfPayment = CRSApplication.scan.next();
 			reciept = null;
 
-			if (modeOfPayment == "offline") {
+			String OFFLINE = "OFFLINE";
+			if (modeOfPayment.equalsIgnoreCase(OFFLINE)) {
 
 				reciept = paymentInterface.offlinePayment(student.getStudentID(), amount, semester);
 
@@ -310,7 +332,8 @@ public class CRSStudentMenu {
 				reciept = paymentInterface.onlinePayment(student.getStudentID(), amount, semester);
 			}
 			System.out.println(reciept.getStatus());
-			if (reciept.getStatus() == "success") {
+
+			if (reciept.getStatus().equalsIgnoreCase(PAYMENT_SUCCESS)) {
 				System.out.println(reciept.getReferenceId() + " " + reciept.getModeOfPayment() + " "
 						+ reciept.getAmount() + " " + reciept.getDateOfPayment());
 			} else {

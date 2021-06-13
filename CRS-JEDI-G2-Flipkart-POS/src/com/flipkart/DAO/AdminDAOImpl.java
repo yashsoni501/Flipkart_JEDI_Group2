@@ -148,8 +148,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		try {
 			Connection conn = DBUtils.getConnection();
 
+			conn.setAutoCommit(false);
 			Savepoint safepoint = conn.setSavepoint();
-			conn.setAutoCommit(true);
 
 			PreparedStatement stmt = conn.prepareStatement(ADD_USER);
 			stmt.setString(1, emailId);
@@ -164,6 +164,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			} else {
 				AuthDAOInterface authDAO = AuthDAOImpl.getInstance();
 				String uid = authDAO.verifyUserWithEmailPassword(emailId, password);
+
+				System.out.println("UserID: " + uid + " from verify method");
 
 				stmt = conn.prepareStatement(ADD_STUDENT);
 
@@ -195,7 +197,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 	@Override
 	public boolean setCourseRegistrationFlag(boolean flag) {
-		final String EDIT_COURSE_REGISTRATION = "update constants set value=? where key=?";
+		final String EDIT_COURSE_REGISTRATION = "update constants set value=? where `key`=?";
 
 		// Auto-generated method stub
 		try {
@@ -225,7 +227,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 	@Override
 	public boolean setPaymentFlag(boolean flag) {
-		final String EDIT_PAYMENT_FLAG = "update constants set value=? where key=?";
+		final String EDIT_PAYMENT_FLAG = "update constants set value=? where `key`=?";
 
 		// Auto-generated method stub
 		try {
@@ -255,7 +257,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 	@Override
 	public boolean setProfessorFlag(boolean flag) {
-		final String EDIT_PROFESSOR_FLAG = "update constants set value=? where key=?";
+		final String EDIT_PROFESSOR_FLAG = "update constants set value=? where `key`=?";
 
 		// TODO Auto-generated method stub
 		try {
@@ -462,7 +464,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 	@Override
 	public boolean modifyCourseCatalog(String courseId, int semester, String session, float credits, String profId) {
-		final String MODIFY_COURSE_CATALOG = "update courseCatalog set profid=?, semester=?, session=?, credits=? where coureid=?";
+		final String MODIFY_COURSE_CATALOG = "update courseCatalog set profid=?, semester=?, session=?, credits=? where courseid=?";
 
 		try {
 			Connection conn = DBUtils.getConnection();
@@ -520,7 +522,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	}
 
 	private boolean getBooleanConstants(String key) {
-		final String GET_FLAG = "select value from constants where key=?";
+		final String GET_FLAG = "select value from constants where `key`=?";
 
 		try {
 			Connection conn = DBUtils.getConnection();
@@ -555,8 +557,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		try {
 			Connection conn = DBUtils.getConnection();
 
-			Savepoint savePoint = conn.setSavepoint();
 			conn.setAutoCommit(false);
+			Savepoint savePoint = conn.setSavepoint();
 
 			PreparedStatement stmt = conn.prepareStatement(REMOVE_STUDENT_PROFILE);
 			stmt.setString(1, studentId);

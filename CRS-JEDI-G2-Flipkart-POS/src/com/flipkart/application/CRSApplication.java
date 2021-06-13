@@ -99,6 +99,8 @@ public class CRSApplication {
 				studentMenu.createMenu();
 				break;
 			}
+		} else {
+			System.out.println("Invalid Credentials");
 		}
 	}
 

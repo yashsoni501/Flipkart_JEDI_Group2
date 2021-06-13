@@ -111,26 +111,22 @@ public class AdminServiceImpl implements AdminInterface {
 
 	@Override
 	public boolean setProfessorFlag(boolean flag) {
-		// TODO Auto-generated method stub
-		return false;
+		return adminDAO.setProfessorFlag(flag);
 	}
 
 	@Override
 	public boolean getCourseRegistrationFlag() {
-		// TODO Auto-generated method stub
-		return false;
+		return adminDAO.getCourseRegistrationFlag();
 	}
 
 	@Override
 	public boolean getPaymentFlag() {
-		// TODO Auto-generated method stub
-		return false;
+		return adminDAO.getPaymentFlag();
 	}
 
 	@Override
 	public boolean getProfessorFlag() {
-		// TODO Auto-generated method stub
-		return false;
+		return adminDAO.getProfessorFlag();
 	}
 
 }

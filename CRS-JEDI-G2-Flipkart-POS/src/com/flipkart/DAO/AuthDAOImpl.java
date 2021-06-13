@@ -44,7 +44,7 @@ public class AuthDAOImpl implements AuthDAOInterface {
 			ResultSet resultSet = stmt.executeQuery();
 
 			if (!resultSet.next()) {
-				return "";
+				return null;
 			} else {
 				String savedPassword = resultSet.getString("password");
 				String uid = resultSet.getString("uid");
