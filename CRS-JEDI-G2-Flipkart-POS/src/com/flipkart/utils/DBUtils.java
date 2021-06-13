@@ -12,12 +12,12 @@ import java.sql.SQLException;
  *
  */
 public class DBUtils {
-	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DB_URL = "jdbc:mysql://localhost/crs";
 
 	// Database credentials
-	static final String USER = "aysh";
-	static final String PASS = "password";
+	static final String USER = "root";
+	static final String PASS = "root";
 
 	private static volatile Connection connection = null;
 
@@ -30,7 +30,7 @@ public class DBUtils {
 		if (connection == null) {
 			synchronized (DBUtils.class) {
 				try {
-					Class.forName("com.mysql.cj.jdbc.Driver");
+					Class.forName("com.mysql.jdbc.Driver");
 
 					System.out.println("Connecting to database...");
 					connection = DriverManager.getConnection(DB_URL, USER, PASS);

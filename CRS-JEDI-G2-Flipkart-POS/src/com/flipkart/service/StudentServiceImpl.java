@@ -6,7 +6,6 @@ package com.flipkart.service;
 import java.util.ArrayList;
 import java.sql.SQLException;
 
-import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.Student;
 import com.flipkart.DAO.StudentDAOImpl;
