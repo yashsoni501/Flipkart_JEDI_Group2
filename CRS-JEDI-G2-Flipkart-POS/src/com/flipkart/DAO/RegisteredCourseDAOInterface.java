@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.flipkart.service;
+package com.flipkart.DAO;
 
 import java.util.ArrayList;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import com.flipkart.bean.Student;
  * @author Aeron
  *
  */
-public interface RegisteredCourseInterface {
+public interface RegisteredCourseDAOInterface {
 
 	public ArrayList<Student> getEnrolledStudents(String courseId, int semester, String session) throws SQLException;
 

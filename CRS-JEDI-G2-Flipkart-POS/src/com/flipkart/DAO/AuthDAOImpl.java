@@ -127,11 +127,4 @@ public class AuthDAOImpl implements AuthDAOInterface {
 		}
 		return "";
 	}
-
-	@Override
-	public boolean removeUser(String profId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

@@ -39,32 +39,25 @@ public class AuthServiceImpl implements AuthInterface {
 
 	@Override
 	public boolean generateAndStoreToken(int student_id) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return authDAO.generateAndStoreToken(student_id);
 	}
 
 	@Override
 	public boolean logout() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return authDAO.logout();
 	}
 
 	@Override
 	public boolean updatePassword(String email, String oldPassword, String newPassword) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return authDAO.updatePassword(email, oldPassword, newPassword);
 	}
 
 	@Override
 	public String getRole(String userId) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return authDAO.getRole(userId);
 	}
-
-	@Override
-	public boolean removeUser(String profId) {
-		// TODO Auto-generated method stub
-		return authDAO.removeUser(profId);
-	}
-
 }

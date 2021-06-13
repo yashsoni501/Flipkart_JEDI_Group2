@@ -21,13 +21,13 @@ public class AdminServiceImpl implements AdminInterface {
 
 	@Override
 	public boolean addCourse(String courseName, String department) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.addCourse(courseName, department);
 	}
 
 	@Override
 	public boolean removeCourse(String courseId) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.removeCourse(courseId);
 	}
 
@@ -45,68 +45,68 @@ public class AdminServiceImpl implements AdminInterface {
 
 	@Override
 	public boolean setCourseRegistrationFlag(boolean flag) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.setCourseRegistrationFlag(flag);
 	}
 
 	@Override
 	public boolean setPaymentFlag(boolean flag) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.setPaymentFlag(flag);
 	}
 
 	@Override
 	public boolean removeProfessor(String profId) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.removeProfessor(profId);
 	}
 
 	@Override
 	public boolean modifyProfessor(String profId, String professorName, String department) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.modifyProfessor(profId, professorName, department);
 	}
 
 	@Override
 	public boolean removeCourseCatalog(String courseId) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.removeCourseCatalog(courseId);
 	}
 
 	@Override
 	public boolean modifyCourse(String courseId, String courseName, String department) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.modifyCourse(courseId, courseName, department);
 	}
 
 	@Override
 	public boolean addCourseCatalog(String courseId, int semester, String session, float credits, String profId) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.addCourseCatalog(courseId, semester, session, credits, profId);
 	}
 
 	@Override
 	public boolean modifyCourseCatalog(String courseId, int semester, String session, float credits, String profId) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.modifyCourseCatalog(courseId, semester, session, credits, profId);
 	}
 
 	@Override
 	public boolean modifyStudent(String studentId, String studentName, String department, String session) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.modifyStudnet(studentId, studentName, department, session);
 	}
 
 	@Override
 	public Admin getAdminById(String userId) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.getAdminById(userId);
 	}
 
 	@Override
 	public boolean removeStudent(String studentId) {
-		// TODO Auto-generated method stub
-		return false;
+		// Auto-generated method stub
+		return adminDAO.removeStudent(studentId);
 	}
 
 	@Override

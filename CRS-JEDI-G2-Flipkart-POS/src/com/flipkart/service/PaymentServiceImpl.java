@@ -30,7 +30,7 @@ public class PaymentServiceImpl implements PaymentInterface {
 
 	@Override
 	public Payment getFeeReciept(String studentId, int semester) throws SQLException {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return paymentDAO.getFeeReciept(studentId, semester);
 	}
 
