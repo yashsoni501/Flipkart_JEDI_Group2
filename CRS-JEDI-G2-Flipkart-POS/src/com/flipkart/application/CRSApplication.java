@@ -46,7 +46,7 @@ public class CRSApplication {
 	}
 
 	public void updatePassword() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		String userEmail, newPassword, oldPassword;
 
 		System.out.println("------------------Update Password--------------------");
@@ -93,7 +93,7 @@ public class CRSApplication {
 				try {
 					professorMenu.createMenu();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+					// Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -108,7 +108,7 @@ public class CRSApplication {
 	}
 
 	public static void logout() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		userId = null;
 		authInterface.logout();
 		System.out.println(" Logout Successful");

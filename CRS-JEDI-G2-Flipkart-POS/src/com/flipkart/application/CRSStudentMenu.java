@@ -47,7 +47,7 @@ public class CRSStudentMenu {
 			try {
 				student = studentInterface.getStudentById(CRSApplication.userId);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				//  Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -89,7 +89,7 @@ public class CRSStudentMenu {
 	}
 
 	private void registerInCourse() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		ArrayList<String> selectedCourses = new ArrayList<String>();
 
 		while (true) {
@@ -127,7 +127,7 @@ public class CRSStudentMenu {
 	}
 
 	private void submitRegistration(ArrayList<String> selectedCourses) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
 		for (String courseId : selectedCourses) {
@@ -138,7 +138,7 @@ public class CRSStudentMenu {
 	}
 
 	private void viewSeletedCourses(ArrayList<String> selectedCourses) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		for (String courseId : selectedCourses) {
 			CourseCatalog arr = courseCatalogInterface.getCourseCatalog(courseId);
 			Course course = courseInterface.getCourse(courseId);
@@ -148,7 +148,7 @@ public class CRSStudentMenu {
 	}
 
 	private ArrayList<String> addCourse(ArrayList<String> selectedCourses) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		if (selectedCourses.size() == 6) {
 			System.out.println("Maximum number of Courses are already added");
 			return selectedCourses;
@@ -160,7 +160,7 @@ public class CRSStudentMenu {
 	}
 
 	private ArrayList<String> dropCourse(ArrayList<String> selectedCourses) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		if (selectedCourses.size() == 6) {
 			System.out.println("No course to drop");
 			return selectedCourses;
@@ -172,7 +172,7 @@ public class CRSStudentMenu {
 	}
 
 	private void viewCourses() {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
@@ -211,7 +211,7 @@ public class CRSStudentMenu {
 			System.out.println(reciept.getReferenceId() + " " + reciept.getModeOfPayment() + " " + reciept.getAmount()
 					+ " " + reciept.getDateOfPayment());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			//  Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -242,7 +242,7 @@ public class CRSStudentMenu {
 		try {
 			reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			//  Auto-generated catch block
 			e1.printStackTrace();
 		}
 		if (reciept.getStatus() == "success") {
@@ -278,7 +278,7 @@ public class CRSStudentMenu {
 				System.out.println("Payment Failed");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			//  Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

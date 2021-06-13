@@ -125,4 +125,10 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		System.out.println("Rows impacted : " + rows);
 		return rows == 1;
 	}
+
+	@Override
+	public ArrayList<Professor> getAllProfessor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
