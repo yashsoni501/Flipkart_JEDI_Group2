@@ -3,24 +3,24 @@ package com.flipkart.exception;
 
 /**
  * Exception to check if course is available in catalog
- * @author JEDI-03
+ * @author Aeron
  *
  */
 public class CourseNotFoundException extends Exception{
-	private String courseCode;
+	private String courseid;
 	
-	public CourseNotFoundException(String courseCode)
+	public CourseNotFoundException(String courseid)
 	{	
-		this.courseCode = courseCode;
+		this.courseid = courseid;
 	}
 
 	/**
-	 * Getter function for course code
+	 * Getter function for course id
 	 * @return
 	 */
-	public String getCourseCode()
+	public String getCourseId()
 	{
-		return courseCode;
+		return courseid;
 	}
 	
 
@@ -30,6 +30,6 @@ public class CourseNotFoundException extends Exception{
 	@Override
 	public String getMessage() 
 	{
-		return "Course with courseCode: " + courseCode + " not found.";
+		return "Course with courseCode: " + courseid + " not found in Catalog";
 	}
 }

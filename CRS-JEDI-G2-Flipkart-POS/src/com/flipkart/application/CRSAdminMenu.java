@@ -599,14 +599,14 @@ public class CRSAdminMenu {
 			// Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println("---------------------------------------------------");
+		System.out.println("---------------------------------------------------------------");
 		System.out.println("Student ID \t Name \t Department \t Email ID \t Session");
-		System.out.println("---------------------------------------------------");
+		System.out.println("---------------------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(arr.get(i).getStudentID() + "\t" + arr.get(i).getStudentName() + "\t"
+			System.out.println(arr.get(i).getStudentID() + "\t\t" + arr.get(i).getStudentName() + "\t"
 					+ arr.get(i).getDepartment() + "\t" + arr.get(i).getEmailID() + "\t" + arr.get(i).getSession());
 		}
-		System.out.println("---------------------------------------------------");
+		System.out.println("---------------------------------------------------------------");
 		System.out.println();
 		
 		while (true) {
@@ -649,8 +649,8 @@ public class CRSAdminMenu {
 		System.out.println("Professor ID \t Name \t Department \t Email ID");
 		System.out.println("---------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(arr.get(i).getProfessorId() + "\t" + arr.get(i).getProfessorName() + "\t"
-					+ arr.get(i).getDepartment() + " " + arr.get(i).getEmailID());
+			System.out.println(arr.get(i).getProfessorId() + "\t\t" + arr.get(i).getProfessorName() + "\t"
+					+ arr.get(i).getDepartment() + "\t" + arr.get(i).getEmailID());
 		}
 		System.out.println("---------------------------------------------------");
 		System.out.println();
