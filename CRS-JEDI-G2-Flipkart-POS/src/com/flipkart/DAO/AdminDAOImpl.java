@@ -17,6 +17,7 @@ import com.flipkart.exception.UserEmailAlreadyInUseException;
 import com.flipkart.exception.UserEmailNotFoundException;
 import com.flipkart.exception.UserNotFoundException;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AdminDAOImpl.
  */
@@ -51,6 +52,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * @param courseName the course name
 	 * @param department the department
 	 * @return true, if successful
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean addCourse(String courseName, String department) throws SQLException {
@@ -74,6 +76,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 *
 	 * @param courseId the course id
 	 * @return true, if successful
+	 * @throws CourseNotFoundException the course not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean removeCourse(String courseId) throws CourseNotFoundException, SQLException {
@@ -103,6 +107,10 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * @param password   the password
 	 * @param department the department
 	 * @return true, if successful
+	 * @throws UserEmailAlreadyInUseException the user email already in use exception
+	 * @throws InvalidCredentialsException the invalid credentials exception
+	 * @throws UserEmailNotFoundException the user email not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean addProfessor(String name, String emailId, String password, String department)
@@ -161,6 +169,10 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * @param department the department
 	 * @param session    the session
 	 * @return true, if successful
+	 * @throws UserEmailAlreadyInUseException the user email already in use exception
+	 * @throws InvalidCredentialsException the invalid credentials exception
+	 * @throws UserEmailNotFoundException the user email not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean addStudent(String name, String emailId, String password, String department, String session)
@@ -217,6 +229,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 *
 	 * @param flag the flag
 	 * @return true, if successful
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean setCourseRegistrationFlag(boolean flag) throws SQLException {
@@ -246,6 +259,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 *
 	 * @param flag the flag
 	 * @return true, if successful
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean setPaymentFlag(boolean flag) throws SQLException {
@@ -273,6 +287,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 *
 	 * @param flag the flag
 	 * @return true, if successful
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean setProfessorFlag(boolean flag) throws SQLException {
@@ -300,6 +315,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 *
 	 * @param profId the prof id
 	 * @return true, if successful
+	 * @throws UserNotFoundException the user not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean removeProfessor(String profId) throws UserNotFoundException, SQLException {
@@ -343,6 +360,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * @param professorName the professor name
 	 * @param department    the department
 	 * @return true, if successful
+	 * @throws UserNotFoundException the user not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean modifyProfessor(String profId, String professorName, String department)
@@ -366,11 +385,13 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	/**
 	 * Modify studnet.
 	 *
-	 * @param studentId   the student id
+	 * @param email the email
 	 * @param studentName the student name
 	 * @param department  the department
 	 * @param session     the session
 	 * @return true, if successful
+	 * @throws UserEmailNotFoundException the user email not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean modifyStudent(String email, String studentName, String department, String session)
@@ -399,6 +420,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 *
 	 * @param courseId the course id
 	 * @return true, if successful
+	 * @throws CourseNotFoundException the course not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean removeCourseCatalog(String courseId) throws CourseNotFoundException, SQLException {
@@ -424,6 +447,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * @param courseName the course name
 	 * @param department the department
 	 * @return true, if successful
+	 * @throws CourseNotFoundException the course not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean modifyCourse(String courseId, String courseName, String department)
@@ -453,6 +478,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * @param credits  the credits
 	 * @param profId   the prof id
 	 * @return true, if successful
+	 * @throws CourseNotFoundException the course not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean addCourseCatalog(String courseId, int semester, String session, float credits, String profId)
@@ -484,6 +511,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * @param credits  the credits
 	 * @param profId   the prof id
 	 * @return true, if successful
+	 * @throws CourseNotFoundException the course not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean modifyCourseCatalog(String courseId, int semester, String session, float credits, String profId)
@@ -511,6 +540,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 *
 	 * @param userId the user id
 	 * @return the admin by id
+	 * @throws UserNotFoundException the user not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public Admin getAdminById(String userId) throws UserNotFoundException, SQLException {
@@ -540,6 +571,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 *
 	 * @param key the key
 	 * @return the boolean constants
+	 * @throws ConstantFlagNotSetException the constant flag not set exception
+	 * @throws SQLException the SQL exception
 	 */
 	private boolean getBooleanConstants(String key) throws ConstantFlagNotSetException, SQLException {
 		Connection conn = DBUtils.getConnection();
@@ -565,6 +598,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * @param studentId the student id
 	 * @param flag      boolean
 	 * @return true, if successful
+	 * @throws UserNotFoundException the user not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean editStudentPermission(String studentId, boolean flag) throws UserNotFoundException, SQLException {
@@ -586,6 +621,14 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		}
 	}
 
+	/**
+	 * Removes the student.
+	 *
+	 * @param studentId the student id
+	 * @return true, if successful
+	 * @throws UserNotFoundException the user not found exception
+	 * @throws SQLException the SQL exception
+	 */
 	public boolean removeStudent(String studentId) throws UserNotFoundException, SQLException {
 		Connection conn = DBUtils.getConnection();
 
@@ -624,6 +667,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * Gets the course registration flag.
 	 *
 	 * @return the course registration flag
+	 * @throws ConstantFlagNotSetException the constant flag not set exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean getCourseRegistrationFlag() throws ConstantFlagNotSetException, SQLException {
@@ -634,6 +679,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * Gets the payment flag.
 	 *
 	 * @return the payment flag
+	 * @throws ConstantFlagNotSetException the constant flag not set exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean getPaymentFlag() throws ConstantFlagNotSetException, SQLException {
@@ -644,6 +691,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * Gets the professor flag.
 	 *
 	 * @return the professor flag
+	 * @throws ConstantFlagNotSetException the constant flag not set exception
+	 * @throws SQLException the SQL exception
 	 */
 	@Override
 	public boolean getProfessorFlag() throws ConstantFlagNotSetException, SQLException {

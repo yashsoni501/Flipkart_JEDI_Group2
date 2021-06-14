@@ -20,17 +20,21 @@ import com.flipkart.exception.NoProfessorsFoundException;
 import com.flipkart.exception.OptingTheCourseFailedException;
 import com.flipkart.exception.ProfessorNotAddedException;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author jagru
+ * The Class ProfessorDAOImpl.
  *
+ * @author jagru
  */
 public class ProfessorDAOImpl implements ProfessorDAOInterface {
+	
+	/** The instance. */
 	private static volatile ProfessorDAOImpl instance = null;
 
 	/**
-	 * Method to make ProfessorDAOImpl Singleton
-	 * 
-	 * @return
+	 * Method to make ProfessorDAOImpl Singleton.
+	 *
+	 * @return single instance of ProfessorDAOImpl
 	 */
 	public static ProfessorDAOImpl getInstance() {
 		if (instance == null) {
@@ -41,6 +45,14 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		return instance;
 	}
 
+	/**
+	 * View opted courses.
+	 *
+	 * @param professorId the professor id
+	 * @return the array list
+	 * @throws SQLException the SQL exception
+	 * @throws NoOptedCoursesException the no opted courses exception
+	 */
 	@Override
 	public ArrayList<CourseCatalog> viewOptedCourses(String professorId) throws SQLException, NoOptedCoursesException {
 		Connection conn = DBUtils.getConnection();
@@ -70,6 +82,15 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		return arr;
 	}
 
+	/**
+	 * Opt in course.
+	 *
+	 * @param professorId the professor id
+	 * @param courseId the course id
+	 * @return true, if successful
+	 * @throws SQLException the SQL exception
+	 * @throws OptingTheCourseFailedException the opting the course failed exception
+	 */
 	@Override
 	public boolean optInCourse(String professorId, String courseId)
 			throws SQLException, OptingTheCourseFailedException {
@@ -84,6 +105,14 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		return rows > 0;
 	}
 
+	/**
+	 * Gets the professor details.
+	 *
+	 * @param professorId the professor id
+	 * @return the professor details
+	 * @throws SQLException the SQL exception
+	 * @throws ProfessorNotAddedException the professor not added exception
+	 */
 	@Override
 	public Professor getProfessorDetails(String professorId) throws SQLException, ProfessorNotAddedException {
 		Connection conn = DBUtils.getConnection();
@@ -101,6 +130,15 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		return p;
 	}
 
+	/**
+	 * View enrolled students.
+	 *
+	 * @param courseId the course id
+	 * @param session the session
+	 * @return the array list
+	 * @throws SQLException the SQL exception
+	 * @throws NoEnrolledStudentsException the no enrolled students exception
+	 */
 	@Override
 	public ArrayList<Student> viewEnrolledStudents(String courseId, String session)
 			throws SQLException, NoEnrolledStudentsException {
@@ -137,6 +175,16 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		return arr;
 	}
 
+	/**
+	 * Submit grade.
+	 *
+	 * @param courseId the course id
+	 * @param studentId the student id
+	 * @param grade the grade
+	 * @return true, if successful
+	 * @throws SQLException the SQL exception
+	 * @throws GradeSubmissionFailedException the grade submission failed exception
+	 */
 	@Override
 	public boolean submitGrade(String courseId, String studentId, String grade)
 			throws SQLException, GradeSubmissionFailedException {
@@ -155,6 +203,13 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		return rows > 0;
 	}
 
+	/**
+	 * Gets the all professor.
+	 *
+	 * @return the all professor
+	 * @throws SQLException the SQL exception
+	 * @throws NoProfessorsFoundException the no professors found exception
+	 */
 	@Override
 	public ArrayList<Professor> getAllProfessor() throws SQLException, NoProfessorsFoundException {
 		Connection conn = DBUtils.getConnection();

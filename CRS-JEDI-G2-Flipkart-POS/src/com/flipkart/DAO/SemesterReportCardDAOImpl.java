@@ -14,18 +14,21 @@ import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
 import com.flipkart.exception.SemesterReportCardNotFound;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author yashsoni501
+ * The Class SemesterReportCardDAOImpl.
  *
+ * @author yashsoni501
  */
 public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface {
 
+	/** The instance. */
 	private static volatile SemesterReportCardDAOImpl instance = null;
 
 	/**
-	 * Method to make SemesterReportCardDAOImpl Singleton
-	 * 
-	 * @return
+	 * Method to make SemesterReportCardDAOImpl Singleton.
+	 *
+	 * @return single instance of SemesterReportCardDAOImpl
 	 */
 	public static SemesterReportCardDAOImpl getInstance() {
 		if (instance == null) {
@@ -36,6 +39,15 @@ public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface
 		return instance;
 	}
 
+	/**
+	 * Adds the semester report card.
+	 *
+	 * @param studentId the student id
+	 * @param semester the semester
+	 * @param sgpa the sgpa
+	 * @return true, if successful
+	 * @throws SQLException the SQL exception
+	 */
 	@Override
 	public boolean addSemesterReportCard(String studentId, int semester, float sgpa) throws SQLException {
 
@@ -54,6 +66,14 @@ public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface
 		}
 	}
 
+	/**
+	 * Gets the semester report card by student id.
+	 *
+	 * @param studentId the student id
+	 * @return the semester report card by student id
+	 * @throws SQLException the SQL exception
+	 * @throws SemesterReportCardNotFound the semester report card not found
+	 */
 	@Override
 	public ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String studentId)
 			throws SQLException, SemesterReportCardNotFound {

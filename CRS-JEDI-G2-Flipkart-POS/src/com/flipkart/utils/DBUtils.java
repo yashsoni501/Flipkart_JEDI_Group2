@@ -8,10 +8,20 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DBUtils.
+ */
 public class DBUtils {
 
+	/** The connection. */
 	private static Connection connection = null;
 
+	/**
+	 * Instantiates a DB connection if null, else return the existing connection.
+	 *
+	 * @return the connection
+	 */
 	public static Connection getConnection() {
 
 		if (connection != null)
