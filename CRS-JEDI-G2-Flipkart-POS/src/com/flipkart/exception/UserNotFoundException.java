@@ -14,6 +14,7 @@ public class UserNotFoundException extends Exception {
 
 	/***
 	 * Getter function for UserId
+	 * 
 	 * @param userId
 	 */
 	public UserNotFoundException(String userId) {

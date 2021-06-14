@@ -5,26 +5,28 @@ package com.flipkart.exception;
  * @author Aeron
  *
  */
-public class CourseAlreadyRegisteredException extends Exception{
-	
+public class CourseAlreadyRegisteredException extends Exception {
+
 	private String courseCode;
-	
+
 	/**
 	 * Constructor
+	 * 
 	 * @param courseCode
 	 */
 	public CourseAlreadyRegisteredException(String courseCode) {
 		this.courseCode = courseCode;
 	}
-	
+
 	/**
 	 * Getter method
+	 * 
 	 * @return course code
 	 */
 	public String getCourseCode() {
 		return courseCode;
 	}
-	
+
 	/**
 	 * Message returned when exception is thrown
 	 */

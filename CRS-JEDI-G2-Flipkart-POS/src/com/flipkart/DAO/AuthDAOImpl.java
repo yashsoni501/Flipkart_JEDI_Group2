@@ -10,6 +10,9 @@ import java.sql.SQLException;
 
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
+import com.flipkart.exception.InvalidCredentialsException;
+import com.flipkart.exception.UserEmailNotFoundException;
+import com.flipkart.exception.UserNotFoundException;
 
 /**
  * @author aysh
@@ -33,29 +36,27 @@ public class AuthDAOImpl implements AuthDAOInterface {
 	}
 
 	@Override
-	public String verifyUserWithEmailPassword(String email, String password) {
+	public String verifyUserWithEmailPassword(String email, String password)
+			throws InvalidCredentialsException, UserEmailNotFoundException, SQLException {
 		Connection conn = DBUtils.getConnection();
-		try {
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.VERIFY_USER);
+		stmt.setString(1, email);
 
-			PreparedStatement stmt = conn.prepareStatement(SQLQuery.VERIFY_USER);
-			stmt.setString(1, email);
+		ResultSet resultSet = stmt.executeQuery();
 
-			ResultSet resultSet = stmt.executeQuery();
+		if (!resultSet.next()) {
+			throw new UserEmailNotFoundException(email);
 
-			if (!resultSet.next()) {
-				return null;
+		} else {
+			String savedPassword = resultSet.getString("password");
+			String uid = resultSet.getString("uid");
+
+			if (password.equals(savedPassword)) {
+				return uid;
 			} else {
-				String savedPassword = resultSet.getString("password");
-				String uid = resultSet.getString("uid");
-
-				if (password.equals(savedPassword)) {
-					return uid;
-				}
+				throw new InvalidCredentialsException(email);
 			}
-		} catch (Exception e) {
-			e.getMessage();
 		}
-		return null;
 	}
 
 	@Override
@@ -77,51 +78,38 @@ public class AuthDAOImpl implements AuthDAOInterface {
 	}
 
 	@Override
-	public boolean updatePassword(String email, String oldPassword, String newPassword) {
+	public boolean updatePassword(String email, String oldPassword, String newPassword)
+			throws InvalidCredentialsException, UserEmailNotFoundException, SQLException {
 		String uid = verifyUserWithEmailPassword(email, oldPassword);
 
 		Connection conn = DBUtils.getConnection();
 
-		if (!uid.isEmpty()) {
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.UPDATE_PASSWORD);
+		stmt.setString(1, newPassword);
+		stmt.setString(2, email);
 
-			try {
+		int row = stmt.executeUpdate();
 
-				PreparedStatement stmt = conn.prepareStatement(SQLQuery.UPDATE_PASSWORD);
-				stmt.setString(1, newPassword);
-				stmt.setString(2, email);
-
-				int row = stmt.executeUpdate();
-
-				if (row == 1) {
-					return true;
-				} else {
-					return false;
-				}
-			} catch (Exception e) {
-				e.getMessage();
-			}
+		if (row == 1) {
+			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 
 	@Override
-	public String getRole(String userId) {
+	public String getRole(String userId) throws UserNotFoundException, SQLException {
 		Connection conn = DBUtils.getConnection();
 
-		try {
-			PreparedStatement stmt = conn.prepareStatement(SQLQuery.GET_ROLE);
-			stmt.setString(1, userId);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.GET_ROLE);
+		stmt.setString(1, userId);
 
-			ResultSet resultSet = stmt.executeQuery();
+		ResultSet resultSet = stmt.executeQuery();
 
-			if (resultSet.next()) {
-				return resultSet.getString("userRole");
-			}
-		} catch (SQLException se) {
-			se.getMessage();
-		} catch (Exception e) {
-			e.getMessage();
+		if (resultSet.next()) {
+			return resultSet.getString("userRole");
+		} else {
+			throw new UserNotFoundException(userId);
 		}
-		return "";
 	}
 }

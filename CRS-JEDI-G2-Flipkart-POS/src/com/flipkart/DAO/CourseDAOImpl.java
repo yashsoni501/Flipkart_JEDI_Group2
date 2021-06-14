@@ -13,12 +13,16 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
+import com.flipkart.exception.CourseCatalogEntryNotFoundException;
+import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.InvalidCCSessionSemesterException;
+import com.flipkart.exception.InvalidDepartmentException;
 
 /**
  * @author Tanmay
  *
  */
-public class CourseDAOImpl implements CourseDAOInterface {
+public class CourseDAOImpl implements CourseDAOInterface{
 
 	public static volatile CourseDAOImpl instance = null;
 
@@ -32,7 +36,7 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		return instance;
 	}
 
-	public Course getCourse(String courseId) {
+	public Course getCourse(String courseId) throws CourseNotFoundException{
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -45,11 +49,13 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			stmt.setString(1, courseId);
 			ResultSet rs = stmt.executeQuery();
 
-			while (rs.next()) {
+			if (rs.next()) {
 				res.setCourseID(rs.getString("courseid"));
 				res.setCourseName(rs.getString("courseName"));
 				res.setDepartment(rs.getString("department"));
 
+			}else {
+				throw new CourseNotFoundException(courseId);
 			}
 
 		} catch (SQLException se) {
@@ -90,10 +96,14 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			// Handle errors for Class.forName
 			e.getMessage();
 		}
+//		catch (Exception e) {
+//			// Handle errors for Class.forName
+//			e.printStackTrace();
+//		}
 		return res;
 	}
 
-	public CourseCatalog getCourseCatalog(String courseId) {
+	public CourseCatalog getCourseCatalog(String courseId) throws CourseCatalogEntryNotFoundException{
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -106,12 +116,14 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			stmt.setString(1, courseId);
 			ResultSet rs = stmt.executeQuery();
 
-			while (rs.next()) {
+			if (rs.next()) {
 				res.setCourseId(String.valueOf(rs.getInt("courseid")));
 				res.setProfessorId(rs.getString("profid"));
 				res.setSemester(rs.getInt("semester"));
 				res.setSession(rs.getString("session"));
 				res.setCredits(rs.getFloat("credits"));
+			}else {
+				throw new CourseCatalogEntryNotFoundException(courseId);
 			}
 		} catch (SQLException se) {
 			se.getMessage();
@@ -122,7 +134,7 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		return res;
 	}
 
-	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester) {
+	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester) throws InvalidCCSessionSemesterException{
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -151,6 +163,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 				res.add(temp);
 
 			}
+			
+			if (res.size() == 0) {
+				throw new InvalidCCSessionSemesterException(session, semester);
+			}
 
 		} catch (SQLException se) {
 			se.getMessage();
@@ -161,7 +177,7 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		return res;
 	}
 
-	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) {
+	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) throws InvalidDepartmentException {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -186,6 +202,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 					temp.setCredits(rs.getFloat("credits"));
 
 					res.add(temp);
+				}
+				
+				if(res.size() == 0) {
+					throw new InvalidDepartmentException(department);
 				}
 			}
 		} catch (SQLException se) {
@@ -294,6 +314,7 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		}
 		return true;
 	}
+	
 //	public static void main(String[] args) {
 //		CourseDAOImp as = new CourseDAOImp();
 

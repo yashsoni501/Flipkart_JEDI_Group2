@@ -39,25 +39,25 @@ public class CRSAdminMenu {
 
 	/** The admin interface. */
 	AdminInterface adminInterface = AdminServiceImpl.getInstance();
-	
+
 	/** The professor interface. */
 	ProfessorInterface professorInterface = ProfessorServiceImpl.getInstance();
-	
+
 	/** The student interface. */
 	StudentInterface studentInterface = StudentServiceImpl.getInstance();
-	
+
 	/** The course catalog interface. */
 	CourseCatalogInterface courseCatalogInterface = CourseCatalogServiceImpl.getInstance();
-	
+
 	/** The course interface. */
 	CourseInterface courseInterface = CourseServiceImpl.getInstance();
-	
+
 	/** The semester report card interface. */
 	SemesterReportCardInterface semesterReportCardInterface = SemesterReportCardServiceImpl.getInstance();
-	
+
 	/** The registered course interface. */
 	RegisteredCourseInterface registeredCourseInterface = RegisteredCourseServiceImpl.getInstance();
-	
+
 	/** The admin. */
 	Admin admin = null;
 
@@ -531,12 +531,13 @@ public class CRSAdminMenu {
 		System.out.println("----------------------------------------------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
 			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
-			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment() + "\t"
-					+ arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t" + arr.get(i).getCredits());
+			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
+					+ "\t" + arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t"
+					+ arr.get(i).getCredits());
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
 		System.out.println();
-		
+
 		while (true) {
 
 			System.out.println("1. Remove Course Catalog");
@@ -571,12 +572,12 @@ public class CRSAdminMenu {
 		System.out.println("Course ID \t Course Name \t Department");
 		System.out.println("---------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(arr.get(i).getCourseID() + "\t" + arr.get(i).getCourseName() + "\t"
-					+ arr.get(i).getDepartment());
+			System.out.println(
+					arr.get(i).getCourseID() + "\t" + arr.get(i).getCourseName() + "\t" + arr.get(i).getDepartment());
 		}
 		System.out.println("---------------------------------------------------");
 		System.out.println();
-		
+
 		while (true) {
 			System.out.println("1. Remove Course");
 			System.out.println("2. Modify Course Details");
@@ -622,7 +623,7 @@ public class CRSAdminMenu {
 		}
 		System.out.println("---------------------------------------------------------------");
 		System.out.println();
-		
+
 		while (true) {
 			System.out.println("1. Remove Student");
 			System.out.println("2. Modify Student Details");
@@ -658,7 +659,7 @@ public class CRSAdminMenu {
 			// Auto-generated catch block
 			e.getMessage();
 		}
-		
+
 		System.out.println("---------------------------------------------------");
 		System.out.println("Professor ID \t Name \t Department \t Email ID");
 		System.out.println("---------------------------------------------------");
@@ -668,7 +669,7 @@ public class CRSAdminMenu {
 		}
 		System.out.println("---------------------------------------------------");
 		System.out.println();
-		
+
 		while (true) {
 			System.out.println("1. Remove Professor");
 			System.out.println("2. Modify Professor Details");
