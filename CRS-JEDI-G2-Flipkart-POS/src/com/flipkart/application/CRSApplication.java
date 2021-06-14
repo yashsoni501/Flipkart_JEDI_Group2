@@ -10,19 +10,27 @@ import com.flipkart.service.AuthInterface;
 import com.flipkart.service.AuthServiceImpl;
 import com.flipkart.constant.Constants;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author yashsoni501
+ * The Class CRSApplication.
  *
+ * @author yashsoni501
  */
 public class CRSApplication {
 
+	/** The user id. */
 	public static String userId = null;
+	
+	/** The auth interface. */
 	public static AuthInterface authInterface = AuthServiceImpl.getInstance();
+	
+	/** The scan. */
 	public static Scanner scan = new Scanner(System.in);
 
 	/**
-	 * @param args
-	 * @throws SQLException
+	 * The main method.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		CRSApplication crsApplication = new CRSApplication();
@@ -47,6 +55,9 @@ public class CRSApplication {
 		scan.close();
 	}
 
+	/**
+	 * Update password.
+	 */
 	public void updatePassword() {
 		// Auto-generated method stub
 		String userEmail, newPassword, oldPassword;
@@ -65,6 +76,9 @@ public class CRSApplication {
 			System.out.println("Something went wrong, please try again!");
 	}
 
+	/**
+	 * Creates the main menu.
+	 */
 	public static void createMainMenu() {
 		System.out.println("----------Welcome to Course Management System---------");
 		System.out.println("1. Login");
@@ -73,6 +87,9 @@ public class CRSApplication {
 		System.out.println("Enter user input");
 	}
 
+	/**
+	 * Login user.
+	 */
 	public void loginUser() {
 		String userEmail, password;
 		System.out.println("-----------------Login------------------");
@@ -105,6 +122,9 @@ public class CRSApplication {
 		}
 	}
 
+	/**
+	 * Logout.
+	 */
 	public static void logout() {
 		// Auto-generated method stub
 		userId = null;

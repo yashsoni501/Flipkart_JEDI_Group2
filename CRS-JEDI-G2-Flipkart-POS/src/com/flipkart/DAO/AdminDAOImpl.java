@@ -11,13 +11,25 @@ import com.flipkart.constant.Constants;
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
 
+/**
+ * The Class AdminDAOImpl.
+ */
 public class AdminDAOImpl implements AdminDAOInterface {
 
+	/** The instance. */
 	private static volatile AdminDAOImpl instance = null;
 
+	/**
+	 * Instantiates a new admin DAO impl.
+	 */
 	private AdminDAOImpl() {
 	}
 
+	/**
+	 * Gets the single instance of AdminDAOImpl.
+	 *
+	 * @return single instance of AdminDAOImpl
+	 */
 	public static AdminDAOImpl getInstance() {
 		if (instance == null) {
 			synchronized (AdminDAOImpl.class) {
@@ -26,7 +38,14 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		}
 		return instance;
 	}
-
+	
+	/**
+	 * Adds the course.
+	 *
+	 * @param courseName the course name
+	 * @param department the department
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean addCourse(String courseName, String department) {
 
@@ -53,6 +72,12 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Removes the course.
+	 *
+	 * @param courseId the course id
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean removeCourse(String courseId) {
 
@@ -80,6 +105,15 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Adds the professor.
+	 *
+	 * @param name       the name
+	 * @param emailId    the email id
+	 * @param password   the password
+	 * @param department the department
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean addProfessor(String name, String emailId, String password, String department) {
 
@@ -130,6 +164,16 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Adds the student.
+	 *
+	 * @param name       the name
+	 * @param emailId    the email id
+	 * @param password   the password
+	 * @param department the department
+	 * @param session    the session
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean addStudent(String name, String emailId, String password, String department, String session) {
 
@@ -183,6 +227,12 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Sets the course registration flag.
+	 *
+	 * @param flag the flag
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean setCourseRegistrationFlag(boolean flag) {
 
@@ -212,6 +262,12 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Sets the payment flag.
+	 *
+	 * @param flag the flag
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean setPaymentFlag(boolean flag) {
 		// Auto-generated method stub
@@ -240,6 +296,12 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Sets the professor flag.
+	 *
+	 * @param flag the flag
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean setProfessorFlag(boolean flag) {
 
@@ -269,6 +331,12 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Removes the professor.
+	 *
+	 * @param profId the prof id
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean removeProfessor(String profId) {
 		// Auto-generated method stub
@@ -309,6 +377,14 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Modify professor.
+	 *
+	 * @param profId        the prof id
+	 * @param professorName the professor name
+	 * @param department    the department
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean modifyProfessor(String profId, String professorName, String department) {
 		// Auto-generated method stub
@@ -334,6 +410,15 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Modify studnet.
+	 *
+	 * @param studentId   the student id
+	 * @param studentName the student name
+	 * @param department  the department
+	 * @param session     the session
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean modifyStudnet(String studentId, String studentName, String department, String session) {
 		// Auto-generated method stub
@@ -360,6 +445,12 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Removes the course catalog.
+	 *
+	 * @param courseId the course id
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean removeCourseCatalog(String courseId) {
 		// Auto-generated method stub
@@ -383,6 +474,14 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Modify course.
+	 *
+	 * @param courseId   the course id
+	 * @param courseName the course name
+	 * @param department the department
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean modifyCourse(String courseId, String courseName, String department) {
 		try {
@@ -407,6 +506,16 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Adds the course catalog.
+	 *
+	 * @param courseId the course id
+	 * @param semester the semester
+	 * @param session  the session
+	 * @param credits  the credits
+	 * @param profId   the prof id
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean addCourseCatalog(String courseId, int semester, String session, float credits, String profId) {
 		try {
@@ -433,6 +542,16 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Modify course catalog.
+	 *
+	 * @param courseId the course id
+	 * @param semester the semester
+	 * @param session  the session
+	 * @param credits  the credits
+	 * @param profId   the prof id
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean modifyCourseCatalog(String courseId, int semester, String session, float credits, String profId) {
 		try {
@@ -459,6 +578,12 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Gets the admin by id.
+	 *
+	 * @param userId the user id
+	 * @return the admin by id
+	 */
 	@Override
 	public Admin getAdminById(String userId) {
 		try {
@@ -488,6 +613,12 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return null;
 	}
 
+	/**
+	 * Gets the boolean constants.
+	 *
+	 * @param key the key
+	 * @return the boolean constants
+	 */
 	private boolean getBooleanConstants(String key) {
 		try {
 			Connection conn = DBUtils.getConnection();
@@ -513,6 +644,12 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Removes the student.
+	 *
+	 * @param studentId the student id
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean removeStudent(String studentId) {
 		try {
@@ -552,16 +689,31 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
+	/**
+	 * Gets the course registration flag.
+	 *
+	 * @return the course registration flag
+	 */
 	@Override
 	public boolean getCourseRegistrationFlag() {
 		return getBooleanConstants(Constants.COURSE_WINDOW);
 	}
 
+	/**
+	 * Gets the payment flag.
+	 *
+	 * @return the payment flag
+	 */
 	@Override
 	public boolean getPaymentFlag() {
 		return getBooleanConstants(Constants.PAYMENT_WINDOW);
 	}
 
+	/**
+	 * Gets the professor flag.
+	 *
+	 * @return the professor flag
+	 */
 	@Override
 	public boolean getProfessorFlag() {
 		return getBooleanConstants(Constants.PROFESSOR_WINDOW);

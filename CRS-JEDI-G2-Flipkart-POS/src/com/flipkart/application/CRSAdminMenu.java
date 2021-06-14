@@ -28,21 +28,41 @@ import com.flipkart.service.SemesterReportCardServiceImpl;
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author jagru
+ * The Class CRSAdminMenu.
  *
+ * @author jagru
  */
 public class CRSAdminMenu {
 
+	/** The admin interface. */
 	AdminInterface adminInterface = AdminServiceImpl.getInstance();
+	
+	/** The professor interface. */
 	ProfessorInterface professorInterface = ProfessorServiceImpl.getInstance();
+	
+	/** The student interface. */
 	StudentInterface studentInterface = StudentServiceImpl.getInstance();
+	
+	/** The course catalog interface. */
 	CourseCatalogInterface courseCatalogInterface = CourseCatalogServiceImpl.getInstance();
+	
+	/** The course interface. */
 	CourseInterface courseInterface = CourseServiceImpl.getInstance();
+	
+	/** The semester report card interface. */
 	SemesterReportCardInterface semesterReportCardInterface = SemesterReportCardServiceImpl.getInstance();
+	
+	/** The registered course interface. */
 	RegisteredCourseInterface registeredCourseInterface = RegisteredCourseServiceImpl.getInstance();
+	
+	/** The admin. */
 	Admin admin = null;
 
+	/**
+	 * Creates the menu.
+	 */
 	public void createMenu() {
 		if (CRSApplication.userId != null) {
 			admin = adminInterface.getAdminById(CRSApplication.userId);
@@ -130,6 +150,9 @@ public class CRSAdminMenu {
 		}
 	}
 
+	/**
+	 * Generate report card.
+	 */
 	private void generateReportCard() {
 
 		System.out.println("Enter Session:");
@@ -171,6 +194,12 @@ public class CRSAdminMenu {
 		System.out.println("Report Card generated Successfully");
 	}
 
+	/**
+	 * Weightage.
+	 *
+	 * @param str the str
+	 * @return the int
+	 */
 	private int weightage(String str) {
 		if (str.equals("A"))
 			return 10;
@@ -195,6 +224,12 @@ public class CRSAdminMenu {
 		return 0;
 	}
 
+	/**
+	 * Calculate sgpa.
+	 *
+	 * @param courses the courses
+	 * @return the float
+	 */
 	private float calculateSgpa(ArrayList<RegisteredCourse> courses) {
 		// Auto-generated method stub
 		float totalCredit = 0, totalScore = 0;
@@ -207,6 +242,9 @@ public class CRSAdminMenu {
 		return totalScore / totalCredit;
 	}
 
+	/**
+	 * Adds the course.
+	 */
 	private void addCourse() {
 		// Auto-generated method stub
 		System.out.println("Enter Course Name:");
@@ -222,6 +260,9 @@ public class CRSAdminMenu {
 		}
 	}
 
+	/**
+	 * Removes the course.
+	 */
 	private void removeCourse() {
 		// Auto-generated method stub
 
@@ -236,6 +277,9 @@ public class CRSAdminMenu {
 
 	}
 
+	/**
+	 * Modify course.
+	 */
 	private void modifyCourse() {
 		// Auto-generated method stub
 
@@ -256,6 +300,9 @@ public class CRSAdminMenu {
 
 	}
 
+	/**
+	 * Adds the course catalog.
+	 */
 	private void addCourseCatalog() {
 		// Auto-generated method stub
 		System.out.println("Enter Course Id:");
@@ -277,6 +324,9 @@ public class CRSAdminMenu {
 		}
 	}
 
+	/**
+	 * Removes the course catalog.
+	 */
 	private void removeCourseCatalog() {
 		// Auto-generated method stub
 
@@ -291,6 +341,9 @@ public class CRSAdminMenu {
 
 	}
 
+	/**
+	 * Modify course catalog.
+	 */
 	private void modifyCourseCatalog() {
 		// Auto-generated method stub
 
@@ -314,6 +367,9 @@ public class CRSAdminMenu {
 
 	}
 
+	/**
+	 * Adds the student.
+	 */
 	private void addStudent() {
 		// Auto-generated method stub
 		System.out.println("Enter Student Name:");
@@ -338,6 +394,9 @@ public class CRSAdminMenu {
 		}
 	}
 
+	/**
+	 * Removes the student.
+	 */
 	private void removeStudent() {
 		// Auto-generated method stub
 
@@ -352,6 +411,9 @@ public class CRSAdminMenu {
 
 	}
 
+	/**
+	 * Modify student.
+	 */
 	private void modifyStudent() {
 		// Auto-generated method stub
 
@@ -375,6 +437,9 @@ public class CRSAdminMenu {
 
 	}
 
+	/**
+	 * Adds the professor.
+	 */
 	private void addProfessor() {
 		// Auto-generated method stub
 
@@ -398,6 +463,9 @@ public class CRSAdminMenu {
 
 	}
 
+	/**
+	 * Removes the professor.
+	 */
 	private void removeProfessor() {
 		// Auto-generated method stub
 
@@ -412,6 +480,9 @@ public class CRSAdminMenu {
 
 	}
 
+	/**
+	 * Modify professor.
+	 */
 	private void modifyProfessor() {
 		// Auto-generated method stub
 
@@ -432,6 +503,11 @@ public class CRSAdminMenu {
 
 	}
 
+	/**
+	 * Gets the all course catalog.
+	 *
+	 * @return the all course catalog
+	 */
 	private void getAllCourseCatalog() {
 		// Auto-generated method stub
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
@@ -469,6 +545,11 @@ public class CRSAdminMenu {
 		}
 	}
 
+	/**
+	 * Gets the all courses.
+	 *
+	 * @return the all courses
+	 */
 	private void getAllCourses() {
 		// Auto-generated method stub
 		ArrayList<Course> arr = courseInterface.getAllCourses();
@@ -502,6 +583,11 @@ public class CRSAdminMenu {
 		}
 	}
 
+	/**
+	 * Gets the all students.
+	 *
+	 * @return the all students
+	 */
 	private void getAllStudents() {
 		// Auto-generated method stub
 		System.out.println("Enter Session:");
@@ -543,6 +629,11 @@ public class CRSAdminMenu {
 		}
 	}
 
+	/**
+	 * Gets the all professors.
+	 *
+	 * @return the all professors
+	 */
 	private void getAllProfessors() {
 		// Auto-generated method stub
 		ArrayList<Professor> arr = new ArrayList<Professor>();
