@@ -30,6 +30,7 @@ import com.flipkart.constant.Constants;
 import com.flipkart.exception.ConstantFlagNotSetException;
 import com.flipkart.exception.CourseCatalogEntryNotFoundException;
 import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.FeeRecieptNotFoundException;
 import com.flipkart.exception.InvalidCCSessionSemesterException;
 import com.flipkart.exception.NoRegisteredCoursesException;
 import com.flipkart.exception.UserNotFoundException;
@@ -447,6 +448,9 @@ public class CRSStudentMenu {
 		} catch (SQLException e) {
 			// Auto-generated catch block
 			System.out.println(e.getMessage());
+		} catch (FeeRecieptNotFoundException e) {
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -513,7 +517,12 @@ public class CRSStudentMenu {
 			System.out.println("Enter Semester");
 			int semester = CRSApplication.scan.nextInt();
 			Payment reciept = new Payment();
-			reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
+			try {
+				reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
+			} catch (FeeRecieptNotFoundException e) {
+				// Auto-generated catch block
+				
+			}
 
 			if (reciept.getStatus().equalsIgnoreCase(Constants.PAYMENT_SUCCESS)) {
 				System.out.println("Fee is already paid for " + semester + " semester");
