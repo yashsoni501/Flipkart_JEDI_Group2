@@ -422,8 +422,6 @@ public class CRSStudentMenu {
 			System.out.println(e.getMessage());
 		} catch (NoRegisteredCoursesException e) {
 			System.out.println(e.getMessage());
-		} catch (NoRegisteredCoursesException e) {
-			System.out.println(e.getMessage());
 		}
 	}
 
@@ -523,7 +521,7 @@ public class CRSStudentMenu {
 				reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
 			} catch (FeeRecieptNotFoundException e) {
 				// Auto-generated catch block
-				
+
 			}
 
 			if (reciept.getStatus().equalsIgnoreCase(Constants.PAYMENT_SUCCESS)) {

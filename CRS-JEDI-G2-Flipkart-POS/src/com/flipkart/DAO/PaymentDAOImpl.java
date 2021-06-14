@@ -58,13 +58,13 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 		stmt.setString(3, Constants.PAYMENT_SUCCESS);
 
 		ResultSet rs = stmt.executeQuery();
-		
+
 		if (!rs.next()) {
-			
+
 			feePayment.setStudentId(studentId);
 			feePayment.setStatus(Constants.PAYMENT_FAILURE);
 			feePayment.setSemester(semester);
-			
+
 			throw new FeeRecieptNotFoundException(studentId, semester);
 		} else {
 			feePayment.setStudentId(studentId);

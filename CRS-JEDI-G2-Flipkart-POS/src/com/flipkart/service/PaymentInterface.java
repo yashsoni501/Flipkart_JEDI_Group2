@@ -21,7 +21,7 @@ public interface PaymentInterface {
 	 * @param studentId the student id
 	 * @param semester  the semester
 	 * @return the fee reciept
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                the SQL exception
 	 * @throws FeeRecieptNotFoundException when no repeipt found
 	 */
 	public Payment getFeeReciept(String studentId, int semester) throws SQLException, FeeRecieptNotFoundException;
