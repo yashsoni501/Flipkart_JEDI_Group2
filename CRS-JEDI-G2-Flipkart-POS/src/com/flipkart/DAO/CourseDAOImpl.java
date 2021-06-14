@@ -53,10 +53,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			}
 
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return res;
 
@@ -85,10 +85,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return res;
 	}
@@ -114,10 +114,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 				res.setCredits(rs.getFloat("credits"));
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return res;
 	}
@@ -153,10 +153,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			}
 
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return res;
 	}
@@ -189,10 +189,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 				}
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return res;
 	}
@@ -223,10 +223,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return res;
 	}
@@ -260,10 +260,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			}
 
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return res;
 	}
@@ -287,10 +287,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 				return false;
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return true;
 	}

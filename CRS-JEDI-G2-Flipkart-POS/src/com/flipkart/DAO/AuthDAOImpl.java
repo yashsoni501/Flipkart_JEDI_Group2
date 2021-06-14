@@ -53,7 +53,7 @@ public class AuthDAOImpl implements AuthDAOInterface {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return null;
 	}
@@ -98,7 +98,7 @@ public class AuthDAOImpl implements AuthDAOInterface {
 					return false;
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				e.getMessage();
 			}
 		}
 		return false;
@@ -118,9 +118,9 @@ public class AuthDAOImpl implements AuthDAOInterface {
 				return resultSet.getString("userRole");
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return "";
 	}

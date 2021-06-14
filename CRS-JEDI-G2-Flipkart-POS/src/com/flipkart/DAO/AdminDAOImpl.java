@@ -65,9 +65,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			}
 
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -98,9 +98,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			}
 
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -157,9 +157,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				}
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -220,9 +220,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				}
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -255,9 +255,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				return true;
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -289,9 +289,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				return true;
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -324,9 +324,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				return true;
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -370,9 +370,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				}
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -403,9 +403,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				return true;
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -438,9 +438,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				return true;
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -467,9 +467,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				return true;
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -499,9 +499,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				return true;
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -535,9 +535,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				return true;
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -571,9 +571,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				return true;
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -606,9 +606,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				return admin;
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return null;
 	}
@@ -637,9 +637,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				return false;
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}
@@ -682,9 +682,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				}
 			}
 		} catch (SQLException se) {
-			se.printStackTrace();
+			se.getMessage();
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		return false;
 	}

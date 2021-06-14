@@ -13,6 +13,7 @@ import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.SemesterReportCard;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.SemesterReportCardNotFound;
 import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminServiceImpl;
 import com.flipkart.service.CourseCatalogInterface;
@@ -163,16 +164,29 @@ public class CRSAdminMenu {
 		ArrayList<Student> registeredStudents = new ArrayList<Student>();
 		try {
 			registeredStudents = studentInterface.getAllStudents(session);
+			if(registeredStudents.size() == 0)
+			{
+				System.out.println("No student found in the database");
+				return;
+			}
 			boolean alreadyCreated = false;
 			boolean checked = false;
 			for (Student student : registeredStudents) {
 
 				if (!checked) {
-					for (SemesterReportCard semRepotCard : semesterReportCardInterface
-							.getSemesterReportCardByStudentId(student.getStudentID())) {
-						if (semRepotCard.getCurrentSem() == semester) {
-							alreadyCreated = true;
+					
+					try
+					{
+						ArrayList<SemesterReportCard> reportCards = semesterReportCardInterface
+								.getSemesterReportCardByStudentId(student.getStudentID());
+						for (SemesterReportCard semReportCard : reportCards) {
+							if (semReportCard.getCurrentSem() == semester) {
+								alreadyCreated = true;
+							}
 						}
+					} catch(SemesterReportCardNotFound ex)
+					{
+						
 					}
 					checked = true;
 				}
@@ -188,7 +202,7 @@ public class CRSAdminMenu {
 				semesterReportCardInterface.addSemesterReportCard(student.getStudentID(), semester, sgpa);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 		System.out.println("Report Card generated Successfully");
@@ -597,7 +611,7 @@ public class CRSAdminMenu {
 			arr = studentInterface.getAllStudents(session);
 		} catch (SQLException e1) {
 			// Auto-generated catch block
-			e1.printStackTrace();
+			e1.getMessage();
 		}
 		System.out.println("---------------------------------------------------------------");
 		System.out.println("Student ID \t Name \t Department \t Email ID \t Session");
@@ -642,7 +656,7 @@ public class CRSAdminMenu {
 			arr = professorInterface.getAllProfessor();
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 		
 		System.out.println("---------------------------------------------------");

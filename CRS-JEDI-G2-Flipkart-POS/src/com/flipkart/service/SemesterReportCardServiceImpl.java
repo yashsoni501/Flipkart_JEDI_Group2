@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.flipkart.DAO.SemesterReportCardDAOImpl;
 import com.flipkart.DAO.SemesterReportCardDAOInterface;
 import com.flipkart.bean.SemesterReportCard;
+import com.flipkart.exception.SemesterReportCardNotFound;
 
 public class SemesterReportCardServiceImpl implements SemesterReportCardInterface {
 
@@ -29,7 +30,7 @@ public class SemesterReportCardServiceImpl implements SemesterReportCardInterfac
 	}
 
 	@Override
-	public ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String userId) throws SQLException {
+	public ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String userId) throws SQLException, SemesterReportCardNotFound {
 
 		return reportInstance.getSemesterReportCardByStudentId(userId);
 	}
