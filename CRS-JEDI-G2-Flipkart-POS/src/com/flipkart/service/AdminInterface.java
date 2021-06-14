@@ -156,16 +156,17 @@ public interface AdminInterface {
 	/**
 	 * Modify student.
 	 *
-	 * @param studentEmail   the student email
-	 * @param studentName the student name
-	 * @param department  the department
-	 * @param session     the session
+	 * @param studentEmail the student email
+	 * @param studentName  the student name
+	 * @param department   the department
+	 * @param session      the session
 	 * @return true, if successful
 	 * @throws SQLException
 	 * @throws UserNotFoundException
+	 * @throws UserEmailNotFoundException
 	 */
 	public boolean modifyStudent(String email, String studentName, String department, String session)
-			throws UserNotFoundException, SQLException;
+			throws UserNotFoundException, SQLException, UserEmailNotFoundException;
 
 	/**
 	 * Removes the course catalog.
@@ -236,8 +237,10 @@ public interface AdminInterface {
 	 * @param studentId the student id
 	 * @param flag      boolean
 	 * @return true, if successful
+	 * @throws SQLException
+	 * @throws UserNotFoundException
 	 */
-	public boolean editStudentPermission(String studentId, boolean flag);
+	public boolean editStudentPermission(String studentId, boolean flag) throws UserNotFoundException, SQLException;
 
 	/**
 	 * Remove Student.

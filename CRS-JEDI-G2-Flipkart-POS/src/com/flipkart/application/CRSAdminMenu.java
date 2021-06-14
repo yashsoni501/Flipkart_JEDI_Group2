@@ -160,8 +160,7 @@ public class CRSAdminMenu {
 		ArrayList<Student> registeredStudents = new ArrayList<Student>();
 		try {
 			registeredStudents = studentInterface.getAllStudents(session);
-			if(registeredStudents.size() == 0)
-			{
+			if (registeredStudents.size() == 0) {
 				System.out.println("No student found in the database");
 				return;
 			}
@@ -170,9 +169,8 @@ public class CRSAdminMenu {
 			for (Student student : registeredStudents) {
 
 				if (!checked) {
-					
-					try
-					{
+
+					try {
 						ArrayList<SemesterReportCard> reportCards = semesterReportCardInterface
 								.getSemesterReportCardByStudentId(student.getStudentID());
 						for (SemesterReportCard semReportCard : reportCards) {
@@ -180,9 +178,8 @@ public class CRSAdminMenu {
 								alreadyCreated = true;
 							}
 						}
-					} catch(SemesterReportCardNotFound ex)
-					{
-						
+					} catch (SemesterReportCardNotFound ex) {
+
 					}
 					checked = true;
 				}

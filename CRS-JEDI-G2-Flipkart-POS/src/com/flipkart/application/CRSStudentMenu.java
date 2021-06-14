@@ -67,16 +67,16 @@ public class CRSStudentMenu {
 	public void createMenu() {
 		if (CRSApplication.userId != null) {
 			try {
-		
-					student = studentInterface.getStudentById(CRSApplication.userId);
-				
+
+				student = studentInterface.getStudentById(CRSApplication.userId);
+
 			} catch (SQLException e) {
 				// Auto-generated catch block
 				e.getMessage();
 			} catch (UserNotFoundException e) {
-					//  Auto-generated catch block
-					e.getMessage();
-				}
+				// Auto-generated catch block
+				e.getMessage();
+			}
 		}
 		if (student.getApprovalStatus().equals(Constants.FALSE)) {
 			System.out.println("You have not been aprroved by the Admin.");
@@ -415,7 +415,7 @@ public class CRSStudentMenu {
 			// Auto-generated catch block
 			e.getMessage();
 		} catch (SemesterReportCardNotFound e) {
-			
+
 			e.getMessage();
 		}
 

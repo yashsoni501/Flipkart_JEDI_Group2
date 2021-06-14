@@ -30,7 +30,8 @@ public class SemesterReportCardServiceImpl implements SemesterReportCardInterfac
 	}
 
 	@Override
-	public ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String userId) throws SQLException, SemesterReportCardNotFound {
+	public ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String userId)
+			throws SQLException, SemesterReportCardNotFound {
 
 		return reportInstance.getSemesterReportCardByStudentId(userId);
 	}

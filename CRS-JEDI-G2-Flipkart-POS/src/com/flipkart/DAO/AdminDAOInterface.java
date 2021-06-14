@@ -41,7 +41,7 @@ public interface AdminDAOInterface {
 			throws UserNotFoundException, SQLException;
 
 	public boolean modifyStudent(String email, String studentName, String department, String session)
-			throws UserNotFoundException, SQLException;
+			throws SQLException, UserEmailNotFoundException;
 
 	public boolean removeCourseCatalog(String courseId) throws CourseNotFoundException, SQLException;
 
@@ -56,8 +56,7 @@ public interface AdminDAOInterface {
 
 	public Admin getAdminById(String userId) throws UserNotFoundException, SQLException;
 
-	public boolean editStudentPermission(String studentId, boolean flag);
-
+	public boolean editStudentPermission(String studentId, boolean flag) throws UserNotFoundException, SQLException;
 
 	public boolean removeStudent(String studentId) throws UserNotFoundException, SQLException;
 }

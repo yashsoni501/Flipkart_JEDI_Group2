@@ -39,7 +39,8 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 	}
 
 	@Override
-	public boolean optInCourse(String professorId, String courseId) throws SQLException, OptingTheCourseFailedException {
+	public boolean optInCourse(String professorId, String courseId)
+			throws SQLException, OptingTheCourseFailedException {
 		// Auto-generated method stub
 		return professorDAO.optInCourse(professorId, courseId);
 	}
@@ -57,13 +58,15 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 	}
 
 	@Override
-	public ArrayList<Student> viewEnrolledStudents(String courseId, String session) throws SQLException, NoEnrolledStudentsException {
+	public ArrayList<Student> viewEnrolledStudents(String courseId, String session)
+			throws SQLException, NoEnrolledStudentsException {
 		// Auto-generated method stub
 		return professorDAO.viewEnrolledStudents(courseId, session);
 	}
 
 	@Override
-	public boolean submitGrade(String courseId, String studentId, String grade) throws SQLException, GradeSubmissionFailedException {
+	public boolean submitGrade(String courseId, String studentId, String grade)
+			throws SQLException, GradeSubmissionFailedException {
 		// Auto-generated method stub
 		return professorDAO.submitGrade(courseId, studentId, grade);
 	}

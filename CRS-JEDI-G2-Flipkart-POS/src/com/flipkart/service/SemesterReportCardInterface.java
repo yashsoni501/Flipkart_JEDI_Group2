@@ -17,6 +17,7 @@ public interface SemesterReportCardInterface {
 
 	boolean addSemesterReportCard(String studentID, int semester, float sgpa) throws SQLException;
 
-	ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String userId) throws SQLException, SemesterReportCardNotFound;
+	ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String userId)
+			throws SQLException, SemesterReportCardNotFound;
 
 }

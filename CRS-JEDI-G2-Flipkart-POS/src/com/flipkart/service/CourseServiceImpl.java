@@ -30,7 +30,7 @@ public class CourseServiceImpl implements CourseInterface {
 	}
 
 	@Override
-	public Course getCourse(String courseId) throws CourseNotFoundException{
+	public Course getCourse(String courseId) throws CourseNotFoundException {
 
 		return courseDAO.getCourse(courseId);
 	}

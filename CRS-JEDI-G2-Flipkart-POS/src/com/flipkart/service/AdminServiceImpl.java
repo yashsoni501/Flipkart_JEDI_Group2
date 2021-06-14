@@ -51,7 +51,7 @@ public class AdminServiceImpl implements AdminInterface {
 	public boolean addStudent(String name, String emailId, String password, String department, String session)
 			throws UserEmailAlreadyInUseException, SQLException, InvalidCredentialsException,
 			UserEmailNotFoundException {
-		//  Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.addStudent(name, emailId, password, department, session);
 	}
 
@@ -134,13 +134,14 @@ public class AdminServiceImpl implements AdminInterface {
 	}
 
 	@Override
-	public boolean editStudentPermission(String studentId, boolean flag) {
+	public boolean editStudentPermission(String studentId, boolean flag) throws UserNotFoundException, SQLException {
 		// Auto-generated method stub
 		return adminDAO.editStudentPermission(studentId, flag);
 	}
 
 	@Override
-	public boolean modifyStudent(String email, String studentName, String department, String session) throws UserNotFoundException, SQLException {
+	public boolean modifyStudent(String email, String studentName, String department, String session)
+			throws SQLException, UserEmailNotFoundException {
 		// Auto-generated method stub
 		return adminDAO.modifyStudent(email, studentName, department, session);
 	}

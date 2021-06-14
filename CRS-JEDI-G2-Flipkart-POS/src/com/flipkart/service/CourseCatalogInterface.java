@@ -18,7 +18,8 @@ public interface CourseCatalogInterface {
 
 	public CourseCatalog getCourseCatalog(String courseId) throws CourseCatalogEntryNotFoundException;
 
-	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester) throws InvalidCCSessionSemesterException;
+	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester)
+			throws InvalidCCSessionSemesterException;
 
 	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) throws InvalidDepartmentException;
 

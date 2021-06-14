@@ -3,7 +3,6 @@
  */
 package com.flipkart.application;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.flipkart.service.AdminInterface;

@@ -4,7 +4,8 @@
 package com.flipkart.exception;
 
 /**
- * Exception to check if semester report case exists 
+ * Exception to check if semester report case exists
+ * 
  * @author yashsoni501
  *
  */
@@ -14,6 +15,7 @@ public class SemesterReportCardNotFound extends Exception {
 
 	/***
 	 * Getter function for UserId
+	 * 
 	 * @param userId
 	 */
 	public SemesterReportCardNotFound(String userId) {
