@@ -26,7 +26,7 @@ import com.flipkart.service.SemesterReportCardInterface;
 import com.flipkart.service.SemesterReportCardServiceImpl;
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
-import com.flipkart.utils.Constants;
+import com.flipkart.constant.Constants;
 
 /**
  * @author Aeron

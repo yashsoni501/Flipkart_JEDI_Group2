@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.utils.DBUtils;
-import com.flipkart.utils.SQLQuery;
+import com.flipkart.constant.SQLQuery;
 
 /**
  * @author Tanmay

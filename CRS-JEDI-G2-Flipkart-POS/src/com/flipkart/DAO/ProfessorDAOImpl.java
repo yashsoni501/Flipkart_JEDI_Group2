@@ -12,7 +12,7 @@ import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.utils.DBUtils;
-import com.flipkart.utils.SQLQuery;
+import com.flipkart.constant.SQLQuery;
 
 /**
  * @author jagru
