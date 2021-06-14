@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.flipkart.DAO;
 
@@ -81,11 +81,11 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			res.add(temp);
 
 		}
-		
+
 		if(res.size() == 0) {
-			throw new EmptyCourseListExcpetion();			
+			throw new EmptyCourseListExcpetion();
 		}
-		
+
 		return res;
 	}
 
@@ -109,7 +109,7 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		} else {
 			throw new CourseCatalogEntryNotFoundException(courseId);
 		}
-		
+
 		return res;
 	}
 
@@ -176,7 +176,7 @@ public class CourseDAOImpl implements CourseDAOInterface {
 				throw new InvalidDepartmentException(department);
 			}
 		}
-		
+
 		return res;
 	}
 
@@ -203,11 +203,11 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			res.add(temp);
 
 		}
-		
+
 		if(res.size() == 0) {
-			throw new EmptyCourseCatalogListExcpetion();			
+			throw new EmptyCourseCatalogListExcpetion();
 		}
-		
+
 		return res;
 	}
 
@@ -235,7 +235,7 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			res.add(temp);
 
 		}
-		
+
 		if(res.size() == 0) {
 			throw new EmptyCourseCatalogListExcpetion();
 		}
@@ -260,7 +260,7 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		} else {
 			return false;
 		}
-	
+
 	}
 
 //	public static void main(String[] args) {

@@ -64,10 +64,10 @@ public class CRSProfessorMenu {
 				professor = professorInterface.getProfessorDetails(CRSApplication.userId);
 			} catch (SQLException e) {
 				// Auto-generated catch block
-				e.getMessage();
+				System.out.println(e.getMessage());
 			} catch (ProfessorNotAddedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		}
 		while (CRSApplication.userId != null) {
@@ -133,13 +133,13 @@ public class CRSProfessorMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.getMessage();
+			System.out.println(e.getMessage());
 		} catch (ConstantFlagNotSetException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (OptingTheCourseFailedException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -170,13 +170,13 @@ public class CRSProfessorMenu {
 			System.out.println();
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.getMessage();
+			System.out.println(e.getMessage());
 		} catch (NoOptedCoursesException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (CourseNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -207,10 +207,10 @@ public class CRSProfessorMenu {
 			System.out.println();
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.getMessage();
+			System.out.println(e.getMessage());
 		} catch (NoEnrolledStudentsException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -237,10 +237,10 @@ public class CRSProfessorMenu {
 			}
 		} catch (ConstantFlagNotSetException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -270,10 +270,10 @@ public class CRSProfessorMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.getMessage();
+			System.out.println(e.getMessage());
 		} catch (GradeSubmissionFailedException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -302,10 +302,10 @@ public class CRSProfessorMenu {
 			System.out.println();
 		} catch (InvalidDepartmentException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (CourseNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 

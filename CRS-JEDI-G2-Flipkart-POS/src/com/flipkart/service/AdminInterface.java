@@ -166,7 +166,7 @@ public interface AdminInterface {
 	 * @throws UserEmailNotFoundException
 	 */
 	public boolean modifyStudent(String email, String studentName, String department, String session)
-			throws UserNotFoundException, SQLException, UserEmailNotFoundException;
+			throws SQLException, UserEmailNotFoundException;
 
 	/**
 	 * Removes the course catalog.
