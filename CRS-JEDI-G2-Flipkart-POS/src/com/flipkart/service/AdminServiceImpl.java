@@ -33,13 +33,13 @@ public class AdminServiceImpl implements AdminInterface {
 
 	@Override
 	public boolean addProfessor(String name, String emailId, String password, String department) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.addProfessor(name, emailId, password, department);
 	}
 
 	@Override
 	public boolean addStudent(String name, String emailId, String password, String department, String session) {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.addStudent(name, emailId, password, department, session);
 	}
 
@@ -92,21 +92,9 @@ public class AdminServiceImpl implements AdminInterface {
 	}
 
 	@Override
-	public boolean modifyStudent(String studentId, String studentName, String department, String session) {
-		// Auto-generated method stub
-		return adminDAO.modifyStudnet(studentId, studentName, department, session);
-	}
-
-	@Override
 	public Admin getAdminById(String userId) {
 		// Auto-generated method stub
 		return adminDAO.getAdminById(userId);
-	}
-
-	@Override
-	public boolean removeStudent(String studentId) {
-		// Auto-generated method stub
-		return adminDAO.removeStudent(studentId);
 	}
 
 	@Override
@@ -127,6 +115,24 @@ public class AdminServiceImpl implements AdminInterface {
 	@Override
 	public boolean getProfessorFlag() {
 		return adminDAO.getProfessorFlag();
+	}
+
+	@Override
+	public boolean editStudentPermission(String studentId, boolean flag) {
+		// Auto-generated method stub
+		return adminDAO.editStudentPermission(studentId, flag);
+	}
+
+	@Override
+	public boolean modifyStudent(String email, String studentName, String department, String session) {
+		// Auto-generated method stub
+		return adminDAO.modifyStudent(email, studentName, department, session);
+	}
+
+	@Override
+	public boolean removeStudent(String studentId) {
+		// Auto-generated method stub
+		return adminDAO.removeStudent(studentId);
 	}
 
 }

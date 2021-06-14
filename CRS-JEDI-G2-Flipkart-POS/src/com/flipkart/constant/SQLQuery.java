@@ -26,7 +26,7 @@ public class SQLQuery {
 
 	public static final String MODIFY_PROFESSOR = "update professor set name=?, department=? where profid=?";
 
-	public static final String MODIFY_STUDENT = "update student set name=?, department=?, session=? where stuid=?";
+	public static final String MODIFY_STUDENT = "update student set name=?, department=?, session=?, approved=? where email=?";
 
 	public static final String REMOVE_COURSE_CATALOG = "delete from courseCatalog where courseid=?";
 
@@ -40,7 +40,10 @@ public class SQLQuery {
 
 	public static final String GET_FLAG = "select value from constants where `key`=?";
 
+	public static final String EDIT_STUDENT_PERMISSION = "update student set approved=? where stuid=? ";
+
 	public static final String REMOVE_STUDENT_PROFILE = "delete from student where stuid=?";
+
 	public static final String REMOVE_STUDENT_AUTH = "delete from auth where uid=? ";
 
 	// Auth DAO Query

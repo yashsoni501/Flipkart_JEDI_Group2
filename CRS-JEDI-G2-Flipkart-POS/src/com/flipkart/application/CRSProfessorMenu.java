@@ -21,7 +21,7 @@ import com.flipkart.service.ProfessorServiceImpl;
 import com.flipkart.service.RegisteredCourseInterface;
 import com.flipkart.service.RegisteredCourseServiceImpl;
 
-// TODO: Auto-generated Javadoc
+// Auto-generated Javadoc
 /**
  * The Class CRSProfessorMenu.
  *
@@ -31,16 +31,16 @@ public class CRSProfessorMenu {
 
 	/** The professor interface. */
 	ProfessorInterface professorInterface = ProfessorServiceImpl.getInstance();
-	
+
 	/** The course catalog interface. */
 	CourseCatalogInterface courseCatalogInterface = CourseCatalogServiceImpl.getInstance();
-	
+
 	/** The course interface. */
 	CourseInterface courseInterface = CourseServiceImpl.getInstance();
-	
+
 	/** The registerd course interface. */
 	RegisteredCourseInterface registerdCourseInterface = RegisteredCourseServiceImpl.getInstance();
-	
+
 	/** The admin interface. */
 	AdminInterface adminInterface = AdminServiceImpl.getInstance();
 
@@ -139,18 +139,19 @@ public class CRSProfessorMenu {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		System.out.println("----------------------------------------------------------------------------------------");
 		System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
 		System.out.println("----------------------------------------------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
 			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
-			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment() + "\t"
-					+ arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t" + arr.get(i).getCredits());
+			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
+					+ "\t" + arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t"
+					+ arr.get(i).getCredits());
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
 		System.out.println();
-		
+
 	}
 
 	/**
@@ -169,7 +170,7 @@ public class CRSProfessorMenu {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		System.out.println("---------------------------------------------------");
 		System.out.println("Student ID \t Name \t Department \t Email ID \t Session");
 		System.out.println("---------------------------------------------------");
@@ -238,14 +239,15 @@ public class CRSProfessorMenu {
 	private void viewCourses() {
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		arr = courseCatalogInterface.getDepartmentCourseCatalog(professor.getDepartment());
-		
+
 		System.out.println("----------------------------------------------------------------------------------------");
 		System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
 		System.out.println("----------------------------------------------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
 			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
-			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment() + "\t"
-					+ arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t" + arr.get(i).getCredits());
+			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
+					+ "\t" + arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t"
+					+ arr.get(i).getCredits());
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
 		System.out.println();

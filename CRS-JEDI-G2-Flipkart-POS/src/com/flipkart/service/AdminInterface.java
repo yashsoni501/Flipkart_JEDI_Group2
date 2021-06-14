@@ -5,7 +5,7 @@ package com.flipkart.service;
 
 import com.flipkart.bean.Admin;
 
-// TODO: Auto-generated Javadoc
+// Auto-generated Javadoc
 /**
  * The Interface AdminInterface.
  *
@@ -33,9 +33,9 @@ public interface AdminInterface {
 	/**
 	 * Adds the professor.
 	 *
-	 * @param name the name
-	 * @param emailId the email id
-	 * @param password the password
+	 * @param name       the name
+	 * @param emailId    the email id
+	 * @param password   the password
 	 * @param department the department
 	 * @return true, if successful
 	 */
@@ -44,11 +44,11 @@ public interface AdminInterface {
 	/**
 	 * Adds the student.
 	 *
-	 * @param name the name
-	 * @param emailId the email id
-	 * @param password the password
+	 * @param name       the name
+	 * @param emailId    the email id
+	 * @param password   the password
 	 * @param department the department
-	 * @param session the session
+	 * @param session    the session
 	 * @return true, if successful
 	 */
 	public boolean addStudent(String name, String emailId, String password, String department, String session);
@@ -109,23 +109,12 @@ public interface AdminInterface {
 	/**
 	 * Modify professor.
 	 *
-	 * @param profId the prof id
+	 * @param profId        the prof id
 	 * @param professorName the professor name
-	 * @param department the department
+	 * @param department    the department
 	 * @return true, if successful
 	 */
 	public boolean modifyProfessor(String profId, String professorName, String department);
-
-	/**
-	 * Modify student.
-	 *
-	 * @param studentId the student id
-	 * @param studentName the student name
-	 * @param department the department
-	 * @param session the session
-	 * @return true, if successful
-	 */
-	public boolean modifyStudent(String studentId, String studentName, String department, String session);
 
 	/**
 	 * Removes the course catalog.
@@ -138,7 +127,7 @@ public interface AdminInterface {
 	/**
 	 * Modify course.
 	 *
-	 * @param courseId the course id
+	 * @param courseId   the course id
 	 * @param courseName the course name
 	 * @param department the department
 	 * @return true, if successful
@@ -150,9 +139,9 @@ public interface AdminInterface {
 	 *
 	 * @param courseId the course id
 	 * @param semester the semester
-	 * @param session the session
-	 * @param credits the credits
-	 * @param profId the prof id
+	 * @param session  the session
+	 * @param credits  the credits
+	 * @param profId   the prof id
 	 * @return true, if successful
 	 */
 	public boolean addCourseCatalog(String courseId, int semester, String session, float credits, String profId);
@@ -162,9 +151,9 @@ public interface AdminInterface {
 	 *
 	 * @param courseId the course id
 	 * @param semester the semester
-	 * @param session the session
-	 * @param credits the credits
-	 * @param profId the prof id
+	 * @param session  the session
+	 * @param credits  the credits
+	 * @param profId   the prof id
 	 * @return true, if successful
 	 */
 	public boolean modifyCourseCatalog(String courseId, int semester, String session, float credits, String profId);
@@ -178,9 +167,29 @@ public interface AdminInterface {
 	public Admin getAdminById(String userId);
 
 	/**
-	 * Removes the student.
+	 * Revokes the student permission.
 	 *
 	 * @param studentId the student id
+	 * @param flag      boolean
+	 * @return true, if successful
+	 */
+	public boolean editStudentPermission(String studentId, boolean flag);
+
+	/**
+	 * Modify course catalog.
+	 *
+	 * @param email      the email
+	 * @param semester   the semester
+	 * @param session    the session
+	 * @param department the department
+	 * @return true, if successful
+	 */
+	public boolean modifyStudent(String email, String studentName, String department, String session);
+
+	/**
+	 * Remove Student.
+	 *
+	 * @param studentId the studentId
 	 * @return true, if successful
 	 */
 	public boolean removeStudent(String studentId);

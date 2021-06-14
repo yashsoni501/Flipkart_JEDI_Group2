@@ -4,7 +4,8 @@
 package com.flipkart.exception;
 
 /**
- *  Exception to check if the set of professors is empty
+ * Exception to check if the set of professors is empty
+ * 
  * @author jagru
  *
  */

@@ -27,7 +27,7 @@ public interface AdminDAOInterface {
 
 	public boolean modifyProfessor(String profId, String professorName, String department);
 
-	public boolean modifyStudnet(String studentId, String studentName, String department, String session);
+	public boolean modifyStudent(String email, String studentName, String department, String session);
 
 	public boolean removeCourseCatalog(String courseId);
 
@@ -39,5 +39,8 @@ public interface AdminDAOInterface {
 
 	public Admin getAdminById(String userId);
 
+	public boolean editStudentPermission(String studentId, boolean flag);
+
 	public boolean removeStudent(String studentId);
+
 }

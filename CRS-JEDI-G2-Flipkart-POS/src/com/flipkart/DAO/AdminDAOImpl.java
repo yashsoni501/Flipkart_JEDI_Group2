@@ -38,7 +38,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * Adds the course.
 	 *
@@ -305,7 +305,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	@Override
 	public boolean setProfessorFlag(boolean flag) {
 
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		try {
 			Connection conn = DBUtils.getConnection();
 			PreparedStatement stmt = conn.prepareStatement(SQLQuery.EDIT_PROFESSOR_FLAG);
@@ -420,7 +420,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * @return true, if successful
 	 */
 	@Override
-	public boolean modifyStudnet(String studentId, String studentName, String department, String session) {
+	public boolean modifyStudent(String email, String studentName, String department, String session) {
 		// Auto-generated method stub
 		try {
 			Connection conn = DBUtils.getConnection();
@@ -429,7 +429,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			stmt.setString(1, studentName);
 			stmt.setString(2, department);
 			stmt.setString(3, session);
-			stmt.setString(4, studentId);
+			stmt.setString(4, Constants.FALSE);
+			stmt.setString(5, email);
 
 			int rows = stmt.executeUpdate();
 			if (rows == 0) {
@@ -645,6 +646,70 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	}
 
 	/**
+	 * Edit the student permission.
+	 *
+	 * @param studentId the student id
+	 * @param flag      boolean
+	 * @return true, if successful
+	 */
+	@Override
+	public boolean editStudentPermission(String studentId, boolean flag) {
+		try {
+			Connection conn = DBUtils.getConnection();
+			PreparedStatement stmt = conn.prepareStatement(SQLQuery.MODIFY_STUDENT);
+
+			if (flag) {
+				stmt.setString(1, Constants.TRUE);
+			} else {
+				stmt.setString(1, Constants.FALSE);
+			}
+			stmt.setString(1, studentId);
+
+			int rows = stmt.executeUpdate();
+			if (rows == 0) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 * Gets the course registration flag.
+	 *
+	 * @return the course registration flag
+	 */
+	@Override
+	public boolean getCourseRegistrationFlag() {
+		return getBooleanConstants(Constants.COURSE_WINDOW);
+	}
+
+	/**
+	 * Gets the payment flag.
+	 *
+	 * @return the payment flag
+	 */
+	@Override
+	public boolean getPaymentFlag() {
+		return getBooleanConstants(Constants.PAYMENT_WINDOW);
+	}
+
+	/**
+	 * Gets the professor flag.
+	 *
+	 * @return the professor flag
+	 */
+	@Override
+	public boolean getProfessorFlag() {
+		return getBooleanConstants(Constants.PROFESSOR_WINDOW);
+	}
+
+	/**
 	 * Removes the student.
 	 *
 	 * @param studentId the student id
@@ -689,33 +754,4 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		return false;
 	}
 
-	/**
-	 * Gets the course registration flag.
-	 *
-	 * @return the course registration flag
-	 */
-	@Override
-	public boolean getCourseRegistrationFlag() {
-		return getBooleanConstants(Constants.COURSE_WINDOW);
-	}
-
-	/**
-	 * Gets the payment flag.
-	 *
-	 * @return the payment flag
-	 */
-	@Override
-	public boolean getPaymentFlag() {
-		return getBooleanConstants(Constants.PAYMENT_WINDOW);
-	}
-
-	/**
-	 * Gets the professor flag.
-	 *
-	 * @return the professor flag
-	 */
-	@Override
-	public boolean getProfessorFlag() {
-		return getBooleanConstants(Constants.PROFESSOR_WINDOW);
-	}
 }

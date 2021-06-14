@@ -4,7 +4,8 @@
 package com.flipkart.exception;
 
 /**
- * Exception to check if user exists 
+ * Exception to check if user exists
+ * 
  * @author Aeron
  *
  */
@@ -14,6 +15,7 @@ public class UserNotFoundException extends Exception {
 
 	/***
 	 * Getter function for UserId
+	 * 
 	 * @param userId
 	 */
 	public UserNotFoundException(String userId) {
