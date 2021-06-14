@@ -185,7 +185,7 @@ public class CRSStudentMenu {
 			courseWindow = adminInterface.getCourseRegistrationFlag();
 
 			if (!courseWindow) {
-				System.out.println("The Coure Registration window is closed.");
+				System.out.println("The Course Registration window is closed.");
 				return;
 			}
 
