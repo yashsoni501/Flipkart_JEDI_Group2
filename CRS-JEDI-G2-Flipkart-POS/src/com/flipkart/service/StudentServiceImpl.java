@@ -33,7 +33,8 @@ public class StudentServiceImpl implements StudentInterface {
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int semester) throws SQLException, CourseNotFoundException {
+	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int semester)
+			throws SQLException, CourseNotFoundException {
 		// Auto-generated method stub
 		return studentDAO.fetchRegisteredCourses(studentId, semester);
 	}

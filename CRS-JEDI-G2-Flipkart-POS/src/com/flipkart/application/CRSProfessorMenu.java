@@ -21,7 +21,7 @@ import com.flipkart.service.ProfessorServiceImpl;
 import com.flipkart.service.RegisteredCourseInterface;
 import com.flipkart.service.RegisteredCourseServiceImpl;
 
-// TODO: Auto-generated Javadoc
+// Auto-generated Javadoc
 /**
  * The Class CRSProfessorMenu.
  *

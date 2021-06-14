@@ -17,5 +17,6 @@ public interface SemesterReportCardDAOInterface {
 
 	boolean addSemesterReportCard(String studentId, int semester, float sgpa) throws SQLException;
 
-	ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String studentId) throws SQLException, SemesterReportCardNotFound;
+	ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String studentId)
+			throws SQLException, SemesterReportCardNotFound;
 }

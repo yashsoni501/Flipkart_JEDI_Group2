@@ -15,6 +15,8 @@ CREATE TABLE `student` (
     `name` varchar(50) not null,  
     `department` varchar(50) not null,  
     `session` varchar(50) not null,
+    `approved` varchar(50) not null default 'FALSE',
+
     foreign key (stuid) references auth(uid)
 );
 
@@ -30,13 +32,13 @@ CREATE TABLE `professor` (
 
 CREATE TABLE `admin` (
     `empid` int primary key auto_increment, 
-    `adminid` int primary key,  
+    `adminid` int unique not null,
     `email` varchar(50) not null,  
     `name` varchar(50) not null, 
-    `designation` varchar(50), 
+    `designation` varchar(50),
     `status` varchar(50),
 
-    foreign key (stuid) references auth(uid)
+    foreign key (adminid) references auth(uid)
 );
 
 
@@ -58,7 +60,7 @@ CREATE TABLE `courseCatalog` (
 
 CREATE TABLE `registeredCourse` (
     `regid` int primary key auto_increment, 
-    `courseid` int not null,, 
+    `courseid` int not null, 
     `stuid` int not null, 
     `semester` int not null, 
     `session` varchar(50) not null, 
@@ -79,7 +81,7 @@ CREATE TABLE `semesterReportCard` (
 
 CREATE TABLE `payment` (
     `referenceId` varchar(50) primary key, 
-    `stuid` int not null,, 
+    `stuid` int not null,
     `status` varchar(50) not null, 
     `amount` float not null, 
     `dateOfPayment` varchar(50) not null, 

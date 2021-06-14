@@ -1,7 +1,8 @@
 package com.flipkart.exception;
 
 /**
- * Exception to check if student is not registered 
+ * Exception to check if student is not registered
+ * 
  * @author Aeron
  *
  */

@@ -39,7 +39,8 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester) throws InvalidCCSessionSemesterException {
+	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester)
+			throws InvalidCCSessionSemesterException {
 
 		return courseDAO.getCourseCatalogBySessionSemester(session, semester);
 	}

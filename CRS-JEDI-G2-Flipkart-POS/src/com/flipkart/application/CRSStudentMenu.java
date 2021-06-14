@@ -67,16 +67,20 @@ public class CRSStudentMenu {
 	public void createMenu() {
 		if (CRSApplication.userId != null) {
 			try {
-				try {
-					student = studentInterface.getStudentById(CRSApplication.userId);
-				} catch (UserNotFoundException e) {
-					//  Auto-generated catch block
-					e.getMessage();
-				}
+
+				student = studentInterface.getStudentById(CRSApplication.userId);
+
 			} catch (SQLException e) {
 				// Auto-generated catch block
 				e.getMessage();
+			} catch (UserNotFoundException e) {
+				// Auto-generated catch block
+				e.getMessage();
 			}
+		}
+		if (student.getApprovalStatus().equals(Constants.FALSE)) {
+			System.out.println("You have not been aprroved by the Admin.");
+			return;
 		}
 		while (CRSApplication.userId != null) {
 			System.out.println("\n----------Student Menu-----------");
@@ -85,7 +89,9 @@ public class CRSStudentMenu {
 			System.out.println("3. View report card");
 			System.out.println("4. Pay fee");
 			System.out.println("5. Register for courses");
-			System.out.println("6. Logout");
+			System.out.println("6. View Details");
+			System.out.println("7. Modify Details");
+			System.out.println("8. Logout");
 
 			int optionChoosed = CRSApplication.scan.nextInt();
 			switch (optionChoosed) {
@@ -105,6 +111,12 @@ public class CRSStudentMenu {
 				registerInCourse();
 				break;
 			case 6:
+				viewStudent();
+				break;
+			case 7:
+				modifyStudent();
+				break;
+			case 8:
 				student = null;
 				CRSApplication.logout();
 				break;
@@ -113,6 +125,40 @@ public class CRSStudentMenu {
 			}
 		}
 
+	}
+
+	private void viewStudent() {
+		// Auto-generated method stub
+		System.out.println("---------------------------------------------------");
+		System.out.println("Student ID \t Name \t Department \t Email ID \t Approval");
+		System.out.println("---------------------------------------------------");
+
+		System.out.println(student.getStudentID() + "\t" + student.getStudentName() + "\t" + student.getDepartment()
+				+ "\t" + student.getEmailID() + "\t" + student.getApprovalStatus());
+		System.out.println("---------------------------------------------------");
+		System.out.println();
+	}
+
+	private void modifyStudent() {
+		// Auto-generated method stub
+
+		System.out.println("Enter Email:");
+		String email = CRSApplication.scan.next();
+
+		System.out.println("Enter Name:");
+		String studentName = CRSApplication.scan.next();
+
+		System.out.println("Enter Department:");
+		String department = CRSApplication.scan.next();
+
+		System.out.println("Enter Session:");
+		String session = CRSApplication.scan.next();
+
+		if (adminInterface.modifyStudent(email, studentName, department, session)) {
+			System.out.println("Student Updated Successfully");
+		} else {
+			System.out.println("Something went wrong");
+		}
 	}
 
 	/**
@@ -359,17 +405,17 @@ public class CRSStudentMenu {
 				for (int j = 0; j < arr1.size(); j++) {
 					CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(j).getCourseId());
 					Course course = courseInterface.getCourse(arr1.get(j).getCourseId());
-					System.out.println(
-							course.getCourseID() + "\t\t" + course.getCourseName() + "\t" + course.getDepartment() + "\t"
-									+ arr.getProfessorId() + "\t\t" + arr.getCredits() + "\t" + arr1.get(j).getGrade());
+					System.out.println(course.getCourseID() + "\t\t" + course.getCourseName() + "\t"
+							+ course.getDepartment() + "\t" + arr.getProfessorId() + "\t\t" + arr.getCredits() + "\t"
+							+ arr1.get(j).getGrade());
 				}
 				System.out.println("");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// Auto-generated catch block
 			e.getMessage();
 		} catch (SemesterReportCardNotFound e) {
-			
+
 			e.getMessage();
 		}
 

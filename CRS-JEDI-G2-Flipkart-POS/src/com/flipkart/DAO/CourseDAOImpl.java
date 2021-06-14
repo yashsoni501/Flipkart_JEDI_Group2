@@ -22,7 +22,7 @@ import com.flipkart.exception.InvalidDepartmentException;
  * @author Tanmay
  *
  */
-public class CourseDAOImpl implements CourseDAOInterface{
+public class CourseDAOImpl implements CourseDAOInterface {
 
 	public static volatile CourseDAOImpl instance = null;
 
@@ -36,7 +36,7 @@ public class CourseDAOImpl implements CourseDAOInterface{
 		return instance;
 	}
 
-	public Course getCourse(String courseId) throws CourseNotFoundException{
+	public Course getCourse(String courseId) throws CourseNotFoundException {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -54,7 +54,7 @@ public class CourseDAOImpl implements CourseDAOInterface{
 				res.setCourseName(rs.getString("courseName"));
 				res.setDepartment(rs.getString("department"));
 
-			}else {
+			} else {
 				throw new CourseNotFoundException(courseId);
 			}
 
@@ -103,7 +103,7 @@ public class CourseDAOImpl implements CourseDAOInterface{
 		return res;
 	}
 
-	public CourseCatalog getCourseCatalog(String courseId) throws CourseCatalogEntryNotFoundException{
+	public CourseCatalog getCourseCatalog(String courseId) throws CourseCatalogEntryNotFoundException {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -122,7 +122,7 @@ public class CourseDAOImpl implements CourseDAOInterface{
 				res.setSemester(rs.getInt("semester"));
 				res.setSession(rs.getString("session"));
 				res.setCredits(rs.getFloat("credits"));
-			}else {
+			} else {
 				throw new CourseCatalogEntryNotFoundException(courseId);
 			}
 		} catch (SQLException se) {
@@ -134,7 +134,8 @@ public class CourseDAOImpl implements CourseDAOInterface{
 		return res;
 	}
 
-	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester) throws InvalidCCSessionSemesterException{
+	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester)
+			throws InvalidCCSessionSemesterException {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -163,7 +164,7 @@ public class CourseDAOImpl implements CourseDAOInterface{
 				res.add(temp);
 
 			}
-			
+
 			if (res.size() == 0) {
 				throw new InvalidCCSessionSemesterException(session, semester);
 			}
@@ -203,8 +204,8 @@ public class CourseDAOImpl implements CourseDAOInterface{
 
 					res.add(temp);
 				}
-				
-				if(res.size() == 0) {
+
+				if (res.size() == 0) {
 					throw new InvalidDepartmentException(department);
 				}
 			}
@@ -314,7 +315,7 @@ public class CourseDAOImpl implements CourseDAOInterface{
 		}
 		return true;
 	}
-	
+
 //	public static void main(String[] args) {
 //		CourseDAOImp as = new CourseDAOImp();
 

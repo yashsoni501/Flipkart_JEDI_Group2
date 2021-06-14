@@ -11,7 +11,6 @@ import com.flipkart.constant.Constants;
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
 import com.flipkart.exception.ConstantFlagNotSetException;
-import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.InvalidCredentialsException;
 import com.flipkart.exception.UserEmailAlreadyInUseException;
@@ -374,8 +373,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	 * @return true, if successful
 	 */
 	@Override
-	public boolean modifyStudent(String studentId, String studentName, String department, String session)
-			throws UserNotFoundException, SQLException {
+	public boolean modifyStudent(String email, String studentName, String department, String session)
+			throws UserEmailNotFoundException, SQLException {
 		// Auto-generated method stub
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = conn.prepareStatement(SQLQuery.MODIFY_STUDENT);
@@ -383,11 +382,12 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		stmt.setString(1, studentName);
 		stmt.setString(2, department);
 		stmt.setString(3, session);
-		stmt.setString(4, studentId);
+		stmt.setString(4, Constants.FALSE);
+		stmt.setString(5, email);
 
 		int rows = stmt.executeUpdate();
 		if (rows == 0) {
-			throw new UserNotFoundException(studentId);
+			throw new UserEmailNotFoundException(email);
 
 		} else {
 			return true;
@@ -560,12 +560,32 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	}
 
 	/**
-	 * Removes the student.
+	 * Edit the student permission.
 	 *
 	 * @param studentId the student id
+	 * @param flag      boolean
 	 * @return true, if successful
 	 */
 	@Override
+	public boolean editStudentPermission(String studentId, boolean flag) throws UserNotFoundException, SQLException {
+		Connection conn = DBUtils.getConnection();
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.EDIT_STUDENT_PERMISSION);
+
+		if (flag) {
+			stmt.setString(1, Constants.TRUE);
+		} else {
+			stmt.setString(1, Constants.FALSE);
+		}
+		stmt.setString(1, studentId);
+		int rows = stmt.executeUpdate();
+
+		if (rows == 0) {
+			throw new UserNotFoundException(studentId);
+		} else {
+			return true;
+		}
+	}
+
 	public boolean removeStudent(String studentId) throws UserNotFoundException, SQLException {
 		Connection conn = DBUtils.getConnection();
 
@@ -629,4 +649,5 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	public boolean getProfessorFlag() throws ConstantFlagNotSetException, SQLException {
 		return getBooleanConstants(Constants.PROFESSOR_WINDOW);
 	}
+
 }

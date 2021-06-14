@@ -3,14 +3,15 @@
  */
 package com.flipkart.application;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.flipkart.service.AdminInterface;
+import com.flipkart.service.AdminServiceImpl;
 import com.flipkart.service.AuthInterface;
 import com.flipkart.service.AuthServiceImpl;
 import com.flipkart.constant.Constants;
 
-// TODO: Auto-generated Javadoc
+// Auto-generated Javadoc
 /**
  * The Class CRSApplication.
  *
@@ -24,6 +25,9 @@ public class CRSApplication {
 	/** The auth interface. */
 	public static AuthInterface authInterface = AuthServiceImpl.getInstance();
 
+	/** The admin interface. */
+	AdminInterface adminInterface = AdminServiceImpl.getInstance();
+
 	/** The scan. */
 	public static Scanner scan = new Scanner(System.in);
 
@@ -36,13 +40,17 @@ public class CRSApplication {
 		CRSApplication crsApplication = new CRSApplication();
 		createMainMenu();
 		int userInput = scan.nextInt();
-		while (userInput != 3) {
+		while (userInput != 4) {
 			switch (userInput) {
 			case 1:
 				// login
 				crsApplication.loginUser();
 				break;
 			case 2:
+				// signUp
+				crsApplication.studentSignUp();
+				break;
+			case 3:
 				// update password
 				crsApplication.updatePassword();
 				break;
@@ -53,6 +61,27 @@ public class CRSApplication {
 			userInput = scan.nextInt();
 		}
 		scan.close();
+	}
+
+	private void studentSignUp() {
+		// Auto-generated method stub
+		String userEmail, password, userName, department, session;
+		System.out.println("-----------------Student SignUp------------------");
+		System.out.println("Email:");
+		userEmail = scan.next();
+		System.out.println("Password:");
+		password = scan.next();
+		System.out.println("Name:");
+		userName = scan.next();
+		System.out.println("Department:");
+		department = scan.next();
+		System.out.println("Session:");
+		session = scan.next();
+		if (adminInterface.addStudent(userName, userEmail, password, department, session)) {
+			System.out.println("Student Added Successfully");
+		} else {
+			System.out.println("Something went wrong");
+		}
 	}
 
 	/**
@@ -82,8 +111,9 @@ public class CRSApplication {
 	public static void createMainMenu() {
 		System.out.println("----------Welcome to Course Management System---------");
 		System.out.println("1. Login");
-		System.out.println("2. Update Password");
-		System.out.println("3. Exit");
+		System.out.println("2. Student SignUp");
+		System.out.println("3. Update Password");
+		System.out.println("4. Exit");
 		System.out.println("Enter user input");
 	}
 

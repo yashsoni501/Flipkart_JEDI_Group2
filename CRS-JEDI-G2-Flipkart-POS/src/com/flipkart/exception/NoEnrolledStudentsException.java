@@ -5,6 +5,7 @@ package com.flipkart.exception;
 
 /**
  * Exception to check if there are no enrolled students for a course and session
+ * 
  * @author jagru
  *
  */
@@ -12,8 +13,8 @@ public class NoEnrolledStudentsException extends Exception {
 
 	private String courseId;
 	private String session;
-	
-	public NoEnrolledStudentsException(String courseId,String session) {
+
+	public NoEnrolledStudentsException(String courseId, String session) {
 		this.courseId = courseId;
 		this.session = session;
 	}
@@ -25,7 +26,6 @@ public class NoEnrolledStudentsException extends Exception {
 		return courseId;
 	}
 
-	
 	/**
 	 * @return the session
 	 */
@@ -40,6 +40,5 @@ public class NoEnrolledStudentsException extends Exception {
 	public String getMessage() {
 		return "No Enrolled Students Found for Course ID : " + courseId + "and session : " + session + ".";
 	}
-	
-	
+
 }

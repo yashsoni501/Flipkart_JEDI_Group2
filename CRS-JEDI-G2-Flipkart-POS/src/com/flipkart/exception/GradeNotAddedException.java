@@ -2,6 +2,7 @@ package com.flipkart.exception;
 
 /**
  * Exception to check if student has been alloted grade by professor
+ * 
  * @author Aeron
  *
  */
