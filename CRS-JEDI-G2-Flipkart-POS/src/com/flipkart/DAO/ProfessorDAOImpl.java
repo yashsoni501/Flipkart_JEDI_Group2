@@ -67,9 +67,8 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		stmt.setString(1, professorId);
 		stmt.setString(2, courseId);
 		int rows = stmt.executeUpdate();
-		System.out.println("Rows impacted : " + rows);
 
-		return rows == 1;
+		return rows > 0;
 	}
 
 	@Override
@@ -133,7 +132,6 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		stmt.setString(3, studentId);
 
 		int rows = stmt.executeUpdate();
-		System.out.println("Rows impacted : " + rows);
 		return rows > 0;
 	}
 

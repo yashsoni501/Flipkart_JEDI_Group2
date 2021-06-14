@@ -28,26 +28,40 @@ import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
 import com.flipkart.utils.Constants;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author Aeron
+ * The Class CRSStudentMenu.
  *
+ * @author Aeron
  */
 public class CRSStudentMenu {
 
+	/** The student interface. */
 	StudentInterface studentInterface = StudentServiceImpl.getInstance();
+	
+	/** The course catalog interface. */
 	CourseCatalogInterface courseCatalogInterface = CourseCatalogServiceImpl.getInstance();
+	
+	/** The payment interface. */
 	PaymentInterface paymentInterface = PaymentServiceImpl.getInstance();
+	
+	/** The registered course interface. */
 	RegisteredCourseInterface registeredCourseInterface = RegisteredCourseServiceImpl.getInstance();
+	
+	/** The semester report card interface. */
 	SemesterReportCardInterface semesterReportCardInterface = SemesterReportCardServiceImpl.getInstance();
+	
+	/** The course interface. */
 	CourseInterface courseInterface = CourseServiceImpl.getInstance();
+	
+	/** The admin interface. */
 	AdminInterface adminInterface = AdminServiceImpl.getInstance();
 
+	/** The student. */
 	Student student = null;
 
 	/**
-	 * Creates the menu for Students
-	 * 
-	 * @throws SQLException
+	 * Creates the menu for Students.
 	 */
 	public void createMenu() {
 		if (CRSApplication.userId != null) {
@@ -95,6 +109,9 @@ public class CRSStudentMenu {
 
 	}
 
+	/**
+	 * Register in course.
+	 */
 	private void registerInCourse() {
 		boolean courseWindow = adminInterface.getCourseRegistrationFlag();
 
@@ -139,6 +156,11 @@ public class CRSStudentMenu {
 
 	}
 
+	/**
+	 * Submit registration.
+	 *
+	 * @param selectedCourses the selected courses
+	 */
 	private void submitRegistration(ArrayList<CourseCatalog> selectedCourses) {
 		if (selectedCourses.size() != 6) {
 			System.out.println("Please select exactly 6 courses. You have chosen " + selectedCourses.size());
@@ -161,6 +183,11 @@ public class CRSStudentMenu {
 		System.out.println("success");
 	}
 
+	/**
+	 * View seleted courses.
+	 *
+	 * @param selectedCourses the selected courses
+	 */
 	private void viewSeletedCourses(ArrayList<CourseCatalog> selectedCourses) {
 		// Auto-generated method stub
 		for (CourseCatalog arr : selectedCourses) {
@@ -170,6 +197,12 @@ public class CRSStudentMenu {
 		}
 	}
 
+	/**
+	 * Adds the course.
+	 *
+	 * @param selectedCourses the selected courses
+	 * @return the array list
+	 */
 	private ArrayList<CourseCatalog> addCourse(ArrayList<CourseCatalog> selectedCourses) {
 		// Auto-generated method stub
 		if (selectedCourses.size() == 6) {
@@ -193,6 +226,12 @@ public class CRSStudentMenu {
 		return selectedCourses;
 	}
 
+	/**
+	 * Drop course.
+	 *
+	 * @param selectedCourses the selected courses
+	 * @return the array list
+	 */
 	private ArrayList<CourseCatalog> dropCourse(ArrayList<CourseCatalog> selectedCourses) {
 		// Auto-generated method stub
 		if (selectedCourses.size() == 0) {
@@ -205,6 +244,9 @@ public class CRSStudentMenu {
 		return selectedCourses;
 	}
 
+	/**
+	 * View courses.
+	 */
 	private void viewCourses() {
 		// Auto-generated method stub
 		System.out.println("Enter Semester");
@@ -219,6 +261,9 @@ public class CRSStudentMenu {
 		}
 	}
 
+	/**
+	 * Registered courses.
+	 */
 	private void registeredCourses() {
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
@@ -238,6 +283,9 @@ public class CRSStudentMenu {
 		}
 	}
 
+	/**
+	 * Fee reciept.
+	 */
 	private void feeReciept() {
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
@@ -256,6 +304,9 @@ public class CRSStudentMenu {
 		}
 	}
 
+	/**
+	 * Report card.
+	 */
 	private void reportCard() {
 		try {
 			ArrayList<SemesterReportCard> semesterReportCards = semesterReportCardInterface
@@ -287,6 +338,9 @@ public class CRSStudentMenu {
 
 	}
 
+	/**
+	 * Pay fees.
+	 */
 	private void payFees() {
 		boolean feeWindow = adminInterface.getPaymentFlag();
 

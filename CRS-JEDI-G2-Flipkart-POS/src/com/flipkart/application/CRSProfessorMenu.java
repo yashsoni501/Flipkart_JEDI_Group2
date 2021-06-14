@@ -21,20 +21,35 @@ import com.flipkart.service.ProfessorServiceImpl;
 import com.flipkart.service.RegisteredCourseInterface;
 import com.flipkart.service.RegisteredCourseServiceImpl;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author yashsoni501
+ * The Class CRSProfessorMenu.
  *
+ * @author yashsoni501
  */
 public class CRSProfessorMenu {
 
+	/** The professor interface. */
 	ProfessorInterface professorInterface = ProfessorServiceImpl.getInstance();
+	
+	/** The course catalog interface. */
 	CourseCatalogInterface courseCatalogInterface = CourseCatalogServiceImpl.getInstance();
+	
+	/** The course interface. */
 	CourseInterface courseInterface = CourseServiceImpl.getInstance();
+	
+	/** The registerd course interface. */
 	RegisteredCourseInterface registerdCourseInterface = RegisteredCourseServiceImpl.getInstance();
+	
+	/** The admin interface. */
 	AdminInterface adminInterface = AdminServiceImpl.getInstance();
 
+	/** The professor. */
 	Professor professor = null;
 
+	/**
+	 * Creates the menu.
+	 */
 	public void createMenu() {
 		if (CRSApplication.userId != null) {
 			try {
@@ -84,6 +99,9 @@ public class CRSProfessorMenu {
 		}
 	}
 
+	/**
+	 * Opt in course.
+	 */
 	private void optInCourse() {
 		boolean profWindow = adminInterface.getProfessorFlag();
 
@@ -109,6 +127,9 @@ public class CRSProfessorMenu {
 
 	}
 
+	/**
+	 * View opted courses.
+	 */
 	private void viewOptedCourses() {
 		// Auto-generated method stub
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
@@ -126,6 +147,9 @@ public class CRSProfessorMenu {
 		}
 	}
 
+	/**
+	 * View enrolled students in course.
+	 */
 	private void viewEnrolledStudentsInCourse() {
 		// Auto-generated method stub
 		System.out.println("Enter Course Id");
@@ -146,6 +170,9 @@ public class CRSProfessorMenu {
 		}
 	}
 
+	/**
+	 * Removes the opted course.
+	 */
 	// Note :Needs to be implemented in course catalog
 	private void removeOptedCourse() {
 		boolean profWindow = adminInterface.getProfessorFlag();
@@ -165,6 +192,9 @@ public class CRSProfessorMenu {
 		}
 	}
 
+	/**
+	 * Submit grades.
+	 */
 	private void submitGrades() {
 		// Auto-generated method stub
 
@@ -191,6 +221,9 @@ public class CRSProfessorMenu {
 		}
 	}
 
+	/**
+	 * View courses.
+	 */
 	private void viewCourses() {
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		arr = courseCatalogInterface.getDepartmentCourseCatalog(professor.getDepartment());
