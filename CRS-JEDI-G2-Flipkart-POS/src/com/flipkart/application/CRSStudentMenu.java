@@ -28,6 +28,7 @@ import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
 import com.flipkart.constant.Constants;
 import com.flipkart.exception.UserNotFoundException;
+import com.flipkart.exception.SemesterReportCardNotFound;
 
 /**
  * The Class CRSStudentMenu.
@@ -70,11 +71,11 @@ public class CRSStudentMenu {
 					student = studentInterface.getStudentById(CRSApplication.userId);
 				} catch (UserNotFoundException e) {
 					//  Auto-generated catch block
-					e.printStackTrace();
+					e.getMessage();
 				}
 			} catch (SQLException e) {
 				// Auto-generated catch block
-				e.printStackTrace();
+				e.getMessage();
 			}
 		}
 		while (CRSApplication.userId != null) {
@@ -183,7 +184,7 @@ public class CRSStudentMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 		System.out.println("success");
 	}
@@ -304,7 +305,7 @@ public class CRSStudentMenu {
 
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 
@@ -331,7 +332,7 @@ public class CRSStudentMenu {
 			System.out.println();
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 
@@ -366,7 +367,10 @@ public class CRSStudentMenu {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
+		} catch (SemesterReportCardNotFound e) {
+			
+			e.getMessage();
 		}
 
 	}
@@ -441,7 +445,7 @@ public class CRSStudentMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 }
