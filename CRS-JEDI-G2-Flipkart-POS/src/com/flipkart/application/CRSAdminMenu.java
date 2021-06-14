@@ -219,6 +219,7 @@ public class CRSAdminMenu {
 							alreadyCreated = true;
 						}
 					}
+
 					checked = true;
 				}
 
@@ -234,10 +235,13 @@ public class CRSAdminMenu {
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		} catch (SemesterReportCardNotFound e) {
-			System.out.println(e.getMessage());
+			return;
 		} catch (NoRegisteredCoursesException e) {
 			System.out.println(e.getMessage());
+			return;
+		} catch (SemesterReportCardNotFound e) {
+			System.out.println(e.getMessage());
+			return;
 		}
 
 		System.out.println("Report Card generated Successfully");
@@ -293,10 +297,11 @@ public class CRSAdminMenu {
 			return totalScore / totalCredit;
 		} catch (CourseCatalogEntryNotFoundException e) {
 			System.out.println(e.getMessage());
+			return 0;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+			return 0;
 		}
-		return 0;
 	}
 
 	/**
@@ -552,8 +557,10 @@ public class CRSAdminMenu {
 			}
 		} catch (UserNotFoundException e) {
 			System.out.println(e.getMessage());
+			return;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+			return;
 		}
 
 	}
@@ -702,9 +709,10 @@ public class CRSAdminMenu {
 		ArrayList<Student> arr = new ArrayList<Student>();
 		try {
 			arr = studentInterface.getAllStudents(session);
-		} catch (SQLException e1) {
+		} catch (SQLException e) {
 			// Auto-generated catch block
-			e1.getMessage();
+			System.out.println(e.getMessage());
+			return;
 		}
 		System.out.println("--------------------------------------------------------------------------------");
 		System.out.printf("%15s %15s %15s %20s %10s\n", "Student ID", "Name", "Department", "Email ID", "Approval");
@@ -772,9 +780,11 @@ public class CRSAdminMenu {
 			arr = professorInterface.getAllProfessor();
 		} catch (NoProfessorsFoundException e) {
 			System.out.println(e.getMessage());
+			return;
 		} catch (SQLException e) {
 			// Auto-generated catch block
 			System.out.println(e.getMessage());
+			return;
 		}
 
 		System.out.println("---------------------------------------------------------------------------");

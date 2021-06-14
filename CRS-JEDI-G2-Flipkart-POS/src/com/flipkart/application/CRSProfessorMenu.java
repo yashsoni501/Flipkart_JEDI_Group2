@@ -65,8 +65,10 @@ public class CRSProfessorMenu {
 			} catch (SQLException e) {
 				// Auto-generated catch block
 				System.out.println(e.getMessage());
+				return;
 			} catch (ProfessorNotAddedException e) {
 				System.out.println(e.getMessage());
+				return;
 			}
 		}
 		while (CRSApplication.userId != null) {

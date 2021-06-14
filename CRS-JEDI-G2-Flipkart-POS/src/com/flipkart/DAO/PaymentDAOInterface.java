@@ -6,6 +6,7 @@ package com.flipkart.DAO;
 import java.sql.SQLException;
 
 import com.flipkart.bean.Payment;
+import com.flipkart.exception.FeeRecieptNotFoundException;
 
 /**
  * The Interface PaymentDAOInterface.
@@ -21,8 +22,9 @@ public interface PaymentDAOInterface {
 	 * @param semester  the semester
 	 * @return the fee reciept
 	 * @throws SQLException the SQL exception
+	 * @throws FeeRecieptNotFoundException when no fee receipt found
 	 */
-	public Payment getFeeReciept(String studentId, int semester) throws SQLException;
+	public Payment getFeeReciept(String studentId, int semester) throws SQLException, FeeRecieptNotFoundException;
 
 	/**
 	 * Online payment.

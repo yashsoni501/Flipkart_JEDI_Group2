@@ -31,6 +31,7 @@ import com.flipkart.constant.Constants;
 import com.flipkart.exception.ConstantFlagNotSetException;
 import com.flipkart.exception.CourseCatalogEntryNotFoundException;
 import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.FeeRecieptNotFoundException;
 import com.flipkart.exception.InvalidCCSessionSemesterException;
 import com.flipkart.exception.NoRegisteredCoursesException;
 import com.flipkart.exception.UserNotFoundException;
@@ -251,11 +252,11 @@ public class CRSStudentMenu {
 						student.getSession(), student.getStudentID());
 
 			}
+			System.out.println("success");
 		} catch (SQLException e) {
 			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
-		System.out.println("success");
 	}
 
 	/**
@@ -308,20 +309,21 @@ public class CRSStudentMenu {
 		CourseCatalog course = null;
 		try {
 			course = courseCatalogInterface.getCourseCatalog(courseId);
+
+			if (course == null || course.getCourseId() == null) {
+				System.out.println("Course with given ID does not exist");
+			} else {
+				if (!selectedCourses.contains(course)) {
+					selectedCourses.add(course);
+				} else {
+					System.out.println("You have already selected this course");
+				}
+			}
 		} catch (CourseCatalogEntryNotFoundException e) {
+			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		}
-
-		if (course == null || course.getCourseId() == null) {
-			System.out.println("Course with given ID does not exist");
-		} else {
-			if (!selectedCourses.contains(course)) {
-				selectedCourses.add(course);
-			} else {
-				System.out.println("You have already selected this course");
-			}
 		}
 		return selectedCourses;
 	}
@@ -351,8 +353,9 @@ public class CRSStudentMenu {
 		// Auto-generated method stub
 		System.out.println("Enter Semester");
 		int semester = MenuOptionScanner.nextInt();
-		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		try {
+			ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
+
 			arr = courseCatalogInterface.getCourseCatalogBySessionSemester(student.getSession(), semester);
 
 			System.out.println(
@@ -419,6 +422,8 @@ public class CRSStudentMenu {
 			System.out.println(e.getMessage());
 		} catch (NoRegisteredCoursesException e) {
 			System.out.println(e.getMessage());
+		} catch (NoRegisteredCoursesException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -444,6 +449,9 @@ public class CRSStudentMenu {
 					"----------------------------------------------------------------------------------------");
 			System.out.println();
 		} catch (SQLException e) {
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (FeeRecieptNotFoundException e) {
 			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
@@ -511,7 +519,12 @@ public class CRSStudentMenu {
 			System.out.println("Enter Semester");
 			int semester = MenuOptionScanner.nextInt();
 			Payment reciept = new Payment();
-			reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
+			try {
+				reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
+			} catch (FeeRecieptNotFoundException e) {
+				// Auto-generated catch block
+				
+			}
 
 			if (reciept.getStatus().equalsIgnoreCase(Constants.PAYMENT_SUCCESS)) {
 				System.out.println("Fee is already paid for " + semester + " semester");

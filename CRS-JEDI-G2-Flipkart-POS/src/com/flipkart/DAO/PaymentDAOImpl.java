@@ -13,6 +13,7 @@ import com.flipkart.bean.Payment;
 import com.flipkart.constant.Constants;
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
+import com.flipkart.exception.FeeRecieptNotFoundException;
 
 /**
  * The Class PaymentDAOImpl.
@@ -47,7 +48,7 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 	 * @throws SQLException the SQL exception
 	 */
 	@Override
-	public Payment getFeeReciept(String studentId, int semester) throws SQLException {
+	public Payment getFeeReciept(String studentId, int semester) throws SQLException, FeeRecieptNotFoundException {
 		Connection conn = DBUtils.getConnection();
 		Payment feePayment = new Payment();
 
@@ -57,11 +58,14 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 		stmt.setString(3, Constants.PAYMENT_SUCCESS);
 
 		ResultSet rs = stmt.executeQuery();
-
+		
 		if (!rs.next()) {
+			
 			feePayment.setStudentId(studentId);
 			feePayment.setStatus(Constants.PAYMENT_FAILURE);
 			feePayment.setSemester(semester);
+			
+			throw new FeeRecieptNotFoundException(studentId, semester);
 		} else {
 			feePayment.setStudentId(studentId);
 			feePayment.setStatus(rs.getString("status"));
