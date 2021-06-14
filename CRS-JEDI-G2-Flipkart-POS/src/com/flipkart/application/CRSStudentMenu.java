@@ -27,8 +27,8 @@ import com.flipkart.service.SemesterReportCardServiceImpl;
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
 import com.flipkart.constant.Constants;
+import com.flipkart.exception.UserNotFoundException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CRSStudentMenu.
  *
@@ -66,7 +66,12 @@ public class CRSStudentMenu {
 	public void createMenu() {
 		if (CRSApplication.userId != null) {
 			try {
-				student = studentInterface.getStudentById(CRSApplication.userId);
+				try {
+					student = studentInterface.getStudentById(CRSApplication.userId);
+				} catch (UserNotFoundException e) {
+					//  Auto-generated catch block
+					e.printStackTrace();
+				}
 			} catch (SQLException e) {
 				// Auto-generated catch block
 				e.printStackTrace();

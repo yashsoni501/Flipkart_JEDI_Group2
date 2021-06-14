@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import com.flipkart.bean.Student;
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
+import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.bean.CourseCatalog;
 
 /**
@@ -37,7 +39,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int sem) throws SQLException {
+	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int sem) throws SQLException, CourseNotFoundException {
 		Connection conn = DBUtils.getConnection();
 
 		PreparedStatement stmt = conn.prepareStatement(SQLQuery.STUDENT_REGISTERED_COURSES);
@@ -54,7 +56,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 			String course = myRs.getString("courseid");
 			stamnt.setString(1, course);
 			newRs = stamnt.executeQuery();
-			while (newRs.next()) {
+			if (newRs.next()) {
 
 				CourseCatalog courseFound = new CourseCatalog();
 				courseFound.setCourseId(newRs.getString("courseid"));
@@ -64,6 +66,9 @@ public class StudentDAOImpl implements StudentDAOInterface {
 				courseFound.setSemester(newRs.getInt("semester"));
 
 				RegisteredCourseList.add(courseFound);
+			}
+			else {
+				throw new CourseNotFoundException(course);
 			}
 		}
 
@@ -97,7 +102,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	}
 
 	@Override
-	public Student getStudentById(String userId) throws SQLException {
+	public Student getStudentById(String userId) throws SQLException, UserNotFoundException {
 		Connection conn = DBUtils.getConnection();
 
 		PreparedStatement stmt = conn.prepareStatement(SQLQuery.STUDENT_BY_ID);
@@ -105,13 +110,16 @@ public class StudentDAOImpl implements StudentDAOInterface {
 		ResultSet myRs = stmt.executeQuery();
 
 		Student currstudent = new Student();
-		while (myRs.next()) {
+		if (myRs.next()) {
 
 			currstudent.setStudentID(myRs.getString(1));
 			currstudent.setEmailID(myRs.getString(2));
 			currstudent.setStudentName(myRs.getString(3));
 			currstudent.setDepartment(myRs.getString(4));
 			currstudent.setSession(myRs.getString(5));
+		}
+		else {
+			throw new UserNotFoundException(userId);
 		}
 
 		return currstudent;
