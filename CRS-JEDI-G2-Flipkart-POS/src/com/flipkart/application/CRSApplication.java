@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import com.flipkart.service.AuthInterface;
 import com.flipkart.service.AuthServiceImpl;
-import com.flipkart.utils.Constants;
+import com.flipkart.constant.Constants;
 
 // TODO: Auto-generated Javadoc
 /**

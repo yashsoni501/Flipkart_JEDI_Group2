@@ -512,13 +512,17 @@ public class CRSAdminMenu {
 		// Auto-generated method stub
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		arr = courseCatalogInterface.getAllCourseCatalog();
+		System.out.println("----------------------------------------------------------------------------------------");
+		System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
+		System.out.println("----------------------------------------------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
 			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
-			System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
-					+ arr.get(i).getSemester() + " " + arr.get(i).getSession() + " " + arr.get(i).getCredits());
-
+			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment() + "\t"
+					+ arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t" + arr.get(i).getCredits());
 		}
-
+		System.out.println("----------------------------------------------------------------------------------------");
+		System.out.println();
+		
 		while (true) {
 
 			System.out.println("1. Remove Course Catalog");
@@ -549,11 +553,16 @@ public class CRSAdminMenu {
 	private void getAllCourses() {
 		// Auto-generated method stub
 		ArrayList<Course> arr = courseInterface.getAllCourses();
+		System.out.println("---------------------------------------------------");
+		System.out.println("Course ID \t Course Name \t Department");
+		System.out.println("---------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(arr.get(i).getCourseID() + " " + arr.get(i).getCourseName() + " "
-					+ arr.get(i).getDepartment() + " ");
-
+			System.out.println(arr.get(i).getCourseID() + "\t" + arr.get(i).getCourseName() + "\t"
+					+ arr.get(i).getDepartment());
 		}
+		System.out.println("---------------------------------------------------");
+		System.out.println();
+		
 		while (true) {
 			System.out.println("1. Remove Course");
 			System.out.println("2. Modify Course Details");
@@ -590,11 +599,16 @@ public class CRSAdminMenu {
 			// Auto-generated catch block
 			e1.printStackTrace();
 		}
+		System.out.println("---------------------------------------------------");
+		System.out.println("Student ID \t Name \t Department \t Email ID \t Session");
+		System.out.println("---------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(arr.get(i).getStudentID() + " " + arr.get(i).getStudentName() + " "
-					+ arr.get(i).getDepartment() + " " + arr.get(i).getEmailID() + " " + arr.get(i).getSession());
-
+			System.out.println(arr.get(i).getStudentID() + "\t" + arr.get(i).getStudentName() + "\t"
+					+ arr.get(i).getDepartment() + "\t" + arr.get(i).getEmailID() + "\t" + arr.get(i).getSession());
 		}
+		System.out.println("---------------------------------------------------");
+		System.out.println();
+		
 		while (true) {
 			System.out.println("1. Remove Student");
 			System.out.println("2. Modify Student Details");
@@ -630,12 +644,17 @@ public class CRSAdminMenu {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		System.out.println("---------------------------------------------------");
+		System.out.println("Professor ID \t Name \t Department \t Email ID");
+		System.out.println("---------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(arr.get(i).getProfessorId() + " " + arr.get(i).getProfessorName() + " "
+			System.out.println(arr.get(i).getProfessorId() + "\t" + arr.get(i).getProfessorName() + "\t"
 					+ arr.get(i).getDepartment() + " " + arr.get(i).getEmailID());
-
 		}
+		System.out.println("---------------------------------------------------");
+		System.out.println();
+		
 		while (true) {
 			System.out.println("1. Remove Professor");
 			System.out.println("2. Modify Professor Details");

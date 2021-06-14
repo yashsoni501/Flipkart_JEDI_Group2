@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import com.flipkart.bean.SemesterReportCard;
 import com.flipkart.utils.DBUtils;
-import com.flipkart.utils.SQLQuery;
+import com.flipkart.constant.SQLQuery;
 
 /**
  * @author yashsoni501

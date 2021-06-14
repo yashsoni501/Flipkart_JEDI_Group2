@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.Savepoint;
 
 import com.flipkart.bean.Admin;
-import com.flipkart.utils.Constants;
+import com.flipkart.constant.Constants;
 import com.flipkart.utils.DBUtils;
-import com.flipkart.utils.SQLQuery;
+import com.flipkart.constant.SQLQuery;
 
 /**
  * The Class AdminDAOImpl.

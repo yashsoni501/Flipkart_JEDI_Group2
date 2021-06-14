@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.flipkart.utils;
+package com.flipkart.constant;
 
 /**
  * @author aysh

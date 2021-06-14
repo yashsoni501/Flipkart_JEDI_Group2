@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.flipkart.utils.DBUtils;
-import com.flipkart.utils.SQLQuery;
+import com.flipkart.constant.SQLQuery;
 
 /**
  * @author aysh
