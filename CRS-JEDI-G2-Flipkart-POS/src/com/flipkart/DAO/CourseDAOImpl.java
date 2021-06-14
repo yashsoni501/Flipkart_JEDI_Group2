@@ -59,10 +59,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			}
 
 		} catch (SQLException se) {
-			se.getMessage();
+			System.out.println(se.getMessage());
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		return res;
 
@@ -91,14 +91,14 @@ public class CourseDAOImpl implements CourseDAOInterface {
 
 			}
 		} catch (SQLException se) {
-			se.getMessage();
+			System.out.println(se.getMessage());
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 //		catch (Exception e) {
 //			// Handle errors for Class.forName
-//			e.printStackTrace();
+//			System.out.println(e.getMessage());
 //		}
 		return res;
 	}
@@ -126,10 +126,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 				throw new CourseCatalogEntryNotFoundException(courseId);
 			}
 		} catch (SQLException se) {
-			se.getMessage();
+			System.out.println(se.getMessage());
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		return res;
 	}
@@ -170,10 +170,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			}
 
 		} catch (SQLException se) {
-			se.getMessage();
+			System.out.println(se.getMessage());
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		return res;
 	}
@@ -210,10 +210,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 				}
 			}
 		} catch (SQLException se) {
-			se.getMessage();
+			System.out.println(se.getMessage());
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		return res;
 	}
@@ -244,10 +244,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 
 			}
 		} catch (SQLException se) {
-			se.getMessage();
+			System.out.println(se.getMessage());
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		return res;
 	}
@@ -281,10 +281,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			}
 
 		} catch (SQLException se) {
-			se.getMessage();
+			System.out.println(se.getMessage());
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		return res;
 	}
@@ -308,10 +308,10 @@ public class CourseDAOImpl implements CourseDAOInterface {
 				return false;
 			}
 		} catch (SQLException se) {
-			se.getMessage();
+			System.out.println(se.getMessage());
 		} catch (Exception e) {
 			// Handle errors for Class.forName
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		return true;
 	}

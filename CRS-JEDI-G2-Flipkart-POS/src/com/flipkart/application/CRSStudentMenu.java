@@ -28,8 +28,12 @@ import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
 import com.flipkart.constant.Constants;
 import com.flipkart.exception.ConstantFlagNotSetException;
+import com.flipkart.exception.CourseCatalogEntryNotFoundException;
+import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.InvalidCCSessionSemesterException;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.exception.SemesterReportCardNotFound;
+import com.flipkart.exception.UserEmailNotFoundException;
 
 /**
  * The Class CRSStudentMenu.
@@ -73,10 +77,10 @@ public class CRSStudentMenu {
 
 			} catch (SQLException e) {
 				// Auto-generated catch block
-				e.getMessage();
+				System.out.println(e.getMessage());
 			} catch (UserNotFoundException e) {
 				// Auto-generated catch block
-				e.getMessage();
+				System.out.println(e.getMessage());
 			}
 		}
 		if (student.getApprovalStatus().equals(Constants.FALSE)) {
@@ -155,10 +159,18 @@ public class CRSStudentMenu {
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
 
-		if (adminInterface.modifyStudent(email, studentName, department, session)) {
-			System.out.println("Student Updated Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.modifyStudent(email, studentName, department, session)) {
+				System.out.println("Student Updated Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (SQLException e) {
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (UserEmailNotFoundException e) {
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -209,11 +221,11 @@ public class CRSStudentMenu {
 				}
 			}
 		} catch (ConstantFlagNotSetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -240,7 +252,7 @@ public class CRSStudentMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		System.out.println("success");
 	}
@@ -256,7 +268,14 @@ public class CRSStudentMenu {
 		System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
 		System.out.println("----------------------------------------------------------------------------------------");
 		for (CourseCatalog arr : selectedCourses) {
-			Course course = courseInterface.getCourse(arr.getCourseId());
+			Course course = null;
+			try {
+				course = courseInterface.getCourse(arr.getCourseId());
+			} catch (CourseNotFoundException e) {
+				// Auto-generated catch block
+				System.out.println(e.getMessage());
+				return;
+			}
 			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
 					+ "\t" + arr.getSemester() + "\t" + arr.getSession() + "\t" + arr.getCredits());
 		}
@@ -279,9 +298,15 @@ public class CRSStudentMenu {
 		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
 
-		CourseCatalog course = courseCatalogInterface.getCourseCatalog(courseId);
+		CourseCatalog course = null;
+		try {
+			course = courseCatalogInterface.getCourseCatalog(courseId);
+		} catch (CourseCatalogEntryNotFoundException e) {
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
 
-		if (course.getCourseId() == null) {
+		if (course == null || course.getCourseId() == null) {
 			System.out.println("Course with given ID does not exist");
 		} else {
 			if (!selectedCourses.contains(course)) {
@@ -319,13 +344,26 @@ public class CRSStudentMenu {
 		System.out.println("Enter Semester");
 		int semester = CRSApplication.scan.nextInt();
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
-		arr = courseCatalogInterface.getCourseCatalogBySessionSemester(student.getSession(), semester);
+		try {
+			arr = courseCatalogInterface.getCourseCatalogBySessionSemester(student.getSession(), semester);
+		} catch (InvalidCCSessionSemesterException e) {
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
+			return;
+		}
 
 		System.out.println("----------------------------------------------------------------------------------------");
 		System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
 		System.out.println("----------------------------------------------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
-			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
+			Course course = null;
+			try {
+				course = courseInterface.getCourse(arr.get(i).getCourseId());
+			} catch (CourseNotFoundException e) {
+				// Auto-generated catch block
+				System.out.println(e.getMessage());
+				return;
+			}
 			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
 					+ "\t" + arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t"
 					+ arr.get(i).getCredits());
@@ -361,7 +399,13 @@ public class CRSStudentMenu {
 
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.getMessage();
+			System.out.println(e.getMessage());
+		} catch (CourseCatalogEntryNotFoundException e) {
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (CourseNotFoundException e) {
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -388,7 +432,7 @@ public class CRSStudentMenu {
 			System.out.println();
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -423,10 +467,16 @@ public class CRSStudentMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.getMessage();
+			System.out.println(e.getMessage());
 		} catch (SemesterReportCardNotFound e) {
 
-			e.getMessage();
+			System.out.println(e.getMessage());
+		} catch (CourseCatalogEntryNotFoundException e) {
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (CourseNotFoundException e) {
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -500,10 +550,16 @@ public class CRSStudentMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (ConstantFlagNotSetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (CourseCatalogEntryNotFoundException e) {
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (CourseNotFoundException e) {
+			// Auto-generated catch block
+			System.out.println(e.getMessage());
 		}
 	}
 }
