@@ -38,22 +38,22 @@ public class CRSStudentMenu {
 
 	/** The student interface. */
 	StudentInterface studentInterface = StudentServiceImpl.getInstance();
-	
+
 	/** The course catalog interface. */
 	CourseCatalogInterface courseCatalogInterface = CourseCatalogServiceImpl.getInstance();
-	
+
 	/** The payment interface. */
 	PaymentInterface paymentInterface = PaymentServiceImpl.getInstance();
-	
+
 	/** The registered course interface. */
 	RegisteredCourseInterface registeredCourseInterface = RegisteredCourseServiceImpl.getInstance();
-	
+
 	/** The semester report card interface. */
 	SemesterReportCardInterface semesterReportCardInterface = SemesterReportCardServiceImpl.getInstance();
-	
+
 	/** The course interface. */
 	CourseInterface courseInterface = CourseServiceImpl.getInstance();
-	
+
 	/** The admin interface. */
 	AdminInterface adminInterface = AdminServiceImpl.getInstance();
 
@@ -195,8 +195,8 @@ public class CRSStudentMenu {
 		System.out.println("----------------------------------------------------------------------------------------");
 		for (CourseCatalog arr : selectedCourses) {
 			Course course = courseInterface.getCourse(arr.getCourseId());
-			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment() + "\t"
-					+ arr.getSemester() + "\t" + arr.getSession() + "\t" + arr.getCredits());
+			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
+					+ "\t" + arr.getSemester() + "\t" + arr.getSession() + "\t" + arr.getCredits());
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
 		System.out.println();
@@ -258,14 +258,15 @@ public class CRSStudentMenu {
 		int semester = CRSApplication.scan.nextInt();
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		arr = courseCatalogInterface.getCourseCatalogBySessionSemester(student.getSession(), semester);
-		
+
 		System.out.println("----------------------------------------------------------------------------------------");
 		System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
 		System.out.println("----------------------------------------------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
 			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
-			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment() + "\t"
-					+ arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t" + arr.get(i).getCredits());
+			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
+					+ "\t" + arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t"
+					+ arr.get(i).getCredits());
 		}
 		System.out.println("----------------------------------------------------------------------------------------");
 		System.out.println();
@@ -280,19 +281,22 @@ public class CRSStudentMenu {
 		try {
 			ArrayList<RegisteredCourse> arr1 = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
 					semester);
-			
-			System.out.println("----------------------------------------------------------------------------------------");
+
+			System.out.println(
+					"----------------------------------------------------------------------------------------");
 			System.out.println("Course ID \t Course Name \t Department \t Credits \t Professor ID");
-			System.out.println("----------------------------------------------------------------------------------------");
+			System.out.println(
+					"----------------------------------------------------------------------------------------");
 			for (int i = 0; i < arr1.size(); i++) {
 				CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(i).getCourseId());
 				Course course = courseInterface.getCourse(arr1.get(i).getCourseId());
 				System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
 						+ "\t" + arr.getCredits() + "\t" + arr.getProfessorId());
 			}
-			System.out.println("----------------------------------------------------------------------------------------");
+			System.out.println(
+					"----------------------------------------------------------------------------------------");
 			System.out.println();
-			
+
 		} catch (SQLException e) {
 			// Auto-generated catch block
 			e.printStackTrace();
@@ -312,11 +316,13 @@ public class CRSStudentMenu {
 				System.out.println("Fee is not paid for " + semester + " semester");
 				return;
 			}
-			System.out.println("----------------------------------------------------------------------------------------");
+			System.out.println(
+					"----------------------------------------------------------------------------------------");
 			System.out.println("Reference ID \t Payment Mode \t Amount \t Date");
 			System.out.println(reciept.getReferenceId() + "\t" + reciept.getModeOfPayment() + "\t" + reciept.getAmount()
 					+ "\t" + reciept.getDateOfPayment());
-			System.out.println("----------------------------------------------------------------------------------------");
+			System.out.println(
+					"----------------------------------------------------------------------------------------");
 			System.out.println();
 		} catch (SQLException e) {
 			// Auto-generated catch block
@@ -383,17 +389,20 @@ public class CRSStudentMenu {
 
 			ArrayList<RegisteredCourse> arr1 = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
 					semester);
-			
-			System.out.println("----------------------------------------------------------------------------------------");
+
+			System.out.println(
+					"----------------------------------------------------------------------------------------");
 			System.out.println("Course ID \t Course Name \t Department \t Credits \t Professor ID");
-			System.out.println("----------------------------------------------------------------------------------------");
+			System.out.println(
+					"----------------------------------------------------------------------------------------");
 			for (int i = 0; i < arr1.size(); i++) {
 				CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(i).getCourseId());
 				Course course = courseInterface.getCourse(arr1.get(i).getCourseId());
 				System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
 						+ "\t" + arr.getCredits() + "\t" + arr.getProfessorId());
 			}
-			System.out.println("----------------------------------------------------------------------------------------");
+			System.out.println(
+					"----------------------------------------------------------------------------------------");
 			System.out.println();
 
 			float amount = 1000;
@@ -412,11 +421,13 @@ public class CRSStudentMenu {
 			System.out.println(reciept.getStatus());
 
 			if (reciept.getStatus().equalsIgnoreCase(Constants.PAYMENT_SUCCESS)) {
-				System.out.println("----------------------------------------------------------------------------------------");
+				System.out.println(
+						"----------------------------------------------------------------------------------------");
 				System.out.println("Reference ID \t Payment Mode \t Amount \t Date");
 				System.out.println(reciept.getReferenceId() + "\t" + reciept.getModeOfPayment() + "\t"
 						+ reciept.getAmount() + "\t" + reciept.getDateOfPayment());
-				System.out.println("----------------------------------------------------------------------------------------");
+				System.out.println(
+						"----------------------------------------------------------------------------------------");
 				System.out.println();
 			} else {
 				System.out.println("Payment Failed");

@@ -9,17 +9,17 @@ package com.flipkart.exception;
  * @author JEDI-03
  *
  */
-public class UserNotFoundException extends Exception {
+public class UserEmailNotFoundException extends Exception {
 
-	private String userId;
+	private String emailId;
 
 	/***
 	 * Getter function for UserId
 	 * 
 	 * @param userId
 	 */
-	public UserNotFoundException(String userId) {
-		this.userId = userId;
+	public UserEmailNotFoundException(String emailId) {
+		this.emailId = emailId;
 	}
 
 	/**
@@ -27,7 +27,7 @@ public class UserNotFoundException extends Exception {
 	 */
 	@Override
 	public String getMessage() {
-		return "User with userId: " + userId + " not found.";
+		return "No Account exists with email: " + emailId;
 	}
 
 }
