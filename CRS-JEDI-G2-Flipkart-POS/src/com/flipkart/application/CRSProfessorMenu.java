@@ -115,9 +115,7 @@ public class CRSProfessorMenu {
 	 */
 	private void optInCourse() {
 		try {
-			boolean
-
-			profWindow = adminInterface.getProfessorFlag();
+			boolean profWindow = adminInterface.getProfessorFlag();
 
 			if (!profWindow) {
 				System.out.println("Course Registration window for professors is closed.");
@@ -151,8 +149,9 @@ public class CRSProfessorMenu {
 	 */
 	private void viewOptedCourses() {
 		// Auto-generated method stub
-		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		try {
+			ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
+
 			arr = professorInterface.viewOptedCourses(CRSApplication.userId);
 
 			System.out.println(
@@ -187,12 +186,14 @@ public class CRSProfessorMenu {
 	 */
 	private void viewEnrolledStudentsInCourse() {
 		// Auto-generated method stub
-		System.out.println("Enter Course Id");
-		String courseId = CRSApplication.scan.next();
-		System.out.println("Enter Session");
-		String session = CRSApplication.scan.next();
-		ArrayList<Student> arr = new ArrayList<Student>();
 		try {
+
+			System.out.println("Enter Course Id");
+			String courseId = CRSApplication.scan.next();
+			System.out.println("Enter Session");
+			String session = CRSApplication.scan.next();
+			ArrayList<Student> arr = new ArrayList<Student>();
+
 			arr = professorInterface.viewEnrolledStudents(courseId, session);
 
 			System.out.println("---------------------------------------------------");
@@ -241,6 +242,7 @@ public class CRSProfessorMenu {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	/**

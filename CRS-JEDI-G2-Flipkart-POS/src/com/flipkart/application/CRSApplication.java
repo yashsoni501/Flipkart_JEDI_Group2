@@ -161,7 +161,6 @@ public class CRSApplication {
 			userId = authInterface.verifyUserWithEmailPassword(userEmail, password);
 			if (userId != null) {
 				String userRole = authInterface.getRole(userId);
-
 				switch (userRole) {
 				case Constants.USER_ROLE_ADMIN:
 					System.out.println("Admin Login Successful");
