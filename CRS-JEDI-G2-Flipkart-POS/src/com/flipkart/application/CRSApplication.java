@@ -3,6 +3,7 @@
  */
 package com.flipkart.application;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.flipkart.service.AdminInterface;
@@ -11,6 +12,7 @@ import com.flipkart.service.AuthInterface;
 import com.flipkart.service.AuthServiceImpl;
 import com.flipkart.constant.Constants;
 import com.flipkart.exception.InvalidCredentialsException;
+import com.flipkart.exception.UserEmailAlreadyInUseException;
 import com.flipkart.exception.UserEmailNotFoundException;
 import com.flipkart.exception.UserNotFoundException;
 
@@ -80,10 +82,24 @@ public class CRSApplication {
 		department = scan.next();
 		System.out.println("Session:");
 		session = scan.next();
-		if (adminInterface.addStudent(userName, userEmail, password, department, session)) {
-			System.out.println("Student Added Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.addStudent(userName, userEmail, password, department, session)) {
+				System.out.println("Student Added Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (UserEmailAlreadyInUseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidCredentialsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UserEmailNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -101,15 +117,12 @@ public class CRSApplication {
 		oldPassword = scan.next();
 		System.out.println("New Password:");
 		newPassword = scan.next();
-		boolean isUpdated;
 		try {
-			isUpdated = authInterface.updatePassword(userEmail, oldPassword, newPassword);
-
+			boolean isUpdated = authInterface.updatePassword(userEmail, oldPassword, newPassword);
 			if (isUpdated)
 				System.out.println("Password updated successfully!");
 			else
 				System.out.println("Something went wrong, please try again!");
-
 		} catch (InvalidCredentialsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -171,13 +184,13 @@ public class CRSApplication {
 		} catch (InvalidCredentialsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (UserNotFoundException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UserEmailNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (UserNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
