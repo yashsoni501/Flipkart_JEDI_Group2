@@ -6,6 +6,8 @@ package com.flipkart.utils;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.flipkart.application.CRSApplication;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class MenuOptionScanner.
@@ -13,9 +15,6 @@ import java.util.Scanner;
  * @author aysh
  */
 public class MenuOptionScanner {
-
-	/** The scanner. */
-	public static volatile Scanner scanner = null;
 
 	/**
 	 * Create Private Constructor.
@@ -28,19 +27,21 @@ public class MenuOptionScanner {
 	 * Get input number.
 	 *
 	 * @return the input number
-	 * @return 1000 incase of exception
+	 * @return 1000 in case of exception
 	 */
 
 	public static int nextInt() {
-		if (scanner == null) {
-			scanner = new Scanner(System.in);
-		}
 		try {
-			return scanner.nextInt();
-		} catch (InputMismatchException e) {
+			int userInput = CRSApplication.scan.nextInt();
+			return userInput;
+		} 
+		catch (InputMismatchException e) {
+			CRSApplication.scan.nextLine();
 			System.out.println("Please use integer inputs.");
 			return 1000;
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
+			CRSApplication.scan.nextLine();
 			System.out.println(e.getMessage());
 			return 1000;
 		}

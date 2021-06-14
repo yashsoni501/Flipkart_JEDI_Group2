@@ -137,6 +137,7 @@ public class CRSAdminMenu {
 			case 8:
 				try {
 					adminInterface.setCourseRegistrationFlag(true);
+					System.out.println("Course Registration Enabled");
 				} catch (SQLException e) {
 					System.out.println(e.getMessage());
 				}
@@ -144,6 +145,7 @@ public class CRSAdminMenu {
 			case 9:
 				try {
 					adminInterface.setCourseRegistrationFlag(false);
+					System.out.println("Course Registration Disabled");
 				} catch (SQLException e) {
 					System.out.println(e.getMessage());
 				}
@@ -151,6 +153,7 @@ public class CRSAdminMenu {
 			case 10:
 				try {
 					adminInterface.setPaymentFlag(true);
+					System.out.println("Fee Payment Enabled");
 				} catch (SQLException e) {
 					System.out.println(e.getMessage());
 				}
@@ -158,6 +161,7 @@ public class CRSAdminMenu {
 			case 11:
 				try {
 					adminInterface.setPaymentFlag(false);
+					System.out.println("Fee Payment Disabled");
 				} catch (SQLException e) {
 					System.out.println(e.getMessage());
 				}
@@ -165,6 +169,7 @@ public class CRSAdminMenu {
 			case 12:
 				try {
 					adminInterface.setProfessorFlag(true);
+					System.out.println("Professor Course Selection Window Enabled");
 				} catch (SQLException e) {
 					System.out.println(e.getMessage());
 				}
@@ -172,6 +177,7 @@ public class CRSAdminMenu {
 			case 13:
 				try {
 					adminInterface.setProfessorFlag(false);
+					System.out.println("Professor Course Selection Window Disabled");
 				} catch (SQLException e) {
 					System.out.println(e.getMessage());
 				}
