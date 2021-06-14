@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import com.flipkart.bean.SemesterReportCard;
 import com.flipkart.exception.SemesterReportCardNotFound;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface SemesterReportCardDAOInterface.
  *

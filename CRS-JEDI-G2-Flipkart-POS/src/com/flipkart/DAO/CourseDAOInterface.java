@@ -15,7 +15,6 @@ import com.flipkart.exception.InvalidDepartmentException;
 import java.sql.SQLException;
 import java.util.ArrayList;;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface CourseDAOInterface.
  *

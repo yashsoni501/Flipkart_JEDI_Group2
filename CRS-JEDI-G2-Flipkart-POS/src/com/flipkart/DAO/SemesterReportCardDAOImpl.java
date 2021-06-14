@@ -14,7 +14,6 @@ import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
 import com.flipkart.exception.SemesterReportCardNotFound;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SemesterReportCardDAOImpl.
  *

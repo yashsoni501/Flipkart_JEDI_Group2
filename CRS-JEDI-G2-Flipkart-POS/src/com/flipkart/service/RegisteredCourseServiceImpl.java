@@ -13,7 +13,6 @@ import com.flipkart.exception.NoStudentEnrolledException;
 import com.flipkart.DAO.RegisteredCourseDAOInterface;
 import com.flipkart.DAO.RegisteredCourseDAOImpl;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RegisteredCourseServiceImpl.
  *

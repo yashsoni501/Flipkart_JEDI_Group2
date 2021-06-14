@@ -14,7 +14,6 @@ import com.flipkart.constant.Constants;
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PaymentDAOImpl.
  *

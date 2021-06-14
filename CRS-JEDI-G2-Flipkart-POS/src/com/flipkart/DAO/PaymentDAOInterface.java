@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import com.flipkart.bean.Payment;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface PaymentDAOInterface.
  *

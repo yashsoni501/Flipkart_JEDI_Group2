@@ -12,7 +12,6 @@ import com.flipkart.exception.EmptyCourseCatalogListExcpetion;
 import com.flipkart.exception.InvalidCCSessionSemesterException;
 import com.flipkart.exception.InvalidDepartmentException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface CourseCatalogInterface.
  *

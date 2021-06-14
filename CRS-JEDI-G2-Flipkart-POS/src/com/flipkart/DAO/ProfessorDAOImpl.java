@@ -20,7 +20,6 @@ import com.flipkart.exception.NoProfessorsFoundException;
 import com.flipkart.exception.OptingTheCourseFailedException;
 import com.flipkart.exception.ProfessorNotAddedException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProfessorDAOImpl.
  *
@@ -154,8 +153,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 			System.out.println("StudentID: " + id + '\n');
 			Student s = new Student();
 			s.setStudentID(id);
-			String VIEW_STUDENT_DET = "select * from student where stuid = ?";
-			stmt = conn.prepareStatement(VIEW_STUDENT_DET);
+			stmt = conn.prepareStatement(SQLQuery.STUDENT_BY_ID);
 			stmt.setString(1, id);
 			ResultSet rs1 = stmt.executeQuery();
 			if (rs1.next()) {

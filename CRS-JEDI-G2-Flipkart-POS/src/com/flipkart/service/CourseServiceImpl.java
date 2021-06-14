@@ -12,7 +12,6 @@ import com.flipkart.bean.Course;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.EmptyCourseListExcpetion;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CourseServiceImpl.
  *

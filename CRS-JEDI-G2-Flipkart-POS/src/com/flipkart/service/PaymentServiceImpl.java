@@ -9,7 +9,6 @@ import com.flipkart.DAO.PaymentDAOImpl;
 import com.flipkart.DAO.PaymentDAOInterface;
 import com.flipkart.bean.Payment;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PaymentServiceImpl.
  *

@@ -17,7 +17,6 @@ import com.flipkart.exception.UserEmailAlreadyInUseException;
 import com.flipkart.exception.UserEmailNotFoundException;
 import com.flipkart.exception.UserNotFoundException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AdminDAOImpl.
  */
@@ -82,10 +81,8 @@ public class AdminDAOImpl implements AdminDAOInterface {
 	@Override
 	public boolean removeCourse(String courseId) throws CourseNotFoundException, SQLException {
 
-		final String REMOVE_COURSE = "delete from course where courseid=?";
-
 		Connection conn = DBUtils.getConnection();
-		PreparedStatement stmt = conn.prepareStatement(REMOVE_COURSE);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.REMOVE_COURSE);
 
 		stmt.setString(1, courseId);
 
@@ -613,7 +610,7 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		} else {
 			stmt.setString(1, Constants.FALSE);
 		}
-		stmt.setString(1, studentId);
+		stmt.setString(2, studentId);
 		int rows = stmt.executeUpdate();
 
 		if (rows == 0) {

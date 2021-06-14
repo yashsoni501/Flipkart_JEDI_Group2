@@ -8,7 +8,6 @@ import com.flipkart.DAO.SemesterReportCardDAOInterface;
 import com.flipkart.bean.SemesterReportCard;
 import com.flipkart.exception.SemesterReportCardNotFound;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SemesterReportCardServiceImpl.
  */

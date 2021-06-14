@@ -16,7 +16,6 @@ import com.flipkart.exception.NoRegisteredCoursesException;
 import com.flipkart.exception.NoStudentEnrolledException;
 import com.flipkart.bean.RegisteredCourse;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RegisteredCourseDAOImpl.
  *

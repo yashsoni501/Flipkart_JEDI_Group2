@@ -109,7 +109,7 @@ public class CRSAdminMenu {
 			System.out.println("14. Generate Report Card");
 			System.out.println("15. Logout");
 
-			int choice = CRSApplication.scan.nextInt();
+			int choice = MenuOptionScanner.nextInt();
 
 			switch (choice) {
 			case 1:
@@ -151,7 +151,6 @@ public class CRSAdminMenu {
 				try {
 					adminInterface.setPaymentFlag(true);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
 				}
 				break;
@@ -159,7 +158,6 @@ public class CRSAdminMenu {
 				try {
 					adminInterface.setPaymentFlag(false);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
 				}
 				break;
@@ -167,7 +165,6 @@ public class CRSAdminMenu {
 				try {
 					adminInterface.setProfessorFlag(true);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
 				}
 				break;
@@ -175,7 +172,6 @@ public class CRSAdminMenu {
 				try {
 					adminInterface.setProfessorFlag(false);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					System.out.println(e.getMessage());
 				}
 				break;
@@ -201,7 +197,7 @@ public class CRSAdminMenu {
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
 		System.out.println("Enter Semester:");
-		int semester = CRSApplication.scan.nextInt();
+		int semester = MenuOptionScanner.nextInt();
 
 		ArrayList<Student> registeredStudents = new ArrayList<Student>();
 		try {
@@ -296,7 +292,6 @@ public class CRSAdminMenu {
 
 			return totalScore / totalCredit;
 		} catch (CourseCatalogEntryNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -322,7 +317,6 @@ public class CRSAdminMenu {
 				System.out.println("Something went wrong");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 	}
@@ -388,7 +382,7 @@ public class CRSAdminMenu {
 		String courseId = CRSApplication.scan.next();
 
 		System.out.println("Enter Semester:");
-		int semester = CRSApplication.scan.nextInt();
+		int semester = MenuOptionScanner.nextInt();
 
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
@@ -425,10 +419,8 @@ public class CRSAdminMenu {
 				System.out.println("Something went wrong");
 			}
 		} catch (CourseNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -444,7 +436,7 @@ public class CRSAdminMenu {
 		String courseId = CRSApplication.scan.next();
 
 		System.out.println("Enter Semester:");
-		int semester = CRSApplication.scan.nextInt();
+		int semester = MenuOptionScanner.nextInt();
 
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
@@ -459,10 +451,8 @@ public class CRSAdminMenu {
 				System.out.println("Something went wrong");
 			}
 		} catch (CourseNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -483,10 +473,8 @@ public class CRSAdminMenu {
 				System.out.println("Something went wrong");
 			}
 		} catch (UserNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 	}
@@ -504,10 +492,8 @@ public class CRSAdminMenu {
 				System.out.println("Something went wrong");
 			}
 		} catch (UserNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -538,16 +524,12 @@ public class CRSAdminMenu {
 				System.out.println("Something went wrong");
 			}
 		} catch (UserEmailAlreadyInUseException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (InvalidCredentialsException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (UserEmailNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -569,10 +551,8 @@ public class CRSAdminMenu {
 				System.out.println("Something went wrong");
 			}
 		} catch (UserNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -600,10 +580,8 @@ public class CRSAdminMenu {
 				System.out.println("Something went wrong");
 			}
 		} catch (UserNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -621,19 +599,20 @@ public class CRSAdminMenu {
 			ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 			arr = courseCatalogInterface.getAllCourseCatalog();
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
-			System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
+					"---------------------------------------------------------------------------------------------------------------");
+			System.out.printf("%10s %15s %15s %10s %10s %10s\n", "Course ID", "Course Name", "Department", "Semester",
+					"Session", "Credits");
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
-			for (int i = 0; i < arr.size(); i++) {
-				Course course;
-				course = courseInterface.getCourse(arr.get(i).getCourseId());
-				System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
-						+ "\t" + arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t"
-						+ arr.get(i).getCredits());
+					"---------------------------------------------------------------------------------------------------------------");
+			for (CourseCatalog catalog : arr) {
+				Course course = courseInterface.getCourse(catalog.getCourseId());
+				System.out.printf("%10s %15s %15s", course.getCourseID(), course.getCourseName(),
+						course.getDepartment());
+				System.out.printf("%10s %10s %10s\n", catalog.getSemester(), catalog.getSession(),
+						catalog.getCredits());
 			}
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
+					"---------------------------------------------------------------------------------------------------------------");
 			System.out.println();
 
 			while (true) {
@@ -641,7 +620,7 @@ public class CRSAdminMenu {
 				System.out.println("1. Remove Course Catalog");
 				System.out.println("2. Modify Course Catalog Details");
 				System.out.println("3. Return");
-				int choice = CRSApplication.scan.nextInt();
+				int choice = MenuOptionScanner.nextInt();
 				switch (choice) {
 
 				case 1:
@@ -657,7 +636,6 @@ public class CRSAdminMenu {
 				}
 			}
 		} catch (CourseNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -677,21 +655,21 @@ public class CRSAdminMenu {
 		try {
 			ArrayList<Course> arr;
 			arr = courseInterface.getAllCourses();
-			System.out.println("---------------------------------------------------");
-			System.out.println("Course ID \t Course Name \t Department");
-			System.out.println("---------------------------------------------------");
-			for (int i = 0; i < arr.size(); i++) {
-				System.out.println(arr.get(i).getCourseID() + "\t" + arr.get(i).getCourseName() + "\t"
-						+ arr.get(i).getDepartment());
+			System.out.println("-------------------------------------------");
+			System.out.printf("%10s %15s %15s\n", "Course ID", "Course Name", "Department");
+			System.out.println("-------------------------------------------");
+			for (Course course : arr) {
+				System.out.printf("%10s %15s %15s\n", course.getCourseID(), course.getCourseName(),
+						course.getDepartment());
 			}
-			System.out.println("---------------------------------------------------");
+			System.out.println("-------------------------------------------");
 			System.out.println();
 
 			while (true) {
 				System.out.println("1. Remove Course");
 				System.out.println("2. Modify Course Details");
 				System.out.println("3. Return");
-				int choice = CRSApplication.scan.nextInt();
+				int choice = MenuOptionScanner.nextInt();
 				switch (choice) {
 				case 1:
 					removeCourse();
@@ -706,10 +684,8 @@ public class CRSAdminMenu {
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (EmptyCourseListExcpetion e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -730,15 +706,15 @@ public class CRSAdminMenu {
 			// Auto-generated catch block
 			e1.getMessage();
 		}
-		System.out.println("---------------------------------------------------");
-		System.out.println("Student ID \t Name \t Department \t Email ID \t Approval");
-		System.out.println("---------------------------------------------------");
-		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(
-					arr.get(i).getStudentID() + "\t" + arr.get(i).getStudentName() + "\t" + arr.get(i).getDepartment()
-							+ "\t" + arr.get(i).getEmailID() + "\t" + arr.get(i).getApprovalStatus());
+		System.out.println("--------------------------------------------------------------------------------");
+		System.out.printf("%15s %15s %15s %20s %10s\n", "Student ID", "Name", "Department", "Email ID", "Approval");
+		System.out.println("--------------------------------------------------------------------------------");
+
+		for (Student s : arr) {
+			System.out.printf("%15s %15s %15s %20s %10s\n", s.getStudentID(), s.getStudentName(), s.getDepartment(),
+					s.getEmailID(), s.getApprovalStatus());
 		}
-		System.out.println("---------------------------------------------------------------");
+		System.out.println("--------------------------------------------------------------------------------");
 		System.out.println();
 
 		while (true) {
@@ -746,7 +722,7 @@ public class CRSAdminMenu {
 			System.out.println("2. Revoke Student Permission");
 			System.out.println("3. Remove Student");
 			System.out.println("4. Return");
-			int choice = CRSApplication.scan.nextInt();
+			int choice = MenuOptionScanner.nextInt();
 			switch (choice) {
 			case 1:
 				approveStudent();
@@ -777,10 +753,8 @@ public class CRSAdminMenu {
 				System.out.println("Something went wrong");
 			}
 		} catch (UserNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 	}
@@ -803,21 +777,21 @@ public class CRSAdminMenu {
 			System.out.println(e.getMessage());
 		}
 
-		System.out.println("---------------------------------------------------");
-		System.out.println("Professor ID \t Name \t Department \t Email ID");
-		System.out.println("---------------------------------------------------");
-		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(arr.get(i).getProfessorId() + "\t\t" + arr.get(i).getProfessorName() + "\t"
-					+ arr.get(i).getDepartment() + "\t" + arr.get(i).getEmailID());
+		System.out.println("---------------------------------------------------------------------------");
+		System.out.printf("%15s %15s %15s %25s\n", "Professor ID", "Name", "Department", "Email ID");
+		System.out.println("---------------------------------------------------------------------------");
+		for (Professor prof : arr) {
+			System.out.printf("%15s %15s %15s %25s\n", prof.getProfessorId(), prof.getProfessorName(),
+					prof.getDepartment(), prof.getEmailID());
 		}
-		System.out.println("---------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------");
 		System.out.println();
 
 		while (true) {
 			System.out.println("1. Remove Professor");
 			System.out.println("2. Modify Professor Details");
 			System.out.println("3. Return");
-			int choice = CRSApplication.scan.nextInt();
+			int choice = MenuOptionScanner.nextInt();
 			switch (choice) {
 			case 1:
 				removeProfessor();

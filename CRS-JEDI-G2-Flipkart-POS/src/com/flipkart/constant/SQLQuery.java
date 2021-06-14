@@ -71,6 +71,7 @@ public class SQLQuery {
 	public static final String GET_COURSE_CATALOG = "select * from courseCatalog";
 	public static final String GET_CATALOG_BY_PROF_ID = "select * from courseCatalog where profid = ?";
 	public static final String UPDATE_PROF_IN_COURSE = "update courseCatalog set profid=? where courseid=?";
+	public static final String REMOVE_COURSE = "delete from course where courseid=?";
 
 	// Student DAO Query
 	public static final String STUDENT_REGISTERED_COURSES = "select * from registeredCourse where stuid = ? and semester = ?";

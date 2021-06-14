@@ -11,7 +11,6 @@ import com.flipkart.exception.InvalidCredentialsException;
 import com.flipkart.exception.UserEmailNotFoundException;
 import com.flipkart.exception.UserNotFoundException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AuthServiceImpl.
  *

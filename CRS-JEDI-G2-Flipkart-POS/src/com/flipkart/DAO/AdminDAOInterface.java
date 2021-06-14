@@ -10,7 +10,6 @@ import com.flipkart.exception.UserEmailAlreadyInUseException;
 import com.flipkart.exception.UserEmailNotFoundException;
 import com.flipkart.exception.UserNotFoundException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface AdminDAOInterface.
  */

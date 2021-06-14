@@ -11,7 +11,6 @@ import com.flipkart.bean.Student;
 import com.flipkart.exception.NoRegisteredCoursesException;
 import com.flipkart.exception.NoStudentEnrolledException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface RegisteredCourseInterface.
  *

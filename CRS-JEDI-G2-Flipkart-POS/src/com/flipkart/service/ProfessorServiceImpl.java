@@ -19,7 +19,6 @@ import com.flipkart.exception.NoProfessorsFoundException;
 import com.flipkart.exception.OptingTheCourseFailedException;
 import com.flipkart.exception.ProfessorNotAddedException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProfessorServiceImpl.
  *
