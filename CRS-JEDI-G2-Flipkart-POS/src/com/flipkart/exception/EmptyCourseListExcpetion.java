@@ -7,8 +7,8 @@ package com.flipkart.exception;
  * @author Tanmay
  *
  */
-public class EmptyCourseListExcpetion extends Exception{
-	
+public class EmptyCourseListExcpetion extends Exception {
+
 	/**
 	 * Message returned when exception is thrown
 	 */

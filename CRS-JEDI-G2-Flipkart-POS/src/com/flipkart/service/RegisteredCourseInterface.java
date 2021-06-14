@@ -17,9 +17,11 @@ import com.flipkart.exception.NoStudentEnrolledException;
  */
 public interface RegisteredCourseInterface {
 
-	public ArrayList<Student> getEnrolledStudents(String courseId, int semester, String session) throws SQLException, NoStudentEnrolledException;
+	public ArrayList<Student> getEnrolledStudents(String courseId, int semester, String session)
+			throws SQLException, NoStudentEnrolledException;
 
-	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester) throws SQLException, NoRegisteredCoursesException;
+	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester)
+			throws SQLException, NoRegisteredCoursesException;
 
 	public boolean addRegisteredCourse(String courseId, int semester, String grade, String session, String studentID)
 			throws SQLException;

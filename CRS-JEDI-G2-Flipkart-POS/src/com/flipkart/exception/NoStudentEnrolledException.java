@@ -8,8 +8,8 @@ package com.flipkart.exception;
  *
  */
 
-public class NoStudentEnrolledException extends Exception{
-	
+public class NoStudentEnrolledException extends Exception {
+
 	private String courseCode;
 	private int semester;
 	private String session;
@@ -33,7 +33,7 @@ public class NoStudentEnrolledException extends Exception{
 	public String getCourseCode() {
 		return courseCode;
 	}
-	
+
 	/**
 	 * Getter method
 	 * 
@@ -42,7 +42,7 @@ public class NoStudentEnrolledException extends Exception{
 	public int getSemester() {
 		return semester;
 	}
-	
+
 	/**
 	 * Getter method
 	 * 
@@ -57,7 +57,8 @@ public class NoStudentEnrolledException extends Exception{
 	 */
 	@Override
 	public String getMessage() {
-		return "No student entries found for course code: " + courseCode + " , semester: " + semester + " , session: " + session;
-	}		
+		return "No student entries found for course code: " + courseCode + " , semester: " + semester + " , session: "
+				+ session;
+	}
 
 }

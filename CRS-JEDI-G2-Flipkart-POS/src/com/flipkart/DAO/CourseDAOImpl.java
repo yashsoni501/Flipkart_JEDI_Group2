@@ -82,7 +82,7 @@ public class CourseDAOImpl implements CourseDAOInterface {
 
 		}
 
-		if(res.size() == 0) {
+		if (res.size() == 0) {
 			throw new EmptyCourseListExcpetion();
 		}
 
@@ -113,7 +113,8 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		return res;
 	}
 
-	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester)	throws InvalidCCSessionSemesterException, SQLException {
+	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester)
+			throws InvalidCCSessionSemesterException, SQLException {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -147,7 +148,8 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		return res;
 	}
 
-	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) throws InvalidDepartmentException, SQLException {
+	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department)
+			throws InvalidDepartmentException, SQLException {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -204,14 +206,15 @@ public class CourseDAOImpl implements CourseDAOInterface {
 
 		}
 
-		if(res.size() == 0) {
+		if (res.size() == 0) {
 			throw new EmptyCourseCatalogListExcpetion();
 		}
 
 		return res;
 	}
 
-	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId)  throws SQLException, EmptyCourseCatalogListExcpetion {
+	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId)
+			throws SQLException, EmptyCourseCatalogListExcpetion {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
@@ -236,18 +239,17 @@ public class CourseDAOImpl implements CourseDAOInterface {
 
 		}
 
-		if(res.size() == 0) {
+		if (res.size() == 0) {
 			throw new EmptyCourseCatalogListExcpetion();
 		}
 
 		return res;
 	}
 
-	public boolean updateProfessorId(String courseId, String professorId)  throws SQLException {
+	public boolean updateProfessorId(String courseId, String professorId) throws SQLException {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
-
 
 		stmt = conn.prepareStatement(SQLQuery.UPDATE_PROF_IN_COURSE);
 		stmt.setString(1, professorId);

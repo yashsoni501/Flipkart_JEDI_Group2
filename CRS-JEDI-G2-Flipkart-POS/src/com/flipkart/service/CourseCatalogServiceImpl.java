@@ -48,7 +48,8 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) throws InvalidDepartmentException, SQLException {
+	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department)
+			throws InvalidDepartmentException, SQLException {
 
 		return courseDAO.getDepartmentCourseCatalog(department);
 	}
@@ -60,7 +61,8 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId) throws SQLException, EmptyCourseCatalogListExcpetion {
+	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId)
+			throws SQLException, EmptyCourseCatalogListExcpetion {
 
 		return courseDAO.getCourseCatalogByProfessorId(userId);
 	}

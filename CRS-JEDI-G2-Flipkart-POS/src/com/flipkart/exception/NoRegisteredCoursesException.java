@@ -7,8 +7,8 @@ package com.flipkart.exception;
  * @author Tanmay
  *
  */
-public class NoRegisteredCoursesException extends Exception{
-	
+public class NoRegisteredCoursesException extends Exception {
+
 	private String studentId;
 	private int semester;
 
@@ -30,7 +30,7 @@ public class NoRegisteredCoursesException extends Exception{
 	public String getstudentId() {
 		return studentId;
 	}
-	
+
 	/**
 	 * Getter method
 	 * 
@@ -39,13 +39,13 @@ public class NoRegisteredCoursesException extends Exception{
 	public int getSemester() {
 		return semester;
 	}
-	
+
 	/**
 	 * Message returned when exception is thrown
 	 */
 	@Override
 	public String getMessage() {
 		return "No registered course found for student id: " + studentId + " , semester: " + semester;
-	}	
+	}
 
 }

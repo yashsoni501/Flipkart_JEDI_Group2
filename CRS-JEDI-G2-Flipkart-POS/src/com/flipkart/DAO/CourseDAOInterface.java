@@ -27,13 +27,16 @@ public interface CourseDAOInterface {
 
 	public CourseCatalog getCourseCatalog(String courseId) throws CourseCatalogEntryNotFoundException, SQLException;
 
-	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester) throws InvalidCCSessionSemesterException, SQLException;
+	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester)
+			throws InvalidCCSessionSemesterException, SQLException;
 
-	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) throws InvalidDepartmentException, SQLException;
+	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department)
+			throws InvalidDepartmentException, SQLException;
 
 	public ArrayList<CourseCatalog> getAllCourseCatalog() throws SQLException, EmptyCourseCatalogListExcpetion;
 
-	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId) throws SQLException, EmptyCourseCatalogListExcpetion;
+	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId)
+			throws SQLException, EmptyCourseCatalogListExcpetion;
 
 	public boolean updateProfessorId(String courseId, String professorId) throws SQLException;
 

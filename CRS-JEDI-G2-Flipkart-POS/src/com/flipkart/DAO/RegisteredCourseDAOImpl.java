@@ -38,7 +38,8 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 	}
 
 	@Override
-	public ArrayList<Student> getEnrolledStudents(String courseId, int semester, String session) throws SQLException, NoStudentEnrolledException {
+	public ArrayList<Student> getEnrolledStudents(String courseId, int semester, String session)
+			throws SQLException, NoStudentEnrolledException {
 		// Auto-generated method stub
 		Connection conn = DBUtils.getConnection();
 
@@ -70,8 +71,8 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 				studentsFound.add(currstudent);
 			}
 		}
-		
-		if(studentsFound.size() == 0) {
+
+		if (studentsFound.size() == 0) {
 			throw new NoStudentEnrolledException(courseId, semester, session);
 		}
 
@@ -79,7 +80,8 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 	}
 
 	@Override
-	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester) throws SQLException, NoRegisteredCoursesException {
+	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester)
+			throws SQLException, NoRegisteredCoursesException {
 		// Auto-generated method stub
 		Connection conn = DBUtils.getConnection();
 
@@ -101,7 +103,7 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 
 			RegisteredCourseList.add(courseFound);
 		}
-		
+
 		if (RegisteredCourseList.size() == 0) {
 			throw new NoRegisteredCoursesException(studentId, semester);
 		}
