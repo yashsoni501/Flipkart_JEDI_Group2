@@ -15,8 +15,11 @@ import com.flipkart.bean.SemesterReportCard;
 import com.flipkart.bean.Student;
 import com.flipkart.exception.CourseCatalogEntryNotFoundException;
 import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.EmptyCourseCatalogListExcpetion;
+import com.flipkart.exception.EmptyCourseListExcpetion;
 import com.flipkart.exception.InvalidCredentialsException;
 import com.flipkart.exception.NoProfessorsFoundException;
+import com.flipkart.exception.NoRegisteredCoursesException;
 import com.flipkart.exception.UserEmailAlreadyInUseException;
 import com.flipkart.exception.UserEmailNotFoundException;
 import com.flipkart.exception.UserNotFoundException;
@@ -213,16 +216,12 @@ public class CRSAdminMenu {
 
 				if (!checked) {
 
-					try {
-						ArrayList<SemesterReportCard> reportCards = semesterReportCardInterface
-								.getSemesterReportCardByStudentId(student.getStudentID());
-						for (SemesterReportCard semReportCard : reportCards) {
-							if (semReportCard.getCurrentSem() == semester) {
-								alreadyCreated = true;
-							}
+					ArrayList<SemesterReportCard> reportCards = semesterReportCardInterface
+							.getSemesterReportCardByStudentId(student.getStudentID());
+					for (SemesterReportCard semReportCard : reportCards) {
+						if (semReportCard.getCurrentSem() == semester) {
+							alreadyCreated = true;
 						}
-					} catch (SemesterReportCardNotFound ex) {
-
 					}
 					checked = true;
 				}
@@ -238,6 +237,10 @@ public class CRSAdminMenu {
 				semesterReportCardInterface.addSemesterReportCard(student.getStudentID(), semester, sgpa);
 			}
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} catch (SemesterReportCardNotFound e) {
+			System.out.println(e.getMessage());
+		} catch (NoRegisteredCoursesException e) {
 			System.out.println(e.getMessage());
 		}
 
@@ -295,8 +298,10 @@ public class CRSAdminMenu {
 		} catch (CourseCatalogEntryNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 		}
-		return totalScore / totalCredit;
+		return 0;
 	}
 
 	/**
@@ -654,6 +659,10 @@ public class CRSAdminMenu {
 		} catch (CourseNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} catch (EmptyCourseCatalogListExcpetion e) {
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -665,34 +674,43 @@ public class CRSAdminMenu {
 	 */
 	private void getAllCourses() {
 		// Auto-generated method stub
-		ArrayList<Course> arr = courseInterface.getAllCourses();
-		System.out.println("---------------------------------------------------");
-		System.out.println("Course ID \t Course Name \t Department");
-		System.out.println("---------------------------------------------------");
-		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(
-					arr.get(i).getCourseID() + "\t" + arr.get(i).getCourseName() + "\t" + arr.get(i).getDepartment());
-		}
-		System.out.println("---------------------------------------------------");
-		System.out.println();
-
-		while (true) {
-			System.out.println("1. Remove Course");
-			System.out.println("2. Modify Course Details");
-			System.out.println("3. Return");
-			int choice = CRSApplication.scan.nextInt();
-			switch (choice) {
-			case 1:
-				removeCourse();
-				break;
-			case 2:
-				modifyCourse();
-				break;
-			case 3:
-				return;
-			default:
-				System.out.println("***** Wrong Choice *****");
+		try {
+			ArrayList<Course> arr;
+			arr = courseInterface.getAllCourses();
+			System.out.println("---------------------------------------------------");
+			System.out.println("Course ID \t Course Name \t Department");
+			System.out.println("---------------------------------------------------");
+			for (int i = 0; i < arr.size(); i++) {
+				System.out.println(arr.get(i).getCourseID() + "\t" + arr.get(i).getCourseName() + "\t"
+						+ arr.get(i).getDepartment());
 			}
+			System.out.println("---------------------------------------------------");
+			System.out.println();
+
+			while (true) {
+				System.out.println("1. Remove Course");
+				System.out.println("2. Modify Course Details");
+				System.out.println("3. Return");
+				int choice = CRSApplication.scan.nextInt();
+				switch (choice) {
+				case 1:
+					removeCourse();
+					break;
+				case 2:
+					modifyCourse();
+					break;
+				case 3:
+					return;
+				default:
+					System.out.println("***** Wrong Choice *****");
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (EmptyCourseListExcpetion e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

@@ -301,10 +301,10 @@ public class CRSProfessorMenu {
 					"----------------------------------------------------------------------------------------");
 			System.out.println();
 		} catch (InvalidDepartmentException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (CourseNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 	}
