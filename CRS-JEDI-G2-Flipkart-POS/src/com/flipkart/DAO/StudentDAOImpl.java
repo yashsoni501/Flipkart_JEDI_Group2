@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import com.flipkart.bean.Student;
 import com.flipkart.utils.DBUtils;
-import com.flipkart.utils.SQLQuery;
+import com.flipkart.constant.SQLQuery;
 import com.flipkart.bean.CourseCatalog;
 
 /**

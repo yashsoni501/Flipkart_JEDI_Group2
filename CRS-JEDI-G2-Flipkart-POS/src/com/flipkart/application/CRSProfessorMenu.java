@@ -118,12 +118,18 @@ public class CRSProfessorMenu {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println("----------------------------------------------------------------------------------------");
+		System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
+		System.out.println("----------------------------------------------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
 			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
-			System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
-					+ arr.get(i).getSemester() + " " + arr.get(i).getSession() + " " + arr.get(i).getCredits());
-
+			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment() + "\t"
+					+ arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t" + arr.get(i).getCredits());
 		}
+		System.out.println("----------------------------------------------------------------------------------------");
+		System.out.println();
+		
 	}
 
 	private void viewEnrolledStudentsInCourse() {
@@ -139,11 +145,16 @@ public class CRSProfessorMenu {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println("---------------------------------------------------");
+		System.out.println("Student ID \t Name \t Department \t Email ID \t Session");
+		System.out.println("---------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(arr.get(i).getStudentID() + " " + arr.get(i).getStudentName() + " "
-					+ arr.get(i).getDepartment() + " " + arr.get(i).getEmailID() + " " + arr.get(i).getSession());
-
+			System.out.println(arr.get(i).getStudentID() + "\t" + arr.get(i).getStudentName() + "\t"
+					+ arr.get(i).getDepartment() + "\t" + arr.get(i).getEmailID() + "\t" + arr.get(i).getSession());
 		}
+		System.out.println("---------------------------------------------------");
+		System.out.println();
 	}
 
 	// Note :Needs to be implemented in course catalog
@@ -194,13 +205,17 @@ public class CRSProfessorMenu {
 	private void viewCourses() {
 		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		arr = courseCatalogInterface.getDepartmentCourseCatalog(professor.getDepartment());
+		
+		System.out.println("----------------------------------------------------------------------------------------");
+		System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
+		System.out.println("----------------------------------------------------------------------------------------");
 		for (int i = 0; i < arr.size(); i++) {
 			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
-			System.out.println(course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
-					+ arr.get(i).getSemester() + " " + arr.get(i).getSession() + " " + arr.get(i).getCredits());
-
+			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment() + "\t"
+					+ arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t" + arr.get(i).getCredits());
 		}
-
+		System.out.println("----------------------------------------------------------------------------------------");
+		System.out.println();
 	}
 
 }
