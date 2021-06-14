@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import com.flipkart.bean.Student;
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
+import com.flipkart.exception.NoRegisteredCoursesException;
+import com.flipkart.exception.NoStudentEnrolledException;
 import com.flipkart.bean.RegisteredCourse;
 
 /**
@@ -36,7 +38,7 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 	}
 
 	@Override
-	public ArrayList<Student> getEnrolledStudents(String courseId, int semester, String session) throws SQLException {
+	public ArrayList<Student> getEnrolledStudents(String courseId, int semester, String session) throws SQLException, NoStudentEnrolledException {
 		// Auto-generated method stub
 		Connection conn = DBUtils.getConnection();
 
@@ -68,12 +70,16 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 				studentsFound.add(currstudent);
 			}
 		}
+		
+		if(studentsFound.size() == 0) {
+			throw new NoStudentEnrolledException(courseId, semester, session);
+		}
 
 		return studentsFound;
 	}
 
 	@Override
-	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester) throws SQLException {
+	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester) throws SQLException, NoRegisteredCoursesException {
 		// Auto-generated method stub
 		Connection conn = DBUtils.getConnection();
 
@@ -94,6 +100,10 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 			courseFound.setSemester(myRs.getInt("semester"));
 
 			RegisteredCourseList.add(courseFound);
+		}
+		
+		if (RegisteredCourseList.size() == 0) {
+			throw new NoRegisteredCoursesException(studentId, semester);
 		}
 
 		return RegisteredCourseList;

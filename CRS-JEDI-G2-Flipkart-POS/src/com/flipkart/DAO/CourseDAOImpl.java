@@ -15,6 +15,8 @@ import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
 import com.flipkart.exception.CourseCatalogEntryNotFoundException;
 import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.EmptyCourseCatalogListExcpetion;
+import com.flipkart.exception.EmptyCourseListExcpetion;
 import com.flipkart.exception.InvalidCCSessionSemesterException;
 import com.flipkart.exception.InvalidDepartmentException;
 
@@ -36,123 +38,129 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		return instance;
 	}
 
-	public Course getCourse(String courseId) throws CourseNotFoundException {
+	public Course getCourse(String courseId) throws CourseNotFoundException, SQLException {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		Course res = new Course();
 
-		try {
+		stmt = conn.prepareStatement(SQLQuery.GET_COURSE_BY_ID);
+		stmt.setString(1, courseId);
+		ResultSet rs = stmt.executeQuery();
 
-			stmt = conn.prepareStatement(SQLQuery.GET_COURSE_BY_ID);
-			stmt.setString(1, courseId);
-			ResultSet rs = stmt.executeQuery();
-
-			if (rs.next()) {
-				res.setCourseID(rs.getString("courseid"));
-				res.setCourseName(rs.getString("courseName"));
-				res.setDepartment(rs.getString("department"));
-
-			} else {
-				throw new CourseNotFoundException(courseId);
-			}
-
-		} catch (SQLException se) {
-			se.getMessage();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.getMessage();
+		if (rs.next()) {
+			res.setCourseID(rs.getString("courseid"));
+			res.setCourseName(rs.getString("courseName"));
+			res.setDepartment(rs.getString("department"));
+		} else {
+			throw new CourseNotFoundException(courseId);
 		}
+
 		return res;
 
 	}
 
-	public ArrayList<Course> getAllCourses() {
+	public ArrayList<Course> getAllCourses() throws SQLException, EmptyCourseListExcpetion {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		ArrayList<Course> res = new ArrayList<Course>();
 
-		try {
+		stmt = conn.prepareStatement(SQLQuery.GET_ALL_COURSES);
+		ResultSet rs = stmt.executeQuery();
 
-			stmt = conn.prepareStatement(SQLQuery.GET_ALL_COURSES);
-			ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			// Retrieve by column name
+			Course temp = new Course();
+			temp.setCourseID(rs.getString("courseid"));
+			temp.setCourseName(rs.getString("courseName"));
+			temp.setDepartment(rs.getString("department"));
 
-			while (rs.next()) {
-				// Retrieve by column name
-				Course temp = new Course();
-				temp.setCourseID(rs.getString("courseid"));
-				temp.setCourseName(rs.getString("courseName"));
-				temp.setDepartment(rs.getString("department"));
+			res.add(temp);
 
-				res.add(temp);
-
-			}
-		} catch (SQLException se) {
-			se.getMessage();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.getMessage();
 		}
-//		catch (Exception e) {
-//			// Handle errors for Class.forName
-//			e.printStackTrace();
-//		}
+		
+		if(res.size() == 0) {
+			throw new EmptyCourseListExcpetion();			
+		}
+		
 		return res;
 	}
 
-	public CourseCatalog getCourseCatalog(String courseId) throws CourseCatalogEntryNotFoundException {
+	public CourseCatalog getCourseCatalog(String courseId) throws CourseCatalogEntryNotFoundException, SQLException {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		CourseCatalog res = new CourseCatalog();
 
-		try {
+		stmt = conn.prepareStatement(SQLQuery.GET_COURSE_CATALOG_BY_ID);
+		stmt.setString(1, courseId);
+		ResultSet rs = stmt.executeQuery();
 
-			stmt = conn.prepareStatement(SQLQuery.GET_COURSE_CATALOG_BY_ID);
-			stmt.setString(1, courseId);
-			ResultSet rs = stmt.executeQuery();
-
-			if (rs.next()) {
-				res.setCourseId(String.valueOf(rs.getInt("courseid")));
-				res.setProfessorId(rs.getString("profid"));
-				res.setSemester(rs.getInt("semester"));
-				res.setSession(rs.getString("session"));
-				res.setCredits(rs.getFloat("credits"));
-			} else {
-				throw new CourseCatalogEntryNotFoundException(courseId);
-			}
-		} catch (SQLException se) {
-			se.getMessage();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.getMessage();
+		if (rs.next()) {
+			res.setCourseId(String.valueOf(rs.getInt("courseid")));
+			res.setProfessorId(rs.getString("profid"));
+			res.setSemester(rs.getInt("semester"));
+			res.setSession(rs.getString("session"));
+			res.setCredits(rs.getFloat("credits"));
+		} else {
+			throw new CourseCatalogEntryNotFoundException(courseId);
 		}
+		
 		return res;
 	}
 
-	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester)
-			throws InvalidCCSessionSemesterException {
+	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester)	throws InvalidCCSessionSemesterException, SQLException {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
-		try {
-//			System.out.println("Sem: " + semester + ", session: " + session + "\n");
+		stmt = conn.prepareStatement(SQLQuery.GET_COURSE_CATALOG_BY_SESSION_SEMESTER);
+		stmt.setString(1, session);
+		stmt.setInt(2, semester);
 
-			stmt = conn.prepareStatement(SQLQuery.GET_COURSE_CATALOG_BY_SESSION_SEMESTER);
-			stmt.setString(1, session);
-			stmt.setInt(2, semester);
+		ResultSet rs = stmt.executeQuery();
 
-			ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			// Retrieve by column name
+			CourseCatalog temp = new CourseCatalog();
 
-			while (rs.next()) {
-				// Retrieve by column name
+			temp.setCourseId(String.valueOf(rs.getInt("courseid")));
+			temp.setProfessorId(rs.getString("profid"));
+			temp.setSemester(rs.getInt("semester"));
+			temp.setSession(rs.getString("session"));
+			temp.setCredits(rs.getFloat("credits"));
+
+			res.add(temp);
+
+		}
+
+		if (res.size() == 0) {
+			throw new InvalidCCSessionSemesterException(session, semester);
+		}
+
+		return res;
+	}
+
+	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) throws InvalidDepartmentException, SQLException {
+
+		Connection conn = DBUtils.getConnection();
+		PreparedStatement stmt = null;
+
+		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
+
+		stmt = conn.prepareStatement(SQLQuery.GET_DEPARTMENT_COURSE_CATALOG);
+		stmt.setString(1, department);
+		ResultSet rs = stmt.executeQuery();
+
+		while (rs.next()) {
+			// Retrieve by column name
+			if (rs.getString("profid") == null) {
 				CourseCatalog temp = new CourseCatalog();
 
 				temp.setCourseId(String.valueOf(rs.getInt("courseid")));
@@ -162,158 +170,97 @@ public class CourseDAOImpl implements CourseDAOInterface {
 				temp.setCredits(rs.getFloat("credits"));
 
 				res.add(temp);
-
 			}
 
 			if (res.size() == 0) {
-				throw new InvalidCCSessionSemesterException(session, semester);
+				throw new InvalidDepartmentException(department);
 			}
-
-		} catch (SQLException se) {
-			se.getMessage();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.getMessage();
 		}
+		
 		return res;
 	}
 
-	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) throws InvalidDepartmentException {
+	public ArrayList<CourseCatalog> getAllCourseCatalog() throws SQLException, EmptyCourseCatalogListExcpetion {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
-		try {
+		stmt = conn.prepareStatement(SQLQuery.GET_COURSE_CATALOG);
+		ResultSet rs = stmt.executeQuery();
 
-			stmt = conn.prepareStatement(SQLQuery.GET_DEPARTMENT_COURSE_CATALOG);
-			stmt.setString(1, department);
-			ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			// Retrieve by column name
+			CourseCatalog temp = new CourseCatalog();
 
-			while (rs.next()) {
-				// Retrieve by column name
-				if (rs.getString("profid") == null) {
-					CourseCatalog temp = new CourseCatalog();
+			temp.setCourseId(rs.getString("courseid"));
+			temp.setProfessorId(rs.getString("profid"));
+			temp.setSemester(rs.getInt("semester"));
+			temp.setSession(rs.getString("session"));
+			temp.setCredits(rs.getFloat("credits"));
 
-					temp.setCourseId(String.valueOf(rs.getInt("courseid")));
-					temp.setProfessorId(rs.getString("profid"));
-					temp.setSemester(rs.getInt("semester"));
-					temp.setSession(rs.getString("session"));
-					temp.setCredits(rs.getFloat("credits"));
+			res.add(temp);
 
-					res.add(temp);
-				}
-
-				if (res.size() == 0) {
-					throw new InvalidDepartmentException(department);
-				}
-			}
-		} catch (SQLException se) {
-			se.getMessage();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.getMessage();
 		}
+		
+		if(res.size() == 0) {
+			throw new EmptyCourseCatalogListExcpetion();			
+		}
+		
 		return res;
 	}
 
-	public ArrayList<CourseCatalog> getAllCourseCatalog() {
+	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId)  throws SQLException, EmptyCourseCatalogListExcpetion {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
-		try {
+		stmt = conn.prepareStatement(SQLQuery.GET_CATALOG_BY_PROF_ID);
+		stmt.setString(1, userId);
+		ResultSet rs = stmt.executeQuery();
 
-			stmt = conn.prepareStatement(SQLQuery.GET_COURSE_CATALOG);
-			ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			// Retrieve by column name
+			CourseCatalog temp = new CourseCatalog();
 
-			while (rs.next()) {
-				// Retrieve by column name
-				CourseCatalog temp = new CourseCatalog();
+			temp.setCourseId(rs.getString("courseid"));
+			temp.setProfessorId(rs.getString("profid"));
+			temp.setSemester(rs.getInt("semester"));
+			temp.setSession(rs.getString("session"));
+			temp.setCredits(rs.getFloat("credits"));
 
-				temp.setCourseId(rs.getString("courseid"));
-				temp.setProfessorId(rs.getString("profid"));
-				temp.setSemester(rs.getInt("semester"));
-				temp.setSession(rs.getString("session"));
-				temp.setCredits(rs.getFloat("credits"));
+			res.add(temp);
 
-				res.add(temp);
-
-			}
-		} catch (SQLException se) {
-			se.getMessage();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.getMessage();
 		}
+		
+		if(res.size() == 0) {
+			throw new EmptyCourseCatalogListExcpetion();
+		}
+
 		return res;
 	}
 
-	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId) {
+	public boolean updateProfessorId(String courseId, String professorId)  throws SQLException {
 
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = null;
 
-		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
-		try {
+		stmt = conn.prepareStatement(SQLQuery.UPDATE_PROF_IN_COURSE);
+		stmt.setString(1, professorId);
+		stmt.setString(2, courseId);
 
-//		    System.out.println(sql);
-			stmt = conn.prepareStatement(SQLQuery.GET_CATALOG_BY_PROF_ID);
-			stmt.setString(1, userId);
-			ResultSet rs = stmt.executeQuery();
+		int rows = stmt.executeUpdate();
 
-			while (rs.next()) {
-				// Retrieve by column name
-				CourseCatalog temp = new CourseCatalog();
-
-				temp.setCourseId(rs.getString("courseid"));
-				temp.setProfessorId(rs.getString("profid"));
-				temp.setSemester(rs.getInt("semester"));
-				temp.setSession(rs.getString("session"));
-				temp.setCredits(rs.getFloat("credits"));
-
-				res.add(temp);
-
-			}
-
-		} catch (SQLException se) {
-			se.getMessage();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.getMessage();
+		if (rows == 1) {
+			return true;
+		} else {
+			return false;
 		}
-		return res;
-	}
-
-	public boolean updateProfessorId(String courseId, String professorId) {
-
-		Connection conn = DBUtils.getConnection();
-		PreparedStatement stmt = null;
-
-		try {
-
-			stmt = conn.prepareStatement(SQLQuery.UPDATE_PROF_IN_COURSE);
-			stmt.setString(1, professorId);
-			stmt.setString(2, courseId);
-
-			int rows = stmt.executeUpdate();
-
-			if (rows == 1) {
-				return true;
-			} else {
-				return false;
-			}
-		} catch (SQLException se) {
-			se.getMessage();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.getMessage();
-		}
-		return true;
+	
 	}
 
 //	public static void main(String[] args) {
