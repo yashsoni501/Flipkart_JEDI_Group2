@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import com.flipkart.DAO.PaymentDAOImpl;
 import com.flipkart.DAO.PaymentDAOInterface;
 import com.flipkart.bean.Payment;
+import com.flipkart.exception.FeeRecieptNotFoundException;
 
 /**
  * @author yashsoni501
@@ -29,7 +30,7 @@ public class PaymentServiceImpl implements PaymentInterface {
 	}
 
 	@Override
-	public Payment getFeeReciept(String studentId, int semester) throws SQLException {
+	public Payment getFeeReciept(String studentId, int semester) throws SQLException, FeeRecieptNotFoundException {
 		// Auto-generated method stub
 		return paymentDAO.getFeeReciept(studentId, semester);
 	}
