@@ -3,12 +3,14 @@
  */
 package com.flipkart.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.flipkart.DAO.CourseDAOImpl;
 import com.flipkart.DAO.CourseDAOInterface;
 import com.flipkart.bean.Course;
 import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.EmptyCourseListExcpetion;
 
 /**
  * @author yashsoni501
@@ -30,13 +32,13 @@ public class CourseServiceImpl implements CourseInterface {
 	}
 
 	@Override
-	public Course getCourse(String courseId) throws CourseNotFoundException {
+	public Course getCourse(String courseId) throws CourseNotFoundException, SQLException {
 
 		return courseDAO.getCourse(courseId);
 	}
 
 	@Override
-	public ArrayList<Course> getAllCourses() {
+	public ArrayList<Course> getAllCourses() throws SQLException, EmptyCourseListExcpetion {
 
 		return courseDAO.getAllCourses();
 	}
