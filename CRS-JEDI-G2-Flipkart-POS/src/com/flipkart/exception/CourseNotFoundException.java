@@ -2,31 +2,32 @@ package com.flipkart.exception;
 
 /**
  * Exception to check if course is available in catalog
- * 
- * @author JEDI-03
+ * @author Aeron
  *
  */
-public class CourseNotFoundException extends Exception {
-	private String courseCode;
-
-	public CourseNotFoundException(String courseCode) {
-		this.courseCode = courseCode;
+public class CourseNotFoundException extends Exception{
+	private String courseid;
+	
+	public CourseNotFoundException(String courseid)
+	{	
+		this.courseid = courseid;
 	}
 
 	/**
-	 * Getter function for course code
-	 * 
+	 * Getter function for course id
 	 * @return
 	 */
-	public String getCourseCode() {
-		return courseCode;
+	public String getCourseId()
+	{
+		return courseid;
 	}
 
 	/**
 	 * Message returned when exception is thrown
 	 */
 	@Override
-	public String getMessage() {
-		return "Course with courseCode: " + courseCode + " not found.";
+	public String getMessage() 
+	{
+		return "Course with courseCode: " + courseid + " not found in Catalog";
 	}
 }

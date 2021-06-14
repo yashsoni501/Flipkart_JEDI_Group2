@@ -4,9 +4,8 @@
 package com.flipkart.exception;
 
 /**
- * Exception to check if user exists
- * 
- * @author JEDI-03
+ * Exception to check if user exists 
+ * @author Aeron
  *
  */
 public class UserNotFoundException extends Exception {
@@ -27,7 +26,7 @@ public class UserNotFoundException extends Exception {
 	 */
 	@Override
 	public String getMessage() {
-		return "User with userId: " + userId + " not found.";
+		return "Student with Id: " + userId + " not found.";
 	}
 
 }

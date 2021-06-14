@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.sql.SQLException;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.DAO.StudentDAOImpl;
 import com.flipkart.DAO.StudentDAOInterface;
 
@@ -31,13 +33,13 @@ public class StudentServiceImpl implements StudentInterface {
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int semester) throws SQLException {
+	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int semester) throws SQLException, CourseNotFoundException {
 		// Auto-generated method stub
 		return studentDAO.fetchRegisteredCourses(studentId, semester);
 	}
 
 	@Override
-	public Student getStudentById(String userId) throws SQLException {
+	public Student getStudentById(String userId) throws SQLException, UserNotFoundException {
 		// Auto-generated method stub
 		return studentDAO.getStudentById(userId);
 	}

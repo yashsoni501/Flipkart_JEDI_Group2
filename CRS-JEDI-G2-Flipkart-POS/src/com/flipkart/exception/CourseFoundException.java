@@ -5,8 +5,7 @@ package com.flipkart.exception;
 
 /**
  * Exception to check if course is already present in catalog
- * 
- * @author JEDI-03
+ * @author Aeron
  *
  */
 public class CourseFoundException extends Exception {

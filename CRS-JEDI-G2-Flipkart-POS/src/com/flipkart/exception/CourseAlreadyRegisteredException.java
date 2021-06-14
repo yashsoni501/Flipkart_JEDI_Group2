@@ -2,8 +2,7 @@ package com.flipkart.exception;
 
 /**
  * Exception to check if course is already registered by student
- * 
- * @author JEDI-03
+ * @author Aeron
  *
  */
 public class CourseAlreadyRegisteredException extends Exception {

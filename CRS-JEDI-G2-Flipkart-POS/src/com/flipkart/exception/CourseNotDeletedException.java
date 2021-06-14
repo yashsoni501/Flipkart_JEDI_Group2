@@ -5,8 +5,7 @@ package com.flipkart.exception;
 
 /**
  * Exception course is deleted from catalog
- * 
- * @author JEDI-03
+ * @author Aeron
  *
  */
 public class CourseNotDeletedException extends Exception {
