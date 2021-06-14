@@ -76,10 +76,10 @@ public class CRSAdminMenu {
 			try {
 				admin = adminInterface.getAdminById(CRSApplication.userId);
 			} catch (UserNotFoundException e) {
-				e.getMessage();
+				System.out.println(e.getMessage());
 				return;
 			} catch (SQLException e) {
-				e.getMessage();
+				System.out.println(e.getMessage());
 				return;
 			}
 		}
@@ -134,14 +134,14 @@ public class CRSAdminMenu {
 				try {
 					adminInterface.setCourseRegistrationFlag(true);
 				} catch (SQLException e) {
-					e.getMessage();
+					System.out.println(e.getMessage());
 				}
 				break;
 			case 9:
 				try {
 					adminInterface.setCourseRegistrationFlag(false);
 				} catch (SQLException e) {
-					e.getMessage();
+					System.out.println(e.getMessage());
 				}
 				break;
 			case 10:
@@ -149,7 +149,7 @@ public class CRSAdminMenu {
 					adminInterface.setPaymentFlag(true);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 				break;
 			case 11:
@@ -157,7 +157,7 @@ public class CRSAdminMenu {
 					adminInterface.setPaymentFlag(false);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 				break;
 			case 12:
@@ -165,7 +165,7 @@ public class CRSAdminMenu {
 					adminInterface.setProfessorFlag(true);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 				break;
 			case 13:
@@ -173,7 +173,7 @@ public class CRSAdminMenu {
 					adminInterface.setProfessorFlag(false);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 				break;
 			case 14:
@@ -238,7 +238,7 @@ public class CRSAdminMenu {
 				semesterReportCardInterface.addSemesterReportCard(student.getStudentID(), semester, sgpa);
 			}
 		} catch (SQLException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 
 		System.out.println("Report Card generated Successfully");
@@ -294,7 +294,7 @@ public class CRSAdminMenu {
 			return totalScore / totalCredit;
 		} catch (CourseCatalogEntryNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		return totalScore / totalCredit;
 	}
@@ -318,7 +318,7 @@ public class CRSAdminMenu {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -338,9 +338,9 @@ public class CRSAdminMenu {
 				System.out.println("Something went wrong");
 			}
 		} catch (CourseNotFoundException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -367,9 +367,9 @@ public class CRSAdminMenu {
 				System.out.println("Something went wrong");
 			}
 		} catch (CourseNotFoundException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -398,9 +398,9 @@ public class CRSAdminMenu {
 				System.out.println("Something went wrong");
 			}
 		} catch (CourseNotFoundException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -421,10 +421,10 @@ public class CRSAdminMenu {
 			}
 		} catch (CourseNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -455,10 +455,10 @@ public class CRSAdminMenu {
 			}
 		} catch (CourseNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -479,10 +479,10 @@ public class CRSAdminMenu {
 			}
 		} catch (UserNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -500,10 +500,10 @@ public class CRSAdminMenu {
 			}
 		} catch (UserNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -534,16 +534,16 @@ public class CRSAdminMenu {
 			}
 		} catch (UserEmailAlreadyInUseException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (InvalidCredentialsException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (UserEmailNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -565,10 +565,10 @@ public class CRSAdminMenu {
 			}
 		} catch (UserNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -596,10 +596,10 @@ public class CRSAdminMenu {
 			}
 		} catch (UserNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -653,7 +653,7 @@ public class CRSAdminMenu {
 			}
 		} catch (CourseNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -760,10 +760,10 @@ public class CRSAdminMenu {
 			}
 		} catch (UserNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -782,7 +782,7 @@ public class CRSAdminMenu {
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 
 		System.out.println("---------------------------------------------------");
