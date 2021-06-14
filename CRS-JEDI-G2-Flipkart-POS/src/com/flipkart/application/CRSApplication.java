@@ -44,10 +44,11 @@ public class CRSApplication {
 	 */
 	public static void main(String[] args) {
 		CRSApplication crsApplication = new CRSApplication();
-		createMainMenu();
-		int userInput = MenuOptionScanner.nextInt();
+		int userInput;
+		do {
+			createMainMenu();
+			userInput = MenuOptionScanner.nextInt();
 
-		while (userInput != 4) {
 			switch (userInput) {
 			case 1:
 				// login
@@ -64,9 +65,8 @@ public class CRSApplication {
 			default:
 				System.out.println("Invalid Input");
 			}
-			createMainMenu();
-			userInput = MenuOptionScanner.nextInt();
-		}
+		} while (userInput != 4);
+		
 		scan.close();
 	}
 

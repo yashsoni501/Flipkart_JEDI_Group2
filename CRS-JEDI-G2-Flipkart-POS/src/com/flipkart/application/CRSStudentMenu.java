@@ -359,21 +359,22 @@ public class CRSStudentMenu {
 			arr = courseCatalogInterface.getCourseCatalogBySessionSemester(student.getSession(), semester);
 
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
-			System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
+					"---------------------------------------------------------------------------------------------------------------");
+			System.out.printf("%10s %15s %15s %10s %10s %10s\n", "Course ID", "Course Name", "Department", "Semester",
+					"Session", "Credits");
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
-			for (int i = 0; i < arr.size(); i++) {
-				Course course = null;
-
-				course = courseInterface.getCourse(arr.get(i).getCourseId());
-				System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
-						+ "\t" + arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t"
-						+ arr.get(i).getCredits());
+					"---------------------------------------------------------------------------------------------------------------");
+			for (CourseCatalog catalog : arr) {
+				Course course = courseInterface.getCourse(catalog.getCourseId());
+				System.out.printf("%10s %15s %15s", course.getCourseID(), course.getCourseName(),
+						course.getDepartment());
+				System.out.printf("%10s %10s %10s\n", catalog.getSemester(), catalog.getSession(),
+						catalog.getCredits());
 			}
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
+					"---------------------------------------------------------------------------------------------------------------");
 			System.out.println();
+
 
 		} catch (InvalidCCSessionSemesterException e) {
 			// Auto-generated catch block
@@ -388,6 +389,7 @@ public class CRSStudentMenu {
 
 	}
 
+
 	/**
 	 * Registered courses.
 	 */
@@ -395,22 +397,24 @@ public class CRSStudentMenu {
 		System.out.println("Enter Semester");
 		int semester = MenuOptionScanner.nextInt();
 		try {
-			ArrayList<RegisteredCourse> arr1 = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
+			ArrayList<RegisteredCourse> arr = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
 					semester);
 
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
-			System.out.println("Course ID \t Course Name \t Department \t Credits \t Professor ID");
+					"---------------------------------------------------------------------------------------------------------------");
+			System.out.printf("%10s %15s %15s %10s %20s\n", "Course ID", "Course Name", "Department", "Credits", "Professor ID");
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
-			for (int i = 0; i < arr1.size(); i++) {
-				CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(i).getCourseId());
-				Course course = courseInterface.getCourse(arr1.get(i).getCourseId());
-				System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
-						+ "\t" + arr.getCredits() + "\t" + arr.getProfessorId());
+					"---------------------------------------------------------------------------------------------------------------");
+
+			for (RegisteredCourse regCourse : arr) {
+				Course course = courseInterface.getCourse(regCourse.getCourseId());
+				CourseCatalog catalog = courseCatalogInterface.getCourseCatalog(regCourse.getCourseId());
+				
+				System.out.printf("%10s %15s %15s %10s %20s\n", course.getCourseID(), course.getCourseName(), course.getDepartment(), catalog.getCredits(), catalog.getProfessorId());
+
 			}
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
+					"---------------------------------------------------------------------------------------------------------------");
 			System.out.println();
 
 		} catch (SQLException e) {
@@ -471,6 +475,7 @@ public class CRSStudentMenu {
 			for (int i = 0; i < semesterReportCards.size(); i++) {
 				ArrayList<RegisteredCourse> arr1 = registeredCourseInterface
 						.getRegisteredCourses(student.getStudentID(), semesterReportCards.get(i).getCurrentSem());
+
 				System.out.println("Semester : " + semesterReportCards.get(i).getCurrentSem() + "\n"
 						+ " Semeseter sgpa : " + semesterReportCards.get(i).getSgpa());
 				System.out.println("---------------------------------------------------------------");
