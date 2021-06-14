@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import com.flipkart.bean.Student;
 import com.flipkart.utils.DBUtils;
+import com.flipkart.utils.SQLQuery;
 import com.flipkart.bean.CourseCatalog;
 
 /**
@@ -39,14 +40,12 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int sem) throws SQLException {
 		Connection conn = DBUtils.getConnection();
 
-		String STUDENT_REGISTERED_COURSES = "select * from registeredCourse where stuid = ? and semester = ?";
-		PreparedStatement stmt = conn.prepareStatement(STUDENT_REGISTERED_COURSES);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.STUDENT_REGISTERED_COURSES);
 		stmt.setInt(1, Integer.parseInt(studentId));
 		stmt.setInt(2, sem);
 		ResultSet myRs = stmt.executeQuery();
 
-		String COURSECATALOG_BY_ID = "select * from courseCatalog where courseid = ?";
-		PreparedStatement stamnt = conn.prepareStatement(COURSECATALOG_BY_ID);
+		PreparedStatement stamnt = conn.prepareStatement(SQLQuery.GET_COURSE_CATALOG_BY_ID);
 		ResultSet newRs;
 		ArrayList<CourseCatalog> RegisteredCourseList = new ArrayList<CourseCatalog>();
 
@@ -75,8 +74,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	public ArrayList<Student> getAllStudents(String session) throws SQLException {
 		Connection conn = DBUtils.getConnection();
 
-		String STUDENTS_IN_SESSION = "select * from student where session = ?";
-		PreparedStatement stmt = conn.prepareStatement(STUDENTS_IN_SESSION);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.STUDENTS_IN_SESSION);
 		stmt.setString(1, session);
 		ResultSet myRs = stmt.executeQuery();
 
@@ -102,8 +100,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	public Student getStudentById(String userId) throws SQLException {
 		Connection conn = DBUtils.getConnection();
 
-		String STUDENT_BY_ID = "select * from student where stuid = ?";
-		PreparedStatement stmt = conn.prepareStatement(STUDENT_BY_ID);
+		PreparedStatement stmt = conn.prepareStatement(SQLQuery.STUDENT_BY_ID);
 		stmt.setInt(1, Integer.parseInt(userId));
 		ResultSet myRs = stmt.executeQuery();
 

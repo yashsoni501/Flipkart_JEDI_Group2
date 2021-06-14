@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.flipkart.utils.DBUtils;
+import com.flipkart.utils.SQLQuery;
 
 /**
  * @author aysh
@@ -36,9 +37,7 @@ public class AuthDAOImpl implements AuthDAOInterface {
 		Connection conn = DBUtils.getConnection();
 		try {
 
-			String VERIFY_USER = "select * from auth where email = ?";
-
-			PreparedStatement stmt = conn.prepareStatement(VERIFY_USER);
+			PreparedStatement stmt = conn.prepareStatement(SQLQuery.VERIFY_USER);
 			stmt.setString(1, email);
 
 			ResultSet resultSet = stmt.executeQuery();
@@ -85,10 +84,9 @@ public class AuthDAOImpl implements AuthDAOInterface {
 
 		if (!uid.isEmpty()) {
 
-			String UPDATE_PASSWORD = "update auth set password=? where email=?";
 			try {
 
-				PreparedStatement stmt = conn.prepareStatement(UPDATE_PASSWORD);
+				PreparedStatement stmt = conn.prepareStatement(SQLQuery.UPDATE_PASSWORD);
 				stmt.setString(1, newPassword);
 				stmt.setString(2, email);
 
@@ -110,9 +108,8 @@ public class AuthDAOImpl implements AuthDAOInterface {
 	public String getRole(String userId) {
 		Connection conn = DBUtils.getConnection();
 
-		String GET_ROLE = "select userRole from auth where uid=?";
 		try {
-			PreparedStatement stmt = conn.prepareStatement(GET_ROLE);
+			PreparedStatement stmt = conn.prepareStatement(SQLQuery.GET_ROLE);
 			stmt.setString(1, userId);
 
 			ResultSet resultSet = stmt.executeQuery();

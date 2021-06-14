@@ -12,20 +12,21 @@ import java.util.ArrayList;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.utils.DBUtils;
+import com.flipkart.utils.SQLQuery;
 
 /**
  * @author Tanmay
  *
  */
-public class CourseDAOImp implements CourseDAOInterface {
+public class CourseDAOImpl implements CourseDAOInterface {
 
-	public static volatile CourseDAOImp instance = null;
+	public static volatile CourseDAOImpl instance = null;
 
-	public static CourseDAOImp getInstance() {
+	public static CourseDAOImpl getInstance() {
 		if (instance == null) {
 			// This is a synchronized block, when multiple threads will access this instance
-			synchronized (CourseDAOImp.class) {
-				instance = new CourseDAOImp();
+			synchronized (CourseDAOImpl.class) {
+				instance = new CourseDAOImpl();
 			}
 		}
 		return instance;
@@ -40,10 +41,7 @@ public class CourseDAOImp implements CourseDAOInterface {
 
 		try {
 
-			// System.out.println("Connecting to database...");
-
-			String sql = "select * from course where courseid=?";
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(SQLQuery.GET_COURSE_BY_ID);
 			stmt.setString(1, courseId);
 			ResultSet rs = stmt.executeQuery();
 
@@ -72,9 +70,8 @@ public class CourseDAOImp implements CourseDAOInterface {
 		ArrayList<Course> res = new ArrayList<Course>();
 
 		try {
-			String sql = "select * from course";
-//		    System.out.println(sql);
-			stmt = conn.prepareStatement(sql);
+
+			stmt = conn.prepareStatement(SQLQuery.GET_ALL_COURSES);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -104,8 +101,8 @@ public class CourseDAOImp implements CourseDAOInterface {
 		CourseCatalog res = new CourseCatalog();
 
 		try {
-			String sql = "select * from courseCatalog where courseid=?";
-			stmt = conn.prepareStatement(sql);
+
+			stmt = conn.prepareStatement(SQLQuery.GET_COURSE_CATALOG_BY_ID);
 			stmt.setString(1, courseId);
 			ResultSet rs = stmt.executeQuery();
 
@@ -135,8 +132,7 @@ public class CourseDAOImp implements CourseDAOInterface {
 		try {
 //			System.out.println("Sem: " + semester + ", session: " + session + "\n");
 
-			String sql = "select * from courseCatalog where session = ? and semester = ?";
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(SQLQuery.GET_COURSE_CATALOG_BY_SESSION_SEMESTER);
 			stmt.setString(1, session);
 			stmt.setInt(2, semester);
 
@@ -173,9 +169,8 @@ public class CourseDAOImp implements CourseDAOInterface {
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
 		try {
-			String sql = "select cc.courseid, cc.profid, cc.semester, cc.session, cc.credits from courseCatalog as cc, course as c where cc.courseid = c.courseid and c.department = ?";
 
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(SQLQuery.GET_DEPARTMENT_COURSE_CATALOG);
 			stmt.setString(1, department);
 			ResultSet rs = stmt.executeQuery();
 
@@ -210,9 +205,8 @@ public class CourseDAOImp implements CourseDAOInterface {
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
 		try {
-			String sql = "select * from courseCatalog";
 
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(SQLQuery.GET_COURSE_CATALOG);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -245,9 +239,9 @@ public class CourseDAOImp implements CourseDAOInterface {
 		ArrayList<CourseCatalog> res = new ArrayList<CourseCatalog>();
 
 		try {
-			String sql = "select * from courseCatalog where profid = ?";
+
 //		    System.out.println(sql);
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(SQLQuery.GET_CATALOG_BY_PROF_ID);
 			stmt.setString(1, userId);
 			ResultSet rs = stmt.executeQuery();
 
@@ -280,8 +274,8 @@ public class CourseDAOImp implements CourseDAOInterface {
 		PreparedStatement stmt = null;
 
 		try {
-			String sql = "update courseCatalog set profid=? where courseid=?";
-			stmt = conn.prepareStatement(sql);
+
+			stmt = conn.prepareStatement(SQLQuery.UPDATE_PROF_IN_COURSE);
 			stmt.setString(1, professorId);
 			stmt.setString(2, courseId);
 
