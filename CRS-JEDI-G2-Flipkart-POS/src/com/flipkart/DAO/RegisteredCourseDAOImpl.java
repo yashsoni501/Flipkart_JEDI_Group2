@@ -17,16 +17,19 @@ import com.flipkart.exception.NoStudentEnrolledException;
 import com.flipkart.bean.RegisteredCourse;
 
 /**
- * @author Aeron
+ * The Class RegisteredCourseDAOImpl.
  *
+ * @author Aeron
  */
 public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
+
+	/** The instance. */
 	private static volatile RegisteredCourseDAOImpl instance = null;
 
 	/**
-	 * Method to make RegisteredCourseDAOImpl Singleton
-	 * 
-	 * @return
+	 * Method to make RegisteredCourseDAOImpl Singleton.
+	 *
+	 * @return single instance of RegisteredCourseDAOImpl
 	 */
 	public static RegisteredCourseDAOImpl getInstance() {
 		if (instance == null) {
@@ -37,6 +40,16 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 		return instance;
 	}
 
+	/**
+	 * Gets the enrolled students.
+	 *
+	 * @param courseId the course id
+	 * @param semester the semester
+	 * @param session  the session
+	 * @return the enrolled students
+	 * @throws SQLException               the SQL exception
+	 * @throws NoStudentEnrolledException the no student enrolled exception
+	 */
 	@Override
 	public ArrayList<Student> getEnrolledStudents(String courseId, int semester, String session)
 			throws SQLException, NoStudentEnrolledException {
@@ -79,6 +92,15 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 		return studentsFound;
 	}
 
+	/**
+	 * Gets the registered courses.
+	 *
+	 * @param studentId the student id
+	 * @param semester  the semester
+	 * @return the registered courses
+	 * @throws SQLException                 the SQL exception
+	 * @throws NoRegisteredCoursesException the no registered courses exception
+	 */
 	@Override
 	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester)
 			throws SQLException, NoRegisteredCoursesException {
@@ -111,6 +133,17 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 		return RegisteredCourseList;
 	}
 
+	/**
+	 * Adds the registered course.
+	 *
+	 * @param courseId  the course id
+	 * @param semester  the semester
+	 * @param grade     the grade
+	 * @param session   the session
+	 * @param studentID the student ID
+	 * @return true, if successful
+	 * @throws SQLException the SQL exception
+	 */
 	@Override
 	public boolean addRegisteredCourse(String courseId, int semester, String grade, String session, String studentID)
 			throws SQLException {

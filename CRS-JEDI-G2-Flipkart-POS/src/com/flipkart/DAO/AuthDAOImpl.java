@@ -15,16 +15,26 @@ import com.flipkart.exception.UserEmailNotFoundException;
 import com.flipkart.exception.UserNotFoundException;
 
 /**
- * @author aysh
+ * The Class AuthDAOImpl.
  *
+ * @author aysh
  */
 public class AuthDAOImpl implements AuthDAOInterface {
 
+	/** The instance. */
 	private static volatile AuthDAOImpl instance = null;
 
+	/**
+	 * Instantiates a new auth DAO impl.
+	 */
 	private AuthDAOImpl() {
 	}
 
+	/**
+	 * Gets the single instance of AuthDAOImpl.
+	 *
+	 * @return single instance of AuthDAOImpl
+	 */
 	public static AuthDAOImpl getInstance() {
 		if (instance == null) {
 			// This is a synchronized block, when multiple threads will access this instance
@@ -35,6 +45,16 @@ public class AuthDAOImpl implements AuthDAOInterface {
 		return instance;
 	}
 
+	/**
+	 * Verify user with email password.
+	 *
+	 * @param email    the email
+	 * @param password the password
+	 * @return the string
+	 * @throws InvalidCredentialsException the invalid credentials exception
+	 * @throws UserEmailNotFoundException  the user email not found exception
+	 * @throws SQLException                the SQL exception
+	 */
 	@Override
 	public String verifyUserWithEmailPassword(String email, String password)
 			throws InvalidCredentialsException, UserEmailNotFoundException, SQLException {
@@ -59,24 +79,53 @@ public class AuthDAOImpl implements AuthDAOInterface {
 		}
 	}
 
+	/**
+	 * Verify user with token.
+	 *
+	 * @param access_token the access token
+	 * @param email        the email
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean verifyUserWithToken(String access_token, String email) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Generate and store token.
+	 *
+	 * @param student_id the student id
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean generateAndStoreToken(int student_id) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Logout.
+	 *
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean logout() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
+	/**
+	 * Update password.
+	 *
+	 * @param email       the email
+	 * @param oldPassword the old password
+	 * @param newPassword the new password
+	 * @return true, if successful
+	 * @throws InvalidCredentialsException the invalid credentials exception
+	 * @throws UserEmailNotFoundException  the user email not found exception
+	 * @throws SQLException                the SQL exception
+	 */
 	@Override
 	public boolean updatePassword(String email, String oldPassword, String newPassword)
 			throws InvalidCredentialsException, UserEmailNotFoundException, SQLException {
@@ -97,6 +146,14 @@ public class AuthDAOImpl implements AuthDAOInterface {
 		}
 	}
 
+	/**
+	 * Gets the role.
+	 *
+	 * @param userId the user id
+	 * @return the role
+	 * @throws UserNotFoundException the user not found exception
+	 * @throws SQLException          the SQL exception
+	 */
 	@Override
 	public String getRole(String userId) throws UserNotFoundException, SQLException {
 		Connection conn = DBUtils.getConnection();

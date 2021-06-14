@@ -26,6 +26,7 @@ import com.flipkart.service.SemesterReportCardInterface;
 import com.flipkart.service.SemesterReportCardServiceImpl;
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
+import com.flipkart.utils.MenuOptionScanner;
 import com.flipkart.constant.Constants;
 import com.flipkart.exception.ConstantFlagNotSetException;
 import com.flipkart.exception.CourseCatalogEntryNotFoundException;
@@ -100,7 +101,7 @@ public class CRSStudentMenu {
 			System.out.println("7. Modify Details");
 			System.out.println("8. Logout");
 
-			int optionChoosed = CRSApplication.scan.nextInt();
+			int optionChoosed = MenuOptionScanner.nextInt();
 			switch (optionChoosed) {
 			case 1:
 				registeredCourses();
@@ -136,14 +137,13 @@ public class CRSStudentMenu {
 
 	private void viewStudent() {
 		// Auto-generated method stub
-		System.out.println("---------------------------------------------------");
-		System.out.println("Student ID \t Name \t Department \t Email ID \t Approval");
-		System.out.println("---------------------------------------------------");
 
-		System.out.println(student.getStudentID() + "\t" + student.getStudentName() + "\t" + student.getDepartment()
-				+ "\t" + student.getEmailID() + "\t" + student.getApprovalStatus());
-		System.out.println("---------------------------------------------------");
-		System.out.println();
+		System.out.println("--------------------------------------------------------------------------------");
+		System.out.printf("%15s %15s %15s %20s %10s\n", "Student ID", "Name", "Department", "Email ID", "Approval");
+		System.out.println("--------------------------------------------------------------------------------");
+
+		System.out.printf("%15s %15s %15s %20s %10s\n", student.getStudentID(), student.getStudentName(),
+				student.getDepartment(), student.getEmailID(), student.getApprovalStatus());
 	}
 
 	private void modifyStudent() {
@@ -199,7 +199,7 @@ public class CRSStudentMenu {
 				System.out.println("4. View Courses");
 				System.out.println("5. Submit Registration");
 				System.out.println("6. Return");
-				int optionChoosed = CRSApplication.scan.nextInt();
+				int optionChoosed = MenuOptionScanner.nextInt();
 				switch (optionChoosed) {
 				case 1:
 					viewSeletedCourses(selectedCourses);
@@ -244,7 +244,7 @@ public class CRSStudentMenu {
 		}
 
 		System.out.println("Enter Semester");
-		int semester = CRSApplication.scan.nextInt();
+		int semester = MenuOptionScanner.nextInt();
 		try {
 			for (CourseCatalog course : selectedCourses) {
 
@@ -266,27 +266,27 @@ public class CRSStudentMenu {
 	 */
 	private void viewSeletedCourses(ArrayList<CourseCatalog> selectedCourses) {
 		// Auto-generated method stub
-		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
-		System.out.println("----------------------------------------------------------------------------------------");
 		try {
-			for (CourseCatalog arr : selectedCourses) {
-				Course course = null;
-
-				course = courseInterface.getCourse(arr.getCourseId());
-
-				System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
-						+ "\t" + arr.getSemester() + "\t" + arr.getSession() + "\t" + arr.getCredits());
+			System.out.println(
+					"---------------------------------------------------------------------------------------------------------------");
+			System.out.printf("%10s %15s %15s %10s %10s %10s\n", "Course ID", "Course Name", "Department", "Semester",
+					"Session", "Credits");
+			System.out.println(
+					"---------------------------------------------------------------------------------------------------------------");
+			for (CourseCatalog catalog : selectedCourses) {
+				Course course = courseInterface.getCourse(catalog.getCourseId());
+				System.out.printf("%10s %15s %15s", course.getCourseID(), course.getCourseName(),
+						course.getDepartment());
+				System.out.printf("%10s %10s %10s\n", catalog.getSemester(), catalog.getSession(),
+						catalog.getCredits());
 			}
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
+					"---------------------------------------------------------------------------------------------------------------");
 			System.out.println();
 		} catch (CourseNotFoundException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 			return;
 		} catch (SQLException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 	}
@@ -352,7 +352,7 @@ public class CRSStudentMenu {
 	private void viewCourses() {
 		// Auto-generated method stub
 		System.out.println("Enter Semester");
-		int semester = CRSApplication.scan.nextInt();
+		int semester = MenuOptionScanner.nextInt();
 		try {
 			ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 
@@ -367,7 +367,6 @@ public class CRSStudentMenu {
 				Course course = null;
 
 				course = courseInterface.getCourse(arr.get(i).getCourseId());
-
 				System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
 						+ "\t" + arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t"
 						+ arr.get(i).getCredits());
@@ -375,14 +374,18 @@ public class CRSStudentMenu {
 			System.out.println(
 					"----------------------------------------------------------------------------------------");
 			System.out.println();
+
 		} catch (InvalidCCSessionSemesterException e) {
 			// Auto-generated catch block
 			System.out.println(e.getMessage());
+			return;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+			return;
 		} catch (CourseNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
+
 	}
 
 	/**
@@ -390,7 +393,7 @@ public class CRSStudentMenu {
 	 */
 	private void registeredCourses() {
 		System.out.println("Enter Semester");
-		int semester = CRSApplication.scan.nextInt();
+		int semester = MenuOptionScanner.nextInt();
 		try {
 			ArrayList<RegisteredCourse> arr1 = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
 					semester);
@@ -414,10 +417,8 @@ public class CRSStudentMenu {
 			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (CourseCatalogEntryNotFoundException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (CourseNotFoundException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (NoRegisteredCoursesException e) {
 			System.out.println(e.getMessage());
@@ -429,7 +430,7 @@ public class CRSStudentMenu {
 	 */
 	private void feeReciept() {
 		System.out.println("Enter Semester");
-		int semester = CRSApplication.scan.nextInt();
+		int semester = MenuOptionScanner.nextInt();
 		Payment reciept = null;
 		try {
 			reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
@@ -496,7 +497,6 @@ public class CRSStudentMenu {
 			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (NoRegisteredCoursesException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -515,13 +515,13 @@ public class CRSStudentMenu {
 			}
 
 			System.out.println("Enter Semester");
-			int semester = CRSApplication.scan.nextInt();
+			int semester = MenuOptionScanner.nextInt();
 			Payment reciept = new Payment();
 			try {
 				reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
 			} catch (FeeRecieptNotFoundException e) {
 				// Auto-generated catch block
-				
+
 			}
 
 			if (reciept.getStatus().equalsIgnoreCase(Constants.PAYMENT_SUCCESS)) {

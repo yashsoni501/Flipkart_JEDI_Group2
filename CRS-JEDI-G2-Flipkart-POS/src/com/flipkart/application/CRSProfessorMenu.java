@@ -28,6 +28,7 @@ import com.flipkart.service.ProfessorInterface;
 import com.flipkart.service.ProfessorServiceImpl;
 import com.flipkart.service.RegisteredCourseInterface;
 import com.flipkart.service.RegisteredCourseServiceImpl;
+import com.flipkart.utils.MenuOptionScanner;
 
 // Auto-generated Javadoc
 /**
@@ -67,7 +68,6 @@ public class CRSProfessorMenu {
 				System.out.println(e.getMessage());
 				return;
 			} catch (ProfessorNotAddedException e) {
-				// Auto-generated catch block
 				System.out.println(e.getMessage());
 				return;
 			}
@@ -82,7 +82,7 @@ public class CRSProfessorMenu {
 			System.out.println("6. View Courses");
 			System.out.println("7. Logout");
 			int choice = 0;
-			choice = CRSApplication.scan.nextInt();
+			choice = MenuOptionScanner.nextInt();
 
 			switch (choice) {
 			case 1:
@@ -137,10 +137,8 @@ public class CRSProfessorMenu {
 			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (ConstantFlagNotSetException e1) {
-			// Auto-generated catch block
 			e1.printStackTrace();
 		} catch (OptingTheCourseFailedException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -157,27 +155,27 @@ public class CRSProfessorMenu {
 			arr = professorInterface.viewOptedCourses(CRSApplication.userId);
 
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
-			System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
+					"---------------------------------------------------------------------------------------------------------------");
+			System.out.printf("%10s %15s %15s %10s %10s %10s\n", "Course ID", "Course Name", "Department", "Semester",
+					"Session", "Credits");
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
-			for (int i = 0; i < arr.size(); i++) {
-				Course course = courseInterface.getCourse(arr.get(i).getCourseId());
-				System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
-						+ "\t" + arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t"
-						+ arr.get(i).getCredits());
+					"---------------------------------------------------------------------------------------------------------------");
+			for (CourseCatalog catalog : arr) {
+				Course course = courseInterface.getCourse(catalog.getCourseId());
+				System.out.printf("%10s %15s %15s", course.getCourseID(), course.getCourseName(),
+						course.getDepartment());
+				System.out.printf("%10s %10s %10s\n", catalog.getSemester(), catalog.getSession(),
+						catalog.getCredits());
 			}
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
+					"---------------------------------------------------------------------------------------------------------------");
 			System.out.println();
 		} catch (SQLException e) {
 			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (NoOptedCoursesException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (CourseNotFoundException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -211,7 +209,6 @@ public class CRSProfessorMenu {
 			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (NoEnrolledStudentsException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 	}
@@ -238,10 +235,8 @@ public class CRSProfessorMenu {
 				System.out.println("Failure");
 			}
 		} catch (ConstantFlagNotSetException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 
@@ -274,7 +269,6 @@ public class CRSProfessorMenu {
 			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (GradeSubmissionFailedException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 	}
@@ -289,18 +283,20 @@ public class CRSProfessorMenu {
 			arr = courseCatalogInterface.getDepartmentCourseCatalog(professor.getDepartment());
 
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
-			System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
+					"---------------------------------------------------------------------------------------------------------------");
+			System.out.printf("%10s %15s %15s %10s %10s %10s\n", "Course ID", "Course Name", "Department", "Semester",
+					"Session", "Credits");
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
-			for (int i = 0; i < arr.size(); i++) {
-				Course course = courseInterface.getCourse(arr.get(i).getCourseId());
-				System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
-						+ "\t" + arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t"
-						+ arr.get(i).getCredits());
+					"---------------------------------------------------------------------------------------------------------------");
+			for (CourseCatalog catalog : arr) {
+				Course course = courseInterface.getCourse(catalog.getCourseId());
+				System.out.printf("%10s %15s %15s", course.getCourseID(), course.getCourseName(),
+						course.getDepartment());
+				System.out.printf("%10s %10s %10s\n", catalog.getSemester(), catalog.getSession(),
+						catalog.getCredits());
 			}
 			System.out.println(
-					"----------------------------------------------------------------------------------------");
+					"---------------------------------------------------------------------------------------------------------------");
 			System.out.println();
 		} catch (InvalidDepartmentException e) {
 			System.out.println(e.getMessage());

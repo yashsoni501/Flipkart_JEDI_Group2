@@ -17,17 +17,20 @@ import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.bean.CourseCatalog;
 
 /**
- * @author Aeron
+ * The Class StudentDAOImpl.
  *
+ * @author Aeron
  */
 
 public class StudentDAOImpl implements StudentDAOInterface {
+
+	/** The instance. */
 	private static volatile StudentDAOImpl instance = null;
 
 	/**
-	 * Method to make StudentDAOImpl Singleton
-	 * 
-	 * @return
+	 * Method to make StudentDAOImpl Singleton.
+	 *
+	 * @return single instance of StudentDAOImpl
 	 */
 	public static StudentDAOImpl getInstance() {
 		if (instance == null) {
@@ -38,6 +41,15 @@ public class StudentDAOImpl implements StudentDAOInterface {
 		return instance;
 	}
 
+	/**
+	 * Fetch registered courses.
+	 *
+	 * @param studentId the student id
+	 * @param sem       the sem
+	 * @return the array list
+	 * @throws SQLException            the SQL exception
+	 * @throws CourseNotFoundException the course not found exception
+	 */
 	@Override
 	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int sem)
 			throws SQLException, CourseNotFoundException {
@@ -75,6 +87,13 @@ public class StudentDAOImpl implements StudentDAOInterface {
 		return RegisteredCourseList;
 	}
 
+	/**
+	 * Gets the all students.
+	 *
+	 * @param session the session
+	 * @return the all students
+	 * @throws SQLException the SQL exception
+	 */
 	@Override
 	public ArrayList<Student> getAllStudents(String session) throws SQLException {
 		Connection conn = DBUtils.getConnection();
@@ -101,6 +120,14 @@ public class StudentDAOImpl implements StudentDAOInterface {
 
 	}
 
+	/**
+	 * Gets the student by id.
+	 *
+	 * @param userId the user id
+	 * @return the student by id
+	 * @throws SQLException          the SQL exception
+	 * @throws UserNotFoundException the user not found exception
+	 */
 	@Override
 	public Student getStudentById(String userId) throws SQLException, UserNotFoundException {
 		Connection conn = DBUtils.getConnection();

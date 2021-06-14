@@ -10,6 +10,7 @@ import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminServiceImpl;
 import com.flipkart.service.AuthInterface;
 import com.flipkart.service.AuthServiceImpl;
+import com.flipkart.utils.MenuOptionScanner;
 import com.flipkart.constant.Constants;
 import com.flipkart.exception.InvalidCredentialsException;
 import com.flipkart.exception.UserEmailAlreadyInUseException;
@@ -44,7 +45,8 @@ public class CRSApplication {
 	public static void main(String[] args) {
 		CRSApplication crsApplication = new CRSApplication();
 		createMainMenu();
-		int userInput = scan.nextInt();
+		int userInput = MenuOptionScanner.nextInt();
+
 		while (userInput != 4) {
 			switch (userInput) {
 			case 1:
@@ -63,7 +65,7 @@ public class CRSApplication {
 				System.out.println("Invalid Input");
 			}
 			createMainMenu();
-			userInput = scan.nextInt();
+			userInput = MenuOptionScanner.nextInt();
 		}
 		scan.close();
 	}
@@ -89,16 +91,12 @@ public class CRSApplication {
 				System.out.println("Something went wrong");
 			}
 		} catch (UserEmailAlreadyInUseException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (InvalidCredentialsException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (UserEmailNotFoundException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 	}
@@ -124,13 +122,10 @@ public class CRSApplication {
 			else
 				System.out.println("Something went wrong, please try again!");
 		} catch (InvalidCredentialsException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (UserEmailNotFoundException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 	}
@@ -182,16 +177,12 @@ public class CRSApplication {
 				System.out.println("Invalid Credentials");
 			}
 		} catch (InvalidCredentialsException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (UserEmailNotFoundException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (UserNotFoundException e) {
-			// Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 	}

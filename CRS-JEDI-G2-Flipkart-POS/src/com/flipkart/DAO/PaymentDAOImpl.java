@@ -16,16 +16,19 @@ import com.flipkart.constant.SQLQuery;
 import com.flipkart.exception.FeeRecieptNotFoundException;
 
 /**
- * @author yashsoni501
+ * The Class PaymentDAOImpl.
  *
+ * @author yashsoni501
  */
 public class PaymentDAOImpl implements PaymentDAOInterface {
+
+	/** The instance. */
 	private static volatile PaymentDAOImpl instance = null;
 
 	/**
-	 * Method to make PaymentDAOImpl Singleton
-	 * 
-	 * @return
+	 * Method to make PaymentDAOImpl Singleton.
+	 *
+	 * @return single instance of PaymentDAOImpl
 	 */
 	public static PaymentDAOImpl getInstance() {
 		if (instance == null) {
@@ -36,6 +39,14 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 		return instance;
 	}
 
+	/**
+	 * Gets the fee reciept.
+	 *
+	 * @param studentId the student id
+	 * @param semester  the semester
+	 * @return the fee reciept
+	 * @throws SQLException the SQL exception
+	 */
 	@Override
 	public Payment getFeeReciept(String studentId, int semester) throws SQLException, FeeRecieptNotFoundException {
 		Connection conn = DBUtils.getConnection();
@@ -47,13 +58,13 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 		stmt.setString(3, Constants.PAYMENT_SUCCESS);
 
 		ResultSet rs = stmt.executeQuery();
-		
+
 		if (!rs.next()) {
-			
+
 			feePayment.setStudentId(studentId);
 			feePayment.setStatus(Constants.PAYMENT_FAILURE);
 			feePayment.setSemester(semester);
-			
+
 			throw new FeeRecieptNotFoundException(studentId, semester);
 		} else {
 			feePayment.setStudentId(studentId);
@@ -67,6 +78,15 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 		return feePayment;
 	}
 
+	/**
+	 * Online payment.
+	 *
+	 * @param studentId the student id
+	 * @param amount    the amount
+	 * @param semester  the semester
+	 * @return the payment
+	 * @throws SQLException the SQL exception
+	 */
 	@Override
 	public Payment onlinePayment(String studentId, float amount, int semester) throws SQLException {
 		Connection conn = DBUtils.getConnection();
@@ -95,6 +115,15 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 		return paymentInfo;
 	}
 
+	/**
+	 * Offline payment.
+	 *
+	 * @param studentId the student id
+	 * @param amount    the amount
+	 * @param semester  the semester
+	 * @return the payment
+	 * @throws SQLException the SQL exception
+	 */
 	@Override
 	public Payment offlinePayment(String studentId, float amount, int semester) throws SQLException {
 		Connection conn = DBUtils.getConnection();
