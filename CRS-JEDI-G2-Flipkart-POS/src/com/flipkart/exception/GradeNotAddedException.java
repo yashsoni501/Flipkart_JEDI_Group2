@@ -5,27 +5,26 @@ package com.flipkart.exception;
  * @author Aeron
  *
  */
-public class GradeNotAddedException extends Exception{
+public class GradeNotAddedException extends Exception {
 
 	private int studentId;
-	 
+
 	/**
 	 * Constructor
+	 * 
 	 * @param studentId
 	 */
-	 public GradeNotAddedException(int studentId)
-	 {
-		 this.studentId=studentId;
-	 }
-	 
-	 /**
-	  * Getter function for studentId
-	  * @return
-	  */
-	 public int getStudentId()
-	 {
-		 return studentId;
-	 }
-	 
-	 
+	public GradeNotAddedException(int studentId) {
+		this.studentId = studentId;
+	}
+
+	/**
+	 * Getter function for studentId
+	 * 
+	 * @return
+	 */
+	public int getStudentId() {
+		return studentId;
+	}
+
 }

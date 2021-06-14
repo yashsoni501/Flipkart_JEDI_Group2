@@ -8,20 +8,21 @@ package com.flipkart.exception;
  * @author Aeron
  *
  */
-public class CourseFoundException extends Exception{
+public class CourseFoundException extends Exception {
 	private String courseCode;
-	
+
 	/***
 	 * Constructor
+	 * 
 	 * @param courseCode
 	 */
 	public CourseFoundException(String courseCode) {
 		this.courseCode = courseCode;
 	}
-	
 
 	/**
 	 * Getter method
+	 * 
 	 * @return course code
 	 */
 	public String getCourseCode() {

@@ -20,10 +20,10 @@ public class CRSApplication {
 
 	/** The user id. */
 	public static String userId = null;
-	
+
 	/** The auth interface. */
 	public static AuthInterface authInterface = AuthServiceImpl.getInstance();
-	
+
 	/** The scan. */
 	public static Scanner scan = new Scanner(System.in);
 

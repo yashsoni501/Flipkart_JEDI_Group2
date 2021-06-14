@@ -5,21 +5,21 @@ package com.flipkart.exception;
  * @author Aeron
  *
  */
-public class ProfessorNotAddedException extends Exception{
+public class ProfessorNotAddedException extends Exception {
 	private String professorId;
-	
+
 	public ProfessorNotAddedException(String professorId) {
 		this.professorId = professorId;
 	}
-	
+
 	/**
 	 * Getter function for professorId
+	 * 
 	 * @return
 	 */
 	public String getUserId() {
 		return this.professorId;
 	}
-	
 
 	/**
 	 * Message returned when exception is thrown

@@ -1,6 +1,5 @@
 package com.flipkart.exception;
 
-
 /**
  * Exception to check if course is available in catalog
  * @author Aeron
@@ -22,7 +21,6 @@ public class CourseNotFoundException extends Exception{
 	{
 		return courseid;
 	}
-	
 
 	/**
 	 * Message returned when exception is thrown

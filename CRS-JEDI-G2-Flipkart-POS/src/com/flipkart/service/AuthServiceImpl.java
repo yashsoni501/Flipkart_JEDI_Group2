@@ -3,8 +3,13 @@
  */
 package com.flipkart.service;
 
+import java.sql.SQLException;
+
 import com.flipkart.DAO.AuthDAOImpl;
 import com.flipkart.DAO.AuthDAOInterface;
+import com.flipkart.exception.InvalidCredentialsException;
+import com.flipkart.exception.UserEmailNotFoundException;
+import com.flipkart.exception.UserNotFoundException;
 
 /**
  * @author aysh
@@ -26,7 +31,8 @@ public class AuthServiceImpl implements AuthInterface {
 	}
 
 	@Override
-	public String verifyUserWithEmailPassword(String email, String paasword) {
+	public String verifyUserWithEmailPassword(String email, String paasword)
+			throws InvalidCredentialsException, SQLException, UserEmailNotFoundException {
 
 		return authDAO.verifyUserWithEmailPassword(email, paasword);
 	}
@@ -50,13 +56,14 @@ public class AuthServiceImpl implements AuthInterface {
 	}
 
 	@Override
-	public boolean updatePassword(String email, String oldPassword, String newPassword) {
+	public boolean updatePassword(String email, String oldPassword, String newPassword)
+			throws InvalidCredentialsException, SQLException, UserEmailNotFoundException {
 		// Auto-generated method stub
 		return authDAO.updatePassword(email, oldPassword, newPassword);
 	}
 
 	@Override
-	public String getRole(String userId) {
+	public String getRole(String userId) throws UserNotFoundException, SQLException {
 		// Auto-generated method stub
 		return authDAO.getRole(userId);
 	}
