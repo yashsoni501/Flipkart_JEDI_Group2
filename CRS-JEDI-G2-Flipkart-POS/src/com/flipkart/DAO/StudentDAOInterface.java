@@ -17,7 +17,8 @@ import com.flipkart.bean.CourseCatalog;
  */
 public interface StudentDAOInterface {
 
-	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int semester) throws SQLException, CourseNotFoundException;
+	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int semester)
+			throws SQLException, CourseNotFoundException;
 
 	public ArrayList<Student> getAllStudents(String session) throws SQLException;
 

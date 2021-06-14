@@ -5,6 +5,7 @@ package com.flipkart.exception;
 
 /**
  * Exception thrown when student is not found for approval
+ * 
  * @author Aeron
  *
  */

@@ -28,9 +28,11 @@ public interface ProfessorDAOInterface {
 
 	public Professor getProfessorDetails(String userId) throws SQLException, ProfessorNotAddedException;
 
-	public ArrayList<Student> viewEnrolledStudents(String courseId, String session) throws SQLException, NoEnrolledStudentsException;
+	public ArrayList<Student> viewEnrolledStudents(String courseId, String session)
+			throws SQLException, NoEnrolledStudentsException;
 
-	public boolean submitGrade(String courseId, String studentId, String grade) throws SQLException, GradeSubmissionFailedException;
+	public boolean submitGrade(String courseId, String studentId, String grade)
+			throws SQLException, GradeSubmissionFailedException;
 
 	public ArrayList<Professor> getAllProfessor() throws SQLException, NoProfessorsFoundException;
 }

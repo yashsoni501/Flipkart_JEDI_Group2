@@ -2,6 +2,7 @@ package com.flipkart.exception;
 
 /**
  * Exception to check if user is approved by administration
+ * 
  * @author Aeron
  *
  */

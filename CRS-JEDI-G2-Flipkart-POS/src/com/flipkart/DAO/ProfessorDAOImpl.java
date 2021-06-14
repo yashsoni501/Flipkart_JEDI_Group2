@@ -65,19 +65,20 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 
 			arr.add(temp);
 		}
-		if(arr.size()==0)
+		if (arr.size() == 0)
 			throw new NoOptedCoursesException(professorId);
 		return arr;
 	}
 
 	@Override
-	public boolean optInCourse(String professorId, String courseId) throws SQLException, OptingTheCourseFailedException {
+	public boolean optInCourse(String professorId, String courseId)
+			throws SQLException, OptingTheCourseFailedException {
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = conn.prepareStatement(SQLQuery.OPT_IN_COURSE_PROF);
 		stmt.setString(1, professorId);
 		stmt.setString(2, courseId);
 		int rows = stmt.executeUpdate();
-		if(rows<=0)
+		if (rows <= 0)
 			throw new OptingTheCourseFailedException(courseId);
 
 		return rows > 0;
@@ -95,14 +96,14 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 			p.setEmailID(rs.getString("email"));
 			p.setProfessorName(rs.getString("name"));
 			p.setDepartment(rs.getString("department"));
-		}
-		else
+		} else
 			throw new ProfessorNotAddedException(professorId);
 		return p;
 	}
 
 	@Override
-	public ArrayList<Student> viewEnrolledStudents(String courseId, String session) throws SQLException, NoEnrolledStudentsException {
+	public ArrayList<Student> viewEnrolledStudents(String courseId, String session)
+			throws SQLException, NoEnrolledStudentsException {
 		Connection conn = DBUtils.getConnection();
 		PreparedStatement stmt = conn.prepareStatement(SQLQuery.VIEW_ENROLLED_STUDENTS);
 		stmt.setString(1, courseId);
@@ -131,13 +132,14 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 			}
 			arr.add(s);
 		}
-		if(arr.size()==0)
-			throw new NoEnrolledStudentsException(courseId,session);
+		if (arr.size() == 0)
+			throw new NoEnrolledStudentsException(courseId, session);
 		return arr;
 	}
 
 	@Override
-	public boolean submitGrade(String courseId, String studentId, String grade) throws SQLException, GradeSubmissionFailedException {
+	public boolean submitGrade(String courseId, String studentId, String grade)
+			throws SQLException, GradeSubmissionFailedException {
 		System.out.println(courseId + " " + studentId + " " + grade + '\n');
 
 		Connection conn = DBUtils.getConnection();
@@ -148,8 +150,8 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 		stmt.setString(3, studentId);
 
 		int rows = stmt.executeUpdate();
-		if(rows<=0)
-			throw new GradeSubmissionFailedException(courseId,studentId);
+		if (rows <= 0)
+			throw new GradeSubmissionFailedException(courseId, studentId);
 		return rows > 0;
 	}
 
@@ -173,7 +175,7 @@ public class ProfessorDAOImpl implements ProfessorDAOInterface {
 			profFound.add(currprof);
 		}
 
-		if(profFound.size()==0)
+		if (profFound.size() == 0)
 			throw new NoProfessorsFoundException();
 		return profFound;
 	}

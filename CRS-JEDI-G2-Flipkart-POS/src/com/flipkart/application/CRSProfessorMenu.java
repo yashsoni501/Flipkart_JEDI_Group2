@@ -10,6 +10,12 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.ConstantFlagNotSetException;
+import com.flipkart.exception.GradeSubmissionFailedException;
+import com.flipkart.exception.NoEnrolledStudentsException;
+import com.flipkart.exception.NoOptedCoursesException;
+import com.flipkart.exception.OptingTheCourseFailedException;
+import com.flipkart.exception.ProfessorNotAddedException;
 import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminServiceImpl;
 import com.flipkart.service.CourseCatalogInterface;
@@ -57,6 +63,9 @@ public class CRSProfessorMenu {
 			} catch (SQLException e) {
 				// Auto-generated catch block
 				e.printStackTrace();
+			} catch (ProfessorNotAddedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		while (CRSApplication.userId != null) {
@@ -103,18 +112,18 @@ public class CRSProfessorMenu {
 	 * Opt in course.
 	 */
 	private void optInCourse() {
-		boolean profWindow = adminInterface.getProfessorFlag();
-
-		if (!profWindow) {
-			System.out.println("Course Registration window for professors is closed.");
-			return;
-		}
-
-		// Auto-generated method stub
-		System.out.println("Course Opt Menu");
-		System.out.println("Enter the CourseId");
-		String courseId = CRSApplication.scan.next();
 		try {
+			boolean profWindow = adminInterface.getProfessorFlag();
+
+			if (!profWindow) {
+				System.out.println("Course Registration window for professors is closed.");
+				return;
+			}
+
+			// Auto-generated method stub
+			System.out.println("Course Opt Menu");
+			System.out.println("Enter the CourseId");
+			String courseId = CRSApplication.scan.next();
 			if (professorInterface.optInCourse(CRSApplication.userId, courseId)) {
 				System.out.println("Succes");
 			} else {
@@ -122,6 +131,12 @@ public class CRSProfessorMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
+			e.printStackTrace();
+		} catch (OptingTheCourseFailedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ConstantFlagNotSetException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -132,25 +147,33 @@ public class CRSProfessorMenu {
 	 */
 	private void viewOptedCourses() {
 		// Auto-generated method stub
-		ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
 		try {
+			ArrayList<CourseCatalog> arr = new ArrayList<CourseCatalog>();
+
 			arr = professorInterface.viewOptedCourses(CRSApplication.userId);
+
+			System.out.println(
+					"----------------------------------------------------------------------------------------");
+			System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
+			System.out.println(
+					"----------------------------------------------------------------------------------------");
+			for (int i = 0; i < arr.size(); i++) {
+				Course course = courseInterface.getCourse(arr.get(i).getCourseId());
+				System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
+						+ "\t" + arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t"
+						+ arr.get(i).getCredits());
+			}
+			System.out.println(
+					"----------------------------------------------------------------------------------------");
+			System.out.println();
+
 		} catch (SQLException e) {
 			// Auto-generated catch block
 			e.printStackTrace();
+		} catch (NoOptedCoursesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("Course ID \t Course Name \t Department \t Semester \t Session \t Credits");
-		System.out.println("----------------------------------------------------------------------------------------");
-		for (int i = 0; i < arr.size(); i++) {
-			Course course = courseInterface.getCourse(arr.get(i).getCourseId());
-			System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
-					+ "\t" + arr.get(i).getSemester() + "\t" + arr.get(i).getSession() + "\t"
-					+ arr.get(i).getCredits());
-		}
-		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println();
 
 	}
 
@@ -159,27 +182,33 @@ public class CRSProfessorMenu {
 	 */
 	private void viewEnrolledStudentsInCourse() {
 		// Auto-generated method stub
-		System.out.println("Enter Course Id");
-		String courseId = CRSApplication.scan.next();
-		System.out.println("Enter Session");
-		String session = CRSApplication.scan.next();
-		ArrayList<Student> arr = new ArrayList<Student>();
 		try {
+
+			System.out.println("Enter Course Id");
+			String courseId = CRSApplication.scan.next();
+			System.out.println("Enter Session");
+			String session = CRSApplication.scan.next();
+			ArrayList<Student> arr = new ArrayList<Student>();
+
 			arr = professorInterface.viewEnrolledStudents(courseId, session);
+
+			System.out.println("---------------------------------------------------");
+			System.out.println("Student ID \t Name \t Department \t Email ID \t Session");
+			System.out.println("---------------------------------------------------");
+			for (int i = 0; i < arr.size(); i++) {
+				System.out.println(arr.get(i).getStudentID() + "\t" + arr.get(i).getStudentName() + "\t"
+						+ arr.get(i).getDepartment() + "\t" + arr.get(i).getEmailID() + "\t" + arr.get(i).getSession());
+			}
+			System.out.println("---------------------------------------------------");
+			System.out.println();
+
 		} catch (SQLException e) {
 			// Auto-generated catch block
 			e.printStackTrace();
+		} catch (NoEnrolledStudentsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		System.out.println("---------------------------------------------------");
-		System.out.println("Student ID \t Name \t Department \t Email ID \t Session");
-		System.out.println("---------------------------------------------------");
-		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(arr.get(i).getStudentID() + "\t" + arr.get(i).getStudentName() + "\t"
-					+ arr.get(i).getDepartment() + "\t" + arr.get(i).getEmailID() + "\t" + arr.get(i).getSession());
-		}
-		System.out.println("---------------------------------------------------");
-		System.out.println();
 	}
 
 	/**
@@ -187,21 +216,32 @@ public class CRSProfessorMenu {
 	 */
 	// Note :Needs to be implemented in course catalog
 	private void removeOptedCourse() {
-		boolean profWindow = adminInterface.getProfessorFlag();
+		boolean profWindow;
+		try {
+			profWindow = adminInterface.getProfessorFlag();
 
-		if (!profWindow) {
-			System.out.println("Course Registration window for professors is closed.");
-			return;
+			if (!profWindow) {
+				System.out.println("Course Registration window for professors is closed.");
+				return;
+			}
+
+			System.out.println("Enter the CourseId");
+
+			String courseId = CRSApplication.scan.next();
+			if (courseCatalogInterface.updateProfessorId(courseId, null)) {
+				System.out.println("Success");
+			} else {
+				System.out.println("Failure");
+			}
+
+		} catch (ConstantFlagNotSetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		System.out.println("Enter the CourseId");
-
-		String courseId = CRSApplication.scan.next();
-		if (courseCatalogInterface.updateProfessorId(courseId, null)) {
-			System.out.println("Success");
-		} else {
-			System.out.println("Failure");
-		}
 	}
 
 	/**
@@ -229,6 +269,9 @@ public class CRSProfessorMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
+			e.printStackTrace();
+		} catch (GradeSubmissionFailedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -9,6 +9,9 @@ import java.util.Scanner;
 import com.flipkart.service.AuthInterface;
 import com.flipkart.service.AuthServiceImpl;
 import com.flipkart.constant.Constants;
+import com.flipkart.exception.InvalidCredentialsException;
+import com.flipkart.exception.UserEmailNotFoundException;
+import com.flipkart.exception.UserNotFoundException;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -69,11 +72,25 @@ public class CRSApplication {
 		oldPassword = scan.next();
 		System.out.println("New Password:");
 		newPassword = scan.next();
-		boolean isUpdated = authInterface.updatePassword(userEmail, oldPassword, newPassword);
-		if (isUpdated)
-			System.out.println("Password updated successfully!");
-		else
-			System.out.println("Something went wrong, please try again!");
+		boolean isUpdated;
+		try {
+			isUpdated = authInterface.updatePassword(userEmail, oldPassword, newPassword);
+
+			if (isUpdated)
+				System.out.println("Password updated successfully!");
+			else
+				System.out.println("Something went wrong, please try again!");
+
+		} catch (InvalidCredentialsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UserEmailNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -97,28 +114,42 @@ public class CRSApplication {
 		userEmail = scan.next();
 		System.out.println("Password:");
 		password = scan.next();
-		userId = authInterface.verifyUserWithEmailPassword(userEmail, password);
-		if (userId != null) {
-			String userRole = authInterface.getRole(userId);
-			switch (userRole) {
-			case Constants.USER_ROLE_ADMIN:
-				System.out.println("Admin Login Successful");
-				CRSAdminMenu adminMenu = new CRSAdminMenu();
-				adminMenu.createMenu();
-				break;
-			case Constants.USER_ROLE_PROFESSOR:
-				System.out.println("Professor Login Successful");
-				CRSProfessorMenu professorMenu = new CRSProfessorMenu();
-				professorMenu.createMenu();
-				break;
-			case Constants.USER_ROLE_STUDENT:
-				System.out.println("Student Login Successful");
-				CRSStudentMenu studentMenu = new CRSStudentMenu();
-				studentMenu.createMenu();
-				break;
+		try {
+			userId = authInterface.verifyUserWithEmailPassword(userEmail, password);
+			if (userId != null) {
+				String userRole = authInterface.getRole(userId);
+				switch (userRole) {
+				case Constants.USER_ROLE_ADMIN:
+					System.out.println("Admin Login Successful");
+					CRSAdminMenu adminMenu = new CRSAdminMenu();
+					adminMenu.createMenu();
+					break;
+				case Constants.USER_ROLE_PROFESSOR:
+					System.out.println("Professor Login Successful");
+					CRSProfessorMenu professorMenu = new CRSProfessorMenu();
+					professorMenu.createMenu();
+					break;
+				case Constants.USER_ROLE_STUDENT:
+					System.out.println("Student Login Successful");
+					CRSStudentMenu studentMenu = new CRSStudentMenu();
+					studentMenu.createMenu();
+					break;
+				}
+			} else {
+				System.out.println("Invalid Credentials");
 			}
-		} else {
-			System.out.println("Invalid Credentials");
+		} catch (InvalidCredentialsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UserNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UserEmailNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

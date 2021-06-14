@@ -27,6 +27,7 @@ import com.flipkart.service.SemesterReportCardServiceImpl;
 import com.flipkart.service.StudentInterface;
 import com.flipkart.service.StudentServiceImpl;
 import com.flipkart.constant.Constants;
+import com.flipkart.exception.ConstantFlagNotSetException;
 import com.flipkart.exception.UserNotFoundException;
 
 /**
@@ -69,7 +70,7 @@ public class CRSStudentMenu {
 				try {
 					student = studentInterface.getStudentById(CRSApplication.userId);
 				} catch (UserNotFoundException e) {
-					//  Auto-generated catch block
+					// Auto-generated catch block
 					e.printStackTrace();
 				}
 			} catch (SQLException e) {
@@ -118,45 +119,54 @@ public class CRSStudentMenu {
 	 * Register in course.
 	 */
 	private void registerInCourse() {
-		boolean courseWindow = adminInterface.getCourseRegistrationFlag();
+		boolean courseWindow;
+		try {
+			courseWindow = adminInterface.getCourseRegistrationFlag();
 
-		if (!courseWindow) {
-			System.out.println("The Coure Registration window is closed.");
-			return;
-		}
-
-		ArrayList<CourseCatalog> selectedCourses = new ArrayList<CourseCatalog>();
-
-		while (true) {
-			System.out.println("\n----------Course Registration-----------");
-			System.out.println("1. View Selected Courses");
-			System.out.println("2. Drop Course");
-			System.out.println("3. Add Course");
-			System.out.println("4. View Courses");
-			System.out.println("5. Submit Registration");
-			System.out.println("6. Return");
-			int optionChoosed = CRSApplication.scan.nextInt();
-			switch (optionChoosed) {
-			case 1:
-				viewSeletedCourses(selectedCourses);
-				break;
-			case 2:
-				selectedCourses = dropCourse(selectedCourses);
-				break;
-			case 3:
-				selectedCourses = addCourse(selectedCourses);
-				break;
-			case 4:
-				viewCourses();
-				break;
-			case 5:
-				submitRegistration(selectedCourses);
-				break;
-			case 6:
+			if (!courseWindow) {
+				System.out.println("The Coure Registration window is closed.");
 				return;
-			default:
-				System.out.println("Please enter a valid option");
 			}
+
+			ArrayList<CourseCatalog> selectedCourses = new ArrayList<CourseCatalog>();
+
+			while (true) {
+				System.out.println("\n----------Course Registration-----------");
+				System.out.println("1. View Selected Courses");
+				System.out.println("2. Drop Course");
+				System.out.println("3. Add Course");
+				System.out.println("4. View Courses");
+				System.out.println("5. Submit Registration");
+				System.out.println("6. Return");
+				int optionChoosed = CRSApplication.scan.nextInt();
+				switch (optionChoosed) {
+				case 1:
+					viewSeletedCourses(selectedCourses);
+					break;
+				case 2:
+					selectedCourses = dropCourse(selectedCourses);
+					break;
+				case 3:
+					selectedCourses = addCourse(selectedCourses);
+					break;
+				case 4:
+					viewCourses();
+					break;
+				case 5:
+					submitRegistration(selectedCourses);
+					break;
+				case 6:
+					return;
+				default:
+					System.out.println("Please enter a valid option");
+				}
+			}
+		} catch (ConstantFlagNotSetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -358,9 +368,9 @@ public class CRSStudentMenu {
 				for (int j = 0; j < arr1.size(); j++) {
 					CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(j).getCourseId());
 					Course course = courseInterface.getCourse(arr1.get(j).getCourseId());
-					System.out.println(
-							course.getCourseID() + "\t\t" + course.getCourseName() + "\t" + course.getDepartment() + "\t"
-									+ arr.getProfessorId() + "\t\t" + arr.getCredits() + "\t" + arr1.get(j).getGrade());
+					System.out.println(course.getCourseID() + "\t\t" + course.getCourseName() + "\t"
+							+ course.getDepartment() + "\t" + arr.getProfessorId() + "\t\t" + arr.getCredits() + "\t"
+							+ arr1.get(j).getGrade());
 				}
 				System.out.println("");
 			}
@@ -375,18 +385,17 @@ public class CRSStudentMenu {
 	 * Pay fees.
 	 */
 	private void payFees() {
-		boolean feeWindow = adminInterface.getPaymentFlag();
-
-		if (!feeWindow) {
-			System.out.println("The Fee Payment window is closed.");
-			return;
-		}
-
-		System.out.println("Enter Semester");
-		int semester = CRSApplication.scan.nextInt();
-		Payment reciept = new Payment();
+		boolean feeWindow;
 		try {
+			feeWindow = adminInterface.getPaymentFlag();
+			if (!feeWindow) {
+				System.out.println("The Fee Payment window is closed.");
+				return;
+			}
 
+			System.out.println("Enter Semester");
+			int semester = CRSApplication.scan.nextInt();
+			Payment reciept = new Payment();
 			reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
 
 			if (reciept.getStatus().equalsIgnoreCase(Constants.PAYMENT_SUCCESS)) {
@@ -441,6 +450,9 @@ public class CRSStudentMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
+			e.printStackTrace();
+		} catch (ConstantFlagNotSetException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -2,6 +2,7 @@ package com.flipkart.exception;
 
 /**
  * Exception to check if course is already registered by student
+ * 
  * @author Aeron
  *
  */

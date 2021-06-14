@@ -13,6 +13,12 @@ import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.SemesterReportCard;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.InvalidCredentialsException;
+import com.flipkart.exception.NoProfessorsFoundException;
+import com.flipkart.exception.UserEmailAlreadyInUseException;
+import com.flipkart.exception.UserEmailNotFoundException;
+import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminServiceImpl;
 import com.flipkart.service.CourseCatalogInterface;
@@ -65,7 +71,15 @@ public class CRSAdminMenu {
 	 */
 	public void createMenu() {
 		if (CRSApplication.userId != null) {
-			admin = adminInterface.getAdminById(CRSApplication.userId);
+			try {
+				admin = adminInterface.getAdminById(CRSApplication.userId);
+			} catch (UserNotFoundException e) {
+				e.getMessage();
+				return;
+			} catch (SQLException e) {
+				e.getMessage();
+				return;
+			}
 		}
 		while (CRSApplication.userId != null) {
 			System.out.println("**********Admin Menu*********");
@@ -119,22 +133,50 @@ public class CRSAdminMenu {
 				addProfessor();
 				break;
 			case 9:
-				adminInterface.setCourseRegistrationFlag(true);
+				try {
+					adminInterface.setCourseRegistrationFlag(true);
+				} catch (SQLException e) {
+					e.getMessage();
+				}
 				break;
 			case 10:
-				adminInterface.setCourseRegistrationFlag(false);
+				try {
+					adminInterface.setCourseRegistrationFlag(false);
+				} catch (SQLException e) {
+					e.getMessage();
+				}
 				break;
 			case 11:
-				adminInterface.setPaymentFlag(true);
+				try {
+					adminInterface.setPaymentFlag(true);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			case 12:
-				adminInterface.setPaymentFlag(false);
+				try {
+					adminInterface.setPaymentFlag(false);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			case 13:
-				adminInterface.setProfessorFlag(true);
+				try {
+					adminInterface.setProfessorFlag(true);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			case 14:
-				adminInterface.setProfessorFlag(false);
+				try {
+					adminInterface.setProfessorFlag(false);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			case 15:
 				generateReportCard();
@@ -253,10 +295,15 @@ public class CRSAdminMenu {
 		System.out.println("Enter Department:");
 		String department = CRSApplication.scan.next();
 
-		if (adminInterface.addCourse(courseName, department)) {
-			System.out.println("Course Added Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.addCourse(courseName, department)) {
+				System.out.println("Course Added Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -269,10 +316,16 @@ public class CRSAdminMenu {
 		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
 
-		if (adminInterface.removeCourse(courseId)) {
-			System.out.println("Course Removed Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.removeCourse(courseId)) {
+				System.out.println("Course Removed Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (CourseNotFoundException e) {
+			e.getMessage();
+		} catch (SQLException e) {
+			e.getMessage();
 		}
 
 	}
@@ -292,10 +345,16 @@ public class CRSAdminMenu {
 		System.out.println("Enter Department:");
 		String department = CRSApplication.scan.next();
 
-		if (adminInterface.modifyCourse(courseId, courseName, department)) {
-			System.out.println("Course Updated Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.modifyCourse(courseId, courseName, department)) {
+				System.out.println("Course Updated Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (CourseNotFoundException e) {
+			e.getMessage();
+		} catch (SQLException e) {
+			e.getMessage();
 		}
 
 	}
@@ -317,10 +376,16 @@ public class CRSAdminMenu {
 		System.out.println("Enter Credits:");
 		float credits = CRSApplication.scan.nextFloat();
 
-		if (adminInterface.addCourseCatalog(courseId, semester, session, credits, null)) {
-			System.out.println("Course Added to Catalog");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.addCourseCatalog(courseId, semester, session, credits, null)) {
+				System.out.println("Course Added to Catalog");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (CourseNotFoundException e) {
+			e.getMessage();
+		} catch (SQLException e) {
+			e.getMessage();
 		}
 	}
 
@@ -333,10 +398,18 @@ public class CRSAdminMenu {
 		System.out.println("Enter Course Id:");
 		String courseId = CRSApplication.scan.next();
 
-		if (adminInterface.removeCourseCatalog(courseId)) {
-			System.out.println("Course Catalog Removed Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.removeCourseCatalog(courseId)) {
+				System.out.println("Course Catalog Removed Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (CourseNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -359,10 +432,18 @@ public class CRSAdminMenu {
 		System.out.println("Enter Credits:");
 		float credits = CRSApplication.scan.nextFloat();
 
-		if (adminInterface.modifyCourseCatalog(courseId, semester, session, credits, null)) {
-			System.out.println("Course Catalog Updated Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.modifyCourseCatalog(courseId, semester, session, credits, null)) {
+				System.out.println("Course Catalog Updated Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (CourseNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -387,10 +468,24 @@ public class CRSAdminMenu {
 		System.out.println("Enter Password:");
 		String password = CRSApplication.scan.next();
 
-		if (adminInterface.addStudent(studentName, userEmail, password, department, session)) {
-			System.out.println("Student Added Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.addStudent(studentName, userEmail, password, department, session)) {
+				System.out.println("Student Added Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (UserEmailAlreadyInUseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidCredentialsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UserEmailNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -403,10 +498,18 @@ public class CRSAdminMenu {
 		System.out.println("Enter Student Id:");
 		String studentId = CRSApplication.scan.next();
 
-		if (adminInterface.removeStudent(studentId)) {
-			System.out.println("Student Removed Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.removeStudent(studentId)) {
+				System.out.println("Student Removed Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (UserNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -429,10 +532,18 @@ public class CRSAdminMenu {
 		System.out.println("Enter Session:");
 		String session = CRSApplication.scan.next();
 
-		if (adminInterface.modifyStudent(studentId, studentName, department, session)) {
-			System.out.println("Student Updated Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.modifyStudent(studentId, studentName, department, session)) {
+				System.out.println("Student Updated Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (UserNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -455,10 +566,24 @@ public class CRSAdminMenu {
 		System.out.println("Enter Password:");
 		String password = CRSApplication.scan.next();
 
-		if (adminInterface.addProfessor(professorName, userEmail, password, department)) {
-			System.out.println("Professor Added Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.addProfessor(professorName, userEmail, password, department)) {
+				System.out.println("Professor Added Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (UserEmailAlreadyInUseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidCredentialsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UserEmailNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -472,10 +597,18 @@ public class CRSAdminMenu {
 		System.out.println("Enter Professor Id:");
 		String profId = CRSApplication.scan.next();
 
-		if (adminInterface.removeProfessor(profId)) {
-			System.out.println("Professor Removed Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.removeProfessor(profId)) {
+				System.out.println("Professor Removed Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (UserNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -495,10 +628,18 @@ public class CRSAdminMenu {
 		System.out.println("Enter Department:");
 		String department = CRSApplication.scan.next();
 
-		if (adminInterface.modifyProfessor(profId, professorName, department)) {
-			System.out.println("Professor Updated Successfully");
-		} else {
-			System.out.println("Something went wrong");
+		try {
+			if (adminInterface.modifyProfessor(profId, professorName, department)) {
+				System.out.println("Professor Updated Successfully");
+			} else {
+				System.out.println("Something went wrong");
+			}
+		} catch (UserNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -641,6 +782,8 @@ public class CRSAdminMenu {
 
 		try {
 			arr = professorInterface.getAllProfessor();
+		} catch (NoProfessorsFoundException e) {
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
 			// Auto-generated catch block
 			e.printStackTrace();

@@ -39,7 +39,8 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int sem) throws SQLException, CourseNotFoundException {
+	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int sem)
+			throws SQLException, CourseNotFoundException {
 		Connection conn = DBUtils.getConnection();
 
 		PreparedStatement stmt = conn.prepareStatement(SQLQuery.STUDENT_REGISTERED_COURSES);
@@ -66,8 +67,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 				courseFound.setSemester(newRs.getInt("semester"));
 
 				RegisteredCourseList.add(courseFound);
-			}
-			else {
+			} else {
 				throw new CourseNotFoundException(course);
 			}
 		}
@@ -117,8 +117,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 			currstudent.setStudentName(myRs.getString(3));
 			currstudent.setDepartment(myRs.getString(4));
 			currstudent.setSession(myRs.getString(5));
-		}
-		else {
+		} else {
 			throw new UserNotFoundException(userId);
 		}
 

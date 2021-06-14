@@ -11,7 +11,6 @@ import com.flipkart.constant.Constants;
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
 import com.flipkart.exception.ConstantFlagNotSetException;
-import com.flipkart.exception.CourseNotDeletedException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.InvalidCredentialsException;
 import com.flipkart.exception.UserEmailAlreadyInUseException;
