@@ -13,7 +13,7 @@ import com.flipkart.exception.UserEmailAlreadyInUseException;
 import com.flipkart.exception.UserEmailNotFoundException;
 import com.flipkart.exception.UserNotFoundException;
 
-// TODO: Auto-generated Javadoc
+// Auto-generated Javadoc
 /**
  * The Interface AdminInterface.
  *
@@ -156,16 +156,17 @@ public interface AdminInterface {
 	/**
 	 * Modify student.
 	 *
-	 * @param studentId   the student id
-	 * @param studentName the student name
-	 * @param department  the department
-	 * @param session     the session
+	 * @param studentEmail the student email
+	 * @param studentName  the student name
+	 * @param department   the department
+	 * @param session      the session
 	 * @return true, if successful
 	 * @throws SQLException
 	 * @throws UserNotFoundException
+	 * @throws UserEmailNotFoundException
 	 */
-	public boolean modifyStudent(String studentId, String studentName, String department, String session)
-			throws UserNotFoundException, SQLException;
+	public boolean modifyStudent(String email, String studentName, String department, String session)
+			throws UserNotFoundException, SQLException, UserEmailNotFoundException;
 
 	/**
 	 * Removes the course catalog.
@@ -231,9 +232,20 @@ public interface AdminInterface {
 	public Admin getAdminById(String userId) throws UserNotFoundException, SQLException;
 
 	/**
-	 * Removes the student.
+	 * Revokes the student permission.
 	 *
 	 * @param studentId the student id
+	 * @param flag      boolean
+	 * @return true, if successful
+	 * @throws SQLException
+	 * @throws UserNotFoundException
+	 */
+	public boolean editStudentPermission(String studentId, boolean flag) throws UserNotFoundException, SQLException;
+
+	/**
+	 * Remove Student.
+	 *
+	 * @param studentId the studentId
 	 * @return true, if successful
 	 * @throws SQLException
 	 * @throws UserNotFoundException

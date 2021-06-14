@@ -14,6 +14,7 @@ public class Student {
 	private String department;
 	private String emailID;
 	private String session;
+	private String approvalStatus;
 
 	/**
 	 * @return the emailID
@@ -83,6 +84,20 @@ public class Student {
 	 */
 	public void setSession(String session) {
 		this.session = session;
+	}
+
+	/**
+	 * @return the approvalStatus
+	 */
+	public String getApprovalStatus() {
+		return approvalStatus;
+	}
+
+	/**
+	 * @param approvalStatus the approvalStatus to set
+	 */
+	public void setApprovalStatus(String approvalStatus) {
+		this.approvalStatus = approvalStatus;
 	}
 
 }

@@ -43,7 +43,7 @@ public class AdminServiceImpl implements AdminInterface {
 	public boolean addProfessor(String name, String emailId, String password, String department)
 			throws UserEmailAlreadyInUseException, SQLException, InvalidCredentialsException,
 			UserEmailNotFoundException {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.addProfessor(name, emailId, password, department);
 	}
 
@@ -51,7 +51,7 @@ public class AdminServiceImpl implements AdminInterface {
 	public boolean addStudent(String name, String emailId, String password, String department, String session)
 			throws UserEmailAlreadyInUseException, SQLException, InvalidCredentialsException,
 			UserEmailNotFoundException {
-		// TODO Auto-generated method stub
+		// Auto-generated method stub
 		return adminDAO.addStudent(name, emailId, password, department, session);
 	}
 
@@ -108,22 +108,9 @@ public class AdminServiceImpl implements AdminInterface {
 	}
 
 	@Override
-	public boolean modifyStudent(String studentId, String studentName, String department, String session)
-			throws UserNotFoundException, SQLException {
-		// Auto-generated method stub
-		return adminDAO.modifyStudent(studentId, studentName, department, session);
-	}
-
-	@Override
 	public Admin getAdminById(String userId) throws UserNotFoundException, SQLException {
 		// Auto-generated method stub
 		return adminDAO.getAdminById(userId);
-	}
-
-	@Override
-	public boolean removeStudent(String studentId) throws UserNotFoundException, SQLException {
-		// Auto-generated method stub
-		return adminDAO.removeStudent(studentId);
 	}
 
 	@Override
@@ -144,6 +131,25 @@ public class AdminServiceImpl implements AdminInterface {
 	@Override
 	public boolean getProfessorFlag() throws ConstantFlagNotSetException, SQLException {
 		return adminDAO.getProfessorFlag();
+	}
+
+	@Override
+	public boolean editStudentPermission(String studentId, boolean flag) throws UserNotFoundException, SQLException {
+		// Auto-generated method stub
+		return adminDAO.editStudentPermission(studentId, flag);
+	}
+
+	@Override
+	public boolean modifyStudent(String email, String studentName, String department, String session)
+			throws SQLException, UserEmailNotFoundException {
+		// Auto-generated method stub
+		return adminDAO.modifyStudent(email, studentName, department, session);
+	}
+
+	@Override
+	public boolean removeStudent(String studentId) throws UserNotFoundException, SQLException {
+		// Auto-generated method stub
+		return adminDAO.removeStudent(studentId);
 	}
 
 }

@@ -27,7 +27,7 @@ import com.flipkart.service.ProfessorServiceImpl;
 import com.flipkart.service.RegisteredCourseInterface;
 import com.flipkart.service.RegisteredCourseServiceImpl;
 
-// TODO: Auto-generated Javadoc
+// Auto-generated Javadoc
 /**
  * The Class CRSProfessorMenu.
  *
@@ -62,10 +62,10 @@ public class CRSProfessorMenu {
 				professor = professorInterface.getProfessorDetails(CRSApplication.userId);
 			} catch (SQLException e) {
 				// Auto-generated catch block
-				e.printStackTrace();
+				e.getMessage();
 			} catch (ProfessorNotAddedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e.getMessage();
 			}
 		}
 		while (CRSApplication.userId != null) {

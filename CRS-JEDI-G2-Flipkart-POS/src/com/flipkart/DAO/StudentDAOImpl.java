@@ -88,12 +88,12 @@ public class StudentDAOImpl implements StudentDAOInterface {
 		while (myRs.next()) {
 
 			Student currstudent = new Student();
-			currstudent.setStudentID(myRs.getString(1));
-			currstudent.setEmailID(myRs.getString(2));
-			currstudent.setStudentName(myRs.getString(3));
-			currstudent.setDepartment(myRs.getString(4));
-			currstudent.setSession(myRs.getString(5));
-
+			currstudent.setStudentID(myRs.getString("stuid"));
+			currstudent.setEmailID(myRs.getString("email"));
+			currstudent.setStudentName(myRs.getString("name"));
+			currstudent.setDepartment(myRs.getString("department"));
+			currstudent.setSession(myRs.getString("session"));
+			currstudent.setApprovalStatus(myRs.getString("approved"));
 			studentsFound.add(currstudent);
 		}
 
@@ -112,11 +112,13 @@ public class StudentDAOImpl implements StudentDAOInterface {
 		Student currstudent = new Student();
 		if (myRs.next()) {
 
-			currstudent.setStudentID(myRs.getString(1));
-			currstudent.setEmailID(myRs.getString(2));
-			currstudent.setStudentName(myRs.getString(3));
-			currstudent.setDepartment(myRs.getString(4));
-			currstudent.setSession(myRs.getString(5));
+			currstudent.setStudentID(myRs.getString("stuid"));
+			currstudent.setEmailID(myRs.getString("email"));
+			currstudent.setStudentName(myRs.getString("name"));
+			currstudent.setDepartment(myRs.getString("department"));
+			currstudent.setSession(myRs.getString("session"));
+			currstudent.setApprovalStatus(myRs.getString("approved"));
+
 		} else {
 			throw new UserNotFoundException(userId);
 		}

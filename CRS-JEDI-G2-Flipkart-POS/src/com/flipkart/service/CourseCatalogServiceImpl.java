@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import com.flipkart.DAO.CourseDAOImpl;
 import com.flipkart.DAO.CourseDAOInterface;
 import com.flipkart.bean.CourseCatalog;
+import com.flipkart.exception.CourseCatalogEntryNotFoundException;
+import com.flipkart.exception.InvalidCCSessionSemesterException;
+import com.flipkart.exception.InvalidDepartmentException;
 
 /**
  * @author yashsoni501
@@ -30,19 +33,20 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 	}
 
 	@Override
-	public CourseCatalog getCourseCatalog(String courseId) {
+	public CourseCatalog getCourseCatalog(String courseId) throws CourseCatalogEntryNotFoundException {
 
 		return courseDAO.getCourseCatalog(courseId);
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester) {
+	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester)
+			throws InvalidCCSessionSemesterException {
 
 		return courseDAO.getCourseCatalogBySessionSemester(session, semester);
 	}
 
 	@Override
-	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) {
+	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department) throws InvalidDepartmentException {
 
 		return courseDAO.getDepartmentCourseCatalog(department);
 	}

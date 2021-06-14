@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import com.flipkart.bean.SemesterReportCard;
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
+import com.flipkart.exception.SemesterReportCardNotFound;
 
 /**
  * @author yashsoni501
@@ -54,7 +55,8 @@ public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface
 	}
 
 	@Override
-	public ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String studentId) throws SQLException {
+	public ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String studentId)
+			throws SQLException, SemesterReportCardNotFound {
 
 		ArrayList<SemesterReportCard> allReports = new ArrayList<SemesterReportCard>();
 
@@ -64,6 +66,10 @@ public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface
 
 		stmt.setString(1, studentId);
 		ResultSet rs = stmt.executeQuery();
+
+		if (!rs.next()) {
+			throw new SemesterReportCardNotFound(studentId);
+		}
 
 		while (rs.next()) {
 			SemesterReportCard report = new SemesterReportCard();

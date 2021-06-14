@@ -28,5 +28,6 @@ public class CourseNotFoundException extends Exception {
 	@Override
 	public String getMessage() {
 		return "Course with courseCode: " + courseid + " not found in Catalog";
+
 	}
 }
