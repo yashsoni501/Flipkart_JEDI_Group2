@@ -345,14 +345,16 @@ public class CRSStudentMenu {
 			for (int i = 0; i < semesterReportCards.size(); i++) {
 				ArrayList<RegisteredCourse> arr1 = registeredCourseInterface
 						.getRegisteredCourses(student.getStudentID(), semesterReportCards.get(i).getCurrentSem());
-				System.out.println("Semester : " + semesterReportCards.get(i).getCurrentSem() + ""
+				System.out.println("Semester : " + semesterReportCards.get(i).getCurrentSem() + "\n"
 						+ " Semeseter sgpa : " + semesterReportCards.get(i).getSgpa());
+				System.out.println("---------------------------------------------------------------");
+				System.out.println("Course ID \t Course Name \t Department \t Professor ID \t Credits \t Grade");
 				for (int j = 0; j < arr1.size(); j++) {
 					CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(j).getCourseId());
 					Course course = courseInterface.getCourse(arr1.get(j).getCourseId());
 					System.out.println(
-							course.getCourseID() + " " + course.getCourseName() + " " + course.getDepartment() + " "
-									+ arr.getProfessorId() + " " + arr.getCredits() + " " + arr1.get(j).getGrade());
+							course.getCourseID() + "\t\t" + course.getCourseName() + "\t" + course.getDepartment() + "\t"
+									+ arr.getProfessorId() + "\t\t" + arr.getCredits() + "\t" + arr1.get(j).getGrade());
 				}
 				System.out.println("");
 			}
