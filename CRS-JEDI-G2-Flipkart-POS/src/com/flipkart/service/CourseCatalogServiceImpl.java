@@ -48,8 +48,9 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 	 *
 	 * @param courseId the course id
 	 * @return the course catalog
-	 * @throws CourseCatalogEntryNotFoundException the course catalog entry not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws CourseCatalogEntryNotFoundException the course catalog entry not
+	 *                                             found exception
+	 * @throws SQLException                        the SQL exception
 	 */
 	@Override
 	public CourseCatalog getCourseCatalog(String courseId) throws CourseCatalogEntryNotFoundException, SQLException {
@@ -60,11 +61,12 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 	/**
 	 * Gets the course catalog by session semester.
 	 *
-	 * @param session the session
+	 * @param session  the session
 	 * @param semester the semester
 	 * @return the course catalog by session semester
-	 * @throws InvalidCCSessionSemesterException the invalid CC session semester exception
-	 * @throws SQLException the SQL exception
+	 * @throws InvalidCCSessionSemesterException the invalid CC session semester
+	 *                                           exception
+	 * @throws SQLException                      the SQL exception
 	 */
 	@Override
 	public ArrayList<CourseCatalog> getCourseCatalogBySessionSemester(String session, int semester)
@@ -79,7 +81,7 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 	 * @param department the department
 	 * @return the department course catalog
 	 * @throws InvalidDepartmentException the invalid department exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException               the SQL exception
 	 */
 	@Override
 	public ArrayList<CourseCatalog> getDepartmentCourseCatalog(String department)
@@ -91,7 +93,7 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 	/**
 	 * Update professor id.
 	 *
-	 * @param courseId the course id
+	 * @param courseId    the course id
 	 * @param professorId the professor id
 	 * @return true, if successful
 	 * @throws SQLException the SQL exception
@@ -107,8 +109,9 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 	 *
 	 * @param userId the user id
 	 * @return the course catalog by professor id
-	 * @throws SQLException the SQL exception
-	 * @throws EmptyCourseCatalogListExcpetion the empty course catalog list excpetion
+	 * @throws SQLException                    the SQL exception
+	 * @throws EmptyCourseCatalogListExcpetion the empty course catalog list
+	 *                                         excpetion
 	 */
 	@Override
 	public ArrayList<CourseCatalog> getCourseCatalogByProfessorId(String userId)
@@ -121,8 +124,9 @@ public class CourseCatalogServiceImpl implements CourseCatalogInterface {
 	 * Gets the all course catalog.
 	 *
 	 * @return the all course catalog
-	 * @throws SQLException the SQL exception
-	 * @throws EmptyCourseCatalogListExcpetion the empty course catalog list excpetion
+	 * @throws SQLException                    the SQL exception
+	 * @throws EmptyCourseCatalogListExcpetion the empty course catalog list
+	 *                                         excpetion
 	 */
 	@Override
 	public ArrayList<CourseCatalog> getAllCourseCatalog() throws SQLException, EmptyCourseCatalogListExcpetion {

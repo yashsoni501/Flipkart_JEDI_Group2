@@ -29,7 +29,7 @@ public interface ProfessorDAOInterface {
 	 *
 	 * @param professorId the professor id
 	 * @return the array list
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 * @throws NoOptedCoursesException the no opted courses exception
 	 */
 	public ArrayList<CourseCatalog> viewOptedCourses(String professorId) throws SQLException, NoOptedCoursesException;
@@ -38,9 +38,9 @@ public interface ProfessorDAOInterface {
 	 * Opt in course.
 	 *
 	 * @param professorId the professor id
-	 * @param courseId the course id
+	 * @param courseId    the course id
 	 * @return true, if successful
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                   the SQL exception
 	 * @throws OptingTheCourseFailedException the opting the course failed exception
 	 */
 	public boolean optInCourse(String professorId, String courseId) throws SQLException, OptingTheCourseFailedException;
@@ -50,7 +50,7 @@ public interface ProfessorDAOInterface {
 	 *
 	 * @param userId the user id
 	 * @return the professor details
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException               the SQL exception
 	 * @throws ProfessorNotAddedException the professor not added exception
 	 */
 	public Professor getProfessorDetails(String userId) throws SQLException, ProfessorNotAddedException;
@@ -59,9 +59,9 @@ public interface ProfessorDAOInterface {
 	 * View enrolled students.
 	 *
 	 * @param courseId the course id
-	 * @param session the session
+	 * @param session  the session
 	 * @return the array list
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                the SQL exception
 	 * @throws NoEnrolledStudentsException the no enrolled students exception
 	 */
 	public ArrayList<Student> viewEnrolledStudents(String courseId, String session)
@@ -70,11 +70,11 @@ public interface ProfessorDAOInterface {
 	/**
 	 * Submit grade.
 	 *
-	 * @param courseId the course id
+	 * @param courseId  the course id
 	 * @param studentId the student id
-	 * @param grade the grade
+	 * @param grade     the grade
 	 * @return true, if successful
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                   the SQL exception
 	 * @throws GradeSubmissionFailedException the grade submission failed exception
 	 */
 	public boolean submitGrade(String courseId, String studentId, String grade)
@@ -84,7 +84,7 @@ public interface ProfessorDAOInterface {
 	 * Gets the all professor.
 	 *
 	 * @return the all professor
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException               the SQL exception
 	 * @throws NoProfessorsFoundException the no professors found exception
 	 */
 	public ArrayList<Professor> getAllProfessor() throws SQLException, NoProfessorsFoundException;

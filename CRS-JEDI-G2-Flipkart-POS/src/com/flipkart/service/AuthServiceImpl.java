@@ -21,7 +21,7 @@ public class AuthServiceImpl implements AuthInterface {
 
 	/** The instance. */
 	public static volatile AuthServiceImpl instance = null;
-	
+
 	/** The auth DAO. */
 	AuthDAOInterface authDAO = AuthDAOImpl.getInstance();
 
@@ -43,12 +43,12 @@ public class AuthServiceImpl implements AuthInterface {
 	/**
 	 * Verify user with email password.
 	 *
-	 * @param email the email
+	 * @param email    the email
 	 * @param paasword the paasword
 	 * @return the string
 	 * @throws InvalidCredentialsException the invalid credentials exception
-	 * @throws SQLException the SQL exception
-	 * @throws UserEmailNotFoundException the user email not found exception
+	 * @throws SQLException                the SQL exception
+	 * @throws UserEmailNotFoundException  the user email not found exception
 	 */
 	@Override
 	public String verifyUserWithEmailPassword(String email, String paasword)
@@ -61,7 +61,7 @@ public class AuthServiceImpl implements AuthInterface {
 	 * Verify user with token.
 	 *
 	 * @param access_token the access token
-	 * @param email the email
+	 * @param email        the email
 	 * @return true, if successful
 	 */
 	@Override
@@ -96,13 +96,13 @@ public class AuthServiceImpl implements AuthInterface {
 	/**
 	 * Update password.
 	 *
-	 * @param email the email
+	 * @param email       the email
 	 * @param oldPassword the old password
 	 * @param newPassword the new password
 	 * @return true, if successful
 	 * @throws InvalidCredentialsException the invalid credentials exception
-	 * @throws SQLException the SQL exception
-	 * @throws UserEmailNotFoundException the user email not found exception
+	 * @throws SQLException                the SQL exception
+	 * @throws UserEmailNotFoundException  the user email not found exception
 	 */
 	@Override
 	public boolean updatePassword(String email, String oldPassword, String newPassword)
@@ -117,7 +117,7 @@ public class AuthServiceImpl implements AuthInterface {
 	 * @param userId the user id
 	 * @return the role
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	@Override
 	public String getRole(String userId) throws UserNotFoundException, SQLException {

@@ -23,9 +23,9 @@ public interface StudentDAOInterface {
 	 * Fetch registered courses.
 	 *
 	 * @param studentId the student id
-	 * @param semester the semester
+	 * @param semester  the semester
 	 * @return the array list
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 * @throws CourseNotFoundException the course not found exception
 	 */
 	public ArrayList<CourseCatalog> fetchRegisteredCourses(String studentId, int semester)
@@ -45,7 +45,7 @@ public interface StudentDAOInterface {
 	 *
 	 * @param userId the user id
 	 * @return the student by id
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 * @throws UserNotFoundException the user not found exception
 	 */
 	public Student getStudentById(String userId) throws SQLException, UserNotFoundException;

@@ -23,7 +23,7 @@ import com.flipkart.bean.RegisteredCourse;
  * @author Aeron
  */
 public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
-	
+
 	/** The instance. */
 	private static volatile RegisteredCourseDAOImpl instance = null;
 
@@ -46,9 +46,9 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 	 *
 	 * @param courseId the course id
 	 * @param semester the semester
-	 * @param session the session
+	 * @param session  the session
 	 * @return the enrolled students
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException               the SQL exception
 	 * @throws NoStudentEnrolledException the no student enrolled exception
 	 */
 	@Override
@@ -97,9 +97,9 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 	 * Gets the registered courses.
 	 *
 	 * @param studentId the student id
-	 * @param semester the semester
+	 * @param semester  the semester
 	 * @return the registered courses
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                 the SQL exception
 	 * @throws NoRegisteredCoursesException the no registered courses exception
 	 */
 	@Override
@@ -137,10 +137,10 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 	/**
 	 * Adds the registered course.
 	 *
-	 * @param courseId the course id
-	 * @param semester the semester
-	 * @param grade the grade
-	 * @param session the session
+	 * @param courseId  the course id
+	 * @param semester  the semester
+	 * @param grade     the grade
+	 * @param session   the session
 	 * @param studentID the student ID
 	 * @return true, if successful
 	 * @throws SQLException the SQL exception

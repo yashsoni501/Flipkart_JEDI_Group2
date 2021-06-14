@@ -21,7 +21,7 @@ import com.flipkart.constant.SQLQuery;
  * @author yashsoni501
  */
 public class PaymentDAOImpl implements PaymentDAOInterface {
-	
+
 	/** The instance. */
 	private static volatile PaymentDAOImpl instance = null;
 
@@ -43,7 +43,7 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 	 * Gets the fee reciept.
 	 *
 	 * @param studentId the student id
-	 * @param semester the semester
+	 * @param semester  the semester
 	 * @return the fee reciept
 	 * @throws SQLException the SQL exception
 	 */
@@ -79,8 +79,8 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 	 * Online payment.
 	 *
 	 * @param studentId the student id
-	 * @param amount the amount
-	 * @param semester the semester
+	 * @param amount    the amount
+	 * @param semester  the semester
 	 * @return the payment
 	 * @throws SQLException the SQL exception
 	 */
@@ -116,8 +116,8 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 	 * Offline payment.
 	 *
 	 * @param studentId the student id
-	 * @param amount the amount
-	 * @param semester the semester
+	 * @param amount    the amount
+	 * @param semester  the semester
 	 * @return the payment
 	 * @throws SQLException the SQL exception
 	 */

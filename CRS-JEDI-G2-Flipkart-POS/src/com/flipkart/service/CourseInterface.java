@@ -17,14 +17,14 @@ import com.flipkart.exception.EmptyCourseListExcpetion;
  * @author Tanmay
  */
 public interface CourseInterface {
-	
+
 	/**
 	 * Gets the course.
 	 *
 	 * @param courseId the course id
 	 * @return the course
 	 * @throws CourseNotFoundException the course not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 */
 	public Course getCourse(String courseId) throws CourseNotFoundException, SQLException;
 
@@ -32,7 +32,7 @@ public interface CourseInterface {
 	 * Gets the all courses.
 	 *
 	 * @return the all courses
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException             the SQL exception
 	 * @throws EmptyCourseListExcpetion the empty course list excpetion
 	 */
 	public ArrayList<Course> getAllCourses() throws SQLException, EmptyCourseListExcpetion;

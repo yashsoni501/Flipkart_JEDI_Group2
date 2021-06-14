@@ -49,12 +49,12 @@ public class AuthDAOImpl implements AuthDAOInterface {
 	/**
 	 * Verify user with email password.
 	 *
-	 * @param email the email
+	 * @param email    the email
 	 * @param password the password
 	 * @return the string
 	 * @throws InvalidCredentialsException the invalid credentials exception
-	 * @throws UserEmailNotFoundException the user email not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws UserEmailNotFoundException  the user email not found exception
+	 * @throws SQLException                the SQL exception
 	 */
 	@Override
 	public String verifyUserWithEmailPassword(String email, String password)
@@ -84,7 +84,7 @@ public class AuthDAOImpl implements AuthDAOInterface {
 	 * Verify user with token.
 	 *
 	 * @param access_token the access token
-	 * @param email the email
+	 * @param email        the email
 	 * @return true, if successful
 	 */
 	@Override
@@ -119,13 +119,13 @@ public class AuthDAOImpl implements AuthDAOInterface {
 	/**
 	 * Update password.
 	 *
-	 * @param email the email
+	 * @param email       the email
 	 * @param oldPassword the old password
 	 * @param newPassword the new password
 	 * @return true, if successful
 	 * @throws InvalidCredentialsException the invalid credentials exception
-	 * @throws UserEmailNotFoundException the user email not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws UserEmailNotFoundException  the user email not found exception
+	 * @throws SQLException                the SQL exception
 	 */
 	@Override
 	public boolean updatePassword(String email, String oldPassword, String newPassword)
@@ -153,7 +153,7 @@ public class AuthDAOImpl implements AuthDAOInterface {
 	 * @param userId the user id
 	 * @return the role
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	@Override
 	public String getRole(String userId) throws UserNotFoundException, SQLException {

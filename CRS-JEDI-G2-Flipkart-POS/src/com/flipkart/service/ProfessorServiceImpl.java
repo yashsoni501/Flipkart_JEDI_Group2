@@ -29,7 +29,7 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 
 	/** The instance. */
 	public static volatile ProfessorServiceImpl instance = null;
-	
+
 	/** The professor DAO. */
 	ProfessorDAOInterface professorDAO = ProfessorDAOImpl.getInstance();
 
@@ -52,9 +52,9 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 	 * Opt in course.
 	 *
 	 * @param professorId the professor id
-	 * @param courseId the course id
+	 * @param courseId    the course id
 	 * @return true, if successful
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                   the SQL exception
 	 * @throws OptingTheCourseFailedException the opting the course failed exception
 	 */
 	@Override
@@ -69,7 +69,7 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 	 *
 	 * @param professorId the professor id
 	 * @return the array list
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 * @throws NoOptedCoursesException the no opted courses exception
 	 */
 	@Override
@@ -83,7 +83,7 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 	 *
 	 * @param userId the user id
 	 * @return the professor details
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException               the SQL exception
 	 * @throws ProfessorNotAddedException the professor not added exception
 	 */
 	@Override
@@ -96,9 +96,9 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 	 * View enrolled students.
 	 *
 	 * @param courseId the course id
-	 * @param session the session
+	 * @param session  the session
 	 * @return the array list
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                the SQL exception
 	 * @throws NoEnrolledStudentsException the no enrolled students exception
 	 */
 	@Override
@@ -111,11 +111,11 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 	/**
 	 * Submit grade.
 	 *
-	 * @param courseId the course id
+	 * @param courseId  the course id
 	 * @param studentId the student id
-	 * @param grade the grade
+	 * @param grade     the grade
 	 * @return true, if successful
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                   the SQL exception
 	 * @throws GradeSubmissionFailedException the grade submission failed exception
 	 */
 	@Override
@@ -129,7 +129,7 @@ public class ProfessorServiceImpl implements ProfessorInterface {
 	 * Gets the all professor.
 	 *
 	 * @return the all professor
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException               the SQL exception
 	 * @throws NoProfessorsFoundException the no professors found exception
 	 */
 	@Override

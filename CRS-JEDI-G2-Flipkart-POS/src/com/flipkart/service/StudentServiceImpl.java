@@ -23,7 +23,7 @@ public class StudentServiceImpl implements StudentInterface {
 
 	/** The instance. */
 	private static volatile StudentServiceImpl instance = null;
-	
+
 	/** The student DAO. */
 	StudentDAOInterface studentDAO = StudentDAOImpl.getInstance();
 
@@ -46,9 +46,9 @@ public class StudentServiceImpl implements StudentInterface {
 	 * Fetch registered courses.
 	 *
 	 * @param studentId the student id
-	 * @param semester the semester
+	 * @param semester  the semester
 	 * @return the array list
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 * @throws CourseNotFoundException the course not found exception
 	 */
 	@Override
@@ -63,7 +63,7 @@ public class StudentServiceImpl implements StudentInterface {
 	 *
 	 * @param userId the user id
 	 * @return the student by id
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 * @throws UserNotFoundException the user not found exception
 	 */
 	@Override

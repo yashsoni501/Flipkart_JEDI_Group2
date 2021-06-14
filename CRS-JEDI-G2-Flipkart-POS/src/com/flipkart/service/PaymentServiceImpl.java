@@ -19,7 +19,7 @@ public class PaymentServiceImpl implements PaymentInterface {
 
 	/** The instance. */
 	public static volatile PaymentServiceImpl instance = null;
-	
+
 	/** The payment DAO. */
 	PaymentDAOInterface paymentDAO = PaymentDAOImpl.getInstance();
 
@@ -42,7 +42,7 @@ public class PaymentServiceImpl implements PaymentInterface {
 	 * Gets the fee reciept.
 	 *
 	 * @param studentId the student id
-	 * @param semester the semester
+	 * @param semester  the semester
 	 * @return the fee reciept
 	 * @throws SQLException the SQL exception
 	 */
@@ -56,8 +56,8 @@ public class PaymentServiceImpl implements PaymentInterface {
 	 * Online payment.
 	 *
 	 * @param studentId the student id
-	 * @param amount the amount
-	 * @param semester the semester
+	 * @param amount    the amount
+	 * @param semester  the semester
 	 * @return the payment
 	 * @throws SQLException the SQL exception
 	 */
@@ -71,8 +71,8 @@ public class PaymentServiceImpl implements PaymentInterface {
 	 * Offline payment.
 	 *
 	 * @param studentId the student id
-	 * @param amount the amount
-	 * @param semester the semester
+	 * @param amount    the amount
+	 * @param semester  the semester
 	 * @return the payment
 	 * @throws SQLException the SQL exception
 	 */

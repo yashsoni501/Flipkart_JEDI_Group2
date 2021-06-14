@@ -24,7 +24,7 @@ import com.flipkart.bean.CourseCatalog;
  */
 
 public class StudentDAOImpl implements StudentDAOInterface {
-	
+
 	/** The instance. */
 	private static volatile StudentDAOImpl instance = null;
 
@@ -46,9 +46,9 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	 * Fetch registered courses.
 	 *
 	 * @param studentId the student id
-	 * @param sem the sem
+	 * @param sem       the sem
 	 * @return the array list
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 * @throws CourseNotFoundException the course not found exception
 	 */
 	@Override
@@ -126,7 +126,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 	 *
 	 * @param userId the user id
 	 * @return the student by id
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 * @throws UserNotFoundException the user not found exception
 	 */
 	@Override

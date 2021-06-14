@@ -19,7 +19,7 @@ public interface PaymentDAOInterface {
 	 * Gets the fee reciept.
 	 *
 	 * @param studentId the student id
-	 * @param semester the semester
+	 * @param semester  the semester
 	 * @return the fee reciept
 	 * @throws SQLException the SQL exception
 	 */
@@ -29,8 +29,8 @@ public interface PaymentDAOInterface {
 	 * Online payment.
 	 *
 	 * @param studentId the student id
-	 * @param amount the amount
-	 * @param semester the semester
+	 * @param amount    the amount
+	 * @param semester  the semester
 	 * @return the payment
 	 * @throws SQLException the SQL exception
 	 */
@@ -40,8 +40,8 @@ public interface PaymentDAOInterface {
 	 * Offline payment.
 	 *
 	 * @param studentId the student id
-	 * @param amount the amount
-	 * @param semester the semester
+	 * @param amount    the amount
+	 * @param semester  the semester
 	 * @return the payment
 	 * @throws SQLException the SQL exception
 	 */

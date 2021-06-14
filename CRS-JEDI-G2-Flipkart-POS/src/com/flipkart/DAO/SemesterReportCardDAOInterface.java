@@ -21,8 +21,8 @@ public interface SemesterReportCardDAOInterface {
 	 * Adds the semester report card.
 	 *
 	 * @param studentId the student id
-	 * @param semester the semester
-	 * @param sgpa the sgpa
+	 * @param semester  the semester
+	 * @param sgpa      the sgpa
 	 * @return true, if successful
 	 * @throws SQLException the SQL exception
 	 */
@@ -33,7 +33,7 @@ public interface SemesterReportCardDAOInterface {
 	 *
 	 * @param studentId the student id
 	 * @return the semester report card by student id
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException               the SQL exception
 	 * @throws SemesterReportCardNotFound the semester report card not found
 	 */
 	ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String studentId)

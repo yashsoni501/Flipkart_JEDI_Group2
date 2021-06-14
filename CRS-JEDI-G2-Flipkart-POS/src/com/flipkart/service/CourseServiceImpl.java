@@ -22,7 +22,7 @@ public class CourseServiceImpl implements CourseInterface {
 
 	/** The instance. */
 	public static volatile CourseServiceImpl instance = null;
-	
+
 	/** The course DAO. */
 	CourseDAOInterface courseDAO = CourseDAOImpl.getInstance();
 
@@ -47,7 +47,7 @@ public class CourseServiceImpl implements CourseInterface {
 	 * @param courseId the course id
 	 * @return the course
 	 * @throws CourseNotFoundException the course not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 */
 	@Override
 	public Course getCourse(String courseId) throws CourseNotFoundException, SQLException {
@@ -59,7 +59,7 @@ public class CourseServiceImpl implements CourseInterface {
 	 * Gets the all courses.
 	 *
 	 * @return the all courses
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException             the SQL exception
 	 * @throws EmptyCourseListExcpetion the empty course list excpetion
 	 */
 	@Override

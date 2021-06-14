@@ -16,7 +16,7 @@ public class SemesterReportCardServiceImpl implements SemesterReportCardInterfac
 
 	/** The instance. */
 	public static volatile SemesterReportCardServiceImpl instance = null;
-	
+
 	/** The report instance. */
 	SemesterReportCardDAOInterface reportInstance = SemesterReportCardDAOImpl.getInstance();
 
@@ -39,8 +39,8 @@ public class SemesterReportCardServiceImpl implements SemesterReportCardInterfac
 	 * Adds the semester report card.
 	 *
 	 * @param studentId the student id
-	 * @param semester the semester
-	 * @param sgpa the sgpa
+	 * @param semester  the semester
+	 * @param sgpa      the sgpa
 	 * @return true, if successful
 	 * @throws SQLException the SQL exception
 	 */
@@ -55,7 +55,7 @@ public class SemesterReportCardServiceImpl implements SemesterReportCardInterfac
 	 *
 	 * @param userId the user id
 	 * @return the semester report card by student id
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException               the SQL exception
 	 * @throws SemesterReportCardNotFound the semester report card not found
 	 */
 	@Override

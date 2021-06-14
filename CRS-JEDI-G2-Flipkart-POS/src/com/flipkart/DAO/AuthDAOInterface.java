@@ -20,12 +20,12 @@ public interface AuthDAOInterface {
 	/**
 	 * Verify user with email password.
 	 *
-	 * @param email the email
+	 * @param email    the email
 	 * @param paasword the paasword
 	 * @return the string
 	 * @throws InvalidCredentialsException the invalid credentials exception
-	 * @throws SQLException the SQL exception
-	 * @throws UserEmailNotFoundException the user email not found exception
+	 * @throws SQLException                the SQL exception
+	 * @throws UserEmailNotFoundException  the user email not found exception
 	 */
 	public String verifyUserWithEmailPassword(String email, String paasword)
 			throws InvalidCredentialsException, SQLException, UserEmailNotFoundException;
@@ -34,7 +34,7 @@ public interface AuthDAOInterface {
 	 * Verify user with token.
 	 *
 	 * @param access_token the access token
-	 * @param email the email
+	 * @param email        the email
 	 * @return true, if successful
 	 */
 	public boolean verifyUserWithToken(String access_token, String email);
@@ -57,13 +57,13 @@ public interface AuthDAOInterface {
 	/**
 	 * Update password.
 	 *
-	 * @param email the email
+	 * @param email       the email
 	 * @param oldPassword the old password
 	 * @param newPassword the new password
 	 * @return true, if successful
 	 * @throws InvalidCredentialsException the invalid credentials exception
-	 * @throws SQLException the SQL exception
-	 * @throws UserEmailNotFoundException the user email not found exception
+	 * @throws SQLException                the SQL exception
+	 * @throws UserEmailNotFoundException  the user email not found exception
 	 */
 	public boolean updatePassword(String email, String oldPassword, String newPassword)
 			throws InvalidCredentialsException, SQLException, UserEmailNotFoundException;
@@ -74,7 +74,7 @@ public interface AuthDAOInterface {
 	 * @param userId the user id
 	 * @return the role
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	public String getRole(String userId) throws UserNotFoundException, SQLException;
 }

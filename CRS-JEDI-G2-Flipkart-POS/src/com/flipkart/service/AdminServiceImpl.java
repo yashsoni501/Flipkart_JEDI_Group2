@@ -20,7 +20,7 @@ public class AdminServiceImpl implements AdminInterface {
 
 	/** The instance. */
 	public static volatile AdminServiceImpl instance = null;
-	
+
 	/** The admin DAO. */
 	AdminDAOInterface adminDAO = AdminDAOImpl.getInstance();
 
@@ -59,7 +59,7 @@ public class AdminServiceImpl implements AdminInterface {
 	 * @param courseId the course id
 	 * @return true, if successful
 	 * @throws CourseNotFoundException the course not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 */
 	@Override
 	public boolean removeCourse(String courseId) throws CourseNotFoundException, SQLException {
@@ -70,15 +70,16 @@ public class AdminServiceImpl implements AdminInterface {
 	/**
 	 * Adds the professor.
 	 *
-	 * @param name the name
-	 * @param emailId the email id
-	 * @param password the password
+	 * @param name       the name
+	 * @param emailId    the email id
+	 * @param password   the password
 	 * @param department the department
 	 * @return true, if successful
-	 * @throws UserEmailAlreadyInUseException the user email already in use exception
-	 * @throws SQLException the SQL exception
-	 * @throws InvalidCredentialsException the invalid credentials exception
-	 * @throws UserEmailNotFoundException the user email not found exception
+	 * @throws UserEmailAlreadyInUseException the user email already in use
+	 *                                        exception
+	 * @throws SQLException                   the SQL exception
+	 * @throws InvalidCredentialsException    the invalid credentials exception
+	 * @throws UserEmailNotFoundException     the user email not found exception
 	 */
 	@Override
 	public boolean addProfessor(String name, String emailId, String password, String department)
@@ -91,16 +92,17 @@ public class AdminServiceImpl implements AdminInterface {
 	/**
 	 * Adds the student.
 	 *
-	 * @param name the name
-	 * @param emailId the email id
-	 * @param password the password
+	 * @param name       the name
+	 * @param emailId    the email id
+	 * @param password   the password
 	 * @param department the department
-	 * @param session the session
+	 * @param session    the session
 	 * @return true, if successful
-	 * @throws UserEmailAlreadyInUseException the user email already in use exception
-	 * @throws SQLException the SQL exception
-	 * @throws InvalidCredentialsException the invalid credentials exception
-	 * @throws UserEmailNotFoundException the user email not found exception
+	 * @throws UserEmailAlreadyInUseException the user email already in use
+	 *                                        exception
+	 * @throws SQLException                   the SQL exception
+	 * @throws InvalidCredentialsException    the invalid credentials exception
+	 * @throws UserEmailNotFoundException     the user email not found exception
 	 */
 	@Override
 	public boolean addStudent(String name, String emailId, String password, String department, String session)
@@ -142,7 +144,7 @@ public class AdminServiceImpl implements AdminInterface {
 	 * @param profId the prof id
 	 * @return true, if successful
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	@Override
 	public boolean removeProfessor(String profId) throws UserNotFoundException, SQLException {
@@ -153,12 +155,12 @@ public class AdminServiceImpl implements AdminInterface {
 	/**
 	 * Modify professor.
 	 *
-	 * @param profId the prof id
+	 * @param profId        the prof id
 	 * @param professorName the professor name
-	 * @param department the department
+	 * @param department    the department
 	 * @return true, if successful
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	@Override
 	public boolean modifyProfessor(String profId, String professorName, String department)
@@ -173,7 +175,7 @@ public class AdminServiceImpl implements AdminInterface {
 	 * @param courseId the course id
 	 * @return true, if successful
 	 * @throws CourseNotFoundException the course not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 */
 	@Override
 	public boolean removeCourseCatalog(String courseId) throws CourseNotFoundException, SQLException {
@@ -184,12 +186,12 @@ public class AdminServiceImpl implements AdminInterface {
 	/**
 	 * Modify course.
 	 *
-	 * @param courseId the course id
+	 * @param courseId   the course id
 	 * @param courseName the course name
 	 * @param department the department
 	 * @return true, if successful
 	 * @throws CourseNotFoundException the course not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 */
 	@Override
 	public boolean modifyCourse(String courseId, String courseName, String department)
@@ -203,12 +205,12 @@ public class AdminServiceImpl implements AdminInterface {
 	 *
 	 * @param courseId the course id
 	 * @param semester the semester
-	 * @param session the session
-	 * @param credits the credits
-	 * @param profId the prof id
+	 * @param session  the session
+	 * @param credits  the credits
+	 * @param profId   the prof id
 	 * @return true, if successful
 	 * @throws CourseNotFoundException the course not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 */
 	@Override
 	public boolean addCourseCatalog(String courseId, int semester, String session, float credits, String profId)
@@ -222,12 +224,12 @@ public class AdminServiceImpl implements AdminInterface {
 	 *
 	 * @param courseId the course id
 	 * @param semester the semester
-	 * @param session the session
-	 * @param credits the credits
-	 * @param profId the prof id
+	 * @param session  the session
+	 * @param credits  the credits
+	 * @param profId   the prof id
 	 * @return true, if successful
 	 * @throws CourseNotFoundException the course not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 */
 	@Override
 	public boolean modifyCourseCatalog(String courseId, int semester, String session, float credits, String profId)
@@ -242,7 +244,7 @@ public class AdminServiceImpl implements AdminInterface {
 	 * @param userId the user id
 	 * @return the admin by id
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	@Override
 	public Admin getAdminById(String userId) throws UserNotFoundException, SQLException {
@@ -267,7 +269,7 @@ public class AdminServiceImpl implements AdminInterface {
 	 *
 	 * @return the course registration flag
 	 * @throws ConstantFlagNotSetException the constant flag not set exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                the SQL exception
 	 */
 	@Override
 	public boolean getCourseRegistrationFlag() throws ConstantFlagNotSetException, SQLException {
@@ -279,7 +281,7 @@ public class AdminServiceImpl implements AdminInterface {
 	 *
 	 * @return the payment flag
 	 * @throws ConstantFlagNotSetException the constant flag not set exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                the SQL exception
 	 */
 	@Override
 	public boolean getPaymentFlag() throws ConstantFlagNotSetException, SQLException {
@@ -291,7 +293,7 @@ public class AdminServiceImpl implements AdminInterface {
 	 *
 	 * @return the professor flag
 	 * @throws ConstantFlagNotSetException the constant flag not set exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                the SQL exception
 	 */
 	@Override
 	public boolean getProfessorFlag() throws ConstantFlagNotSetException, SQLException {
@@ -302,10 +304,10 @@ public class AdminServiceImpl implements AdminInterface {
 	 * Edits the student permission.
 	 *
 	 * @param studentId the student id
-	 * @param flag the flag
+	 * @param flag      the flag
 	 * @return true, if successful
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	@Override
 	public boolean editStudentPermission(String studentId, boolean flag) throws UserNotFoundException, SQLException {
@@ -316,12 +318,12 @@ public class AdminServiceImpl implements AdminInterface {
 	/**
 	 * Modify student.
 	 *
-	 * @param email the email
+	 * @param email       the email
 	 * @param studentName the student name
-	 * @param department the department
-	 * @param session the session
+	 * @param department  the department
+	 * @param session     the session
 	 * @return true, if successful
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException               the SQL exception
 	 * @throws UserEmailNotFoundException the user email not found exception
 	 */
 	@Override
@@ -337,7 +339,7 @@ public class AdminServiceImpl implements AdminInterface {
 	 * @param studentId the student id
 	 * @return true, if successful
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	@Override
 	public boolean removeStudent(String studentId) throws UserNotFoundException, SQLException {

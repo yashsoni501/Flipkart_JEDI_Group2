@@ -24,9 +24,9 @@ public interface RegisteredCourseInterface {
 	 *
 	 * @param courseId the course id
 	 * @param semester the semester
-	 * @param session the session
+	 * @param session  the session
 	 * @return the enrolled students
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException               the SQL exception
 	 * @throws NoStudentEnrolledException the no student enrolled exception
 	 */
 	public ArrayList<Student> getEnrolledStudents(String courseId, int semester, String session)
@@ -36,9 +36,9 @@ public interface RegisteredCourseInterface {
 	 * Gets the registered courses.
 	 *
 	 * @param studentId the student id
-	 * @param semester the semester
+	 * @param semester  the semester
 	 * @return the registered courses
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                 the SQL exception
 	 * @throws NoRegisteredCoursesException the no registered courses exception
 	 */
 	public ArrayList<RegisteredCourse> getRegisteredCourses(String studentId, int semester)
@@ -47,10 +47,10 @@ public interface RegisteredCourseInterface {
 	/**
 	 * Adds the registered course.
 	 *
-	 * @param courseId the course id
-	 * @param semester the semester
-	 * @param grade the grade
-	 * @param session the session
+	 * @param courseId  the course id
+	 * @param semester  the semester
+	 * @param grade     the grade
+	 * @param session   the session
 	 * @param studentID the student ID
 	 * @return true, if successful
 	 * @throws SQLException the SQL exception

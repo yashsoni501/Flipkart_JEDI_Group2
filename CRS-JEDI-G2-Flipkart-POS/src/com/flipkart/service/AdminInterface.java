@@ -38,7 +38,7 @@ public interface AdminInterface {
 	 * @param courseId the course id
 	 * @return true, if successful
 	 * @throws CourseNotFoundException the course not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 */
 	public boolean removeCourse(String courseId) throws CourseNotFoundException, SQLException;
 
@@ -50,10 +50,11 @@ public interface AdminInterface {
 	 * @param password   the password
 	 * @param department the department
 	 * @return true, if successful
-	 * @throws UserEmailAlreadyInUseException the user email already in use exception
-	 * @throws SQLException the SQL exception
-	 * @throws InvalidCredentialsException the invalid credentials exception
-	 * @throws UserEmailNotFoundException the user email not found exception
+	 * @throws UserEmailAlreadyInUseException the user email already in use
+	 *                                        exception
+	 * @throws SQLException                   the SQL exception
+	 * @throws InvalidCredentialsException    the invalid credentials exception
+	 * @throws UserEmailNotFoundException     the user email not found exception
 	 */
 	public boolean addProfessor(String name, String emailId, String password, String department)
 			throws UserEmailAlreadyInUseException, SQLException, InvalidCredentialsException,
@@ -68,10 +69,11 @@ public interface AdminInterface {
 	 * @param department the department
 	 * @param session    the session
 	 * @return true, if successful
-	 * @throws UserEmailAlreadyInUseException the user email already in use exception
-	 * @throws SQLException the SQL exception
-	 * @throws InvalidCredentialsException the invalid credentials exception
-	 * @throws UserEmailNotFoundException the user email not found exception
+	 * @throws UserEmailAlreadyInUseException the user email already in use
+	 *                                        exception
+	 * @throws SQLException                   the SQL exception
+	 * @throws InvalidCredentialsException    the invalid credentials exception
+	 * @throws UserEmailNotFoundException     the user email not found exception
 	 */
 	public boolean addStudent(String name, String emailId, String password, String department, String session)
 			throws UserEmailAlreadyInUseException, SQLException, InvalidCredentialsException,
@@ -109,7 +111,7 @@ public interface AdminInterface {
 	 *
 	 * @return the course registration flag
 	 * @throws ConstantFlagNotSetException the constant flag not set exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                the SQL exception
 	 */
 	public boolean getCourseRegistrationFlag() throws ConstantFlagNotSetException, SQLException;
 
@@ -118,7 +120,7 @@ public interface AdminInterface {
 	 *
 	 * @return the payment flag
 	 * @throws ConstantFlagNotSetException the constant flag not set exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                the SQL exception
 	 */
 	public boolean getPaymentFlag() throws ConstantFlagNotSetException, SQLException;
 
@@ -127,7 +129,7 @@ public interface AdminInterface {
 	 *
 	 * @return the professor flag
 	 * @throws ConstantFlagNotSetException the constant flag not set exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException                the SQL exception
 	 */
 	public boolean getProfessorFlag() throws ConstantFlagNotSetException, SQLException;
 
@@ -137,7 +139,7 @@ public interface AdminInterface {
 	 * @param profId the prof id
 	 * @return true, if successful
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	public boolean removeProfessor(String profId) throws UserNotFoundException, SQLException;
 
@@ -149,7 +151,7 @@ public interface AdminInterface {
 	 * @param department    the department
 	 * @return true, if successful
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	public boolean modifyProfessor(String profId, String professorName, String department)
 			throws UserNotFoundException, SQLException;
@@ -157,12 +159,12 @@ public interface AdminInterface {
 	/**
 	 * Modify student.
 	 *
-	 * @param email the email
-	 * @param studentName  the student name
-	 * @param department   the department
-	 * @param session      the session
+	 * @param email       the email
+	 * @param studentName the student name
+	 * @param department  the department
+	 * @param session     the session
 	 * @return true, if successful
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException               the SQL exception
 	 * @throws UserEmailNotFoundException the user email not found exception
 	 */
 	public boolean modifyStudent(String email, String studentName, String department, String session)
@@ -174,7 +176,7 @@ public interface AdminInterface {
 	 * @param courseId the course id
 	 * @return true, if successful
 	 * @throws CourseNotFoundException the course not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 */
 	public boolean removeCourseCatalog(String courseId) throws CourseNotFoundException, SQLException;
 
@@ -186,7 +188,7 @@ public interface AdminInterface {
 	 * @param department the department
 	 * @return true, if successful
 	 * @throws CourseNotFoundException the course not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 */
 	public boolean modifyCourse(String courseId, String courseName, String department)
 			throws CourseNotFoundException, SQLException;
@@ -201,7 +203,7 @@ public interface AdminInterface {
 	 * @param profId   the prof id
 	 * @return true, if successful
 	 * @throws CourseNotFoundException the course not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 */
 	public boolean addCourseCatalog(String courseId, int semester, String session, float credits, String profId)
 			throws CourseNotFoundException, SQLException;
@@ -216,7 +218,7 @@ public interface AdminInterface {
 	 * @param profId   the prof id
 	 * @return true, if successful
 	 * @throws CourseNotFoundException the course not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException            the SQL exception
 	 */
 	public boolean modifyCourseCatalog(String courseId, int semester, String session, float credits, String profId)
 			throws CourseNotFoundException, SQLException;
@@ -227,7 +229,7 @@ public interface AdminInterface {
 	 * @param userId the user id
 	 * @return the admin by id
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	public Admin getAdminById(String userId) throws UserNotFoundException, SQLException;
 
@@ -238,7 +240,7 @@ public interface AdminInterface {
 	 * @param flag      boolean
 	 * @return true, if successful
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	public boolean editStudentPermission(String studentId, boolean flag) throws UserNotFoundException, SQLException;
 
@@ -248,7 +250,7 @@ public interface AdminInterface {
 	 * @param studentId the studentId
 	 * @return true, if successful
 	 * @throws UserNotFoundException the user not found exception
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException          the SQL exception
 	 */
 	public boolean removeStudent(String studentId) throws UserNotFoundException, SQLException;
 }
