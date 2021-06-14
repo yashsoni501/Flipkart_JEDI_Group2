@@ -3,13 +3,20 @@
  */
 package com.flipkart.DAO;
 
+import java.sql.SQLException;
+
+import com.flipkart.exception.InvalidCredentialsException;
+import com.flipkart.exception.UserEmailNotFoundException;
+import com.flipkart.exception.UserNotFoundException;
+
 /**
  * @author aysh
  *
  */
 public interface AuthDAOInterface {
 
-	public String verifyUserWithEmailPassword(String email, String paasword);
+	public String verifyUserWithEmailPassword(String email, String paasword)
+			throws InvalidCredentialsException, SQLException, UserEmailNotFoundException;
 
 	public boolean verifyUserWithToken(String access_token, String email);
 
@@ -17,7 +24,8 @@ public interface AuthDAOInterface {
 
 	public boolean logout();
 
-	public boolean updatePassword(String email, String oldPassword, String newPassword);
+	public boolean updatePassword(String email, String oldPassword, String newPassword)
+			throws InvalidCredentialsException, SQLException, UserEmailNotFoundException;
 
-	public String getRole(String userId);
+	public String getRole(String userId) throws UserNotFoundException, SQLException;
 }

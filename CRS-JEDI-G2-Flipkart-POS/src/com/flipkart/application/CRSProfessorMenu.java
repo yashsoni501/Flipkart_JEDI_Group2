@@ -56,7 +56,7 @@ public class CRSProfessorMenu {
 				professor = professorInterface.getProfessorDetails(CRSApplication.userId);
 			} catch (SQLException e) {
 				// Auto-generated catch block
-				e.printStackTrace();
+				e.getMessage();
 			}
 		}
 		while (CRSApplication.userId != null) {
@@ -122,7 +122,7 @@ public class CRSProfessorMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 	}
@@ -137,7 +137,7 @@ public class CRSProfessorMenu {
 			arr = professorInterface.viewOptedCourses(CRSApplication.userId);
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 		System.out.println("----------------------------------------------------------------------------------------");
@@ -168,7 +168,7 @@ public class CRSProfessorMenu {
 			arr = professorInterface.viewEnrolledStudents(courseId, session);
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 
 		System.out.println("---------------------------------------------------");
@@ -229,7 +229,7 @@ public class CRSProfessorMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}
 	}
 
