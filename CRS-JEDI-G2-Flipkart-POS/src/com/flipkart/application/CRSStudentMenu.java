@@ -6,6 +6,8 @@ package com.flipkart.application;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.bean.Payment;
@@ -45,6 +47,8 @@ import com.flipkart.exception.UserEmailNotFoundException;
  */
 public class CRSStudentMenu {
 
+	Logger logger = Logger.getLogger(CRSStudentMenu.class.getName());
+
 	/** The student interface. */
 	StudentInterface studentInterface = StudentServiceImpl.getInstance();
 
@@ -80,10 +84,10 @@ public class CRSStudentMenu {
 
 			} catch (SQLException e) {
 				// Auto-generated catch block
-				System.out.println(e.getMessage());
+				logger.error(e.getMessage());
 			} catch (UserNotFoundException e) {
 				// Auto-generated catch block
-				System.out.println(e.getMessage());
+				logger.error(e.getMessage());
 			}
 		}
 		if (student.getApprovalStatus().equals(Constants.FALSE)) {
@@ -169,10 +173,10 @@ public class CRSStudentMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (UserEmailNotFoundException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -224,10 +228,10 @@ public class CRSStudentMenu {
 			}
 		} catch (ConstantFlagNotSetException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 
 	}
@@ -255,7 +259,7 @@ public class CRSStudentMenu {
 			System.out.println("success");
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -284,10 +288,10 @@ public class CRSStudentMenu {
 					"---------------------------------------------------------------------------------------------------------------");
 			System.out.println();
 		} catch (CourseNotFoundException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 			return;
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -321,9 +325,9 @@ public class CRSStudentMenu {
 			}
 		} catch (CourseCatalogEntryNotFoundException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 		return selectedCourses;
 	}
@@ -375,20 +379,18 @@ public class CRSStudentMenu {
 					"---------------------------------------------------------------------------------------------------------------");
 			System.out.println();
 
-
 		} catch (InvalidCCSessionSemesterException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 			return;
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 			return;
 		} catch (CourseNotFoundException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 
 	}
-
 
 	/**
 	 * Registered courses.
@@ -402,15 +404,17 @@ public class CRSStudentMenu {
 
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------------------");
-			System.out.printf("%10s %15s %15s %10s %20s\n", "Course ID", "Course Name", "Department", "Credits", "Professor ID");
+			System.out.printf("%10s %15s %15s %10s %20s\n", "Course ID", "Course Name", "Department", "Credits",
+					"Professor ID");
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------------------");
 
 			for (RegisteredCourse regCourse : arr) {
 				Course course = courseInterface.getCourse(regCourse.getCourseId());
 				CourseCatalog catalog = courseCatalogInterface.getCourseCatalog(regCourse.getCourseId());
-				
-				System.out.printf("%10s %15s %15s %10s %20s\n", course.getCourseID(), course.getCourseName(), course.getDepartment(), catalog.getCredits(), catalog.getProfessorId());
+
+				System.out.printf("%10s %15s %15s %10s %20s\n", course.getCourseID(), course.getCourseName(),
+						course.getDepartment(), catalog.getCredits(), catalog.getProfessorId());
 
 			}
 			System.out.println(
@@ -419,13 +423,13 @@ public class CRSStudentMenu {
 
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (CourseCatalogEntryNotFoundException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (CourseNotFoundException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (NoRegisteredCoursesException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -452,10 +456,10 @@ public class CRSStudentMenu {
 			System.out.println();
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (FeeRecieptNotFoundException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -491,18 +495,18 @@ public class CRSStudentMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (SemesterReportCardNotFound e) {
 
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (CourseCatalogEntryNotFoundException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (CourseNotFoundException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (NoRegisteredCoursesException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 
 	}
@@ -581,18 +585,18 @@ public class CRSStudentMenu {
 			}
 		} catch (SQLException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (ConstantFlagNotSetException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (CourseCatalogEntryNotFoundException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (CourseNotFoundException e) {
 			// Auto-generated catch block
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		} catch (NoRegisteredCoursesException e) {
-			System.out.println(e.getMessage());
+			logger.error(e.getMessage());
 		}
 	}
 }
