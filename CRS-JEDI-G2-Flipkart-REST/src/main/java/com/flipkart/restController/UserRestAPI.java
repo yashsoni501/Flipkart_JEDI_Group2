@@ -4,6 +4,7 @@
 package com.flipkart.restController;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -14,14 +15,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-import com.flipkart.application.CRSAdminMenu;
-import com.flipkart.application.CRSProfessorMenu;
-import com.flipkart.application.CRSStudentMenu;
 import com.flipkart.bean.Student;
 import com.flipkart.constant.Constants;
-import com.flipkart.exception.InvalidCredentialsException;
-import com.flipkart.exception.UserEmailNotFoundException;
-import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.service.AuthInterface;
 import com.flipkart.service.AuthServiceImpl;
 import com.flipkart.service.StudentInterface;
@@ -36,6 +31,7 @@ public class UserRestAPI {
 
 	AuthInterface authInterface = AuthServiceImpl.getInstance();
 	StudentInterface studentInterface = StudentServiceImpl.getInstance();
+//	ProfessorInterface profInterface = ProfessorServiceImpl.getInstance();
 
 	@POST
 	@Path("/login")
@@ -48,15 +44,15 @@ public class UserRestAPI {
 			if (userId != null) {
 				String userRole = authInterface.getRole(userId);
 
-				if(userRole.equals(Constants.USER_ROLE_STUDENT)){
+				if (userRole.equals(Constants.USER_ROLE_STUDENT)) {
 					Student student = studentInterface.getStudentById(userId);
-					
+
 					if (student.getApprovalStatus().equals(Constants.FALSE)) {
 						return Response.status(200).entity("Login Failed. You are not Approved by admin").build();
 					}
 				}
 				return Response.status(200).entity("Login successful").build();
-				
+
 			} else {
 				return Response.status(200).entity("Login Failed").build();
 			}
@@ -64,13 +60,12 @@ public class UserRestAPI {
 			return Response.status(500).entity(e.getMessage()).build();
 		}
 	}
-	
-	
+
 	@POST
 	@Path("/updatePassword")
 	public Response updatePassword(@NotNull @FormParam("email") String email,
-			@NotNull @FormParam("password") String oldPassword,
-		@NotNull @FormParam("password") String newPassword) {
+			@NotNull @FormParam("oldPassword") String oldPassword,
+			@NotNull @FormParam("newPassword") String newPassword) {
 
 		try {
 			boolean isUpdated = authInterface.updatePassword(email, oldPassword, newPassword);
@@ -78,13 +73,33 @@ public class UserRestAPI {
 				return Response.status(200).entity("Password Updated Successfully").build();
 			else
 				return Response.status(200).entity("Something went wrong, please try again!").build();
-			
+
 		} catch (Exception e) {
 			return Response.status(500).entity(e.getMessage()).build();
 		}
 	}
-	
-	
-	
+
+	@GET
+	@Path("/role")
+	public Response getRole(@NotNull @QueryParam("userid") String userId) {
+		try {
+			String role = authInterface.getRole(userId);
+
+//			if(role.equals(Constants.USER_ROLE_PROFESSOR)) {
+//				ArrayList<Professor> profs = new ArrayList<Professor>();
+//				profs.add(profInterface.getProfessorDetails(userId));
+//				profs.add(profInterface.getProfessorDetails(userId));
+//				profs.add(profInterface.getProfessorDetails(userId));
+//			
+//				return Response.status(200).entity(profs).build();
+//
+//			}
+
+			return Response.status(200).entity("Your Role is " + role).build();
+
+		} catch (Exception e) {
+			return Response.status(500).entity(e.getMessage()).build();
+		}
+	}
 
 }

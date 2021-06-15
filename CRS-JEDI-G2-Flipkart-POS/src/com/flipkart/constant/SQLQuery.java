@@ -56,7 +56,7 @@ public class SQLQuery {
 
 	// Professor DAO Queries
 	public static final String SELECT_OPTED_COURSES_PROF = "select * from courseCatalog where profid = ?";
-	public static final String OPT_IN_COURSE_PROF = "update courseCatalog set profid = ? where courseid = ?";
+	public static final String OPT_IN_COURSE_PROF = "update courseCatalog set profid = ? where (courseid = ? and profid is null)";	
 	public static final String GET_PROFESSOR_DETAIL = "Select * from professor where profid = ?";
 	public static final String VIEW_ENROLLED_STUDENTS = "select stuid from registeredCourse where courseid = ? AND session = ?";
 	public static final String SUBMIT_GRADES_PROF = "update registeredCourse set grade = ? where courseid = ? and stuid = ?";
