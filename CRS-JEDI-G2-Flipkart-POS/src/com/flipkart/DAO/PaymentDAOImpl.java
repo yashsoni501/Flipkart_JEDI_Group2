@@ -64,14 +64,11 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 		ResultSet rs = stmt.executeQuery();
 
 		if (!rs.next()) {
-
-			feePayment.setStudentId(studentId);
-			feePayment.setStatus(Constants.PAYMENT_FAILURE);
-			feePayment.setSemester(semester);
-
+			
 			FeeRecieptNotFoundException e = new FeeRecieptNotFoundException(studentId, semester);
 			logger.error(e.getMessage());
 			throw e;
+			
 		} else {
 			feePayment.setStudentId(studentId);
 			feePayment.setStatus(rs.getString("status"));
@@ -80,8 +77,8 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 			feePayment.setAmount(rs.getFloat("amount"));
 			feePayment.setModeOfPayment(rs.getString("modeOfPayment"));
 			feePayment.setReferenceId(rs.getString("referenceId"));
+			return feePayment;
 		}
-		return feePayment;
 	}
 
 	/**

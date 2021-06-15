@@ -502,14 +502,12 @@ public class CRSStudentMenu {
 			Payment reciept = new Payment();
 			try {
 				reciept = paymentInterface.getFeeReciept(CRSApplication.userId, semester);
-			} catch (FeeRecieptNotFoundException e) {
-				// Auto-generated catch block
-
-			}
-
-			if (reciept.getStatus().equalsIgnoreCase(Constants.PAYMENT_SUCCESS)) {
 				System.out.println("Fee is already paid for " + semester + " semester");
 				return;
+				
+			} catch (FeeRecieptNotFoundException e) {
+				// Auto-generated catch block
+				System.out.println("Entering Payment Gateway... Please be patient");
 			}
 
 			ArrayList<RegisteredCourse> arr1 = registeredCourseInterface.getRegisteredCourses(student.getStudentID(),
