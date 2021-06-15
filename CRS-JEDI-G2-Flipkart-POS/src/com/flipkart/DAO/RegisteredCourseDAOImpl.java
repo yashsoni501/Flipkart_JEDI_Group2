@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Student;
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
@@ -23,6 +25,7 @@ import com.flipkart.bean.RegisteredCourse;
  */
 public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 
+	Logger logger = Logger.getLogger(RegisteredCourseDAOImpl.class.getName());
 	/** The instance. */
 	private static volatile RegisteredCourseDAOImpl instance = null;
 
@@ -86,7 +89,9 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 		}
 
 		if (studentsFound.size() == 0) {
-			throw new NoStudentEnrolledException(courseId, semester, session);
+			NoStudentEnrolledException e = new NoStudentEnrolledException(courseId, semester, session);
+			logger.error(e.getMessage());
+			throw e;
 		}
 
 		return studentsFound;
@@ -127,7 +132,9 @@ public class RegisteredCourseDAOImpl implements RegisteredCourseDAOInterface {
 		}
 
 		if (RegisteredCourseList.size() == 0) {
-			throw new NoRegisteredCoursesException(studentId, semester);
+			NoRegisteredCoursesException e = new NoRegisteredCoursesException(studentId, semester);
+			logger.error(e.getMessage());
+			throw e;
 		}
 
 		return RegisteredCourseList;

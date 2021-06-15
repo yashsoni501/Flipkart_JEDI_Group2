@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalog;
 import com.flipkart.utils.DBUtils;
@@ -27,6 +29,7 @@ import com.flipkart.exception.InvalidDepartmentException;
  */
 public class CourseDAOImpl implements CourseDAOInterface {
 
+	Logger logger = Logger.getLogger(CourseDAOImpl.class.getName());
 	/** The instance. */
 	public static volatile CourseDAOImpl instance = null;
 
@@ -69,7 +72,9 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			res.setCourseName(rs.getString("courseName"));
 			res.setDepartment(rs.getString("department"));
 		} else {
-			throw new CourseNotFoundException(courseId);
+			CourseNotFoundException e = new CourseNotFoundException(courseId);
+			logger.error(e.getMessage());
+			throw e;
 		}
 
 		return res;
@@ -105,7 +110,9 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		}
 
 		if (res.size() == 0) {
-			throw new EmptyCourseListExcpetion();
+			EmptyCourseListExcpetion e = new EmptyCourseListExcpetion();
+			logger.error(e.getMessage());
+			throw e;
 		}
 
 		return res;
@@ -138,7 +145,9 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			res.setSession(rs.getString("session"));
 			res.setCredits(rs.getFloat("credits"));
 		} else {
-			throw new CourseCatalogEntryNotFoundException(courseId);
+			CourseCatalogEntryNotFoundException e = new CourseCatalogEntryNotFoundException(courseId);
+			logger.error(e.getMessage());
+			throw e;
 		}
 
 		return res;
@@ -183,7 +192,9 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		}
 
 		if (res.size() == 0) {
-			throw new InvalidCCSessionSemesterException(session, semester);
+			InvalidCCSessionSemesterException e = new InvalidCCSessionSemesterException(session, semester);
+			logger.error(e.getMessage());
+			throw e;
 		}
 
 		return res;
@@ -224,7 +235,9 @@ public class CourseDAOImpl implements CourseDAOInterface {
 			}
 
 			if (res.size() == 0) {
-				throw new InvalidDepartmentException(department);
+				InvalidDepartmentException e = new InvalidDepartmentException(department);
+				logger.error(e.getMessage());
+				throw e;
 			}
 		}
 
@@ -264,7 +277,9 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		}
 
 		if (res.size() == 0) {
-			throw new EmptyCourseCatalogListExcpetion();
+			EmptyCourseCatalogListExcpetion e = new EmptyCourseCatalogListExcpetion();
+			logger.error(e.getMessage());
+			throw e;
 		}
 
 		return res;
@@ -306,7 +321,9 @@ public class CourseDAOImpl implements CourseDAOInterface {
 		}
 
 		if (res.size() == 0) {
-			throw new EmptyCourseCatalogListExcpetion();
+			EmptyCourseCatalogListExcpetion e = new EmptyCourseCatalogListExcpetion();
+			logger.error(e.getMessage());
+			throw e;
 		}
 
 		return res;

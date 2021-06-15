@@ -94,13 +94,13 @@ public class CRSApplication {
 				System.out.println("Something went wrong");
 			}
 		} catch (UserEmailAlreadyInUseException e) {
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		} catch (InvalidCredentialsException e) {
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		} catch (UserEmailNotFoundException e) {
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -125,11 +125,11 @@ public class CRSApplication {
 			else
 				System.out.println("Something went wrong, please try again!");
 		} catch (InvalidCredentialsException e) {
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		} catch (UserEmailNotFoundException e) {
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -180,13 +180,13 @@ public class CRSApplication {
 				System.out.println("Invalid Credentials");
 			}
 		} catch (InvalidCredentialsException e) {
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		} catch (SQLException e) {
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		} catch (UserEmailNotFoundException e) {
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		} catch (UserNotFoundException e) {
-			logger.error(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
