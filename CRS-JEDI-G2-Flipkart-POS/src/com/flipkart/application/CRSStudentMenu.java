@@ -6,37 +6,11 @@ package com.flipkart.application;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.flipkart.bean.Course;
-import com.flipkart.bean.CourseCatalog;
-import com.flipkart.bean.Payment;
-import com.flipkart.bean.RegisteredCourse;
-import com.flipkart.bean.SemesterReportCard;
-import com.flipkart.bean.Student;
-import com.flipkart.service.AdminInterface;
-import com.flipkart.service.AdminServiceImpl;
-import com.flipkart.service.CourseCatalogInterface;
-import com.flipkart.service.CourseCatalogServiceImpl;
-import com.flipkart.service.CourseInterface;
-import com.flipkart.service.CourseServiceImpl;
-import com.flipkart.service.PaymentInterface;
-import com.flipkart.service.PaymentServiceImpl;
-import com.flipkart.service.RegisteredCourseInterface;
-import com.flipkart.service.RegisteredCourseServiceImpl;
-import com.flipkart.service.SemesterReportCardInterface;
-import com.flipkart.service.SemesterReportCardServiceImpl;
-import com.flipkart.service.StudentInterface;
-import com.flipkart.service.StudentServiceImpl;
+import com.flipkart.bean.*;
+import com.flipkart.service.*;
 import com.flipkart.utils.MenuOptionScanner;
 import com.flipkart.constant.Constants;
-import com.flipkart.exception.ConstantFlagNotSetException;
-import com.flipkart.exception.CourseCatalogEntryNotFoundException;
-import com.flipkart.exception.CourseNotFoundException;
-import com.flipkart.exception.FeeRecieptNotFoundException;
-import com.flipkart.exception.InvalidCCSessionSemesterException;
-import com.flipkart.exception.NoRegisteredCoursesException;
-import com.flipkart.exception.UserNotFoundException;
-import com.flipkart.exception.SemesterReportCardNotFound;
-import com.flipkart.exception.UserEmailNotFoundException;
+import com.flipkart.exception.*;
 
 /**
  * The Class CRSStudentMenu.
