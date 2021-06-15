@@ -6,6 +6,8 @@ package com.flipkart.application;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.service.AdminInterface;
 import com.flipkart.service.AdminServiceImpl;
 import com.flipkart.service.AuthInterface;
@@ -28,6 +30,7 @@ public class CRSApplication {
 	/** The user id. */
 	public static String userId = null;
 
+	Logger logger = Logger.getLogger(CRSApplication.class.getName());
 	/** The auth interface. */
 	public static AuthInterface authInterface = AuthServiceImpl.getInstance();
 
@@ -66,7 +69,7 @@ public class CRSApplication {
 				System.out.println("Invalid Input");
 			}
 		} while (userInput != 4);
-		
+
 		scan.close();
 	}
 

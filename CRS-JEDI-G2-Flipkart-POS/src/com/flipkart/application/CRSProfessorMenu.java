@@ -6,9 +6,30 @@ package com.flipkart.application;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.flipkart.bean.*;
-import com.flipkart.exception.*;
-import com.flipkart.service.*;
+import org.apache.log4j.Logger;
+
+import com.flipkart.bean.Course;
+import com.flipkart.bean.CourseCatalog;
+import com.flipkart.bean.Professor;
+import com.flipkart.bean.Student;
+import com.flipkart.exception.ConstantFlagNotSetException;
+import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.GradeSubmissionFailedException;
+import com.flipkart.exception.InvalidDepartmentException;
+import com.flipkart.exception.NoEnrolledStudentsException;
+import com.flipkart.exception.NoOptedCoursesException;
+import com.flipkart.exception.OptingTheCourseFailedException;
+import com.flipkart.exception.ProfessorNotAddedException;
+import com.flipkart.service.AdminInterface;
+import com.flipkart.service.AdminServiceImpl;
+import com.flipkart.service.CourseCatalogInterface;
+import com.flipkart.service.CourseCatalogServiceImpl;
+import com.flipkart.service.CourseInterface;
+import com.flipkart.service.CourseServiceImpl;
+import com.flipkart.service.ProfessorInterface;
+import com.flipkart.service.ProfessorServiceImpl;
+import com.flipkart.service.RegisteredCourseInterface;
+import com.flipkart.service.RegisteredCourseServiceImpl;
 import com.flipkart.utils.MenuOptionScanner;
 
 // Auto-generated Javadoc
@@ -18,6 +39,8 @@ import com.flipkart.utils.MenuOptionScanner;
  * @author yashsoni501
  */
 public class CRSProfessorMenu {
+
+	Logger logger = Logger.getLogger(CRSProfessorMenu.class.getName());
 
 	/** The professor interface. */
 	ProfessorInterface professorInterface = ProfessorServiceImpl.getInstance();

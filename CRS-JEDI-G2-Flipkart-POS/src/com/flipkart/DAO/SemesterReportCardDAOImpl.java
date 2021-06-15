@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.SemesterReportCard;
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
@@ -21,6 +23,7 @@ import com.flipkart.exception.SemesterReportCardNotFound;
  */
 public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface {
 
+	Logger logger = Logger.getLogger(SemesterReportCardDAOImpl.class.getName());
 	/** The instance. */
 	private static volatile SemesterReportCardDAOImpl instance = null;
 
@@ -87,7 +90,9 @@ public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface
 		ResultSet rs = stmt.executeQuery();
 
 		if (!rs.next()) {
-			throw new SemesterReportCardNotFound(studentId);
+			SemesterReportCardNotFound e = new SemesterReportCardNotFound(studentId);
+			logger.error(e.getMessage());
+			throw e;
 		}
 
 		while (rs.next()) {

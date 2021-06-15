@@ -4,7 +4,6 @@
 package com.flipkart.utils;
 
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 import com.flipkart.application.CRSApplication;
 
@@ -34,13 +33,11 @@ public class MenuOptionScanner {
 		try {
 			int userInput = CRSApplication.scan.nextInt();
 			return userInput;
-		} 
-		catch (InputMismatchException e) {
+		} catch (InputMismatchException e) {
 			CRSApplication.scan.nextLine();
 			System.out.println("Please use integer inputs.");
 			return 1000;
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			CRSApplication.scan.nextLine();
 			System.out.println(e.getMessage());
 			return 1000;

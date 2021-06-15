@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Savepoint;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Admin;
 import com.flipkart.constant.Constants;
 import com.flipkart.utils.DBUtils;
@@ -21,6 +23,8 @@ import com.flipkart.exception.UserNotFoundException;
  * The Class AdminDAOImpl.
  */
 public class AdminDAOImpl implements AdminDAOInterface {
+
+	Logger logger = Logger.getLogger(AdminDAOImpl.class.getName());
 
 	/** The instance. */
 	private static volatile AdminDAOImpl instance = null;
@@ -89,7 +93,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		int rows = stmt.executeUpdate();
 
 		if (rows == 0) {
-			throw new CourseNotFoundException(courseId);
+			CourseNotFoundException e = new CourseNotFoundException(courseId);
+			logger.error(e.getMessage());
+			throw e;
 
 		} else {
 			return true;
@@ -129,7 +135,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		if (row == 0) {
 			conn.rollback(safepoint);
 			conn.setAutoCommit(true);
-			throw new UserEmailAlreadyInUseException(emailId);
+			UserEmailAlreadyInUseException e = new UserEmailAlreadyInUseException(emailId);
+			logger.error(e.getMessage());
+			throw e;
 
 		} else {
 			AuthDAOInterface authDAO = AuthDAOImpl.getInstance();
@@ -148,8 +156,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				conn.rollback(safepoint);
 				conn.setAutoCommit(true);
 
-				throw new UserEmailAlreadyInUseException(emailId);
-
+				UserEmailAlreadyInUseException e = new UserEmailAlreadyInUseException(emailId);
+				logger.error(e.getMessage());
+				throw e;
 			} else {
 				conn.commit();
 				conn.setAutoCommit(true);
@@ -192,8 +201,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		if (row == 0) {
 			conn.rollback(safepoint);
 			conn.setAutoCommit(true);
-			throw new UserEmailAlreadyInUseException(emailId);
-
+			UserEmailAlreadyInUseException e = new UserEmailAlreadyInUseException(emailId);
+			logger.error(e.getMessage());
+			throw e;
 		} else {
 			AuthDAOInterface authDAO = AuthDAOImpl.getInstance();
 			String uid = authDAO.verifyUserWithEmailPassword(emailId, password);
@@ -213,8 +223,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			if (rows == 0) {
 				conn.rollback(safepoint);
 				conn.setAutoCommit(true);
-				throw new UserEmailAlreadyInUseException(emailId);
-
+				UserEmailAlreadyInUseException e = new UserEmailAlreadyInUseException(emailId);
+				logger.error(e.getMessage());
+				throw e;
 			} else {
 				conn.commit();
 				conn.setAutoCommit(true);
@@ -332,8 +343,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		if (rows == 0) {
 			conn.rollback(savePoint);
 			conn.setAutoCommit(true);
-			throw new UserNotFoundException(profId);
-
+			UserNotFoundException e = new UserNotFoundException(profId);
+			logger.error(e.getMessage());
+			throw e;
 		} else {
 			stmt = conn.prepareStatement(SQLQuery.REMOVE_PROFESSOR_AUTH);
 			stmt.setString(1, profId);
@@ -342,8 +354,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			if (rows == 0) {
 				conn.rollback(savePoint);
 				conn.setAutoCommit(true);
-				throw new UserNotFoundException(profId);
-
+				UserNotFoundException e = new UserNotFoundException(profId);
+				logger.error(e.getMessage());
+				throw e;
 			} else {
 				conn.commit();
 				conn.setAutoCommit(true);
@@ -375,7 +388,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		int rows = stmt.executeUpdate();
 
 		if (rows == 0) {
-			throw new UserNotFoundException(profId);
+			UserNotFoundException e = new UserNotFoundException(profId);
+			logger.error(e.getMessage());
+			throw e;
 		} else {
 			return true;
 		}
@@ -407,8 +422,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 		int rows = stmt.executeUpdate();
 		if (rows == 0) {
-			throw new UserEmailNotFoundException(email);
-
+			UserEmailNotFoundException e = new UserEmailNotFoundException(email);
+			logger.error(e.getMessage());
+			throw e;
 		} else {
 			return true;
 		}
@@ -432,8 +448,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 		int rows = stmt.executeUpdate();
 		if (rows == 0) {
-			throw new CourseNotFoundException(courseId);
-
+			CourseNotFoundException e = new CourseNotFoundException(courseId);
+			logger.error(e.getMessage());
+			throw e;
 		} else {
 			return true;
 		}
@@ -461,8 +478,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 		int rows = stmt.executeUpdate();
 		if (rows == 0) {
-			throw new CourseNotFoundException(courseId);
-
+			CourseNotFoundException e = new CourseNotFoundException(courseId);
+			logger.error(e.getMessage());
+			throw e;
 		} else {
 			return true;
 		}
@@ -494,8 +512,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 		int rows = stmt.executeUpdate();
 		if (rows == 0) {
-			throw new CourseNotFoundException(courseId);
-
+			CourseNotFoundException e = new CourseNotFoundException(courseId);
+			logger.error(e.getMessage());
+			throw e;
 		} else {
 			return true;
 		}
@@ -527,8 +546,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 
 		int rows = stmt.executeUpdate();
 		if (rows == 0) {
-			throw new CourseNotFoundException(courseId);
-
+			CourseNotFoundException e = new CourseNotFoundException(courseId);
+			logger.error(e.getMessage());
+			throw e;
 		} else {
 			return true;
 		}
@@ -552,8 +572,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		ResultSet resultSet = stmt.executeQuery();
 
 		if (!resultSet.next()) {
-			throw new UserNotFoundException(userId);
-
+			UserNotFoundException e = new UserNotFoundException(userId);
+			logger.error(e.getMessage());
+			throw e;
 		} else {
 			Admin admin = new Admin();
 			admin.setAdminID(resultSet.getInt("adminid"));
@@ -587,7 +608,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				return false;
 			}
 		} else {
-			throw new ConstantFlagNotSetException(key);
+			ConstantFlagNotSetException e = new ConstantFlagNotSetException(key);
+			logger.error(e.getMessage());
+			throw e;
 		}
 	}
 
@@ -614,7 +637,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 		int rows = stmt.executeUpdate();
 
 		if (rows == 0) {
-			throw new UserNotFoundException(studentId);
+			UserNotFoundException e = new UserNotFoundException(studentId);
+			logger.error(e.getMessage());
+			throw e;
 		} else {
 			return true;
 		}
@@ -642,7 +667,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 			conn.rollback(savePoint);
 			conn.setAutoCommit(true);
 
-			throw new UserNotFoundException(studentId);
+			UserNotFoundException e = new UserNotFoundException(studentId);
+			logger.error(e.getMessage());
+			throw e;
 
 		} else {
 			stmt = conn.prepareStatement(SQLQuery.REMOVE_STUDENT_AUTH);
@@ -653,7 +680,9 @@ public class AdminDAOImpl implements AdminDAOInterface {
 				conn.rollback(savePoint);
 				conn.setAutoCommit(true);
 
-				throw new UserNotFoundException(studentId);
+				UserNotFoundException e = new UserNotFoundException(studentId);
+				logger.error(e.getMessage());
+				throw e;
 			} else {
 				conn.commit();
 				conn.setAutoCommit(true);

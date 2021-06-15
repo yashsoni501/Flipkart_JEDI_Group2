@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.utils.DBUtils;
 import com.flipkart.constant.SQLQuery;
 import com.flipkart.exception.InvalidCredentialsException;
@@ -20,6 +22,8 @@ import com.flipkart.exception.UserNotFoundException;
  * @author aysh
  */
 public class AuthDAOImpl implements AuthDAOInterface {
+
+	Logger logger = Logger.getLogger(AuthDAOImpl.class.getName());
 
 	/** The instance. */
 	private static volatile AuthDAOImpl instance = null;
@@ -65,8 +69,9 @@ public class AuthDAOImpl implements AuthDAOInterface {
 		ResultSet resultSet = stmt.executeQuery();
 
 		if (!resultSet.next()) {
-			throw new UserEmailNotFoundException(email);
-
+			UserEmailNotFoundException e = new UserEmailNotFoundException(email);
+			logger.error(e.getMessage());
+			throw e;
 		} else {
 			String savedPassword = resultSet.getString("password");
 			String uid = resultSet.getString("uid");
@@ -74,7 +79,9 @@ public class AuthDAOImpl implements AuthDAOInterface {
 			if (password.equals(savedPassword)) {
 				return uid;
 			} else {
-				throw new InvalidCredentialsException(email);
+				InvalidCredentialsException e = new InvalidCredentialsException(email);
+				logger.error(e.getMessage());
+				throw e;
 			}
 		}
 	}
@@ -166,7 +173,9 @@ public class AuthDAOImpl implements AuthDAOInterface {
 		if (resultSet.next()) {
 			return resultSet.getString("userRole");
 		} else {
-			throw new UserNotFoundException(userId);
+			UserNotFoundException e = new UserNotFoundException(userId);
+			logger.error(e.getMessage());
+			throw e;
 		}
 	}
 }

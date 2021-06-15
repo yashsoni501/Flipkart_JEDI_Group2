@@ -6,6 +6,8 @@ package com.flipkart.application;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.*;
 import com.flipkart.service.*;
 import com.flipkart.utils.MenuOptionScanner;
@@ -18,6 +20,8 @@ import com.flipkart.exception.*;
  * @author Aeron
  */
 public class CRSStudentMenu {
+
+	Logger logger = Logger.getLogger(CRSStudentMenu.class.getName());
 
 	/** The student interface. */
 	StudentInterface studentInterface = StudentServiceImpl.getInstance();
@@ -349,7 +353,6 @@ public class CRSStudentMenu {
 					"---------------------------------------------------------------------------------------------------------------");
 			System.out.println();
 
-
 		} catch (InvalidCCSessionSemesterException e) {
 			// Auto-generated catch block
 			System.out.println(e.getMessage());
@@ -363,7 +366,6 @@ public class CRSStudentMenu {
 
 	}
 
-
 	/**
 	 * Registered courses.
 	 */
@@ -376,15 +378,17 @@ public class CRSStudentMenu {
 
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------------------");
-			System.out.printf("%10s %15s %15s %10s %20s\n", "Course ID", "Course Name", "Department", "Credits", "Professor ID");
+			System.out.printf("%10s %15s %15s %10s %20s\n", "Course ID", "Course Name", "Department", "Credits",
+					"Professor ID");
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------------------");
 
 			for (RegisteredCourse regCourse : arr) {
 				Course course = courseInterface.getCourse(regCourse.getCourseId());
 				CourseCatalog catalog = courseCatalogInterface.getCourseCatalog(regCourse.getCourseId());
-				
-				System.out.printf("%10s %15s %15s %10s %20s\n", course.getCourseID(), course.getCourseName(), course.getDepartment(), catalog.getCredits(), catalog.getProfessorId());
+
+				System.out.printf("%10s %15s %15s %10s %20s\n", course.getCourseID(), course.getCourseName(),
+						course.getDepartment(), catalog.getCredits(), catalog.getProfessorId());
 
 			}
 			System.out.println(

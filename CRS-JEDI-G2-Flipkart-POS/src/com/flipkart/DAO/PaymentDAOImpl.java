@@ -4,6 +4,9 @@
 package com.flipkart.DAO;
 
 import java.util.Date;
+
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +25,7 @@ import com.flipkart.exception.FeeRecieptNotFoundException;
  */
 public class PaymentDAOImpl implements PaymentDAOInterface {
 
+	Logger logger = Logger.getLogger(PaymentDAOImpl.class.getName());
 	/** The instance. */
 	private static volatile PaymentDAOImpl instance = null;
 
@@ -65,7 +69,9 @@ public class PaymentDAOImpl implements PaymentDAOInterface {
 			feePayment.setStatus(Constants.PAYMENT_FAILURE);
 			feePayment.setSemester(semester);
 
-			throw new FeeRecieptNotFoundException(studentId, semester);
+			FeeRecieptNotFoundException e = new FeeRecieptNotFoundException(studentId, semester);
+			logger.error(e.getMessage());
+			throw e;
 		} else {
 			feePayment.setStudentId(studentId);
 			feePayment.setStatus(rs.getString("status"));

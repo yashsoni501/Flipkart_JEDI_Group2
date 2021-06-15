@@ -28,7 +28,7 @@ public class DBUtils {
 		else {
 			try {
 				Properties prop = new Properties();
-				InputStream inputStream = DBUtils.class.getClassLoader().getResourceAsStream("/config.properties");
+				InputStream inputStream = DBUtils.class.getClassLoader().getResourceAsStream("config.properties");
 				prop.load(inputStream);
 				String driver = prop.getProperty("driver");
 				String url = prop.getProperty("url");
@@ -37,13 +37,13 @@ public class DBUtils {
 				Class.forName(driver);
 				connection = DriverManager.getConnection(url, user, password);
 			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 			return connection;
 		}
