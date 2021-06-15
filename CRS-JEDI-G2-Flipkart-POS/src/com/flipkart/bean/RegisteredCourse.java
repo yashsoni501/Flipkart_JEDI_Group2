@@ -16,14 +16,14 @@ public class RegisteredCourse {
 	private String studentId;
 
 	/**
-	 * @return the course_id
+	 * @return the courseId
 	 */
 	public String getCourseId() {
 		return courseId;
 	}
 
 	/**
-	 * @param course_id the course_id to set
+	 * @param courseId the courseId to set
 	 */
 	public void setCourseId(String courseId) {
 		this.courseId = courseId;
@@ -72,14 +72,14 @@ public class RegisteredCourse {
 	}
 
 	/**
-	 * @return the student_id
+	 * @return the studentId
 	 */
 	public String getStudentId() {
 		return studentId;
 	}
 
 	/**
-	 * @param student_id the student_id to set
+	 * @param studentId the studentId to set
 	 */
 	public void setStudentId(String studentId) {
 		this.studentId = studentId;
