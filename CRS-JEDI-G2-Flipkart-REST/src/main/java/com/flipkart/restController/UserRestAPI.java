@@ -3,10 +3,6 @@
  */
 package com.flipkart.restController;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -32,7 +28,13 @@ public class UserRestAPI {
 	AuthInterface authInterface = AuthServiceImpl.getInstance();
 	StudentInterface studentInterface = StudentServiceImpl.getInstance();
 //	ProfessorInterface profInterface = ProfessorServiceImpl.getInstance();
-
+	
+	@GET
+	@Path("/hello")
+	public Response getHello() {
+		return Response.status(200).entity("Hello from server").build();
+	}
+	
 	@POST
 	@Path("/login")
 	public Response verifyCredentials(@NotNull @FormParam("email") String email,
@@ -57,7 +59,7 @@ public class UserRestAPI {
 				return Response.status(200).entity("Login Failed").build();
 			}
 		} catch (Exception e) {
-			return Response.status(500).entity(e.getMessage()).build();
+			return Response.status(201).entity(e.getMessage()).build();
 		}
 	}
 
