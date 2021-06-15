@@ -1,0 +1,6 @@
+09:58:29,756 ERROR CRSApplication,main:183 - Incorrect password for the email: admin@crs
+10:29:46,708 ERROR CRSStudentMenu,main:462 - No fee reciept found for student: 8 for semester 1
+10:33:21,311 ERROR CRSAdminMenu,main:417 - Duplicate entry '6' for key 'courseCatalog.courseid'
+12:58:04,550 ERROR AuthDAOImpl,main:73 - No Account exists with email: admin
+17:42:13,203 ERROR PaymentDAOImpl,main:73 - No fee reciept found for student: 8 for semester 1
+17:47:03,515 ERROR PaymentDAOImpl,main:69 - No fee reciept found for student: 8 for semester 1
