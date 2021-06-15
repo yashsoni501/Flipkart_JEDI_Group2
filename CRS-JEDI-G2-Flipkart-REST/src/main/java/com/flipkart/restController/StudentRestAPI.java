@@ -26,6 +26,7 @@ import com.flipkart.service.CourseServiceImpl;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.flipkart.bean.Payment;
@@ -54,7 +55,6 @@ public class StudentRestAPI {
 	PaymentInterface paymentInterface = PaymentServiceImpl.getInstance();
 	AdminInterface adminInterface = AdminServiceImpl.getInstance();
 
-
 	private List<CourseDetail> getCourseDetail(List<String> courseids) {
 		try {
 
@@ -81,8 +81,8 @@ public class StudentRestAPI {
 
 	@GET
 	@Path("/allCourses")
-	public Response getAllCourses(@NotNull @FormParam("studentid") String studentId,
-			@NotNull @FormParam("semester") int semester) {
+	public Response getAllCourses(@NotNull @QueryParam("studentid") String studentId,
+			@NotNull @QueryParam("semester") int semester) {
 
 		try {
 			Student student = studentInterface.getStudentById(studentId);
@@ -102,8 +102,9 @@ public class StudentRestAPI {
 
 	@GET
 	@Path("/registeredCourses")
-	public Response getRegisteredCourses(@NotNull @FormParam("studentid") String studentId,
-			@NotNull @FormParam("semester") int semester) {
+	public Response getRegisteredCourses(
+			@NotNull @QueryParam("studentid") String studentId,
+			@NotNull @QueryParam("semester") int semester) {
 
 		try {
 			Student student = studentInterface.getStudentById(studentId);
@@ -119,11 +120,11 @@ public class StudentRestAPI {
 			return Response.status(400).entity(e.getMessage()).build();
 		}
 	}
-	
+
 	@GET
 	@Path("/viewStudent")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response viewStudent(@NotNull @FormParam("student id") String id) {
+	public Response viewStudent(@NotNull @QueryParam("studentid") String id) {
 
 		Student student;
 		try {
@@ -138,8 +139,10 @@ public class StudentRestAPI {
 	@POST
 	@Path("/modifyStudent")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response modifyStudent(@NotNull @FormParam("email") String email,
-			@NotNull @FormParam("name") String studentName, @NotNull @FormParam("department") String department,
+	public Response modifyStudent(
+			@NotNull @FormParam("email") String email,
+			@NotNull @FormParam("name") String studentName, 
+			@NotNull @FormParam("department") String department,
 			@NotNull @FormParam("session") String session) {
 
 		try {
@@ -156,9 +159,11 @@ public class StudentRestAPI {
 	@POST
 	@Path("/submitRegistration")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response submitRegistration(@NotNull @FormParam("student id") String id,
-			@NotNull @FormParam("session") String session, @NotNull @FormParam("semester") int semester,
-			@FormParam("selected courses") ArrayList<String> selectedCourses) {
+	public Response submitRegistration(
+			@NotNull @FormParam("student id") String id,
+			@NotNull @FormParam("session") String session, 
+			@NotNull @FormParam("semester") int semester,
+			@FormParam("selected courses") List<String> selectedCourses) {
 
 		if (selectedCourses.size() != 6) {
 			return Response.status(200)
@@ -179,7 +184,8 @@ public class StudentRestAPI {
 	@POST
 	@Path("/feeReceipt")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response feeReceipt(@NotNull @FormParam("student id") String id,
+	public Response feeReceipt(
+			@NotNull @FormParam("student id") String id,
 			@NotNull @FormParam("semester") int semester) {
 
 		try {
@@ -198,7 +204,9 @@ public class StudentRestAPI {
 	@POST
 	@Path("/payFees")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response payFees(@NotNull @FormParam("student id") String id, @NotNull @FormParam("semester") int semester,
+	public Response payFees(
+			@NotNull @FormParam("student id") String id, 
+			@NotNull @FormParam("semester") int semester,
 			@NotNull @FormParam("payment mode") String mode) {
 
 		try {
