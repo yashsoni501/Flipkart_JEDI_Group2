@@ -617,15 +617,15 @@ public class CRSAdminMenu {
 			arr = courseCatalogInterface.getAllCourseCatalog();
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------------------");
-			System.out.printf("%10s %15s %15s %10s %10s %10s\n", "Course ID", "Course Name", "Department", "Semester",
+			System.out.printf("%-10s %-15s %-15s %-10s %-10s %-10s\n", "Course ID", "Course Name", "Department", "Semester",
 					"Session", "Credits");
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------------------");
 			for (CourseCatalog catalog : arr) {
 				Course course = courseInterface.getCourse(catalog.getCourseId());
-				System.out.printf("%10s %15s %15s", course.getCourseID(), course.getCourseName(),
+				System.out.printf("%-10s %-15s %-15s", course.getCourseID(), course.getCourseName(),
 						course.getDepartment());
-				System.out.printf("%10s %10s %10s\n", catalog.getSemester(), catalog.getSession(),
+				System.out.printf("%-10s %-10s %-10s\n", catalog.getSemester(), catalog.getSession(),
 						catalog.getCredits());
 			}
 			System.out.println(
@@ -673,10 +673,10 @@ public class CRSAdminMenu {
 			ArrayList<Course> arr;
 			arr = courseInterface.getAllCourses();
 			System.out.println("-------------------------------------------");
-			System.out.printf("%10s %15s %15s\n", "Course ID", "Course Name", "Department");
+			System.out.printf("%-15s %-15s %-15s\n", "Course ID", "Course Name", "Department");
 			System.out.println("-------------------------------------------");
 			for (Course course : arr) {
-				System.out.printf("%10s %15s %15s\n", course.getCourseID(), course.getCourseName(),
+				System.out.printf("%-15s %-15s %-15s\n", course.getCourseID(), course.getCourseName(),
 						course.getDepartment());
 			}
 			System.out.println("-------------------------------------------");
@@ -725,11 +725,11 @@ public class CRSAdminMenu {
 			return;
 		}
 		System.out.println("--------------------------------------------------------------------------------");
-		System.out.printf("%15s %15s %15s %20s %10s\n", "Student ID", "Name", "Department", "Email ID", "Approval");
+		System.out.printf("%-15s %-15s %-15s %-20s %-10s\n", "Student ID", "Name", "Department", "Email ID", "Approval");
 		System.out.println("--------------------------------------------------------------------------------");
 
 		for (Student s : arr) {
-			System.out.printf("%15s %15s %15s %20s %10s\n", s.getStudentID(), s.getStudentName(), s.getDepartment(),
+			System.out.printf("%-15s %-15s %-15s %-20s %-10s\n", s.getStudentID(), s.getStudentName(), s.getDepartment(),
 					s.getEmailID(), s.getApprovalStatus());
 		}
 		System.out.println("--------------------------------------------------------------------------------");
@@ -798,10 +798,10 @@ public class CRSAdminMenu {
 		}
 
 		System.out.println("---------------------------------------------------------------------------");
-		System.out.printf("%15s %15s %15s %25s\n", "Professor ID", "Name", "Department", "Email ID");
+		System.out.printf("%-15s %-15s %-15s %-25s\n", "Professor ID", "Name", "Department", "Email ID");
 		System.out.println("---------------------------------------------------------------------------");
 		for (Professor prof : arr) {
-			System.out.printf("%15s %15s %15s %25s\n", prof.getProfessorId(), prof.getProfessorName(),
+			System.out.printf("%-15s %-15s %-15s %-25s\n", prof.getProfessorId(), prof.getProfessorName(),
 					prof.getDepartment(), prof.getEmailID());
 		}
 		System.out.println("---------------------------------------------------------------------------");
