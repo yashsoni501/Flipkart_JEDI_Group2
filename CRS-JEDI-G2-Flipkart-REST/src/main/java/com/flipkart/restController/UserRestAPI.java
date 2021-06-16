@@ -3,6 +3,8 @@
  */
 package com.flipkart.restController;
 
+import java.sql.SQLException;
+
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -13,6 +15,11 @@ import javax.ws.rs.core.Response;
 
 import com.flipkart.bean.Student;
 import com.flipkart.constant.Constants;
+import com.flipkart.exception.InvalidCredentialsException;
+import com.flipkart.exception.UserEmailAlreadyInUseException;
+import com.flipkart.exception.UserEmailNotFoundException;
+import com.flipkart.service.AdminInterface;
+import com.flipkart.service.AdminServiceImpl;
 import com.flipkart.service.AuthInterface;
 import com.flipkart.service.AuthServiceImpl;
 import com.flipkart.service.StudentInterface;
@@ -27,6 +34,7 @@ public class UserRestAPI {
 
 	AuthInterface authInterface = AuthServiceImpl.getInstance();
 	StudentInterface studentInterface = StudentServiceImpl.getInstance();
+	AdminInterface adminInterface = AdminServiceImpl.getInstance();
 //	ProfessorInterface profInterface = ProfessorServiceImpl.getInstance();
 	
 	@GET
@@ -63,6 +71,27 @@ public class UserRestAPI {
 		}
 	}
 
+	@POST
+	@Path("/registerStudent")
+	public Response registerStudent(
+			@NotNull @FormParam("name") String name,
+			@NotNull @FormParam("email") String email,
+			@NotNull @FormParam("password") String password,
+			@NotNull @FormParam("department") String department,
+			@NotNull @FormParam("session") String session) {
+
+		try {
+			if (adminInterface.addStudent(name, email, password, department, session)) {
+				return Response.status(300).entity("Registration Successful. You cannot login until admin's approval.").build();
+			} else {
+				return Response.status(300).entity("Something went wrong...Please try again").build();
+			}
+		} catch (Exception e) {
+			return Response.status(300).entity(e.getMessage()).build();
+		}
+	}
+
+	
 	@POST
 	@Path("/updatePassword")
 	public Response updatePassword(@NotNull @FormParam("email") String email,
