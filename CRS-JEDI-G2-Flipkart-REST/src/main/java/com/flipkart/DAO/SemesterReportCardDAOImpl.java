@@ -87,13 +87,8 @@ public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface
 		PreparedStatement stmt = conn.prepareStatement(SQLQuery.GET_ALL_REPORTS);
 
 		stmt.setString(1, studentId);
-		ResultSet rs = stmt.executeQuery();
 
-		if (!rs.next()) {
-			SemesterReportCardNotFound e = new SemesterReportCardNotFound(studentId);
-			logger.error(e.getMessage());
-			throw e;
-		}
+		ResultSet rs = stmt.executeQuery();
 
 		while (rs.next()) {
 			SemesterReportCard report = new SemesterReportCard();
@@ -105,6 +100,11 @@ public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface
 			allReports.add(report);
 		}
 
+		if (allReports.size() == 0) {
+			SemesterReportCardNotFound e = new SemesterReportCardNotFound(studentId);
+			logger.error(e.getMessage());
+			throw e;
+		}
 		return allReports;
 	}
 
