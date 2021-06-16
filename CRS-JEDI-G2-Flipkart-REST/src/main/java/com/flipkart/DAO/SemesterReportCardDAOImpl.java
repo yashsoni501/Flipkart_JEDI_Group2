@@ -79,6 +79,7 @@ public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface
 	@Override
 	public ArrayList<SemesterReportCard> getSemesterReportCardByStudentId(String studentId)
 			throws SQLException, SemesterReportCardNotFound {
+		System.out.println("Print toh ho bc \n\n\n\n ");
 
 		ArrayList<SemesterReportCard> allReports = new ArrayList<SemesterReportCard>();
 
@@ -87,25 +88,36 @@ public class SemesterReportCardDAOImpl implements SemesterReportCardDAOInterface
 		PreparedStatement stmt = conn.prepareStatement(SQLQuery.GET_ALL_REPORTS);
 
 		stmt.setString(1, studentId);
-		ResultSet rs = stmt.executeQuery();
+		logger.info(stmt);
 
-		if (!rs.next()) {
-			SemesterReportCardNotFound e = new SemesterReportCardNotFound(studentId);
+		try {
+			ResultSet rs = stmt.executeQuery();
+
+			logger.info(rs);
+
+			if (!rs.next()) {
+				SemesterReportCardNotFound e = new SemesterReportCardNotFound(studentId);
+				logger.error(e.getMessage());
+				throw e;
+			}
+
+			while (rs.next()) {
+				SemesterReportCard report = new SemesterReportCard();
+
+				report.setCurrentSem(rs.getInt("semester"));
+				report.setSgpa(rs.getFloat("sgpa"));
+				report.setStudentID(studentId);
+
+				allReports.add(report);
+			}
+
+			logger.info("Reports: " + allReports.size());
+		
+		} catch (Exception e) {
 			logger.error(e.getMessage());
-			throw e;
 		}
-
-		while (rs.next()) {
-			SemesterReportCard report = new SemesterReportCard();
-
-			report.setCurrentSem(rs.getInt("semester"));
-			report.setSgpa(rs.getFloat("sgpa"));
-			report.setStudentID(studentId);
-
-			allReports.add(report);
-		}
-
 		return allReports;
+
 	}
 
 }

@@ -43,6 +43,7 @@ public class ProfessorRestAPI {
 		ArrayList<CourseCatalog> catalog = null;
 		try {
 			catalog = catalogInterface.getDepartmentCourseCatalog(department);
+			
 		} catch (InvalidDepartmentException | SQLException e) {
 			return Response.status(404).entity(e.getMessage()).build();
 		}
@@ -90,22 +91,22 @@ public class ProfessorRestAPI {
 	public Response viewEnrolledStudents(@NotNull @FormParam("courseid") String courseId, 
 			@NotNull @FormParam("session") String session)
 	{
-		ArrayList<Student> enrolledStudents = null;
 		try {
-			enrolledStudents = professorInterface.viewEnrolledStudents(courseId, session);
+			ArrayList<Student> enrolledStudents = professorInterface.viewEnrolledStudents(courseId, session);
+			return Response.status(200).entity(enrolledStudents).build();
 		} catch (SQLException e) {
 			return Response.status(500).entity(e.getMessage()).build();
 		} catch (NoEnrolledStudentsException e) {
 			return Response.status(500).entity(e.getMessage()).build();
 		}
-		
-		return Response.status(200).entity(enrolledStudents).build();
 	}
 	
 	@POST
 	@Path("/submitgrades")
-	public Response submitGrades(@NotNull @FormParam("courseid") String courseId, 
-			@NotNull @FormParam("studentids") List<String> studentIds, @NotNull @FormParam("grades") List<String> grades)
+	public Response submitGrades(
+			@NotNull @FormParam("courseid") String courseId, 
+			@NotNull @FormParam("studentids") List<String> studentIds, 
+			@NotNull @FormParam("grades") List<String> grades)
 	{
 		if(studentIds.size() != grades.size())
 		{

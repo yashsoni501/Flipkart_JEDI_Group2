@@ -76,7 +76,8 @@ CREATE TABLE `semesterReportCard` (
     `sgpa` varchar(50) not null, 
     `semester` int not null,
 
-    foreign key (stuid) references auth(uid)
+    foreign key (stuid) references auth(uid),
+    unique(stuid, semester)
 );
 
 CREATE TABLE `payment` (
@@ -97,45 +98,47 @@ create table `constants` (
     `value` varchar(50) not null
 );
 
-insert into `constants` (`key`, `value`) values ('PAYMENT_WINDOW',  'FALSE');
-insert into `constants` (`key`, `value`) values ('COURSE_WINDOW', 'FALSE');
+insert into `constants` (`key`, `value`) values ('PAYMENT_WINDOW',  'TRUE');
+insert into `constants` (`key`, `value`) values ('COURSE_WINDOW', 'TRUE');
 insert into `constants` (`key`, `value`) values ('PROFESSOR_WINDOW', 'TRUE');
 
 
 insert into `auth` (`email`, `password`, `userRole` ) values ('admin@crs', 'admin', 'ADMIN');
 
-insert into `auth` (`email` , `password` , `userRole` ) values ('student@crs', 'Student1', 'STUDENT');
-insert into `auth` (`email` , `password` , `userRole` ) values ('stud@crs', 'stud', 'STUDENT');
-
-insert into `auth` (`email` , `password` , `userRole` ) values ('prof@crs', 'prof', 'PROFESSOR');
+insert into `auth` (`email` , `password` , `userRole` ) values ('prof@ssc', 'prof', 'PROFESSOR');
 insert into `auth` (`email` , `password` , `userRole` ) values ('prof@hss', 'prof', 'PROFESSOR');
 insert into `auth` (`email` , `password` , `userRole` ) values ('prof@cse', 'prof', 'PROFESSOR');
 
+insert into `auth` (`email` , `password` , `userRole` ) values ('student@crs', 'Student1', 'STUDENT');
+insert into `auth` (`email` , `password` , `userRole` ) values ('stud@crs', 'stud', 'STUDENT');
 
 insert into `admin` (`adminid`, `email`, `name`, `designation`, `status`) values (1, 'admin@crs', 'Amit Balyan', 'HOD', 'ACTIVE');
 
-insert into `student` (`stuid`, `email`, `name`, `department`, `session`, `approved`) values (2, 'student@crs', 'StudName', 'MATH', '2018', 'FALSE'); 
-insert into `student` (`stuid`, `email`, `name`, `department`, `session`, `approved`) values (3, 'stud@crs', 'StudName', 'CSE', '2018', 'TRUE'); 
+insert into `professor` (`profid`, `email`, `name`, `department`) values (2, 'prof@hss', 'ProfName', 'HSS');
+insert into `professor` (`profid`, `email`, `name`, `department`) values (3, 'prof@hss', 'hssproff', 'CSE');
+insert into `professor` (`profid`, `email`, `name`, `department`) values (4, 'prof@cse', 'cseproff', 'Science');
 
-insert into `professor` (`profid`, `email`, `name`, `department`) values (4, 'prof@crs', 'ProfName', 'MATH');
-insert into `professor` (`profid`, `email`, `name`, `department`) values (5, 'prof@hss', 'hssproff', 'HSS');
-insert into `professor` (`profid`, `email`, `name`, `department`) values (6, 'prof@cse', 'cseproff', 'CSE');
+insert into `student` (`stuid`, `email`, `name`, `department`, `session`, `approved`) values (5, 'student@crs', 'StudName', 'MATH', '2018', 'FALSE'); 
+insert into `student` (`stuid`, `email`, `name`, `department`, `session`, `approved`) values (6, 'stud@crs', 'StudName', 'CSE', '2018', 'TRUE'); 
 
-insert into `course` (`courseName`, `department`) values ('Maths', "MATH");
-insert into `course` (`courseName`, `department`) values ('Physics', "PHYSICS");
+
 insert into `course` (`courseName`, `department`) values ('Economics', "HSS");
 insert into `course` (`courseName`, `department`) values ('Phychology', "HSS");
 insert into `course` (`courseName`, `department`) values ('Philosophy', "HSS");
-insert into `course` (`courseName`, `department`) values ('Politics', "Social");
-insert into `course` (`courseName`, `department`) values ('Chemistry', "Science");
 insert into `course` (`courseName`, `department`) values ('Netorks', "CSE");
 insert into `course` (`courseName`, `department`) values ('Databases', "CSE");
+insert into `course` (`courseName`, `department`) values ('Chemistry', "Science");
+insert into `course` (`courseName`, `department`) values ('Politics', "Social");
+insert into `course` (`courseName`, `department`) values ('Maths', "MATH");
+insert into `course` (`courseName`, `department`) values ('Physics', "PHYSICS");
 
-insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values ('3', null, '1' , '2018' , '3');
-insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values ('4', 5, '1' , '2018' , '2');
-insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values ('6', null, '1' , '2018' , '1');
-insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values ('7', '6' , '1' , '2018' , '2');
-insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values ('8', null , '1' , '2018' , '3');
+insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values ('1', 2, '1' , '2018' , '3');
+insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values ('2', 2, '1' , '2018' , '2');
+insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values ('3', 2, '1' , '2018' , '1');
+insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values ('4', 3, '1' , '2018' , '2');
+insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values ('5', 3, '1' , '2018' , '3');
+
+-- insert into courseCatalog (`courseid`, `profid`, `semester`, `session`, `credits`) values ('6', null , '1' , '2018' , '3');
 
 
 

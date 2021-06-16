@@ -5,6 +5,7 @@ package com.flipkart.application;
 
 import org.glassfish.jersey.server.ResourceConfig;
 
+import com.flipkart.restController.AdminRestAPI;
 import com.flipkart.restController.CustomerRestAPI;
 import com.flipkart.restController.StudentRestAPI;
 import com.flipkart.restController.ProfessorRestAPI;
@@ -22,6 +23,7 @@ public class ApplicationConfig extends ResourceConfig {
 		register(UserRestAPI.class);
 		register(StudentRestAPI.class);
 		register(ProfessorRestAPI.class);
+		register(AdminRestAPI.class);
 	}
 
 }
