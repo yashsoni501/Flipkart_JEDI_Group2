@@ -117,10 +117,10 @@ public class CRSStudentMenu {
 		// Auto-generated method stub
 
 		System.out.println("--------------------------------------------------------------------------------");
-		System.out.printf("%15s %15s %15s %20s %10s\n", "Student ID", "Name", "Department", "Email ID", "Approval");
+		System.out.printf("%-15s %-15s %-15s %-20s %-10s\n", "Student ID", "Name", "Department", "Email ID", "Approval");
 		System.out.println("--------------------------------------------------------------------------------");
 
-		System.out.printf("%15s %15s %15s %20s %10s\n", student.getStudentID(), student.getStudentName(),
+		System.out.printf("%-15s %-15s %-15s %-20s %-10s\n", student.getStudentID(), student.getStudentName(),
 				student.getDepartment(), student.getEmailID(), student.getApprovalStatus());
 	}
 
@@ -247,15 +247,15 @@ public class CRSStudentMenu {
 		try {
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------------------");
-			System.out.printf("%10s %15s %15s %10s %10s %10s\n", "Course ID", "Course Name", "Department", "Semester",
+			System.out.printf("%-10s %-15s %-15s %-10s %-10s %-10s\n", "Course ID", "Course Name", "Department", "Semester",
 					"Session", "Credits");
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------------------");
 			for (CourseCatalog catalog : selectedCourses) {
 				Course course = courseInterface.getCourse(catalog.getCourseId());
-				System.out.printf("%10s %15s %15s", course.getCourseID(), course.getCourseName(),
+				System.out.printf("%-10s %-15s %-15s", course.getCourseID(), course.getCourseName(),
 						course.getDepartment());
-				System.out.printf("%10s %10s %10s\n", catalog.getSemester(), catalog.getSession(),
+				System.out.printf("%-10s %-10s %-10s\n", catalog.getSemester(), catalog.getSession(),
 						catalog.getCredits());
 			}
 			System.out.println(
@@ -338,15 +338,15 @@ public class CRSStudentMenu {
 
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------------------");
-			System.out.printf("%10s %15s %15s %10s %10s %10s\n", "Course ID", "Course Name", "Department", "Semester",
+			System.out.printf("%-10s %-15s %-15s %-10s %-10s %-10s\n", "Course ID", "Course Name", "Department", "Semester",
 					"Session", "Credits");
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------------------");
 			for (CourseCatalog catalog : arr) {
 				Course course = courseInterface.getCourse(catalog.getCourseId());
-				System.out.printf("%10s %15s %15s", course.getCourseID(), course.getCourseName(),
+				System.out.printf("%-10s %-15s %-15s", course.getCourseID(), course.getCourseName(),
 						course.getDepartment());
-				System.out.printf("%10s %10s %10s\n", catalog.getSemester(), catalog.getSession(),
+				System.out.printf("%-10s %-10s %-10s\n", catalog.getSemester(), catalog.getSession(),
 						catalog.getCredits());
 			}
 			System.out.println(
@@ -378,7 +378,7 @@ public class CRSStudentMenu {
 
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------------------");
-			System.out.printf("%10s %15s %15s %10s %20s\n", "Course ID", "Course Name", "Department", "Credits",
+			System.out.printf("%-10s %-15s %-15s %-10s %-10s\n", "Course ID", "Course Name", "Department", "Credits",
 					"Professor ID");
 			System.out.println(
 					"---------------------------------------------------------------------------------------------------------------");
@@ -387,7 +387,7 @@ public class CRSStudentMenu {
 				Course course = courseInterface.getCourse(regCourse.getCourseId());
 				CourseCatalog catalog = courseCatalogInterface.getCourseCatalog(regCourse.getCourseId());
 
-				System.out.printf("%10s %15s %15s %10s %20s\n", course.getCourseID(), course.getCourseName(),
+				System.out.printf("%-10s %-15s %-15s %-10s %-10s\n", course.getCourseID(), course.getCourseName(),
 						course.getDepartment(), catalog.getCredits(), catalog.getProfessorId());
 
 			}
@@ -422,9 +422,9 @@ public class CRSStudentMenu {
 			}
 			System.out.println(
 					"----------------------------------------------------------------------------------------");
-			System.out.println("Reference ID \t Payment Mode \t Amount \t Date");
-			System.out.println(reciept.getReferenceId() + "\t" + reciept.getModeOfPayment() + "\t" + reciept.getAmount()
-					+ "\t" + reciept.getDateOfPayment());
+			System.out.printf("%-10s %-15s %-10s %-30s\n", "Reference ID", "Payment Mode", "Amount", "Date");
+			System.out.printf("%-10s %-15s %-10s %-30s\n", reciept.getReferenceId(), reciept.getModeOfPayment(), reciept.getAmount()
+					, reciept.getDateOfPayment());
 			System.out.println(
 					"----------------------------------------------------------------------------------------");
 			System.out.println();
@@ -457,13 +457,13 @@ public class CRSStudentMenu {
 				System.out.println("Semester : " + semesterReportCards.get(i).getCurrentSem() + "\n"
 						+ " Semeseter sgpa : " + semesterReportCards.get(i).getSgpa());
 				System.out.println("---------------------------------------------------------------");
-				System.out.println("Course ID \t Course Name \t Department \t Professor ID \t Credits \t Grade");
+				System.out.printf("%-10s %-15s %-15s %-15s %-10s %-10s\n", "Course ID", "Course Name", "Department", "Professor ID", "Credits", "Grade");
 				for (int j = 0; j < arr1.size(); j++) {
 					CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(j).getCourseId());
 					Course course = courseInterface.getCourse(arr1.get(j).getCourseId());
-					System.out.println(course.getCourseID() + "\t\t" + course.getCourseName() + "\t"
-							+ course.getDepartment() + "\t" + arr.getProfessorId() + "\t\t" + arr.getCredits() + "\t"
-							+ arr1.get(j).getGrade());
+					System.out.printf("%-10s %-15s %-15s %-15s %-10s %-10s\n", course.getCourseID(), course.getCourseName(),
+							course.getDepartment(), arr.getProfessorId(), arr.getCredits(),
+							arr1.get(j).getGrade());
 				}
 				System.out.println("");
 			}
@@ -515,14 +515,14 @@ public class CRSStudentMenu {
 
 			System.out.println(
 					"----------------------------------------------------------------------------------------");
-			System.out.println("Course ID \t Course Name \t Department \t Credits \t Professor ID");
+			System.out.printf("%-10s %-15s %-15s %-10s %-15s\n", "Course ID", "Course Name", "Department", "Credits", "Professor ID");
 			System.out.println(
 					"----------------------------------------------------------------------------------------");
 			for (int i = 0; i < arr1.size(); i++) {
 				CourseCatalog arr = courseCatalogInterface.getCourseCatalog(arr1.get(i).getCourseId());
 				Course course = courseInterface.getCourse(arr1.get(i).getCourseId());
-				System.out.println(course.getCourseID() + "\t" + course.getCourseName() + "\t" + course.getDepartment()
-						+ "\t" + arr.getCredits() + "\t" + arr.getProfessorId());
+				System.out.printf("%-10s %-15s %-15s %-10s %-15s\n", course.getCourseID(), course.getCourseName(), course.getDepartment()
+						, arr.getCredits(), arr.getProfessorId());
 			}
 			System.out.println(
 					"----------------------------------------------------------------------------------------");
@@ -546,9 +546,9 @@ public class CRSStudentMenu {
 			if (reciept.getStatus().equalsIgnoreCase(Constants.PAYMENT_SUCCESS)) {
 				System.out.println(
 						"----------------------------------------------------------------------------------------");
-				System.out.println("Reference ID \t Payment Mode \t Amount \t Date");
-				System.out.println(reciept.getReferenceId() + "\t" + reciept.getModeOfPayment() + "\t"
-						+ reciept.getAmount() + "\t" + reciept.getDateOfPayment());
+				System.out.printf("%-15s %-15s %-10s %-30s\n","Reference ID", "Payment Mode", "Amount", "Date");
+				System.out.printf("%-15s %-15s %-10s %-30s\n", reciept.getReferenceId(), reciept.getModeOfPayment(),
+						reciept.getAmount(), reciept.getDateOfPayment());
 				System.out.println(
 						"----------------------------------------------------------------------------------------");
 				System.out.println();
